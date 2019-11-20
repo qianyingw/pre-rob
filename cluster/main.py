@@ -1,0 +1,105 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Oct 31 18:24:36 2019
+
+@author: qwang
+"""
+
+import os
+import random
+import logging
+import json
+
+import torch
+import torch.nn as nn
+import torch.optim as optim
+
+# os.chdir('/home/qwang/rob/src/cluster')
+
+import utils
+from data_iterators import DataIterators
+from model import ConvNet, metrics
+
+
+from arg_parser import get_args
+from exp_builder import train_evaluate, plot_performance, test
+
+
+#%% Get arguments from command line
+args, device = get_args()
+
+
+#%% Set random seed
+random.seed(args.seed)
+torch.manual_seed(args.seed)
+if device == 'cuda': torch.cuda.manual_seed(args.seed)
+torch.backends.cudnn.deterministic = True  
+
+#%% Set logger
+log_dir = os.path.join(os.getcwd(), 'exps', args.exp_name)
+if os.path.exists(log_dir) == False:
+    os.makedirs(log_dir)       
+utils.set_logger(os.path.join(log_dir, 'train.log'))
+
+
+#%% Save args to json
+args_dict = vars(args)
+with open(os.path.join(log_dir, 'args.json'), 'w') as fout:
+    json.dump(args_dict, fout, indent=4)
+        
+        
+#%% Load data and create iterators
+logging.info("Loading the datasets...")
+helper = DataIterators(args_dict = args)
+
+train_data, valid_data, test_data = helper.create_data()   
+train_iterator, valid_iterator, test_iterator = helper.create_iterators(train_data, valid_data, test_data)
+logging.info("Done.")
+
+#%% Define the model
+input_dim = len(helper.TEXT.vocab)
+output_dim = len(helper.LABEL.vocab)
+
+unk_idx = helper.TEXT.vocab.stoi[helper.TEXT.unk_token]
+pad_idx = helper.TEXT.vocab.stoi[helper.TEXT.pad_token]
+
+sizes = args.filter_sizes.split(',')
+sizes = [int(s) for s in sizes]
+
+model = ConvNet(vocab_size = input_dim,
+                embedding_dim = args.embed_dim, 
+                n_filters = args.num_filters, 
+                filter_sizes = sizes, 
+                output_dim = output_dim, 
+                dropout = args.dropout, 
+                pad_idx = pad_idx)
+
+print(model)
+
+#%% Load pre-trained embedding
+pretrained_embeddings = helper.TEXT.vocab.vectors
+model.embedding.weight.data.copy_(pretrained_embeddings)
+# Zero the initial weights of the unknown and padding tokens
+model.embedding.weight.data[unk_idx] = torch.zeros(args.embed_dim)
+model.embedding.weight.data[pad_idx] = torch.zeros(args.embed_dim)
+
+del pretrained_embeddings
+
+#%% Define the optimizer, loss function and metrics
+optimizer = optim.Adam(model.parameters())
+criterion = nn.CrossEntropyLoss()    
+metrics_fn = metrics
+
+model = model.to(device)
+criterion = criterion.to(device)
+
+#%% Train the model
+logging.info("\nStart training for {} epoch(s)...".format(args.num_epochs)) 
+train_acc_list, train_loss_list, val_acc_list, val_loss_list = train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, metrics_fn, args, log_dir)
+
+plot_performance(train_acc_list, train_loss_list, val_acc_list, val_loss_list, png_dir = log_dir)
+
+#%% Test
+logging.info("\nStart testing...")
+test(model, test_iterator, criterion, metrics_fn, log_dir, restore_file = 'best')
