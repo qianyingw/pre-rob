@@ -173,7 +173,20 @@ dup_df = pd.concat(frames)
 #%% Output data
 # Add columns
 iicarus['goldID'] = 'iicarus' + iicarus['ID'].astype(str)  # ID for all the gold data
-iicarus = iicarus.dropna(subset=['RandomizationTreatmentControl', 'BlindedOutcomeAssessment', 'SampleSizeCalculation'], how='all')
+
+# For Jing to check
+missing = iicarus[pd.isnull(iicarus['RandomizationTreatmentControl']) | pd.isnull(iicarus['BlindedOutcomeAssessment']) | pd.isnull(iicarus['SampleSizeCalculation'])]
+missing.to_csv('data/iicarus/iicarus_missing.csv', sep=',', encoding='utf-8')    
+
+# Drop records if any of the rob items has missing values
+iicarus = iicarus.dropna(subset=['RandomizationTreatmentControl', 'BlindedOutcomeAssessment', 'SampleSizeCalculation'], how='any')
+
+
+# Type conversion
+iicarus.RandomizationTreatmentControl = iicarus.RandomizationTreatmentControl.astype(int)
+iicarus.BlindedOutcomeAssessment = iicarus.BlindedOutcomeAssessment.astype(int)
+iicarus.SampleSizeCalculation = iicarus.SampleSizeCalculation.astype(int)
+
 
 iicarus.to_csv('data/iicarus/rob_iicarus_info.txt', sep='\t', encoding='utf-8')
 list(iicarus.columns)

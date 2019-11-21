@@ -1,7 +1,4 @@
 #!/bin/bash
-cd /home/qwang/rob/data
-
-while read -r line; do 
-  pdftotext "$line" "np/TXTs/$(basename "$line" .pdf).txt"
-  #arr+=("$line"); 
-done<np/np_doclink.txt
+for file in /media/mynewdrive/rob/data/np/PDFs/*.pdf; do
+  pdftotext "$file" "/media/mynewdrive/rob/data/np/TXTs/$(basename "$file" .pdf).txt"
+done

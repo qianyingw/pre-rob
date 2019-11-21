@@ -177,6 +177,8 @@ for i, row in psy.iterrows():
     psy.loc[i,'txtLink'] = 'data/psycho/TXTs/' + os.path.basename(psy.loc[i,'DocumentLink']).split('.')[0] + '.txt'
 psy['goldID'] = 'psy' + psy['ID'].astype(str)  # ID for all the gold data
 
+psy = psy.dropna(subset=['RandomizationTreatmentControl', 'BlindedOutcomeAssessment', 'SampleSizeCalculation'], how='any')
+
 psy.to_csv('data/psycho/rob_psycho_info.txt', sep='\t', encoding='utf-8')
 list(psy.columns)
 

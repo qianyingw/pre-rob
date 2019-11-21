@@ -189,7 +189,7 @@ stroke.set_index(pd.Series(range(0, len(stroke))), inplace=True)
 #%% Output data
 # Add columns
 stroke['goldID'] = 'stroke' + stroke['ID'].astype(str)  # ID for all the gold data
-stroke = stroke.dropna(subset=['RandomizationTreatmentControl', 'BlindedOutcomeAssessment', 'SampleSizeCalculation'], how='all')
+stroke = stroke.dropna(subset=['RandomizationTreatmentControl', 'BlindedOutcomeAssessment', 'SampleSizeCalculation'], how='any')
 
 stroke.to_csv('rob/rob_stroke_info.txt', sep='\t', encoding='utf-8')
 stroke.to_csv('data/stroke/rob_stroke_info.txt', sep='\t', encoding='utf-8')

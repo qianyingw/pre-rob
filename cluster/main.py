@@ -18,12 +18,11 @@ import torch.optim as optim
 # os.chdir('/home/qwang/rob/src/cluster')
 
 import utils
-from data_iterators import DataIterators
-from model import ConvNet, metrics
-
-
 from arg_parser import get_args
-from exp_builder import train_evaluate, plot_performance, test
+from data_iterators import DataIterators
+
+from model import ConvNet, metrics
+from train import train_evaluate, plot_performance, test
 
 
 #%% Get arguments from command line
@@ -37,7 +36,7 @@ if device == 'cuda': torch.cuda.manual_seed(args.seed)
 torch.backends.cudnn.deterministic = True  
 
 #%% Set logger
-log_dir = os.path.join(os.getcwd(), 'exps', args.exp_name)
+log_dir = os.path.join(args.exp_path, args.exp_name)
 if os.path.exists(log_dir) == False:
     os.makedirs(log_dir)       
 utils.set_logger(os.path.join(log_dir, 'train.log'))
@@ -51,20 +50,25 @@ with open(os.path.join(log_dir, 'args.json'), 'w') as fout:
         
 #%% Load data and create iterators
 logging.info("Loading the datasets...")
-helper = DataIterators(args_dict = args)
+helper = DataIterators(args_dict = args_dict)
+
+# Create train/valid/test.json
+json_dir = os.path.dirname(args_dict['data_json_path'])
+if os.path.isfile(os.path.join(json_dir, 'train.json')) == False:
+    helper.split_and_save() 
 
 train_data, valid_data, test_data = helper.create_data()   
 train_iterator, valid_iterator, test_iterator = helper.create_iterators(train_data, valid_data, test_data)
 logging.info("Done.")
 
 #%% Define the model
-input_dim = len(helper.TEXT.vocab)
-output_dim = len(helper.LABEL.vocab)
+input_dim = len(helper.TEXT.vocab)  # max_vocab_size + 2
+output_dim = len(helper.LABEL.vocab)  # 2
 
-unk_idx = helper.TEXT.vocab.stoi[helper.TEXT.unk_token]
-pad_idx = helper.TEXT.vocab.stoi[helper.TEXT.pad_token]
+unk_idx = helper.TEXT.vocab.stoi[helper.TEXT.unk_token]  # 0
+pad_idx = helper.TEXT.vocab.stoi[helper.TEXT.pad_token]  # 1
 
-sizes = args.filter_sizes.split(',')
+sizes = args_dict['filter_sizes'].split(',')
 sizes = [int(s) for s in sizes]
 
 model = ConvNet(vocab_size = input_dim,
