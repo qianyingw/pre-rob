@@ -13,6 +13,7 @@ from tqdm import tqdm
 import torch
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 
 import utils
 import json
@@ -89,20 +90,16 @@ def train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, 
         
     best_valid_loss = float('inf')
     
-    
-    train_acc_list = []
-    train_loss_list = []
-    val_acc_list = []
-    val_loss_list = []
-     
     # Create args and output dict
     output_dict = {'args': vars(args),
                    'prfs': {}}
-       
+    
+    # Create dataframe for performance curves
+    train_df = pd.DataFrame(columns=['loss', 'accuracy', 'f1', 'recall'])
+    valid_df = pd.DataFrame(columns=['loss', 'accuracy', 'f1', 'recall'])
+    
     for epoch in range(args.num_epochs):
      
-        logging.info("\nEpoch {}/{}...".format(epoch+1, args.num_epochs))
-        
         train_scores = train(model, train_iterator, criterion, optimizer, metrics)
         valid_scores = evaluate(model, valid_iterator, criterion, metrics)        
         
@@ -129,17 +126,14 @@ def train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, 
         # Save the latest valid scores in exp_dir
         last_loss_path = os.path.join(exp_dir, 'last_val_scores.json')
         utils.save_dict_to_json(valid_scores, last_loss_path)
-        
-#        if valid_scores['loss'] < best_valid_loss:
-#            best_valid_loss = valid_scores['loss']
-#            torch.save(model.state_dict(), 'src/model/model.pt')
-        
-        train_acc_list.append(train_scores['accuracy'])
-        train_loss_list.append(train_scores['loss'])
-        val_acc_list.append(valid_scores['accuracy'])
-        val_loss_list.append(valid_scores['loss'])
-        
-        print('\nEpochs {}/{}...'.format(epoch+1, args.num_epochs))       
+
+
+        # Save dataframe for performance curve       
+        train_df = train_df.append({'loss': train_scores['loss'], 'accuracy': train_scores['accuracy'], 'f1': train_scores['f1'], 'recall': train_scores['recall']}, ignore_index=True)
+        valid_df = valid_df.append({'loss': valid_scores['loss'], 'accuracy': valid_scores['accuracy'], 'f1': valid_scores['f1'], 'recall': valid_scores['recall']}, ignore_index=True)
+               
+        logging.info("\nEpoch {}/{}...".format(epoch+1, args.num_epochs))
+        # print('\nEpochs {}/{}...'.format(epoch+1, args.num_epochs))       
         print('\n[Train] loss: {0:.3f} | acc: {1:.2f}% | f1: {2:.2f}% | recall: {3:.2f}% | precision: {4:.2f}% | specificity: {5:.2f}%'.format(
             train_scores['loss'], train_scores['accuracy']*100, train_scores['f1']*100, train_scores['recall']*100, train_scores['precision']*100, train_scores['specificity']*100))
         print('[Val] loss: {0:.3f} | acc: {1:.2f}% | f1: {2:.2f}% | recall: {3:.2f}% | precision: {4:.2f}% | specificity: {5:.2f}%'.format(
@@ -149,7 +143,7 @@ def train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, 
     with open(os.path.join(exp_dir, args.exp_name+'_prfs.json'), 'w') as fout:
         json.dump(output_dict, fout, indent=4)
                    
-    return train_acc_list, train_loss_list, val_acc_list, val_loss_list
+    return train_df, valid_df
     
     
         
@@ -166,23 +160,25 @@ def test(model, test_iterator, criterion, metrics, exp_dir, restore_file):
     return test_scores
 
 
-def plot_performance(train_acc_list, train_loss_list, val_acc_list, val_loss_list, png_dir):
+def plot_performance(train_df, val_df, png_dir):
     # Figure size
     plt.figure(figsize=(15,5))
 
-    x = np.arange(len(train_loss_list))+1
+    x = np.arange(len(train_df)) + 1
     # Plot Loss
     plt.subplot(1, 2, 1)
     plt.title("Loss")
-    plt.plot(x, train_loss_list, label="train")
-    plt.plot(x, val_loss_list, label="val")
+    plt.plot(x, train_df['loss'], label="train", color='C5')
+    plt.plot(x, val_df['loss'], label="val", color='C5', linestyle='--')
     plt.legend(loc='upper right')
 
     # Plot Accuracy
     plt.subplot(1, 2, 2)
-    plt.title("Accuracy")
-    plt.plot(x, train_acc_list, label="train")
-    plt.plot(x, val_acc_list, label="val")
+    plt.title("Scores")
+    plt.plot(x, train_df['accuracy'], label="train_acc", color='C0')
+    plt.plot(x, val_df['accuracy'], label="val_acc", color='C0', linestyle='--')
+    plt.plot(x, train_df['f1'], label="train_f1", color='C1')
+    plt.plot(x, val_df['f1'], label="val_f1", color='C1', linestyle='--')
     plt.legend(loc='lower right')
 
     # Save figure
@@ -190,4 +186,3 @@ def plot_performance(train_acc_list, train_loss_list, val_acc_list, val_loss_lis
 
     # Show plots
     # plt.show()
-        

@@ -32,14 +32,14 @@ def get_args():
     
     
     parser.add_argument('--seed', nargs="?", type=int, default=1234, help='Seed for random number generator')
-    parser.add_argument('--batch_size', nargs="?", type=int, default=64, help='Batch size')
+    parser.add_argument('--batch_size', nargs="?", type=int, default=128, help='Batch size')
     parser.add_argument('--num_epochs', nargs="?", type=int, default=2, help='Number of epochs')    
     parser.add_argument('--train_ratio', nargs="?", type=float, default=0.8, help='Ratio of training set')
     parser.add_argument('--val_ratio', nargs="?", type=float, default=0.1, help='Ratio of validation set')
     parser.add_argument('--max_vocab_size', nargs="?", type=int, default=100, help='Maximum size of the vocabulary ')
     parser.add_argument('--min_occur_freq', nargs="?", type=int, default=10, help='Minimum frequency of including a token in the vocabulary ')
     parser.add_argument('--embed_dim', nargs="?", type=int, default=200, help='Dimension of pre-trained word vectors')
-    parser.add_argument('--num_filters', nargs="?", type=int, default=10, help='Number of filters for each filter size (CNN)')   
+    parser.add_argument('--num_filters', nargs="?", type=int, default=3, help='Number of filters for each filter size (CNN)')   
     parser.add_argument('--filter_sizes', nargs="?", type=str, default='2', help='Filter sizes (CNN)')
     parser.add_argument('--dropout', nargs="?", type=float, default=0.5, help='Dropout rate')
 
