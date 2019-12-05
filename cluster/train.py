@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 import utils
-
+import json
 
 
 # from utils import save_statistics
@@ -76,10 +76,6 @@ def evaluate(model, iterator, criterion, metrics):
     return scores
 
 
-# Generate the directory names
-#self.experiment_folder = os.path.abspath(experiment_name)
-#self.experiment_logs = os.path.abspath(os.path.join(self.experiment_folder, "result_outputs"))
-        
 
 def train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, metrics, args, exp_dir, restore_file=None):
     """
@@ -98,15 +94,22 @@ def train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, 
     train_loss_list = []
     val_acc_list = []
     val_loss_list = []
-    
-    
-    for epoch in range(args.num_epochs):
-        
-        logging.info("\nEpoch {}/{}...".format(epoch+1, args.num_epochs))
      
+    # Create args and output dict
+    output_dict = {'args': vars(args),
+                   'prfs': {}}
+       
+    for epoch in range(args.num_epochs):
+     
+        logging.info("\nEpoch {}/{}...".format(epoch+1, args.num_epochs))
+        
         train_scores = train(model, train_iterator, criterion, optimizer, metrics)
-        valid_scores = evaluate(model, valid_iterator, criterion, metrics)
-                
+        valid_scores = evaluate(model, valid_iterator, criterion, metrics)        
+        
+        # Update output dictionary
+        output_dict['prfs'][str('train_'+str(epoch+1))] = train_scores
+        output_dict['prfs'][str('valid_'+str(epoch+1))] = valid_scores
+                           
         # Save weights if is_best
         is_best = valid_scores['loss'] < best_valid_loss
         utils.save_checkpoint({'epoch': epoch+1,
@@ -116,7 +119,7 @@ def train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, 
                               checkdir = exp_dir)
         
         if is_best:
-            logging.info("\n ...Found new lowest loss...")
+            # logging.info("\n ...Found new lowest loss...")
             best_valid_loss = valid_scores['loss']
             
             # Save the best valid scores in exp_dir
@@ -133,14 +136,19 @@ def train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, 
         
         train_acc_list.append(train_scores['accuracy'])
         train_loss_list.append(train_scores['loss'])
-        val_acc_list.append(train_scores['accuracy'])
-        val_loss_list.append(train_scores['loss'])
-               
+        val_acc_list.append(valid_scores['accuracy'])
+        val_loss_list.append(valid_scores['loss'])
+        
+        print('\nEpochs {}/{}...'.format(epoch+1, args.num_epochs))       
         print('\n[Train] loss: {0:.3f} | acc: {1:.2f}% | f1: {2:.2f}% | recall: {3:.2f}% | precision: {4:.2f}% | specificity: {5:.2f}%'.format(
             train_scores['loss'], train_scores['accuracy']*100, train_scores['f1']*100, train_scores['recall']*100, train_scores['precision']*100, train_scores['specificity']*100))
         print('[Val] loss: {0:.3f} | acc: {1:.2f}% | f1: {2:.2f}% | recall: {3:.2f}% | precision: {4:.2f}% | specificity: {5:.2f}%'.format(
             valid_scores['loss'], valid_scores['accuracy']*100, valid_scores['f1']*100, valid_scores['recall']*100, valid_scores['precision']*100, valid_scores['specificity']*100))
-        
+    
+    # Write performance to 'expname_prfs.json'
+    with open(os.path.join(exp_dir, args.exp_name+'_prfs.json'), 'w') as fout:
+        json.dump(output_dict, fout, indent=4)
+                   
     return train_acc_list, train_loss_list, val_acc_list, val_loss_list
     
     
@@ -151,10 +159,11 @@ def test(model, test_iterator, criterion, metrics, exp_dir, restore_file):
     test_scores = evaluate(model, test_iterator, criterion, metrics)
     save_path = os.path.join(exp_dir, "test_scores.json")
     utils.save_dict_to_json(test_scores, save_path)
-    
+  
     print('\n[Test] loss: {0:.3f} | acc: {1:.2f}% | f1: {2:.2f}% | recall: {3:.2f}% | precision: {4:.2f}% | specificity: {5:.2f}%'.format(
             test_scores['loss'], test_scores['accuracy']*100, test_scores['f1']*100, test_scores['recall']*100, test_scores['precision']*100, test_scores['specificity']*100))
     
+    return test_scores
 
 
 def plot_performance(train_acc_list, train_loss_list, val_acc_list, val_loss_list, png_dir):

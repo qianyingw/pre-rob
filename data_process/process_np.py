@@ -168,8 +168,7 @@ ID_del3 = [1308,678,1571,459,699,
 neuro = neuro[-neuro["ID"].isin(ID_del3)]  # len(neuro) = 1646   
 
 
-# Manually correct labels by combine labels from single-extracted and dual-extracted
-# (only for randomisation/blinded/ssz)
+
 # See 'np_duplicates.xlsx' for final IDs needs to be removed/corrected
 # Can't have any decision so just delete all 20 duplicate records with different labels
 ID_del4 = [380,570,303,630,816,
@@ -179,6 +178,24 @@ ID_del4 = [380,570,303,630,816,
 
 neuro = neuro[-neuro["ID"].isin(ID_del4)]  # len(neuro) = 1626
 
+# Manually correct labels (See sheet 'fromGill' in 'np_duplicates.xlsx')
+neuro.loc[neuro.ID==1451, 'BlindedOutcomeAssessment'] = 0
+neuro.loc[neuro.ID==879, 'RandomizationTreatmentControl'] = 1
+neuro.loc[neuro.ID==879, 'AllocationConcealment'] = 1
+neuro.loc[neuro.ID==1513, 'AnimalExclusions'] = 1
+neuro.loc[neuro.ID==917, 'AnimalExclusions'] = 1
+
+neuro.loc[neuro.ID==1757, 'ConflictsOfInterest'] = 1
+neuro.loc[neuro.ID==965, 'ConflictsOfInterest'] = 1
+neuro.loc[neuro.ID==1295, 'RandomizationTreatmentControl'] = 0
+neuro.loc[neuro.ID==1295, 'ConflictsOfInterest'] = 1
+neuro.loc[neuro.ID==994, 'AnimalExclusions'] = 0
+
+neuro.loc[neuro.ID==1479, 'ConflictsOfInterest'] = 0
+neuro.loc[neuro.ID==1328, 'BlindedOutcomeAssessment'] = 1
+neuro.loc[neuro.ID==1594, 'BlindedOutcomeAssessment'] = 1
+neuro.loc[neuro.ID==1594, 'AnimalExclusions'] = 1
+neuro.loc[neuro.ID==991, 'AnimalExclusions'] = 1
 
 # Re-index
 neuro.set_index(pd.Series(range(0, len(neuro))), inplace=True)

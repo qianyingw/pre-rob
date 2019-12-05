@@ -26,20 +26,12 @@ class DataIterators(object):
         
         """
         Params:
-            arg_json_path: path of args json file
-            data_json_path: path of data json file
-            embed_path: path of pre-trained word embeddings
-      
+            arg_dict: ...
         The dataset json is read and splitted into three jsons: "train.json", "val.json", "test.json".
         
         """
         
         self.args_dict = args_dict
-        
-#        # Load parameters 
-#        assert os.path.isfile(args_json_path), "No args json file exist."
-#        with open(args_json_path) as fin:
-#            self.args_dict = json.load(fp=fin)
             
         # Create data field
         self.ID = data.Field()    
@@ -183,18 +175,18 @@ class DataIterators(object):
 #helper.split_and_save()
 #train_data, valid_data, test_data = helper.create_data()   
 #train_iterator, valid_iterator, test_iterator = helper.create_iterators(train_data, valid_data, test_data)
-
+#
 #print(helper.LABEL.vocab.stoi)  # {0: 0, 1: 1} ~= {'No': 0, 'Yes': 1}
 ## helper.ID.vocab.stoi  # {'<unk>': 0, '<pad>': 1, 'psy1': 2, 'psy10': 3, ..., 'psy999': 2405}
 #helper.ID.vocab.stoi['<pad>']  # 1
-#helper.ID.vocab.stoi['psy1']  # 2297
-#helper.ID.vocab.stoi['stroke999']  # 7783
+#helper.ID.vocab.stoi['psy1']  # 3053
+#helper.ID.vocab.stoi['stroke999']  # 799
 #
 #helper.TEXT.vocab.itos[:5]  # ['<unk>', '<pad>', ',', '.', 'the']
 #
 #len(helper.TEXT.vocab)  # max_vocab_size + 2
 #len(helper.LABEL.vocab)  # 2
-#len(helper.ID.vocab)  # 7782 + 2
+#len(helper.ID.vocab)  # 7908+ 2
 #
 #helper.TEXT.pad_token  # '<pad>'
 #helper.TEXT.unk_token  # '<unk>'

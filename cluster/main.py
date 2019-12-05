@@ -102,8 +102,17 @@ criterion = criterion.to(device)
 logging.info("\nStart training for {} epoch(s)...".format(args.num_epochs)) 
 train_acc_list, train_loss_list, val_acc_list, val_loss_list = train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, metrics_fn, args, log_dir)
 
-plot_performance(train_acc_list, train_loss_list, val_acc_list, val_loss_list, png_dir = log_dir)
-
 #%% Test
 logging.info("\nStart testing...")
-test(model, test_iterator, criterion, metrics_fn, log_dir, restore_file = 'best')
+test_scores = test(model, test_iterator, criterion, metrics_fn, log_dir, restore_file = 'best')
+
+# Add test performance to '_prfs.json'
+prfs_path = os.path.join(log_dir, args.exp_name+'_prfs.json')
+with open(prfs_path) as fin:
+    output_dict = json.load(fp=fin)
+output_dict['prfs']['test'] = test_scores    
+with open(prfs_path, 'w') as fout:
+    json.dump(output_dict, fout, indent=4)
+
+#%% Performance plot
+plot_performance(train_acc_list, train_loss_list, val_acc_list, val_loss_list, png_dir = log_dir)

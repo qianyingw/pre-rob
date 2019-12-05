@@ -215,7 +215,11 @@ npqip.set_index(pd.Series(range(0, len(npqip))), inplace=True)
 #%% Output data
 # Add columns
 npqip['goldID'] = 'npqip' + npqip['ID'].astype(str)  # ID for all the gold data
+npqip['RandomizationTreatmentControl'].fillna(0, inplace=True)
+npqip['BlindedOutcomeAssessment'].fillna(0, inplace=True)
+npqip['SampleSizeCalculation'].fillna(0, inplace=True)
 npqip = npqip.dropna(subset=['RandomizationTreatmentControl', 'BlindedOutcomeAssessment', 'SampleSizeCalculation'], how='any')
+
 
 # Type conversion
 npqip.RandomizationTreatmentControl = npqip.RandomizationTreatmentControl.astype(int)

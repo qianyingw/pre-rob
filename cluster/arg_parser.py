@@ -39,8 +39,8 @@ def get_args():
     parser.add_argument('--max_vocab_size', nargs="?", type=int, default=100, help='Maximum size of the vocabulary ')
     parser.add_argument('--min_occur_freq', nargs="?", type=int, default=10, help='Minimum frequency of including a token in the vocabulary ')
     parser.add_argument('--embed_dim', nargs="?", type=int, default=200, help='Dimension of pre-trained word vectors')
-    parser.add_argument('--num_filters', nargs="?", type=int, default=20, help='Number of filters for each filter size (CNN)')   
-    parser.add_argument('--filter_sizes', nargs="?", type=str, default='2,3,4', help='Filter sizes (CNN)')
+    parser.add_argument('--num_filters', nargs="?", type=int, default=10, help='Number of filters for each filter size (CNN)')   
+    parser.add_argument('--filter_sizes', nargs="?", type=str, default='2', help='Filter sizes (CNN)')
     parser.add_argument('--dropout', nargs="?", type=float, default=0.5, help='Dropout rate')
 
     parser.add_argument('--exp_path', nargs="?", type=str, default="/home/qwang/rob/src/cluster/exps", help='Path of experiments')

@@ -26,7 +26,7 @@ class ConvNet(nn.Module):
     
         super().__init__()
         
-        self.embedding = nn.Embedding(vocab_size, embedding_dim)
+        self.embedding = nn.Embedding(vocab_size, embedding_dim, padding_idx = pad_idx)
         self.convs = nn.ModuleList([nn.Conv2d(in_channels = 1,
                                               out_channels = n_filters,
                                               kernel_size = (fsize, embedding_dim)) for fsize in filter_sizes
@@ -59,7 +59,6 @@ class ConvNet(nn.Module):
         return out
 
 
-
 def metrics(preds, y):
     """
     Params:
@@ -84,10 +83,10 @@ def metrics(preds, y):
     assert pos == tp + tn
     
     acc = pos / y.shape[0]  # torch.FloatTensor([y.shape[0]])
-    f1 = 2*tp / (tp + tn + fp + fn) if (tp + tn + fp + fn != 0) else float('nan')
-    rec = tp / (tp + fn) if (tp + fn != 0) else float('nan')
-    ppv = tp / (tp + fp) if (tp + fp != 0) else float('nan')
-    spc = tn / (tn + fp) if (tn + fp != 0) else float('nan')
+    f1 = 2*tp / (2*tp + fp + fn) if (2*tp + fp + fn != 0) else 0
+    rec = tp / (tp + fn) if (tp + fn != 0) else 0
+    ppv = tp / (tp + fp) if (tp + fp != 0) else 0
+    spc = tn / (tn + fp) if (tn + fp != 0) else 0
     
     return {'accuracy': acc, 'f1': f1, 'recall': rec, 'precision': ppv, 'specificity': spc}
 
