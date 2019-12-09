@@ -124,7 +124,7 @@ class AttnNet(nn.Module):
     
     def __init__(self, vocab_size, embedding_dim, rnn_hidden_dim, rnn_num_layers, output_dim, bidirection, rnn_cell_type, dropout, pad_idx):
         
-        super(self, AttnNet).__init__()
+        super(AttnNet, self).__init__()
         
         self.embedding = nn.Embedding(vocab_size, embedding_dim, padding_idx = pad_idx)
         
@@ -141,20 +141,21 @@ class AttnNet(nn.Module):
         
         
         # Initialize weight
-        w = torch.emtpy(num_directions*rnn_hidden_dim, num_directions*rnn_hidden_dim)
+        w = torch.empty(num_directions*rnn_hidden_dim, num_directions*rnn_hidden_dim)
         nn.init.kaiming_uniform_(w, mode='fan_in', nonlinearity='relu')
         self.w = nn.Parameter(w)
         # Initialize bias
-        b = torch.zeros(vocab_size, 1)
+        b = torch.zeros(num_directions*rnn_hidden_dim) # b = torch.zeros(batch_maxlen, 1)
         self.b = nn.Parameter(b)      
         # Initialize context vector c
-        c = torch.emtpy(num_directions*rnn_hidden_dim, 1)
+        c = torch.empty(num_directions*rnn_hidden_dim, 1)
         nn.init.kaiming_uniform_(c, mode='fan_in', nonlinearity='relu')
         self.c = nn.Parameter(c)
         
         
         self.dropout = nn.Dropout(dropout)
-        self.linear = nn.Linear(num_directions*hidden_dim, output_dim)
+        self.tanh = nn.Tanh()
+        self.linear = nn.Linear(num_directions*rnn_hidden_dim, output_dim)
         
         
     def forward(self, text):
@@ -172,9 +173,9 @@ class AttnNet(nn.Module):
 
         # Attention
         # w: [num_directions*hidden_dim, num_directions*hidden_dim]
-        u = nn.Tanh(torch.matmul(a, self.w) + self.b)  # [batch_size, seq_len, num_directions*hidden_dim]
+        u = self.tanh(torch.matmul(a, self.w) + self.b)  # [batch_size, seq_len, num_directions*hidden_dim]
         s = F.softmax(torch.matmul(u, self.c), dim=1)  # [batch_size, seq_len, 1]
-        
+                
         # Combine RNN output a and scores s
         z = torch.matmul(a.permute(0,2,1), s)  # [batch_size, num_directions*hidden_dim, 1]
         z = z.squeeze(2)  # [batch_size, num_directions*hidden_dim]

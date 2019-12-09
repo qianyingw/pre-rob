@@ -32,8 +32,8 @@ def get_args():
     
     
     parser.add_argument('--seed', nargs="?", type=int, default=1234, help='Seed for random number generator')
-    parser.add_argument('--batch_size', nargs="?", type=int, default=128, help='Batch size')
-    parser.add_argument('--num_epochs', nargs="?", type=int, default=2, help='Number of epochs')    
+    parser.add_argument('--batch_size', nargs="?", type=int, default=64, help='Batch size')
+    parser.add_argument('--num_epochs', nargs="?", type=int, default=1, help='Number of epochs')    
     parser.add_argument('--train_ratio', nargs="?", type=float, default=0.8, help='Ratio of training set')
     parser.add_argument('--val_ratio', nargs="?", type=float, default=0.1, help='Ratio of validation set')
     parser.add_argument('--max_vocab_size', nargs="?", type=int, default=100, help='Maximum size of the vocabulary ')
@@ -44,7 +44,7 @@ def get_args():
     parser.add_argument('--dropout', nargs="?", type=float, default=0.5, help='Dropout rate')
 
     parser.add_argument('--exp_path', nargs="?", type=str, default="/home/qwang/rob/src/cluster/exps", help='Path of experiments')
-    parser.add_argument('--exp_name', nargs="?", type=str, default="cnn1", help='Experiment name for building the folder')
+    parser.add_argument('--exp_name', nargs="?", type=str, default="try", help='Experiment name for building the folder')
     parser.add_argument('--rob_name', nargs="?", type=str, default="blinded", 
                         choices=['random', 'blinded', 'ssz'], 
                         help='Name of risk of bias item')
@@ -54,6 +54,11 @@ def get_args():
     parser.add_argument('--embed_path', nargs="?", type=str, default='/media/mynewdrive/rob/wordvec/wikipedia-pubmed-and-PMC-w2v.txt', help='Path of pre-trained vectors')
     parser.add_argument('--data_json_path', nargs="?", type=str, default='/media/mynewdrive/rob/data/rob_gold_tokens.json', help='Path of data in json format')
     
+  
+    parser.add_argument('--rnn_hidden_dim', nargs="?", type=int, default=100, help='Number of features in RNN hidden state')
+    parser.add_argument('--rnn_num_layers', nargs="?", type=int, default=1, help='Number of recurrent layers')
+    parser.add_argument('--bidirection', nargs="?", type=str2bool, default=True, help='Apply the bidirectional RNN')
+    parser.add_argument('--rnn_cell_type', nargs="?", type=str, default="LSTM", help='Type of RNN cell (LSTM/GRU)')
     # parser.add_argument('--continue_from_epoch', nargs="?", type=int, default=-1, help='Continue the current training session')
     # parser.add_argument('--dataset_name', type=str, help='Dataset on which the system will train/eval our model')
     

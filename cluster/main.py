@@ -79,6 +79,16 @@ model = ConvNet(vocab_size = input_dim,
                 dropout = args.dropout, 
                 pad_idx = pad_idx)
 
+#model = RecurNet(vocab_size = input_dim, 
+#                 embedding_dim = args.embed_dim, 
+#                 rnn_hidden_dim = args.rnn_hidden_dim, 
+#                 rnn_num_layers = args.rnn_num_layers, 
+#                 output_dim = output_dim, 
+#                 bidirection = args.bidirection, 
+#                 rnn_cell_type = args.rnn_cell_type, 
+#                 dropout = args.dropout, 
+#                 pad_idx = pad_idx)
+
 print(model)
 
 #%% Load pre-trained embedding
