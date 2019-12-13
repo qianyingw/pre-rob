@@ -41,11 +41,14 @@ def df2json(df_info, json_path):
     # Add fullText and textTokens to each text
     for i, dic in tqdm(enumerate(dict_list)):
         txt_path = dic['txtLink']
-        with open(txt_path, 'r', encoding='utf-8') as fp:
-            text = fp.read()
-        text_processed = preprocess_text(text)        
-        # dict_list[i]['fullText'] = text_processed
-        dict_list[i]['textTokens'] = tokenize_text(text_processed)
+        try:
+            with open(txt_path, 'r', encoding='utf-8') as fp:
+                text = fp.read()
+            text_processed = preprocess_text(text)        
+            # dict_list[i]['fullText'] = text_processed
+            dict_list[i]['textTokens'] = tokenize_text(text_processed)
+        except:
+            dict_list[i]['textTokens'] = ''
         
     # Covert dictionary list to json
     with open(json_path, 'w') as fout:
