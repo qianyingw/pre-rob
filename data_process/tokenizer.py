@@ -10,12 +10,13 @@ Created on Thu Sep 26 19:17:12 2019
 
 import re
 import spacy
-from spacy.attrs import ORTH
+
+#from spacy.attrs import ORTH
+#nlp.tokenizer.add_special_case('<sos>', [{ORTH: "<sos>"}])
+#nlp.tokenizer.add_special_case('<eos>', [{ORTH: "<eos>"}])
+
 
 nlp = spacy.load('en')
-nlp.tokenizer.add_special_case('<sos>', [{ORTH: "<sos>"}])
-nlp.tokenizer.add_special_case('<eos>', [{ORTH: "<eos>"}])
-
 # nlp = spacy.load('en_core_web_sm')
 
 
@@ -31,13 +32,30 @@ def preprocess_text(text):
   
     """
       
-    text = re.sub(r"[^A-Za-z0-9!%^&*()<>\-\–+;\',.?]", " ", text)
+    text = re.sub(r"[^A-Za-z0-9!%^&*()<>\-\–+;\',.?]", " ", text) 
+    text = re.sub(r"\!", " ! ", text)
+    text = re.sub(r"\%", " % ", text)
+    text = re.sub(r"\^", " ^ ", text)
+    text = re.sub(r"\&", " & ", text)
+    text = re.sub(r"\*", " * ", text)
+    text = re.sub(r"\(", " ( ", text)
+    text = re.sub(r"\)", " ) ", text)
+    text = re.sub(r"\-", " - ", text)
+    text = re.sub(r"\+", " + ", text)
+    text = re.sub(r"\;", " ; ", text)
+    text = re.sub(r"\'", " ' ", text)
+    text = re.sub(r"\,", " , ", text)
+    text = re.sub(r"\.", " . ", text)
+    text = re.sub(r"\?", " ? ", text)
+    text = re.sub(r"\<", " < ", text)
+    text = re.sub(r"\>", " > ", text)
+    
     text = re.sub(r'\s+', ' ', text)  # strip whitespaces 
     
-    # Replace '.!?' by 'start-of-sentence' and 'end-of-sentence' symbol
-    text = re.sub(r"\. ", ". <eos> <sos> ", text)  
-    text = re.sub(r"\! ", "! <eos> <sos> ", text)  
-    text = re.sub(r"\? ", "? <eos> <sos> ", text)  
+#    # Replace '.!?' by 'start-of-sentence' and 'end-of-sentence' symbol
+#    text = re.sub(r"\. ", ". <eos> <sos> ", text)  
+#    text = re.sub(r"\! ", "! <eos> <sos> ", text)  
+#    text = re.sub(r"\? ", "? <eos> <sos> ", text)  
     
     # For intra-hyphen mark: MK-801, inter-neurons
     text = re.sub(r"\s+\-", "-", text)
