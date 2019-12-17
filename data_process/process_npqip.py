@@ -11,11 +11,15 @@ import os
 import pandas as pd
 import numpy as np
 
-# change working directory
-wdir = '/home/qwang/rob/'
-os.chdir(wdir)
 
+# Change to src dir
+src_dir = '/home/qwang/rob/'
+os.chdir(src_dir)
 from src.data_process.df2json import df2json
+
+# Change to data dir
+data_dir = '/media/mynewdrive/rob/'
+os.chdir(data_dir)
 
 
 #%% Read and format data
@@ -266,3 +270,31 @@ df = npqip[['goldID',
 df2json(df_info = df, json_path = 'data/npqip/rob_npqip_fulltokens.json')
 
 
+#%% Tokenization to json file (Grobid)
+npqip = pd.read_csv("data/npqip/rob_npqip_info.txt", sep='\t', engine="python", encoding="utf-8", index_col = 0)   
+npqip['txtLink'] = npqip['txtLink'].str.replace('TXTs', "GROTXTs")
+npqip['txtLink'] = npqip['txtLink'].str.replace('.txt', ".tei.txt")
+#'data/np/TXTs/np_1.txt'
+#'data/np/GROTXTs/np_1.tei.txt'
+npqip['AllocationConcealment'] = float('nan')
+npqip['AnimalWelfareRegulations'] = float('nan')
+npqip['ConflictsOfInterest'] = float('nan')
+npqip['AnimalExclusions'] = float('nan')
+
+
+npqip.to_csv("data/npqip/rob_npqip_info_grobid.txt", sep='\t', encoding="utf-8")   
+
+
+df = npqip[['goldID',
+            'fileLink',
+            'DocumentLink',
+            'txtLink',
+            'RandomizationTreatmentControl',
+            'AllocationConcealment',
+            'BlindedOutcomeAssessment',
+            'SampleSizeCalculation',
+            'AnimalWelfareRegulations',
+            'ConflictsOfInterest',
+            'AnimalExclusions']]
+
+df2json(df_info = df, json_path = 'data/npqip/rob_npqip_fulltokens_grobid.json')

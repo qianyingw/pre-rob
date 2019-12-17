@@ -10,7 +10,6 @@ import os
 
 import pandas as pd
 import numpy as np
-
 import shutil
 
 # Change to src dir
@@ -257,3 +256,35 @@ df = neuro[['goldID',
               'AnimalExclusions']]
 
 df2json(df_info = df, json_path = 'data/np/rob_np_fulltokens.json')
+
+
+#%% Tokenization to json file (Grobid)
+neuro = pd.read_csv("data/np/rob_np_info.txt", sep='\t', engine="python", encoding="utf-8", index_col = 0)   
+neuro['txtLink'] = neuro['txtLink'].str.replace('TXTs', "GROTXTs")
+neuro['txtLink'] = neuro['txtLink'].str.replace('.txt', ".tei.txt")
+#'data/np/TXTs/np_1.txt'
+#'data/np/GROTXTs/np_1.tei.txt'
+
+neuro.to_csv("data/np/rob_np_info_grobid.txt", sep='\t', encoding="utf-8")   
+
+
+df = neuro[['goldID',
+            'fileLink',
+            'DocumentLink',
+            'txtLink',
+            'RandomizationTreatmentControl',
+            'AllocationConcealment',
+            'BlindedOutcomeAssessment',
+            'SampleSizeCalculation',
+            'AnimalWelfareRegulations',
+            'ConflictsOfInterest',
+            'AnimalExclusions']]
+
+df2json(df_info = df, json_path = 'data/np/rob_np_fulltokens_grobid.json')
+
+
+
+
+
+
+

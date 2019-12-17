@@ -57,7 +57,7 @@ with open('rob_gold_tokens.json', 'w') as fout:
         fout.write(json.dumps(dic) + '\n')   
     
     
-    
+   
 #%% Generate error checking records
 g_stroke = [g for g in gold if re.sub(r'[0-9]', '', g['goldID']) == 'stroke'] 
 g_np = [g for g in gold if re.sub(r'[0-9]', '', g['goldID']) == 'np'] 

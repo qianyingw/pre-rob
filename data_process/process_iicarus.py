@@ -12,11 +12,16 @@ import os
 import pandas as pd
 import numpy as np
 
-# change working directory
-wdir = '/home/qwang/rob/'
-os.chdir(wdir)
 
+
+# Change to src dir
+src_dir = '/home/qwang/rob/'
+os.chdir(src_dir)
 from src.data_process.df2json import df2json
+
+# Change to data dir
+data_dir = '/media/mynewdrive/rob/'
+os.chdir(data_dir)
 
 
 #%% Read and format data
@@ -228,3 +233,34 @@ df = iicarus[['goldID',
 
 
 df2json(df_info = df, json_path = 'data/iicarus/rob_iicarus_fulltokens.json')
+
+
+#%% Tokenization to json file (Grobid)
+iicarus = pd.read_csv("data/iicarus/rob_iicarus_info.txt", sep='\t', engine="python", encoding="utf-8", index_col = 0)   
+iicarus['txtLink'] = iicarus['txtLink'].str.replace('TXTs', "GROTXTs")
+iicarus['txtLink'] = iicarus['txtLink'].str.replace('.txt', ".tei.txt")
+#'data/np/TXTs/np_1.txt'
+#'data/np/GROTXTs/np_1.tei.txt'
+
+iicarus['AllocationConcealment'] = float('nan')
+iicarus['AnimalWelfareRegulations'] = float('nan')
+iicarus['ConflictsOfInterest'] = float('nan')
+iicarus['AnimalExclusions'] = float('nan')
+
+
+iicarus.to_csv("data/iicarus/rob_iicarus_info_grobid.txt", sep='\t', encoding="utf-8")   
+
+
+df = iicarus[['goldID',
+            'fileLink',
+            'DocumentLink',
+            'txtLink',
+            'RandomizationTreatmentControl',
+            'AllocationConcealment',
+            'BlindedOutcomeAssessment',
+            'SampleSizeCalculation',
+            'AnimalWelfareRegulations',
+            'ConflictsOfInterest',
+            'AnimalExclusions']]
+
+df2json(df_info = df, json_path = 'data/iicarus/rob_iicarus_fulltokens_grobid.json')

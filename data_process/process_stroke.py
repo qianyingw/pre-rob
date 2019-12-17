@@ -230,3 +230,27 @@ df = stroke[['goldID',
 
 
 df2json(df_info = df, json_path = 'data/stroke/rob_stroke_fulltokens.json')
+
+#%% Tokenization to json file (Grobid)
+stroke = pd.read_csv("data/stroke/rob_stroke_info.txt", sep='\t', engine="python", encoding="utf-8", index_col = 0)   
+stroke['txtLink'] = stroke['txtLink'].str.replace('TXTs', "GROTXTs")
+stroke['txtLink'] = stroke['txtLink'].str.replace('.txt', ".tei.txt")
+#'data/stroke/TXTs/stroke_1.txt'
+#'data/stroke/GROTXTs/stroke_1.tei.txt'
+
+stroke.to_csv("data/stroke/rob_stroke_info_grobid.txt", sep='\t', encoding="utf-8")   
+
+
+df = stroke[['goldID',
+            'fileLink',
+            'DocumentLink',
+            'txtLink',
+            'RandomizationTreatmentControl',
+            'AllocationConcealment',
+            'BlindedOutcomeAssessment',
+            'SampleSizeCalculation',
+            'AnimalWelfareRegulations',
+            'ConflictsOfInterest',
+            'AnimalExclusions']]
+
+df2json(df_info = df, json_path = 'data/stroke/rob_stroke_fulltokens_grobid.json')

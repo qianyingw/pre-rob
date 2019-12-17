@@ -11,15 +11,14 @@ import pandas as pd
 import numpy as np
 
 
-# change working directory
-wdir = '/home/qwang/rob/'
-os.chdir(wdir)
+# Change to src dir
+src_dir = '/home/qwang/rob/'
+os.chdir(src_dir)
+from src.data_process.df2json import df2json
 
-# from codes.data_process.pdf2text import convert_multiple
-from codes.data_process.df2json import df2json
-# from codes.data_process.regex import doc_annotate, read_regex
-# from codes.data_process.tokenizer import preprocess_text, tokenize_text
-
+# Change to data dir
+data_dir = '/media/mynewdrive/rob/'
+os.chdir(data_dir)
 
 #%% Read and format data
 psy = pd.read_csv("data/psycho/Psychosis_ROB_categorised.csv", sep=',', engine="python", encoding="utf-8")   
@@ -54,11 +53,11 @@ psy['DocumentLink'] = psy['fileLink'].str.replace('S:/JISC Analytics Lab/CAMARAD
 
 
 # Manual correction
-psy.loc[psy.DocumentLink=='psycho/PDFs/13524_2004.pdf', 'DocumentLink'] = 'psycho/PDFs/13524_2004_updated.pdf'
-psy.loc[psy.DocumentLink=='psycho/PDFs/11087_2004.pdf', 'DocumentLink'] = 'psycho/PDFs/11087_2004_updated.pdf'
+psy.loc[psy.DocumentLink=='psycho/PDFs/13524_2004.pdf', 'DocumentLink'] = 'data/psycho/PDFs/13524_2004_updated.pdf'
+psy.loc[psy.DocumentLink=='psycho/PDFs/11087_2004.pdf', 'DocumentLink'] = 'data/psycho/PDFs/11087_2004_updated.pdf'
 
 # Modify pdf path
-pdf_folder = '/home/qwang/rob/data/'
+pdf_folder = '/home/qwang/rob/'
 psy['fileLink'] = pdf_folder + psy['DocumentLink'].astype(str)
 
 # len(psy) = 2465
@@ -220,55 +219,78 @@ df2json(df_info = df, json_path = 'data/psycho/rob_psycho_fulltokens.json')
 
 
 
+#%% Tokenization to json file (Grobid)
+psy = pd.read_csv("data/psycho/rob_psycho_info.txt", sep='\t', engine="python", encoding="utf-8", index_col = 0)   
+psy['txtLink'] = psy['txtLink'].str.replace('TXTs', "GROTXTs")
+psy['txtLink'] = psy['txtLink'].str.replace('.txt', ".tei.txt")
+#'data/stroke/TXTs/stroke_1.txt'
+#'data/stroke/GROTXTs/stroke_1.tei.txt'
+
+psy.to_csv("data/psycho/rob_psycho_info_grobid.txt", sep='\t', encoding="utf-8")   
+
+
+df = psy[['goldID',
+        'fileLink',
+        'DocumentLink',
+        'txtLink',
+        'RandomizationTreatmentControl',
+        'AllocationConcealment',
+        'BlindedOutcomeAssessment',
+        'SampleSizeCalculation',
+        'AnimalWelfareRegulations',
+        'ConflictsOfInterest',
+        'AnimalExclusions']]
+
+df2json(df_info = df, json_path = 'data/psycho/rob_psycho_fulltokens_grobid.json')
 
 
 #%% Run regex
 # Read data
-psy = pd.read_csv("rob_psychosis_fulltext.txt", sep='\t', encoding="utf-8")
-df = psy.dropna(subset=['Text'])
-df = df[df["Text"]!=' ']
-df.set_index(pd.Series(range(0, len(df))), inplace=True)
-
-# Read regex string
-reg = 'U:/Datastore/CMVM/scs/groups/DCN/TRIALDEV/CAMARADES/Qianying/RoB/regex/'
-regex_randomisation = read_regex(reg+'randomisation.txt')
-regex_blinding = read_regex(reg+'blinding.txt')
-regex_ssc = read_regex(reg+'ssc.txt')
-regex_conflict = read_regex(reg+'conflict.txt')
-regex_compliance = read_regex(reg+'compliance.txt')
-
-df['RegexRandomization'] = 0
-df['RegexBlinding'] = 0
-df['RegexSSC'] = 0
-df['RegexConflict'] = 0
-df['RegexCompliance'] = 0
-
-
-# Obtain regex labels 
-for i in range(len(df)): 
-    df.loc[i,'RegexRandomization'] = doc_annotate(regex_randomisation, df.loc[i,'Text'])
-    df.loc[i,'RegexBlinding'] = doc_annotate(regex_blinding, df.loc[i,'Text'])
-    df.loc[i,'RegexSSC'] = doc_annotate(regex_ssc, df.loc[i,'Text'])
-    df.loc[i,'RegexConflict'] = doc_annotate(regex_conflict, df.loc[i,'Text'])
-    df.loc[i,'RegexCompliance'] = doc_annotate(regex_compliance, df.loc[i,'Text']) 
-    print(i)
-
-
-# Compute scores
-from sklearn.metrics import confusion_matrix
-def compute_score(y_true, y_pred):
-    tn, fp, fn, tp = confusion_matrix(y_true, y_pred).ravel()
-    f1 = 100 * 2*tp / (2*tp+fp+fn)
-    accuracy = 100 * (tp+tn) / (tp+tn+fp+fn)
-    recall = 100 * tp / (tp+fn)
-    specificity = 100 * tn / (tn+fp)
-    precision = 100 * tp / (tp+fp)
-    print("f1: {0:.2f}% | accuracy: {1:.2f}% | sensitivity: {2:.2f}% | specificity: {3:.2f}% | precision: {4:.2f}%".format(
-            f1, accuracy, recall, specificity, precision))
-
-list(df.columns)
-compute_score(y_true=df['Randomisation'], y_pred=df['RegexRandomization'])
-compute_score(y_true=df['BlindedAssessmentOutcome'], y_pred=df['RegexBlinding'])
-compute_score(y_true=df['SampleSizeCalculation'], y_pred=df['RegexSSC'])
-compute_score(y_true=df['ConflictInterest'], y_pred=df['RegexConflict'])
-compute_score(y_true=df['AnimalWelfare'], y_pred=df['RegexCompliance'])
+#psy = pd.read_csv("rob_psychosis_fulltext.txt", sep='\t', encoding="utf-8")
+#df = psy.dropna(subset=['Text'])
+#df = df[df["Text"]!=' ']
+#df.set_index(pd.Series(range(0, len(df))), inplace=True)
+#
+## Read regex string
+#reg = 'U:/Datastore/CMVM/scs/groups/DCN/TRIALDEV/CAMARADES/Qianying/RoB/regex/'
+#regex_randomisation = read_regex(reg+'randomisation.txt')
+#regex_blinding = read_regex(reg+'blinding.txt')
+#regex_ssc = read_regex(reg+'ssc.txt')
+#regex_conflict = read_regex(reg+'conflict.txt')
+#regex_compliance = read_regex(reg+'compliance.txt')
+#
+#df['RegexRandomization'] = 0
+#df['RegexBlinding'] = 0
+#df['RegexSSC'] = 0
+#df['RegexConflict'] = 0
+#df['RegexCompliance'] = 0
+#
+#
+## Obtain regex labels 
+#for i in range(len(df)): 
+#    df.loc[i,'RegexRandomization'] = doc_annotate(regex_randomisation, df.loc[i,'Text'])
+#    df.loc[i,'RegexBlinding'] = doc_annotate(regex_blinding, df.loc[i,'Text'])
+#    df.loc[i,'RegexSSC'] = doc_annotate(regex_ssc, df.loc[i,'Text'])
+#    df.loc[i,'RegexConflict'] = doc_annotate(regex_conflict, df.loc[i,'Text'])
+#    df.loc[i,'RegexCompliance'] = doc_annotate(regex_compliance, df.loc[i,'Text']) 
+#    print(i)
+#
+#
+## Compute scores
+#from sklearn.metrics import confusion_matrix
+#def compute_score(y_true, y_pred):
+#    tn, fp, fn, tp = confusion_matrix(y_true, y_pred).ravel()
+#    f1 = 100 * 2*tp / (2*tp+fp+fn)
+#    accuracy = 100 * (tp+tn) / (tp+tn+fp+fn)
+#    recall = 100 * tp / (tp+fn)
+#    specificity = 100 * tn / (tn+fp)
+#    precision = 100 * tp / (tp+fp)
+#    print("f1: {0:.2f}% | accuracy: {1:.2f}% | sensitivity: {2:.2f}% | specificity: {3:.2f}% | precision: {4:.2f}%".format(
+#            f1, accuracy, recall, specificity, precision))
+#
+#list(df.columns)
+#compute_score(y_true=df['Randomisation'], y_pred=df['RegexRandomization'])
+#compute_score(y_true=df['BlindedAssessmentOutcome'], y_pred=df['RegexBlinding'])
+#compute_score(y_true=df['SampleSizeCalculation'], y_pred=df['RegexSSC'])
+#compute_score(y_true=df['ConflictInterest'], y_pred=df['RegexConflict'])
+#compute_score(y_true=df['AnimalWelfare'], y_pred=df['RegexCompliance'])
