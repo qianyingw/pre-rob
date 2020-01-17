@@ -107,9 +107,6 @@ metrics_fn = metrics
 
 model = model.to(device)
 criterion = criterion.to(device)
-train_iterator = train_iterator.to(device)
-valid_iterator = valid_iterator.to(device)
-test_iterator = test_iterator.to(device)
 
 #%% Train the model
 logging.info("\nStart training for {} epoch(s)...".format(args.num_epochs)) 
