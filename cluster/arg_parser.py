@@ -54,8 +54,8 @@ def get_args():
     parser.add_argument('--use_gpu', nargs="?", type=str2bool, default=False, help='GPU flag')
     parser.add_argument('--gpu_id', type=str, default="None", help="A string indicating the gpu to use")
     parser.add_argument('--args_json_path', nargs="?", type=str, default=None, help='Path of argument json file')
-    parser.add_argument('--embed_path', nargs="?", type=str, default='/disk/scratch/"+USER+"/rob/input/wikipedia-pubmed-and-PMC-w2v.txt', help='Path of pre-trained vectors')
-    parser.add_argument('--data_json_path', nargs="?", type=str, default='/disk/scratch/"+USER+"/rob/input/rob_gold_tokens.json', help='Path of data in json format')
+    parser.add_argument('--embed_path', nargs="?", type=str, default="/disk/scratch/"+USER+"/rob/input/wikipedia-pubmed-and-PMC-w2v.txt", help='Path of pre-trained vectors')
+    parser.add_argument('--data_json_path', nargs="?", type=str, default="/disk/scratch/"+USER+"/rob/input/rob_gold_tokens.json", help='Path of data in json format')
     
   
     parser.add_argument('--rnn_hidden_dim', nargs="?", type=int, default=200, help='Number of features in RNN hidden state')
