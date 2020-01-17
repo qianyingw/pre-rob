@@ -135,7 +135,7 @@ class DataIterators(object):
         
         ## CUDA
         if torch.cuda.is_available():  # checks whether a cuda gpu is available and whether the gpu flag is True
-            device = torch.cuda.current_device()
+            device = torch.device('cuda') # torch.cuda.current_device()
         else:
             device = torch.device('cpu')
         
