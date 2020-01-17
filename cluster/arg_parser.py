@@ -43,7 +43,7 @@ def get_args():
     parser.add_argument('--filter_sizes', nargs="?", type=str, default='2', help='Filter sizes (CNN)')
     parser.add_argument('--dropout', nargs="?", type=float, default=0.5, help='Dropout rate')
 
-    parser.add_argument('--exp_path', nargs="?", type=str, default="/home/qwang/rob/src/cluster/exps", help='Path of experiments')
+    parser.add_argument('--exp_path', nargs="?", type=str, default="/disk/scratch/${USER}/rob/output", help='Path of experiments')
     parser.add_argument('--exp_name', nargs="?", type=str, default="try", help='Experiment name for building the folder')
     parser.add_argument('--rob_name', nargs="?", type=str, default="blinded", 
                         choices=['random', 'blinded', 'ssz'], 
@@ -51,8 +51,8 @@ def get_args():
     parser.add_argument('--use_gpu', nargs="?", type=str2bool, default=False, help='GPU flag')
     parser.add_argument('--gpu_id', type=str, default="None", help="A string indicating the gpu to use")
     parser.add_argument('--args_json_path', nargs="?", type=str, default=None, help='Path of argument json file')
-    parser.add_argument('--embed_path', nargs="?", type=str, default='/media/mynewdrive/rob/wordvec/wikipedia-pubmed-and-PMC-w2v.txt', help='Path of pre-trained vectors')
-    parser.add_argument('--data_json_path', nargs="?", type=str, default='/media/mynewdrive/rob/data/rob_gold_tokens.json', help='Path of data in json format')
+    parser.add_argument('--embed_path', nargs="?", type=str, default='/disk/scratch/${USER}/rob/input/wikipedia-pubmed-and-PMC-w2v.txt', help='Path of pre-trained vectors')
+    parser.add_argument('--data_json_path', nargs="?", type=str, default='/disk/scratch/${USER}/rob/input/rob_gold_tokens.json', help='Path of data in json format')
     
   
     parser.add_argument('--rnn_hidden_dim', nargs="?", type=int, default=200, help='Number of features in RNN hidden state')
@@ -111,7 +111,7 @@ def get_args():
     ## CUDA
     args.use_cuda = torch.cuda.is_available()
     if torch.cuda.is_available():  # checks whether a cuda gpu is available and whether the gpu flag is True
-        device = torch.cuda.current_device()
+        device = torch.device("cuda")  # torch.cuda.current_device()
         print("Use {} GPU(s)".format(torch.cuda.device_count()), file=sys.stderr)
     else:
         print("Use CPU", file=sys.stderr)
