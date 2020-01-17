@@ -57,7 +57,7 @@ class DataIterators(object):
                 for line in fin:
                     dat.append(json.loads(line))     
         except:
-            print('Data doesn't exist: {}'.format(os.path.basename(data_json_path)))
+            print("Data doesn't exist: {}".format(os.path.basename(data_json_path)))
         
         random.seed(self.args_dict['seed'])
         random.shuffle(dat)
