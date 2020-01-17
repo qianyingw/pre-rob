@@ -36,7 +36,7 @@ def get_args():
     parser.add_argument('--num_epochs', nargs="?", type=int, default=1, help='Number of epochs')    
     parser.add_argument('--train_ratio', nargs="?", type=float, default=0.8, help='Ratio of training set')
     parser.add_argument('--val_ratio', nargs="?", type=float, default=0.1, help='Ratio of validation set')
-    parser.add_argument('--max_vocab_size', nargs="?", type=int, default=100, help='Maximum size of the vocabulary ')
+    parser.add_argument('--max_vocab_size', nargs="?", type=int, default=5000, help='Maximum size of the vocabulary ')
     parser.add_argument('--min_occur_freq', nargs="?", type=int, default=10, help='Minimum frequency of including a token in the vocabulary ')
     parser.add_argument('--embed_dim', nargs="?", type=int, default=200, help='Dimension of pre-trained word vectors')
     parser.add_argument('--num_filters', nargs="?", type=int, default=3, help='Number of filters for each filter size (CNN)')   
@@ -55,12 +55,13 @@ def get_args():
     parser.add_argument('--data_json_path', nargs="?", type=str, default='/media/mynewdrive/rob/data/rob_gold_tokens.json', help='Path of data in json format')
     
   
-    parser.add_argument('--rnn_hidden_dim', nargs="?", type=int, default=100, help='Number of features in RNN hidden state')
-    parser.add_argument('--rnn_num_layers', nargs="?", type=int, default=1, help='Number of recurrent layers')
+    parser.add_argument('--rnn_hidden_dim', nargs="?", type=int, default=200, help='Number of features in RNN hidden state')
+    parser.add_argument('--rnn_num_layers', nargs="?", type=int, default=2, help='Number of recurrent layers')
     parser.add_argument('--bidirection', nargs="?", type=str2bool, default=True, help='Apply the bidirectional RNN')
     parser.add_argument('--rnn_cell_type', nargs="?", type=str, default="LSTM", help='Type of RNN cell (LSTM/GRU)')
-    # parser.add_argument('--continue_from_epoch', nargs="?", type=int, default=-1, help='Continue the current training session')
-    # parser.add_argument('--dataset_name', type=str, help='Dataset on which the system will train/eval our model')
+    
+    parser.add_argument('--num_heads', nargs="?", type=int, default=8, help='Number of heads in the multi-head attention module')
+    parser.add_argument('--num_encoder_layers', nargs="?", type=int, default=6, help='Number of sub-encoder-layers in the encoder')
     
     args = parser.parse_args()
     

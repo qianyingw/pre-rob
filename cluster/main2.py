@@ -14,6 +14,8 @@ import json
 import torch
 import torch.nn as nn
 import torch.optim as optim
+#from torchsummary import summary
+#from torchsummaryX import summary
 
 # os.chdir('/home/qwang/rob/src/cluster')
 
@@ -21,8 +23,10 @@ import utils
 from arg_parser import get_args
 from data_iterators import DataIterators
 
-from model import ConvNet, metrics
+from model import ConvNet, RecurNet, AttnNet, metrics
+from model_transformer import TransformerNet
 from train import train_evaluate, plot_performance, test
+
 
 
 #%% Get arguments from command line
@@ -71,13 +75,13 @@ pad_idx = helper.TEXT.vocab.stoi[helper.TEXT.pad_token]  # 1
 sizes = args_dict['filter_sizes'].split(',')
 sizes = [int(s) for s in sizes]
 
-model = ConvNet(vocab_size = input_dim,
-                embedding_dim = args.embed_dim, 
-                n_filters = args.num_filters, 
-                filter_sizes = sizes, 
-                output_dim = output_dim, 
-                dropout = args.dropout, 
-                pad_idx = pad_idx)
+#model = ConvNet(vocab_size = input_dim,
+#                embedding_dim = args.embed_dim, 
+#                n_filters = args.num_filters, 
+#                filter_sizes = sizes, 
+#                output_dim = output_dim, 
+#                dropout = args.dropout, 
+#                pad_idx = pad_idx)
 
 #model = RecurNet(vocab_size = input_dim, 
 #                 embedding_dim = args.embed_dim, 
@@ -89,7 +93,24 @@ model = ConvNet(vocab_size = input_dim,
 #                 dropout = args.dropout, 
 #                 pad_idx = pad_idx)
 
-print(model)
+#model = AttnNet(vocab_size = input_dim, 
+#                embedding_dim = args.embed_dim, 
+#                rnn_hidden_dim = args.rnn_hidden_dim, 
+#                rnn_num_layers = args.rnn_num_layers, 
+#                output_dim = output_dim, 
+#                bidirection = args.bidirection, 
+#                rnn_cell_type = args.rnn_cell_type, 
+#                dropout = args.dropout, 
+#                pad_idx = pad_idx)
+
+
+model = TransformerNet(vocab_size = input_dim, 
+                       embedding_dim = args.embed_dim, 
+                       num_heads = args.num_heads, 
+                       num_encoder_layers = args.num_encoder_layers, 
+                       output_dim = output_dim, 
+                       pad_idx = pad_idx)
+
 
 #%% Load pre-trained embedding
 pretrained_embeddings = helper.TEXT.vocab.vectors
@@ -107,9 +128,9 @@ metrics_fn = metrics
 
 model = model.to(device)
 criterion = criterion.to(device)
-train_iterator = train_iterator.to(device)
-valid_iterator = valid_iterator.to(device)
-test_iterator = test_iterator.to(device)
+
+#summary(nn.Sequential(model), torch.zeros((input_dim, args.batch_size), dtype=torch.long))
+#summary(model, torch.zeros((input_dim, args.batch_size), dtype=torch.long))
 
 #%% Train the model
 logging.info("\nStart training for {} epoch(s)...".format(args.num_epochs)) 

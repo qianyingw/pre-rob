@@ -60,7 +60,7 @@ def evaluate(model, iterator, criterion, metrics):
     
     with torch.no_grad():
         with tqdm(total=len_iter) as progress_bar:
-            for batch in iterator:
+            for batch in iterator:                
                 preds = model(batch.text)
                 
                 loss = criterion(preds, batch.label)

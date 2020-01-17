@@ -38,9 +38,9 @@ class WordAttn(nn.Module):
     def forward(self, sent):
         """
             Input
-                sent: torch tensor, [sent_len, batch_size]
+                sent: [sent_len, batch_size]
             Output
-                s_i: torch tensor, [batch_size, sent_len, 2*hidden_size]
+                s_i: [batch_size, sent_len, 2*hidden_size]
         """
         embed = self.embedding(sent)  # [sent_len, batch_size, embedding_dim]
         embed = embed.permute(1,0,2)  # [batch_size, sent_len, embedding_dim]
@@ -90,7 +90,7 @@ class SentAttn(nn.Module):
             Input
                 sent_mat: [batch_size, num_sents, 2*word_hidden_dim]
             Output
-                out: 
+                z: [batch_size, output_dim]
         """
         h, h_n = self.gru(sent_mat)  # h: [batch_size, num_sents, 2*sent_hidden_dim]
         

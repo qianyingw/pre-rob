@@ -13,10 +13,10 @@ import pandas as pd
 import random
 import re
 random.seed(1234)
-
-#%% Read json files
 os.chdir('/media/mynewdrive/rob/data')
 
+
+#%% Merge json files
 def read_json(json_path):
     df = []
     with open(json_path, 'r') as fin:
@@ -30,12 +30,23 @@ neuro = read_json(json_path='np/rob_np_fulltokens.json')
 npqip = read_json(json_path='npqip/rob_npqip_fulltokens.json')
 iicarus = read_json(json_path='iicarus/rob_iicarus_fulltokens.json')
 
+stroke_gro = read_json(json_path='stroke/rob_stroke_fulltokens_grobid.json')
+psy_gro = read_json(json_path='psycho/rob_psycho_fulltokens_grobid.json')
+neuro_gro = read_json(json_path='np/rob_np_fulltokens_grobid.json')
+npqip_gro = read_json(json_path='npqip/rob_npqip_fulltokens_grobid.json')
+iicarus_gro = read_json(json_path='iicarus/rob_iicarus_fulltokens_grobid.json')
 
-#%% Merge data
-gold = stroke + psy + neuro + npqip + iicarus  # len(gold)=7904
+
+# Merge data
+gold = stroke + psy + neuro + npqip + iicarus  # len(gold)=7908
+gold_gro = stroke_gro + psy_gro + neuro_gro + npqip_gro + iicarus_gro
+
+# Grobid
 
 
-#%% Remove records with too short token length
+
+#%% Check token length
+# Remove records with too short token length
 goldID_del = []
 num_tokens = []
 
@@ -45,18 +56,57 @@ for g in gold:
     else:
         num_tokens.append(len(g['textTokens']))
         
-gold = [g for g in gold if g['goldID'] not in goldID_del]  # 7872
+gold_final = [g for g in gold if g['goldID'] not in goldID_del]  # 7877
 
-#max(num_tokens)  # 27799
-#min(num_tokens)  # 2005
+print(max(num_tokens))  # 32289
+print(min(num_tokens))  # 2002
+
+
+### For grobid ### 
+goldID_del = []
+num_tokens = []
+
+for g in gold_gro:
+    if len(g['textTokens']) < 1000:
+        goldID_del.append(g['goldID'])
+    else:
+        num_tokens.append(len(g['textTokens']))
+
+
+print(len(goldID_del))  # 188 (<1000); 547 (<2000)..
+        
+gold_gro_final = [g for g in gold_gro if g['goldID'] not in goldID_del]  # 7877
+
+print(max(num_tokens))  # 17999
+print(min(num_tokens))  # 1012
+
 
 #%% Output
-random.shuffle(gold)
+random.shuffle(gold_final)
 with open('rob_gold_tokens.json', 'w') as fout:
-    for dic in gold:     
+    for dic in gold_final:     
         fout.write(json.dumps(dic) + '\n')   
     
-    
+       
+### Generate index file                
+gold_df = pd.DataFrame(columns = ['goldID', 'fileLink', 'DocumentLink', 'txtLink',
+                                  'RandomizationTreatmentControl', 'AllocationConcealment', 'BlindedOutcomeAssessment', 
+                                  'SampleSizeCalculation', 'AnimalWelfareRegulations', 'ConflictsOfInterest', 'AnimalExclusions'])
+
+for g in gold_final:
+    gold_df = gold_df.append({'goldID': g['goldID'], 'fileLink': g['fileLink'], 'DocumentLink': g['DocumentLink'], 'txtLink': g['txtLink'],
+                            'RandomizationTreatmentControl': g['RandomizationTreatmentControl'],
+                            'AllocationConcealment': g['AllocationConcealment'],
+                            'BlindedOutcomeAssessment': g['BlindedOutcomeAssessment'],
+                            'SampleSizeCalculation': g['SampleSizeCalculation'],
+                            'AnimalWelfareRegulations': g['AnimalWelfareRegulations'],
+                            'ConflictsOfInterest': g['ConflictsOfInterest'],
+                            'AnimalExclusions': g['AnimalExclusions']
+                            }, ignore_index=True)
+           
+        
+gold_df.to_csv('rob_gold_info.txt', sep='\t', encoding='utf-8')
+        
    
 #%% Generate error checking records
 g_stroke = [g for g in gold if re.sub(r'[0-9]', '', g['goldID']) == 'stroke'] 
