@@ -48,13 +48,16 @@ class DataIterators(object):
               
         """  
         data_json_path = self.args_dict['data_json_path']        
-        if os.path.exists(data_json_path) == False:
-            raise("Data doesn't exist: {}".format(os.path.basename(data_json_path)))
+        #if os.path.exists(data_json_path) == False:
+        #    raise('Data doesn't exist: {}'.format(os.path.basename(data_json_path)))
         
         dat = []
-        with open(data_json_path, 'r') as fin:
-            for line in fin:
-                dat.append(json.loads(line))        
+        try: 
+            with open(data_json_path, 'r') as fin:
+                for line in fin:
+                    dat.append(json.loads(line))     
+        except:
+            print('Data doesn't exist: {}'.format(os.path.basename(data_json_path)))
         
         random.seed(self.args_dict['seed'])
         random.shuffle(dat)
