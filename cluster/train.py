@@ -128,11 +128,13 @@ def train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, 
         utils.save_dict_to_json(valid_scores, last_loss_path)
 
 
+
+        logging.info("\nEpoch {}/{}...".format(epoch+1, args.num_epochs))
         # Save dataframe for performance curve       
         train_df = train_df.append({'loss': train_scores['loss'], 'accuracy': train_scores['accuracy'], 'f1': train_scores['f1'], 'recall': train_scores['recall']}, ignore_index=True)
         valid_df = valid_df.append({'loss': valid_scores['loss'], 'accuracy': valid_scores['accuracy'], 'f1': valid_scores['f1'], 'recall': valid_scores['recall']}, ignore_index=True)
                
-        logging.info("\nEpoch {}/{}...".format(epoch+1, args.num_epochs))
+        
         # print('\nEpochs {}/{}...'.format(epoch+1, args.num_epochs))       
         print('\n[Train] loss: {0:.3f} | acc: {1:.2f}% | f1: {2:.2f}% | recall: {3:.2f}% | precision: {4:.2f}% | specificity: {5:.2f}%'.format(
             train_scores['loss'], train_scores['accuracy']*100, train_scores['f1']*100, train_scores['recall']*100, train_scores['precision']*100, train_scores['specificity']*100))
