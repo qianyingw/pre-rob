@@ -125,4 +125,4 @@ with open(prfs_path, 'w') as fout:
     json.dump(output_dict, fout, indent=4)
 
 #%% Performance plot
-plot_performance(train_df, valid_df, png_dir = log_dir)
+# plot_performance(train_df, valid_df, png_dir = log_dir)
