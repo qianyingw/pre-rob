@@ -81,6 +81,13 @@ print(max(num_tokens))  # 17999
 print(min(num_tokens))  # 1012
 
 
+# Histogram for number of tokens
+import matplotlib.pyplot as plt
+plt.hist(num_tokens, bins=40, edgecolor='black', alpha=0.8)
+plt.xlabel("Number of tokens")
+plt.ylabel("Frequency")
+plt.show()
+
 #%% Output
 random.shuffle(gold_final)
 with open('rob_gold_tokens.json', 'w') as fout:
