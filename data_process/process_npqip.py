@@ -247,54 +247,54 @@ list(npqip.columns)
 # 'goldID']
 
 
-#%% Tokenization to json file
-npqip = pd.read_csv("data/npqip/rob_npqip_info.txt", sep='\t', engine="python", encoding="utf-8", index_col = 0)   
-npqip['AllocationConcealment'] = float('nan')
-npqip['AnimalWelfareRegulations'] = float('nan')
-npqip['ConflictsOfInterest'] = float('nan')
-npqip['AnimalExclusions'] = float('nan')
-
-df = npqip[['goldID',
-          'fileLink',
-          'DocumentLink',
-          'txtLink',
-          'RandomizationTreatmentControl',
-          'AllocationConcealment',
-          'BlindedOutcomeAssessment',
-          'SampleSizeCalculation',
-          'AnimalWelfareRegulations',
-          'ConflictsOfInterest',
-          'AnimalExclusions']]
-
-
-df2json(df_info = df, json_path = 'data/npqip/rob_npqip_fulltokens.json')
-
-
-#%% Tokenization to json file (Grobid)
-npqip = pd.read_csv("data/npqip/rob_npqip_info.txt", sep='\t', engine="python", encoding="utf-8", index_col = 0)   
-npqip['txtLink'] = npqip['txtLink'].str.replace('TXTs', "GROTXTs")
-npqip['txtLink'] = npqip['txtLink'].str.replace('.txt', ".tei.txt")
-#'data/np/TXTs/np_1.txt'
-#'data/np/GROTXTs/np_1.tei.txt'
-npqip['AllocationConcealment'] = float('nan')
-npqip['AnimalWelfareRegulations'] = float('nan')
-npqip['ConflictsOfInterest'] = float('nan')
-npqip['AnimalExclusions'] = float('nan')
-
-
-npqip.to_csv("data/npqip/rob_npqip_info_grobid.txt", sep='\t', encoding="utf-8")   
-
-
-df = npqip[['goldID',
-            'fileLink',
-            'DocumentLink',
-            'txtLink',
-            'RandomizationTreatmentControl',
-            'AllocationConcealment',
-            'BlindedOutcomeAssessment',
-            'SampleSizeCalculation',
-            'AnimalWelfareRegulations',
-            'ConflictsOfInterest',
-            'AnimalExclusions']]
-
-df2json(df_info = df, json_path = 'data/npqip/rob_npqip_fulltokens_grobid.json')
+##%% Tokenization to json file
+#npqip = pd.read_csv("data/npqip/rob_npqip_info.txt", sep='\t', engine="python", encoding="utf-8", index_col = 0)   
+#npqip['AllocationConcealment'] = float('nan')
+#npqip['AnimalWelfareRegulations'] = float('nan')
+#npqip['ConflictsOfInterest'] = float('nan')
+#npqip['AnimalExclusions'] = float('nan')
+#
+#df = npqip[['goldID',
+#          'fileLink',
+#          'DocumentLink',
+#          'txtLink',
+#          'RandomizationTreatmentControl',
+#          'AllocationConcealment',
+#          'BlindedOutcomeAssessment',
+#          'SampleSizeCalculation',
+#          'AnimalWelfareRegulations',
+#          'ConflictsOfInterest',
+#          'AnimalExclusions']]
+#
+#
+#df2json(df_info = df, json_path = 'data/npqip/rob_npqip_fulltokens.json')
+#
+#
+##%% Tokenization to json file (Grobid)
+#npqip = pd.read_csv("data/npqip/rob_npqip_info.txt", sep='\t', engine="python", encoding="utf-8", index_col = 0)   
+#npqip['txtLink'] = npqip['txtLink'].str.replace('TXTs', "GROTXTs")
+#npqip['txtLink'] = npqip['txtLink'].str.replace('.txt', ".tei.txt")
+##'data/np/TXTs/np_1.txt'
+##'data/np/GROTXTs/np_1.tei.txt'
+#npqip['AllocationConcealment'] = float('nan')
+#npqip['AnimalWelfareRegulations'] = float('nan')
+#npqip['ConflictsOfInterest'] = float('nan')
+#npqip['AnimalExclusions'] = float('nan')
+#
+#
+#npqip.to_csv("data/npqip/rob_npqip_info_grobid.txt", sep='\t', encoding="utf-8")   
+#
+#
+#df = npqip[['goldID',
+#            'fileLink',
+#            'DocumentLink',
+#            'txtLink',
+#            'RandomizationTreatmentControl',
+#            'AllocationConcealment',
+#            'BlindedOutcomeAssessment',
+#            'SampleSizeCalculation',
+#            'AnimalWelfareRegulations',
+#            'ConflictsOfInterest',
+#            'AnimalExclusions']]
+#
+#df2json(df_info = df, json_path = 'data/npqip/rob_npqip_fulltokens_grobid.json')

@@ -198,50 +198,50 @@ list(psy.columns)
 # 'goldID']
 
 
-#%% Tokenization to json file
-psy = pd.read_csv("data/psycho/rob_psycho_info.txt", sep='\t', engine="python", encoding="utf-8", index_col = 0)   
-
-df = psy[['goldID',
-          'fileLink',
-          'DocumentLink',
-          'txtLink',
-          'RandomizationTreatmentControl',
-          'AllocationConcealment',
-          'BlindedOutcomeAssessment',
-          'SampleSizeCalculation',
-          'AnimalWelfareRegulations',
-          'ConflictsOfInterest',
-          'AnimalExclusions']]
-
-
-df2json(df_info = df, json_path = 'data/psycho/rob_psycho_fulltokens.json')
-
-
-
-
-#%% Tokenization to json file (Grobid)
-psy = pd.read_csv("data/psycho/rob_psycho_info.txt", sep='\t', engine="python", encoding="utf-8", index_col = 0)   
-psy['txtLink'] = psy['txtLink'].str.replace('TXTs', "GROTXTs")
-psy['txtLink'] = psy['txtLink'].str.replace('.txt', ".tei.txt")
-#'data/stroke/TXTs/stroke_1.txt'
-#'data/stroke/GROTXTs/stroke_1.tei.txt'
-
-psy.to_csv("data/psycho/rob_psycho_info_grobid.txt", sep='\t', encoding="utf-8")   
-
-
-df = psy[['goldID',
-        'fileLink',
-        'DocumentLink',
-        'txtLink',
-        'RandomizationTreatmentControl',
-        'AllocationConcealment',
-        'BlindedOutcomeAssessment',
-        'SampleSizeCalculation',
-        'AnimalWelfareRegulations',
-        'ConflictsOfInterest',
-        'AnimalExclusions']]
-
-df2json(df_info = df, json_path = 'data/psycho/rob_psycho_fulltokens_grobid.json')
+##%% Tokenization to json file
+#psy = pd.read_csv("data/psycho/rob_psycho_info.txt", sep='\t', engine="python", encoding="utf-8", index_col = 0)   
+#
+#df = psy[['goldID',
+#          'fileLink',
+#          'DocumentLink',
+#          'txtLink',
+#          'RandomizationTreatmentControl',
+#          'AllocationConcealment',
+#          'BlindedOutcomeAssessment',
+#          'SampleSizeCalculation',
+#          'AnimalWelfareRegulations',
+#          'ConflictsOfInterest',
+#          'AnimalExclusions']]
+#
+#
+#df2json(df_info = df, json_path = 'data/psycho/rob_psycho_fulltokens.json')
+#
+#
+#
+#
+##%% Tokenization to json file (Grobid)
+#psy = pd.read_csv("data/psycho/rob_psycho_info.txt", sep='\t', engine="python", encoding="utf-8", index_col = 0)   
+#psy['txtLink'] = psy['txtLink'].str.replace('TXTs', "GROTXTs")
+#psy['txtLink'] = psy['txtLink'].str.replace('.txt', ".tei.txt")
+##'data/stroke/TXTs/stroke_1.txt'
+##'data/stroke/GROTXTs/stroke_1.tei.txt'
+#
+#psy.to_csv("data/psycho/rob_psycho_info_grobid.txt", sep='\t', encoding="utf-8")   
+#
+#
+#df = psy[['goldID',
+#        'fileLink',
+#        'DocumentLink',
+#        'txtLink',
+#        'RandomizationTreatmentControl',
+#        'AllocationConcealment',
+#        'BlindedOutcomeAssessment',
+#        'SampleSizeCalculation',
+#        'AnimalWelfareRegulations',
+#        'ConflictsOfInterest',
+#        'AnimalExclusions']]
+#
+#df2json(df_info = df, json_path = 'data/psycho/rob_psycho_fulltokens_grobid.json')
 
 
 #%% Run regex
