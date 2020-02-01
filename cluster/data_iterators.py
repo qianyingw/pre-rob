@@ -59,6 +59,12 @@ class DataIterators(object):
         except:
             print("Data doesn't exist: {}".format(os.path.basename(data_json_path)))
         
+        
+        # Cut sequence
+        for d in dat:
+            if len(d['wordTokens']) > self.args_dict['max_seq_len']:
+                d['wordTokens'] = d['wordTokens'][:self.args_dict['max_seq_len']]
+        
         random.seed(self.args_dict['seed'])
         random.shuffle(dat)
         
