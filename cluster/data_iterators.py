@@ -106,7 +106,7 @@ class DataIterators(object):
         
         fields = {'goldID': ('id', self.ID), 
                   rob_item: ('label', self.LABEL),
-                  'textTokens': ('text', self.TEXT)}
+                  'wordTokens': ('text', self.TEXT)}
 
         train_data, valid_data, test_data = data.TabularDataset.splits(path = os.path.dirname(self.args_dict['data_json_path']),
                                                                        train = 'train.json',
