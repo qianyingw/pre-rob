@@ -40,7 +40,7 @@ def get_args():
     parser.add_argument('--train_ratio', nargs="?", type=float, default=0.8, help='Ratio of training set')
     parser.add_argument('--val_ratio', nargs="?", type=float, default=0.1, help='Ratio of validation set')
     parser.add_argument('--max_vocab_size', nargs="?", type=int, default=5000, help='Maximum size of the vocabulary')
-    parser.add_argument('--max_token_len', nargs="?", type=int, default=2000, help='Threshold of maximum document legnth')
+    parser.add_argument('--max_token_len', nargs="?", type=int, default=0, help='Threshold of maximum document legnth [default=0, sequence will not be cut]')
     parser.add_argument('--min_occur_freq', nargs="?", type=int, default=10, help='Minimum frequency of including a token in the vocabulary')
     parser.add_argument('--embed_dim', nargs="?", type=int, default=200, help='Dimension of pre-trained word vectors')
     parser.add_argument('--num_filters', nargs="?", type=int, default=3, help='Number of filters for each filter size (CNN)')   

@@ -61,9 +61,10 @@ class DataIterators(object):
         
         
         # Cut sequence
-        for d in dat:
-            if len(d['wordTokens']) > self.args_dict['max_token_len']:
-                d['wordTokens'] = d['wordTokens'][:self.args_dict['max_token_len']]
+        if self.args_dict['max_token_len'] != 0:
+            for d in dat:
+                if len(d['wordTokens']) > self.args_dict['max_token_len']:
+                    d['wordTokens'] = d['wordTokens'][:self.args_dict['max_token_len']]
             
         random.seed(self.args_dict['seed'])
         random.shuffle(dat)
