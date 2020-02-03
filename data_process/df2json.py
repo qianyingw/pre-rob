@@ -31,7 +31,7 @@ Created on Fri Sep 27 11:10:39 2019
 import json
 
 from tqdm import tqdm
-from src.data_process.tokenizer import preprocess_text, word_tokenizer, sent_tokenizer
+from src.data_process.tokenizer import preprocess_text, text_tokenizer
 
 
 def df2json(df_info, json_path):
@@ -46,12 +46,11 @@ def df2json(df_info, json_path):
                 text = fp.read()
             text_processed = preprocess_text(text)        
             # dict_list[i]['fullText'] = text_processed
-            dict_list[i]['wordTokens'] = word_tokenizer(text_processed)
-            dict_list[i]['sentTokens'] = sent_tokenizer(text_processed)
+            dict_list[i]['sentTokens'], dict_list[i]['wordTokens'] = text_tokenizer(text_processed)
         except:
-            dict_list[i]['wordTokens'] = ''
             dict_list[i]['sentTokens'] = ''
-        
+            dict_list[i]['wordTokens'] = ''
+                 
     # Covert dictionary list to json
     with open(json_path, 'w') as fout:
         for dic in dict_list:     

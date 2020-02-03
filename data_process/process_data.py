@@ -64,51 +64,51 @@ frames = [df_stroke, df_np, df_psy, df_npqip, df_iicarus]
 df = pd.concat(frames)
 
 #%% Tokenization
-df2json(df_info = df, json_path = 'data/rob_fulltokens.json')
+df2json(df_info = df, json_path = 'data/rob_word_sent_tokens.json')
 
 
 #%% Check number of words and sents
-def read_json(json_path):
-    df = []
-    with open(json_path, 'r') as fin:
-        for line in fin:
-            df.append(json.loads(line))
-    return df
-
-df = read_json(json_path='data/rob_fulltokens.json')
-
-goldID_del = []
-num_w = []
-num_s = []
-
-for g in df:
-    if len(g['wordTokens']) < 1000 or len(g['wordTokens']) > 10000:
-        goldID_del.append(g['goldID'])
-    else:
-        num_w.append(len(g['wordTokens']))
-
-for g in df:
-    if len(g['sentTokens']) < 20:
-        goldID_del.append(g['goldID'])
-    else:
-        num_s.append(len(g['sentTokens']))
-        
-        
-#gold_final = [g for g in df if g['goldID'] not in goldID_del]  # 7877
-
-print(max(num_w), min(num_w), np.mean(num_w))  # 18734, 1008, 5508
-print(max(num_s), min(num_s), np.mean(num_s))  # 2680, 20, 219
-
-
-# Histogram for tokens
-plt.hist(num_w, bins=40, edgecolor='black', alpha=0.8)
-plt.xlabel("Number of word tokens")
-plt.ylabel("Frequency")
-plt.show()
-
-plt.hist(num_s, bins=40, edgecolor='black', alpha=0.8)
-plt.xlabel("Number of sent tokens")
-plt.ylabel("Frequency")
-plt.show()
+#def read_json(json_path):
+#    df = []
+#    with open(json_path, 'r') as fin:
+#        for line in fin:
+#            df.append(json.loads(line))
+#    return df
+#
+#df = read_json(json_path='data/rob_fulltokens.json')
+#
+#goldID_del = []
+#num_w = []
+#num_s = []
+#
+#for g in df:
+#    if len(g['wordTokens']) < 1000 or len(g['wordTokens']) > 10000:
+#        goldID_del.append(g['goldID'])
+#    else:
+#        num_w.append(len(g['wordTokens']))
+#
+#for g in df:
+#    if len(g['sentTokens']) < 20:
+#        goldID_del.append(g['goldID'])
+#    else:
+#        num_s.append(len(g['sentTokens']))
+#        
+#        
+##gold_final = [g for g in df if g['goldID'] not in goldID_del]  # 7877
+#
+#print(max(num_w), min(num_w), np.mean(num_w))  # 18734, 1008, 5508
+#print(max(num_s), min(num_s), np.mean(num_s))  # 2680, 20, 219
+#
+#
+## Histogram for tokens
+#plt.hist(num_w, bins=40, edgecolor='black', alpha=0.8)
+#plt.xlabel("Number of word tokens")
+#plt.ylabel("Frequency")
+#plt.show()
+#
+#plt.hist(num_s, bins=40, edgecolor='black', alpha=0.8)
+#plt.xlabel("Number of sent tokens")
+#plt.ylabel("Frequency")
+#plt.show()
 
 #%%
