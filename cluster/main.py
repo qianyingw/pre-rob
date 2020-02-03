@@ -54,8 +54,8 @@ helper = DataIterators(args_dict = args_dict)
 
 # Create train/valid/test.json
 json_dir = os.path.dirname(args_dict['data_json_path'])
-if os.path.isfile(os.path.join(json_dir, 'train.json')) == False:
-    helper.split_and_save() 
+#if os.path.isfile(os.path.join(json_dir, 'train.json')) == False:
+helper.split_and_save() 
 
 train_data, valid_data, test_data = helper.create_data()   
 train_iterator, valid_iterator, test_iterator = helper.create_iterators(train_data, valid_data, test_data)
