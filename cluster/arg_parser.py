@@ -61,14 +61,15 @@ def get_args():
     
     # Model
     parser.add_argument('--net_type', nargs="?", type=str, default='cnn', 
-                        choices=['cnn','lstm', 'gru', 'attn', 'han'], 
-                        help="Different networks [options:'cnn','lstm', 'gru', 'attn', 'han']")
+                        choices=['cnn', 'rnn', 'attn', 'han', 'transformer'], 
+                        help="Different networks [options: 'cnn', 'rnn', 'attn', 'han', 'transformer']")
     
     # CNN
     parser.add_argument('--num_filters', nargs="?", type=int, default=3, help='Number of filters for each filter size (CNN)')   
     parser.add_argument('--filter_sizes', nargs="?", type=str, default='2', help='Filter sizes (CNN)')
     
-    # LSTM/GRU/Attention
+    # RNN/Attention
+    parser.add_argument('--rnn_cell_type', nargs="?", type=str, default="lstm", choices=['cnn', 'rnn', 'attn', 'han'], help="Type of RNN cell [options: 'lstm', 'gru']")
     parser.add_argument('--rnn_hidden_dim', nargs="?", type=int, default=200, help='Number of features in RNN hidden state')
     parser.add_argument('--rnn_num_layers', nargs="?", type=int, default=2, help='Number of recurrent layers')
     parser.add_argument('--bidirection', nargs="?", type=str2bool, default=True, help='Apply the bidirectional RNN')
