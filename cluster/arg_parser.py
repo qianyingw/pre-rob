@@ -36,7 +36,7 @@ def get_args():
     # Experiments
     parser.add_argument('--seed', nargs="?", type=int, default=1234, help='Seed for random number generator')
     parser.add_argument('--batch_size', nargs="?", type=int, default=32, help='Batch size')
-    parser.add_argument('--num_epochs', nargs="?", type=int, default=1, help='Number of epochs')    
+    parser.add_argument('--num_epochs', nargs="?", type=int, default=3, help='Number of epochs')    
     parser.add_argument('--train_ratio', nargs="?", type=float, default=0.8, help='Ratio of training set')
     parser.add_argument('--val_ratio', nargs="?", type=float, default=0.1, help='Ratio of validation set')
     parser.add_argument('--max_vocab_size', nargs="?", type=int, default=5000, help='Maximum size of the vocabulary')
@@ -44,23 +44,23 @@ def get_args():
     parser.add_argument('--min_occur_freq', nargs="?", type=int, default=10, help='Minimum frequency of including a token in the vocabulary')
     parser.add_argument('--dropout', nargs="?", type=float, default=0.5, help='Dropout rate')
     
-    parser.add_argument('--exp_path', nargs="?", type=str, default="/disk/scratch/"+USER+"/rob/output", help='Path of experiments')
-    parser.add_argument('--exp_name', nargs="?", type=str, default="try", help='Experiment name for building the folder')
+    parser.add_argument('--exp_path', nargs="?", type=str, default="/home/qwang/rob/src/cluster/exps")
+    parser.add_argument('--exp_name', nargs="?", type=str, default="han", help='Experiment name for building the folder')
     
     parser.add_argument('--use_gpu', nargs="?", type=str2bool, default=False, help='GPU flag')
     parser.add_argument('--gpu_id', type=str, default="None", help="A string indicating the gpu to use")
     
     # Data and embedding
     parser.add_argument('--args_json_path', nargs="?", type=str, default=None, help='Path of argument json file')
-    parser.add_argument('--data_json_path', nargs="?", type=str, default="/disk/scratch/"+USER+"/rob/input/rob_gold_tokens.json", help='Path of data in json format')
+    parser.add_argument('--data_json_path', nargs="?", type=str, default="/home/qwang/rob/amazon_tokens.json", help='Path of data in json format')
     parser.add_argument('--embed_dim', nargs="?", type=int, default=200, help='Dimension of pre-trained word vectors')
-    parser.add_argument('--embed_path', nargs="?", type=str, default="/disk/scratch/"+USER+"/rob/input/wikipedia-pubmed-and-PMC-w2v.txt", help='Path of pre-trained vectors')
+    parser.add_argument('--embed_path', nargs="?", type=str, default="/media/mynewdrive/rob/wordvec/wikipedia-pubmed-and-PMC-w2v.txt", help='Path of pre-trained vectors')
        
     # RoB item
     parser.add_argument('--rob_name', nargs="?", type=str, default="blinded", choices=['random', 'blinded', 'ssz'], help='Name of risk of bias item')
     
     # Model
-    parser.add_argument('--net_type', nargs="?", type=str, default='cnn', 
+    parser.add_argument('--net_type', nargs="?", type=str, default='han', 
                         choices=['cnn', 'rnn', 'attn', 'han', 'transformer'], 
                         help="Different networks [options: 'cnn', 'rnn', 'attn', 'han', 'transformer']")
     
@@ -79,6 +79,8 @@ def get_args():
     parser.add_argument('--word_num_layers', nargs="?", type=int, default=1, help='Number of GRU layers in word attention structure')
     parser.add_argument('--sent_hidden_dim', nargs="?", type=int, default=32, help='Hidden dim in sentence attention structure')
     parser.add_argument('--sent_num_layers', nargs="?", type=str, default=1, help='Number of GRU layers in sentence attention structure')
+    parser.add_argument('--max_doc_len', nargs="?", type=int, default=None, help='Maximum number of sents in one document overall the batches')
+    parser.add_argument('--max_sent_len', nargs="?", type=int, default=None, help='Maximum number of words in one sentence overall the batches')
     
     # Transformer encoder
     parser.add_argument('--num_heads', nargs="?", type=int, default=8, help='Number of heads in the multi-head attention module')
