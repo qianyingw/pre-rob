@@ -15,10 +15,6 @@ from torchtext import data
 import torchtext.vocab as vocab
 import torch
 
-
-
-
-
 #%%
 class DataIterators(object):
     
@@ -39,8 +35,8 @@ class DataIterators(object):
         
         if self.args_dict['net_type'] == 'han': 
             # nested sentence tokens
-        	nest_field = data.Field(pad_token='<pad>', fix_length=None)  # fix num of words in each sent
-        	self.TEXT = data.NestedField(nest_field, fix_length=None)  # fix num of sents
+        	nest_field = data.Field(pad_token='<pad>', fix_length=self.args_dict['max_sent_len'])  # fix num of words in each sent (fix max_sent_len)
+        	self.TEXT = data.NestedField(nest_field, fix_length=self.args_dict['max_doc_len'])  # fix num of sents (fix max_doc_len)
         else:
             self.TEXT = data.Field()   # word tokens 
             
@@ -112,13 +108,13 @@ class DataIterators(object):
         if rob_item == 'ssz': rob_item = 'SampleSizeCalculation'
         
         if self.args_dict['net_type'] == 'han':  	
-            fields = {'goldID': ('id', self.ID), 
-        			  'label': ('label', self.LABEL),
+            fields = {#'goldID': ('id', self.ID), 
+        			  'label': ('label', self.LABEL), # rob_item: ('label', self.LABEL) for rob data
         			  'sentTokens': ('text', self.TEXT)}		
         else:
-            fields = {'goldID': ('id', self.ID), 
-            			  'label': ('label', self.LABEL),
-            			  'wordTokens': ('text', self.TEXT)}
+            fields = {#'goldID': ('id', self.ID), 
+                       rob_item: ('label', self.LABEL), 
+                       'wordTokens': ('text', self.TEXT)}
             
 
         train_data, valid_data, test_data = data.TabularDataset.splits(path = os.path.dirname(self.args_dict['data_json_path']),
@@ -169,7 +165,7 @@ class DataIterators(object):
         
         return train_iterator, valid_iterator, test_iterator
         
-#%% Instance   
+##%% Instance   
 #args_dict = {'seed': 1234,
 #             'batch_size': 32,
 #             'num_epochs': 2,
@@ -177,17 +173,30 @@ class DataIterators(object):
 #             'val_ratio': 0.1,
 #             'max_vocab_size': 5000,
 #             'min_occur_freq': 10,
+#             'max_token_len': 5000,
 #             'embed_dim': 200,
 #             'dropout': 0.5,
+#             
 #             'exp_path': '/home/qwang/rob/src/cluster/exps',
 #             'exp_name': 'han',
 #             'rob_name': 'blinded',
 #             'use_gpu': False,
 #             'gpu_id': 'None',
+#             
 #             'args_json_path': None,
 #             'embed_path': '/media/mynewdrive/rob/wordvec/wikipedia-pubmed-and-PMC-w2v.txt',
-#             'data_json_path': '/media/mynewdrive/rob/data/rob_gold_tokens.json',
-#             'use_cuda': False}
+#             'data_json_path': '/home/qwang/rob/amazon_tokens.json',
+#             'use_cuda': False,
+#             
+#             'net_type': 'han',
+#             'word_hidden_dim': 32,
+#             'word_num_layers': 1,
+#             
+#             'sent_hidden_dim': 32,
+#             'sent_num_layers': 1,
+#             'max_sent_len': None,
+#             'max_doc_len': None
+#             }
 #
 #helper = DataIterators(args_dict = args_dict)
 ## Generate train/valid/test.json
@@ -196,19 +205,73 @@ class DataIterators(object):
 #train_iterator, valid_iterator, test_iterator = helper.create_iterators(train_data, valid_data, test_data)
 #
 #print(helper.LABEL.vocab.stoi)  # {0: 0, 1: 1} ~= {'No': 0, 'Yes': 1}
-## helper.ID.vocab.stoi  # {'<unk>': 0, '<pad>': 1, 'psy1': 2, 'psy10': 3, ..., 'psy999': 2405}
-#helper.ID.vocab.stoi['<pad>']  # 1
-#helper.ID.vocab.stoi['psy1']  # 3053
-#helper.ID.vocab.stoi['stroke999']  # 799
+#helper.TEXT.vocab.itos[:5]  # ['<unk>', '<pad>', 'the', 'i', 'and']
 #
-#helper.TEXT.vocab.itos[:5]  # ['<unk>', '<pad>', ',', '.', 'the']
-#
-#len(helper.TEXT.vocab)  # max_vocab_size + 2
+#len(helper.TEXT.vocab)  # 611
 #len(helper.LABEL.vocab)  # 2
-#len(helper.ID.vocab)  # 7908+ 2
 #
 #helper.TEXT.pad_token  # '<pad>'
 #helper.TEXT.unk_token  # '<unk>'
 #helper.TEXT.vocab.stoi[helper.TEXT.pad_token]  # 1
 #helper.TEXT.vocab.stoi[helper.TEXT.unk_token]  # 0
+#helper.TEXT.vocab.vectors.shape  # [611, 20]
+#
+#class BatchWrapper:
+#    def __init__(self, iterator, x_var, y_var):
+#        self.iterator = iterator
+#        self.x_var = x_var
+#        self.y_var = y_var
+#    
+#    def __iter__(self):
+#        for batch in self.iterator:
+#            x = getattr(batch, self.x_var)
+#            y = getattr(batch, self.y_var)
+#            yield x, y
+#            
+#    
+#train_batch = BatchWrapper(train_iterator, "text", "label")
+#x_sent, y = next(train_batch.__iter__())
+#x_sent.size()  # [20, 9 ,25] => [batch_size, max_doc_len, max_sent_len]
+#
+#d0_tokens = x_sent.permute(1,0)[0]
+#s0_tokens = x_sent[0]   # 9 sents in doc 0. Each sent has 25 words
+#print(len(x_sent[0][0]))  # sent 0 in doc 0
+#
+#
+##%% NestedField
+#import pprint
+##from torchtext import data
+#pp = pprint.PrettyPrinter(indent=4)
+#
+#minibatch = [
+#     [['he', 'wants', 'a', 'banana'], ['I', 'am', 'sleepy'], ['hello']],
+#     [['good'], ['hey', 'how', 'are', 'you']]
+#]
+## batch_size = 2
+##   [doc 1]: doc_len = 3, sent_len = [4,3,1]
+##   [doc 2]: doc_len = 2, sent_len = [1,4]
+#
+#nesting_field = data.Field(pad_token='<pad>', fix_length=None)  # fix num of words in each sent (fix sent_len)
+#field = data.NestedField(nesting_field, fix_length=None)  # fix num of sents (fix doc_len)
+#padded = field.pad(minibatch) 
+#print(len(padded), len(padded[0]), len(padded[0][0])) # batch_size = 2, max_doc_len = 3, max_sent_len = 4
+## >> Output
+##    [[['he', 'wants', 'a', 'banana'],
+##      ['I', 'am', 'sleepy', '<pad>'],
+##      ['hello', '<pad>', '<pad>', '<pad>']],
+##     [['good', '<pad>', '<pad>', '<pad>'],
+##      ['hey', 'how', 'are', 'you'],
+##      ['<pad>', '<pad>', '<pad>', '<pad>']]]
+#
+#
+#nesting_field = data.Field(pad_token='<pad>', fix_length=3)  # fix num of words in each sent (fix sent_len)
+#field = data.NestedField(nesting_field, fix_length=2)  # fix num of sents (fix doc_len)
+#padded = field.pad(minibatch) 
+#print(len(padded), len(padded[0]), len(padded[0][0])) # batch_size = 2, max_doc_len = 2, max_sent_len = 3
+## >> Output
+##    [[['he', 'wants', 'a'], 
+##      ['I', 'am', 'sleepy']],
+##     [['good', '<pad>', '<pad>'], 
+##      ['hey', 'how', 'are']]]
+
 
