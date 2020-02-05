@@ -34,11 +34,17 @@ class DataIterators(object):
         self.args_dict = args_dict
             
         # Create data field
-        self.ID = data.Field()    
-        self.TEXT = data.Field()    
+        self.ID = data.Field()
         self.LABEL = data.LabelField()
         
-    
+        if self.args_dict['net_type'] == 'han': 
+            # nested sentence tokens
+        	nest_field = data.Field(pad_token='<pad>', fix_length=None)  # fix num of words in each sent
+        	self.TEXT = data.NestedField(nest_field, fix_length=None)  # fix num of sents
+        else:
+            self.TEXT = data.Field()   # word tokens 
+            
+ 
     
     def split_and_save(self):
         """
@@ -105,9 +111,15 @@ class DataIterators(object):
         if rob_item == 'blinded': rob_item = 'BlindedOutcomeAssessment'
         if rob_item == 'ssz': rob_item = 'SampleSizeCalculation'
         
-        fields = {'goldID': ('id', self.ID), 
-                  rob_item: ('label', self.LABEL),
-                  'wordTokens': ('text', self.TEXT)}
+        if self.args_dict['net_type'] == 'han':  	
+            fields = {'goldID': ('id', self.ID), 
+        			  'label': ('label', self.LABEL),
+        			  'sentTokens': ('text', self.TEXT)}		
+        else:
+            fields = {'goldID': ('id', self.ID), 
+            			  'label': ('label', self.LABEL),
+            			  'wordTokens': ('text', self.TEXT)}
+            
 
         train_data, valid_data, test_data = data.TabularDataset.splits(path = os.path.dirname(self.args_dict['data_json_path']),
                                                                        train = 'train.json',
@@ -159,24 +171,21 @@ class DataIterators(object):
         
 #%% Instance   
 #args_dict = {'seed': 1234,
-#             'batch_size': 64,
+#             'batch_size': 32,
 #             'num_epochs': 2,
 #             'train_ratio': 0.8,
 #             'val_ratio': 0.1,
-#             'max_vocab_size': 100,
+#             'max_vocab_size': 5000,
 #             'min_occur_freq': 10,
 #             'embed_dim': 200,
-#             'num_filters': 20,
-#             'filter_sizes': '2,3,4',
 #             'dropout': 0.5,
 #             'exp_path': '/home/qwang/rob/src/cluster/exps',
-#             'exp_name': 'cnn1',
+#             'exp_name': 'han',
 #             'rob_name': 'blinded',
 #             'use_gpu': False,
 #             'gpu_id': 'None',
 #             'args_json_path': None,
 #             'embed_path': '/media/mynewdrive/rob/wordvec/wikipedia-pubmed-and-PMC-w2v.txt',
-##             'data_json_path': '/media/mynewdrive/rob/data/stroke/rob_stroke_fulltokens.json',
 #             'data_json_path': '/media/mynewdrive/rob/data/rob_gold_tokens.json',
 #             'use_cuda': False}
 #
