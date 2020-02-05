@@ -33,7 +33,7 @@ def get_args():
     parser = argparse.ArgumentParser(description='RoB training and inference helper script')
 
     
-    
+    # Experiments
     parser.add_argument('--seed', nargs="?", type=int, default=1234, help='Seed for random number generator')
     parser.add_argument('--batch_size', nargs="?", type=int, default=32, help='Batch size')
     parser.add_argument('--num_epochs', nargs="?", type=int, default=1, help='Number of epochs')    
@@ -42,28 +42,44 @@ def get_args():
     parser.add_argument('--max_vocab_size', nargs="?", type=int, default=5000, help='Maximum size of the vocabulary')
     parser.add_argument('--max_token_len', nargs="?", type=int, default=0, help='Threshold of maximum document legnth [default=0, sequence will not be cut]')
     parser.add_argument('--min_occur_freq', nargs="?", type=int, default=10, help='Minimum frequency of including a token in the vocabulary')
-    parser.add_argument('--embed_dim', nargs="?", type=int, default=200, help='Dimension of pre-trained word vectors')
-    parser.add_argument('--num_filters', nargs="?", type=int, default=3, help='Number of filters for each filter size (CNN)')   
-    parser.add_argument('--filter_sizes', nargs="?", type=str, default='2', help='Filter sizes (CNN)')
     parser.add_argument('--dropout', nargs="?", type=float, default=0.5, help='Dropout rate')
-
+    
     parser.add_argument('--exp_path', nargs="?", type=str, default="/disk/scratch/"+USER+"/rob/output", help='Path of experiments')
     parser.add_argument('--exp_name', nargs="?", type=str, default="try", help='Experiment name for building the folder')
-    parser.add_argument('--rob_name', nargs="?", type=str, default="blinded", 
-                        choices=['random', 'blinded', 'ssz'], 
-                        help='Name of risk of bias item')
+    
     parser.add_argument('--use_gpu', nargs="?", type=str2bool, default=False, help='GPU flag')
     parser.add_argument('--gpu_id', type=str, default="None", help="A string indicating the gpu to use")
-    parser.add_argument('--args_json_path', nargs="?", type=str, default=None, help='Path of argument json file')
-    parser.add_argument('--embed_path', nargs="?", type=str, default="/disk/scratch/"+USER+"/rob/input/wikipedia-pubmed-and-PMC-w2v.txt", help='Path of pre-trained vectors')
-    parser.add_argument('--data_json_path', nargs="?", type=str, default="/disk/scratch/"+USER+"/rob/input/rob_gold_tokens.json", help='Path of data in json format')
     
-  
+    # Data and embedding
+    parser.add_argument('--args_json_path', nargs="?", type=str, default=None, help='Path of argument json file')
+    parser.add_argument('--data_json_path', nargs="?", type=str, default="/disk/scratch/"+USER+"/rob/input/rob_gold_tokens.json", help='Path of data in json format')
+    parser.add_argument('--embed_dim', nargs="?", type=int, default=200, help='Dimension of pre-trained word vectors')
+    parser.add_argument('--embed_path', nargs="?", type=str, default="/disk/scratch/"+USER+"/rob/input/wikipedia-pubmed-and-PMC-w2v.txt", help='Path of pre-trained vectors')
+       
+    # RoB item
+    parser.add_argument('--rob_name', nargs="?", type=str, default="blinded", choices=['random', 'blinded', 'ssz'], help='Name of risk of bias item')
+    
+    # Model
+    parser.add_argument('--net_type', nargs="?", type=str, default='cnn', 
+                        choices=['cnn','lstm', 'gru', 'attn', 'han'], 
+                        help="Different networks [options:'cnn','lstm', 'gru', 'attn', 'han']")
+    
+    # CNN
+    parser.add_argument('--num_filters', nargs="?", type=int, default=3, help='Number of filters for each filter size (CNN)')   
+    parser.add_argument('--filter_sizes', nargs="?", type=str, default='2', help='Filter sizes (CNN)')
+    
+    # LSTM/GRU/Attention
     parser.add_argument('--rnn_hidden_dim', nargs="?", type=int, default=200, help='Number of features in RNN hidden state')
     parser.add_argument('--rnn_num_layers', nargs="?", type=int, default=2, help='Number of recurrent layers')
     parser.add_argument('--bidirection', nargs="?", type=str2bool, default=True, help='Apply the bidirectional RNN')
-    parser.add_argument('--rnn_cell_type', nargs="?", type=str, default="LSTM", help='Type of RNN cell (LSTM/GRU)')
+
+    # HAN
+    parser.add_argument('--word_hidden_dim', nargs="?", type=int, default=32, help='Hidden dim in word attention structure')
+    parser.add_argument('--word_num_layers', nargs="?", type=int, default=1, help='Number of GRU layers in word attention structure')
+    parser.add_argument('--sent_hidden_dim', nargs="?", type=int, default=32, help='Hidden dim in sentence attention structure')
+    parser.add_argument('--sent_num_layers', nargs="?", type=str, default=1, help='Number of GRU layers in sentence attention structure')
     
+    # Transformer encoder
     parser.add_argument('--num_heads', nargs="?", type=int, default=8, help='Number of heads in the multi-head attention module')
     parser.add_argument('--num_encoder_layers', nargs="?", type=int, default=6, help='Number of sub-encoder-layers in the encoder')
     
