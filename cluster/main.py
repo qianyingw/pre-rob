@@ -18,11 +18,14 @@ import torch.optim as optim
 # os.chdir('/home/qwang/rob/src/cluster')
 
 import utils
+from utils import metrics
 from arg_parser import get_args
 from data_iterators import DataIterators
 
-from model import ConvNet, metrics
-from train import train_evaluate, plot_performance, test
+from model import ConvNet, RecurNet, AttnNet
+from model_han import HAN
+from model_transformer import TransformerNet
+from train import train_evaluate, test #, plot_performance
 
 
 #%% Get arguments from command line
@@ -68,35 +71,72 @@ output_dim = len(helper.LABEL.vocab)  # 2
 unk_idx = helper.TEXT.vocab.stoi[helper.TEXT.unk_token]  # 0
 pad_idx = helper.TEXT.vocab.stoi[helper.TEXT.pad_token]  # 1
 
-sizes = args_dict['filter_sizes'].split(',')
-sizes = [int(s) for s in sizes]
 
-model = ConvNet(vocab_size = input_dim,
-                embedding_dim = args.embed_dim, 
-                n_filters = args.num_filters, 
-                filter_sizes = sizes, 
-                output_dim = output_dim, 
-                dropout = args.dropout, 
-                pad_idx = pad_idx)
 
-#model = RecurNet(vocab_size = input_dim, 
-#                 embedding_dim = args.embed_dim, 
-#                 rnn_hidden_dim = args.rnn_hidden_dim, 
-#                 rnn_num_layers = args.rnn_num_layers, 
-#                 output_dim = output_dim, 
-#                 bidirection = args.bidirection, 
-#                 rnn_cell_type = args.rnn_cell_type, 
-#                 dropout = args.dropout, 
-#                 pad_idx = pad_idx)
+if args.net_type == 'cnn':
+    sizes = args_dict['filter_sizes'].split(',')
+    sizes = [int(s) for s in sizes]
+    model = ConvNet(vocab_size = input_dim,
+                    embedding_dim = args.embed_dim, 
+                    n_filters = args.num_filters, 
+                    filter_sizes = sizes, 
+                    output_dim = output_dim, 
+                    dropout = args.dropout, 
+                    pad_idx = pad_idx)
 
+if args.net_type == 'rnn':
+    model = RecurNet(vocab_size = input_dim, 
+                     embedding_dim = args.embed_dim, 
+                     rnn_hidden_dim = args.rnn_hidden_dim, 
+                     rnn_num_layers = args.rnn_num_layers, 
+                     output_dim = output_dim, 
+                     bidirection = args.bidirection, 
+                     net_type = args.rnn_cell_type, 
+                     dropout = args.dropout, 
+                     pad_idx = pad_idx)
+    
+if args.net_type == 'attn':
+    model = AttnNet(vocab_size = input_dim, 
+                    embedding_dim = args.embed_dim, 
+                    rnn_hidden_dim = args.rnn_hidden_dim, 
+                    rnn_num_layers = args.rnn_num_layers, 
+                    output_dim = output_dim, 
+                    bidirection = args.bidirection, 
+                    rnn_cell_type = args.rnn_cell_type, 
+                    dropout = args.dropout, 
+                    pad_idx = pad_idx)
+
+if args.net_type == 'han':
+    model = HAN(vocab_size = input_dim,
+                embedding_dim = args.embed_dim,
+                word_hidden_dim = args.word_hidden_dim,
+                word_num_layers = args.word_num_layers,
+                pad_idx = pad_idx,            
+                sent_hidden_dim = args.sent_hidden_dim,
+                sent_num_layers = args.sent_num_layers,
+                output_dim = output_dim)
+
+    
+if args.net_type == 'transformer':
+    model = TransformerNet(vocab_size = input_dim, 
+                           embedding_dim = args.embed_dim, 
+                           num_heads = args.num_heads, 
+                           num_encoder_layers = args.num_encoder_layers, 
+                           output_dim = output_dim, 
+                           pad_idx = pad_idx)
 print(model)
 
 #%% Load pre-trained embedding
 pretrained_embeddings = helper.TEXT.vocab.vectors
-model.embedding.weight.data.copy_(pretrained_embeddings)
-# Zero the initial weights of the unknown and padding tokens
-model.embedding.weight.data[unk_idx] = torch.zeros(args.embed_dim)
-model.embedding.weight.data[pad_idx] = torch.zeros(args.embed_dim)
+
+if args.net_type == 'han':
+    model.word_attn.embedding.weight.data.copy_(pretrained_embeddings) 
+    model.word_attn.embedding.weight.data[unk_idx] = torch.zeros(args.embed_dim)  # Zero the initial weights for <unk> tokens
+    model.word_attn.embedding.weight.data[pad_idx] = torch.zeros(args.embed_dim)  # Zero the initial weights for <pad> tokens
+else:
+    model.embedding.weight.data.copy_(pretrained_embeddings)
+    model.embedding.weight.data[unk_idx] = torch.zeros(args.embed_dim)  # Zero the initial weights for <unk> tokens
+    model.embedding.weight.data[pad_idx] = torch.zeros(args.embed_dim)  # Zero the initial weights for <pad> tokens
 
 del pretrained_embeddings
 
