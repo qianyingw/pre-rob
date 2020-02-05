@@ -91,3 +91,58 @@ def load_checkpoint(checkfile, model, optimizer=None):
         optimizer.load_state_dict(checkfile['optim_dict'])
     
     return checkfile
+
+
+#%% Metrics   
+def metrics(preds, y):
+    """
+    Params:
+        preds: torch tensor, [batch_size, output_dim]
+        y: torch tensor, [batch_size]
+        
+    Yields:
+        A dictionary of accuracy, f1 score, recall, precision and specificity       
+        
+    """   
+    y_preds = preds.argmax(dim=1, keepdim=False)  # [batch_size, output_dim]  --> [batch_size]
+        
+    ones = torch.ones_like(y_preds)
+    zeros = torch.zeros_like(y_preds)
+    
+    pos = torch.eq(y_preds, y).sum().item()
+    tp = (torch.eq(y_preds, ones) & torch.eq(y, ones)).sum().item()
+    tn = (torch.eq(y_preds, zeros) & torch.eq(y, zeros)).sum().item()
+    fp = (torch.eq(y_preds, ones) & torch.eq(y, zeros)).sum().item()
+    fn = (torch.eq(y_preds, zeros) & torch.eq(y, ones)).sum().item()
+    
+    assert pos == tp + tn
+    
+    acc = pos / y.shape[0]  # torch.FloatTensor([y.shape[0]])
+    f1 = 2*tp / (2*tp + fp + fn) if (2*tp + fp + fn != 0) else 0
+    rec = tp / (tp + fn) if (tp + fn != 0) else 0
+    ppv = tp / (tp + fp) if (tp + fp != 0) else 0
+    spc = tn / (tn + fp) if (tn + fp != 0) else 0
+    
+    return {'accuracy': acc, 'f1': f1, 'recall': rec, 'precision': ppv, 'specificity': spc}
+
+def confusion(preds, y):
+    """
+    Params:
+        preds: torch tensor, [batch_size, output_dim]
+        y: torch tensor, [batch_size]
+        
+    Yields:
+        4 counts of true positive, true negative, false positive, false negative       
+        
+    """   
+    y_preds = preds.argmax(dim=1, keepdim=False)  # [batch_size, output_dim]  --> [batch_size]
+        
+    ones = torch.ones_like(y_preds)
+    zeros = torch.zeros_like(y_preds)
+
+    tp = (torch.eq(y_preds, ones) & torch.eq(y, ones)).sum().item()
+    tn = (torch.eq(y_preds, zeros) & torch.eq(y, zeros)).sum().item()
+    fp = (torch.eq(y_preds, ones) & torch.eq(y, zeros)).sum().item()
+    fn = (torch.eq(y_preds, zeros) & torch.eq(y, ones)).sum().item() 
+    
+    return tp, tn, fp, fn

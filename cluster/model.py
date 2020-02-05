@@ -62,7 +62,7 @@ class ConvNet(nn.Module):
 
 class RecurNet(nn.Module):
     
-    def __init__(self, vocab_size, embedding_dim, rnn_hidden_dim, rnn_num_layers, output_dim, bidirection, rnn_cell_type, dropout, pad_idx):
+    def __init__(self, vocab_size, embedding_dim, rnn_hidden_dim, rnn_num_layers, output_dim, bidirection, net_type, dropout, pad_idx):
        
         super(RecurNet, self).__init__()
         
@@ -80,7 +80,7 @@ class RecurNet(nn.Module):
         
         self.dropout = nn.Dropout(dropout)
         self.linear = nn.Linear(rnn_hidden_dim*num_directions, output_dim)
-        self.rnn_cell_type = rnn_cell_type
+        self.net_type = net_type
         
     
     def forward(self, text):
@@ -96,7 +96,7 @@ class RecurNet(nn.Module):
         # out: [batch_size, seq_len, num_directions*hidden_dim], output features from last layer for each t
         # h_n: [batch_size, num_layers*num_directions, hidden_dim], hidden state for t=seq_len
         # c_n: [batch_size, num_layers*num*directions, hidden_dim], cell state fir t=seq_len
-        if self.rnn_cell_type == 'LSTM':
+        if self.net_type == 'lstm':
             out, (h_n, c_n) = self.lstm(embed)
         else:
             out, h_n = self.gru(embed)
@@ -122,7 +122,7 @@ class RecurNet(nn.Module):
 
 class AttnNet(nn.Module):
     
-    def __init__(self, vocab_size, embedding_dim, rnn_hidden_dim, rnn_num_layers, output_dim, bidirection, rnn_cell_type, dropout, pad_idx):
+    def __init__(self, vocab_size, embedding_dim, rnn_hidden_dim, rnn_num_layers, output_dim, bidirection, net_type, dropout, pad_idx):
         
         super(AttnNet, self).__init__()
         
@@ -137,7 +137,7 @@ class AttnNet(nn.Module):
                           batch_first = True, bidirectional = bidirection)
         
         num_directions = 2 if bidirection == True else 1
-        self.rnn_cell_type = rnn_cell_type
+        self.net_type = net_type
         
         
         # Initialize weight
@@ -166,7 +166,7 @@ class AttnNet(nn.Module):
         # a: [batch_size, seq_len, num_directions*hidden_dim], output features from last layer for each t
         # h_n: [batch_size, num_layers*num_directions, hidden_dim], hidden state for t=seq_len
         # c_n: [batch_size, num_layers*num*directions, hidden_dim], cell state fir t=seq_len
-        if self.rnn_cell_type == 'LSTM':
+        if self.net_type == 'LSTM':
             a, (h_n, c_n) = self.lstm(embed)
         else:
             a, h_n = self.gru(embed)
@@ -186,57 +186,3 @@ class AttnNet(nn.Module):
         
         return z
 
-#%% Functions
-    
-def metrics(preds, y):
-    """
-    Params:
-        preds: torch tensor, [batch_size, output_dim]
-        y: torch tensor, [batch_size]
-        
-    Yields:
-        A dictionary of accuracy, f1 score, recall, precision and specificity       
-        
-    """   
-    y_preds = preds.argmax(dim=1, keepdim=False)  # [batch_size, output_dim]  --> [batch_size]
-        
-    ones = torch.ones_like(y_preds)
-    zeros = torch.zeros_like(y_preds)
-    
-    pos = torch.eq(y_preds, y).sum().item()
-    tp = (torch.eq(y_preds, ones) & torch.eq(y, ones)).sum().item()
-    tn = (torch.eq(y_preds, zeros) & torch.eq(y, zeros)).sum().item()
-    fp = (torch.eq(y_preds, ones) & torch.eq(y, zeros)).sum().item()
-    fn = (torch.eq(y_preds, zeros) & torch.eq(y, ones)).sum().item()
-    
-    assert pos == tp + tn
-    
-    acc = pos / y.shape[0]  # torch.FloatTensor([y.shape[0]])
-    f1 = 2*tp / (2*tp + fp + fn) if (2*tp + fp + fn != 0) else 0
-    rec = tp / (tp + fn) if (tp + fn != 0) else 0
-    ppv = tp / (tp + fp) if (tp + fp != 0) else 0
-    spc = tn / (tn + fp) if (tn + fp != 0) else 0
-    
-    return {'accuracy': acc, 'f1': f1, 'recall': rec, 'precision': ppv, 'specificity': spc}
-
-def confusion(preds, y):
-    """
-    Params:
-        preds: torch tensor, [batch_size, output_dim]
-        y: torch tensor, [batch_size]
-        
-    Yields:
-        4 counts of true positive, true negative, false positive, false negative       
-        
-    """   
-    y_preds = preds.argmax(dim=1, keepdim=False)  # [batch_size, output_dim]  --> [batch_size]
-        
-    ones = torch.ones_like(y_preds)
-    zeros = torch.zeros_like(y_preds)
-
-    tp = (torch.eq(y_preds, ones) & torch.eq(y, ones)).sum().item()
-    tn = (torch.eq(y_preds, zeros) & torch.eq(y, zeros)).sum().item()
-    fp = (torch.eq(y_preds, ones) & torch.eq(y, zeros)).sum().item()
-    fn = (torch.eq(y_preds, zeros) & torch.eq(y, ones)).sum().item() 
-    
-    return tp, tn, fp, fn
