@@ -27,10 +27,17 @@ def preprocess_text(text):
     text = re.sub(r"^(?:[\t ]*(?:\r?\n|\r))+", " ", text, flags=re.MULTILINE)
     # Remove lines with digits/(digits,punctuations,line character) only
     text = re.sub(r"^\W{0,}\d{1,}\W{0,}$", "", text)
+    # Remove numbers
+    text = re.sub(r'\d+', ' ', text)
+    # Replace hyphens to spaces
+    text = re.sub(r"-", " ", text)
     # Remove non-ascii characters
     text = text.encode("ascii", errors="ignore").decode()     
     # Strip whitespaces 
-    text = re.sub(r'\s+', ' ', text)  
+    text = re.sub(r'\s+', ' ', text)
+    # Remove the whitespace at start and end of line
+    text = re.sub(r'^[\s]', '', text)
+    text = re.sub(r'[\s]$', '', text)
  
     return text.lower()
 
@@ -47,16 +54,18 @@ def text_tokenizer(text):
     word_tokens = []
     text = nlp(text)
     for i, sent in enumerate(text.sentences):
-#        one_sent = [word.text for word in sent.words]
         one_sent = [word.text for word in sent.words if word.text not in string.punctuation]
-        sent_tokens.append(one_sent)
+        if len(one_sent) > 3:
+            sent_tokens.append(one_sent)
     word_tokens = [w for s in sent_tokens for w in s]
     return sent_tokens, word_tokens
 
 
 
 # Example
-#text = nlp("I don't like mustard. YK is hungry. He wants a banana.")
+#text = "i don't like mustard. yk is hungry. he wants a banana. she's 5-social. i. not. he - not really.    9. "
+#text = preprocess_text(text)
+#text = nlp(text)
 #sent_tokens = []
 #word_tokens = []
 #for i, sent in enumerate(text.sentences):
