@@ -62,7 +62,7 @@ class ConvNet(nn.Module):
 
 class RecurNet(nn.Module):
     
-    def __init__(self, vocab_size, embedding_dim, rnn_hidden_dim, rnn_num_layers, output_dim, bidirection, net_type, dropout, pad_idx):
+    def __init__(self, vocab_size, embedding_dim, rnn_hidden_dim, rnn_num_layers, output_dim, bidirection, rnn_cell_type, dropout, pad_idx):
        
         super(RecurNet, self).__init__()
         
@@ -80,7 +80,7 @@ class RecurNet(nn.Module):
         
         self.dropout = nn.Dropout(dropout)
         self.linear = nn.Linear(rnn_hidden_dim*num_directions, output_dim)
-        self.net_type = net_type
+        self.rnn_cell_type = rnn_cell_type
         
     
     def forward(self, text):
@@ -96,7 +96,7 @@ class RecurNet(nn.Module):
         # out: [batch_size, seq_len, num_directions*hidden_dim], output features from last layer for each t
         # h_n: [batch_size, num_layers*num_directions, hidden_dim], hidden state for t=seq_len
         # c_n: [batch_size, num_layers*num*directions, hidden_dim], cell state fir t=seq_len
-        if self.net_type == 'lstm':
+        if self.rnn_cell_type == 'lstm':
             out, (h_n, c_n) = self.lstm(embed)
         else:
             out, h_n = self.gru(embed)
@@ -122,7 +122,7 @@ class RecurNet(nn.Module):
 
 class AttnNet(nn.Module):
     
-    def __init__(self, vocab_size, embedding_dim, rnn_hidden_dim, rnn_num_layers, output_dim, bidirection, net_type, dropout, pad_idx):
+    def __init__(self, vocab_size, embedding_dim, rnn_hidden_dim, rnn_num_layers, output_dim, bidirection, rnn_cell_type, dropout, pad_idx):
         
         super(AttnNet, self).__init__()
         
@@ -137,7 +137,7 @@ class AttnNet(nn.Module):
                           batch_first = True, bidirectional = bidirection)
         
         num_directions = 2 if bidirection == True else 1
-        self.net_type = net_type
+        self.rnn_cell_type = rnn_cell_type
         
         
         # Initialize weight
@@ -166,7 +166,7 @@ class AttnNet(nn.Module):
         # a: [batch_size, seq_len, num_directions*hidden_dim], output features from last layer for each t
         # h_n: [batch_size, num_layers*num_directions, hidden_dim], hidden state for t=seq_len
         # c_n: [batch_size, num_layers*num*directions, hidden_dim], cell state fir t=seq_len
-        if self.net_type == 'LSTM':
+        if self.rnn_cell_type == 'lstm':
             a, (h_n, c_n) = self.lstm(embed)
         else:
             a, h_n = self.gru(embed)

@@ -115,7 +115,6 @@ class SentAttn(nn.Module):
 class HAN(nn.Module):
     
     def __init__(self, vocab_size, embedding_dim, word_hidden_dim, word_num_layers, pad_idx,
-                       max_sent_len, max_doc_len,
                        sent_hidden_dim, sent_num_layers, output_dim):
         
         super(HAN, self).__init__()
@@ -131,6 +130,7 @@ class HAN(nn.Module):
                                   sent_num_layers = sent_num_layers)
         
         self.linear = nn.Linear(2*sent_hidden_dim, output_dim)
+    
     
     def forward(self, text):
         """
