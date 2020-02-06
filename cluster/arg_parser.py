@@ -78,7 +78,7 @@ def get_args():
     parser.add_argument('--word_hidden_dim', nargs="?", type=int, default=32, help='Hidden dim in word attention structure')
     parser.add_argument('--word_num_layers', nargs="?", type=int, default=1, help='Number of GRU layers in word attention structure')
     parser.add_argument('--sent_hidden_dim', nargs="?", type=int, default=32, help='Hidden dim in sentence attention structure')
-    parser.add_argument('--sent_num_layers', nargs="?", type=str, default=1, help='Number of GRU layers in sentence attention structure')
+    parser.add_argument('--sent_num_layers', nargs="?", type=int, default=1, help='Number of GRU layers in sentence attention structure')
     parser.add_argument('--max_doc_len', nargs="?", type=int, default=0, help='Maximum number of sents in one document overall the batches')
     parser.add_argument('--max_sent_len', nargs="?", type=int, default=0, help='Maximum number of words in one sentence overall the batches')
     
