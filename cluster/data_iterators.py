@@ -108,11 +108,11 @@ class DataIterators(object):
         if rob_item == 'ssz': rob_item = 'SampleSizeCalculation'
         
         if self.args_dict['net_type'] == 'han':  	
-            fields = {#'goldID': ('id', self.ID), 
-        			  'label': ('label', self.LABEL), # rob_item: ('label', self.LABEL) for rob data
+            fields = {'goldID': ('id', self.ID), 
+        			  rob_item: ('label', self.LABEL), # 'label': ('label', self.LABEL) for rob data
         			  'sentTokens': ('text', self.TEXT)}		
         else:
-            fields = {#'goldID': ('id', self.ID), 
+            fields = {'goldID': ('id', self.ID), 
                        rob_item: ('label', self.LABEL), 
                        'wordTokens': ('text', self.TEXT)}
             
@@ -165,7 +165,7 @@ class DataIterators(object):
         
         return train_iterator, valid_iterator, test_iterator
         
-##%% Instance   
+#%% Instance   
 #args_dict = {'seed': 1234,
 #             'batch_size': 32,
 #             'num_epochs': 2,

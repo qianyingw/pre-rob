@@ -52,7 +52,7 @@ def get_args():
     
     # Data and embedding
     parser.add_argument('--args_json_path', nargs="?", type=str, default=None, help='Path of argument json file')
-    parser.add_argument('--data_json_path', nargs="?", type=str, default="/home/qwang/rob/amazon_tokens.json", help='Path of data in json format')
+    parser.add_argument('--data_json_path', nargs="?", type=str, default="/media/mynewdrive/rob/data/rob_word_sent_tokens.json", help='Path of data in json format')
     parser.add_argument('--embed_dim', nargs="?", type=int, default=200, help='Dimension of pre-trained word vectors')
     parser.add_argument('--embed_path', nargs="?", type=str, default="/media/mynewdrive/rob/wordvec/wikipedia-pubmed-and-PMC-w2v.txt", help='Path of pre-trained vectors')
        
