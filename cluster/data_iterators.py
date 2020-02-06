@@ -33,10 +33,12 @@ class DataIterators(object):
         self.ID = data.Field()
         self.LABEL = data.LabelField()
         
-        if self.args_dict['net_type'] == 'han': 
+        if self.args_dict['net_type'] == 'han':           
+            max_sent_len = self.args_dict['max_sent_len'] if self.args_dict['max_sent_len'] != 0 else None
+            max_doc_len = self.args_dict['max_doc_len'] if self.args_dict['max_doc_len'] != 0 else None
             # nested sentence tokens
-        	nest_field = data.Field(pad_token='<pad>', fix_length=self.args_dict['max_sent_len'])  # fix num of words in each sent (fix max_sent_len)
-        	self.TEXT = data.NestedField(nest_field, fix_length=self.args_dict['max_doc_len'])  # fix num of sents (fix max_doc_len)
+            nest_field = data.Field(pad_token='<pad>', fix_length = max_sent_len)  # fix num of words in each sent (fix max_sent_len)
+            self.TEXT = data.NestedField(nest_field, fix_length = max_doc_len)  # fix num of sents (fix max_doc_len)
         else:
             self.TEXT = data.Field()   # word tokens 
             
