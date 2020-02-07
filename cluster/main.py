@@ -35,9 +35,11 @@ args, device = get_args()
 #%% Set random seed
 random.seed(args.seed)
 torch.manual_seed(args.seed)
-if device == 'cuda': torch.cuda.manual_seed(args.seed)
-torch.backends.cudnn.deterministic = True  
-
+if device == 'cuda': 
+    torch.cuda.manual_seed(args.seed)
+    torch.backends.cudnn.deterministic = True     
+    torch.backends.cudnn.benchmark = False   # This makes things slower
+        
 #%% Set logger
 log_dir = os.path.join(args.exp_path, args.exp_name)
 if os.path.exists(log_dir) == False:

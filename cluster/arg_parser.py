@@ -36,7 +36,7 @@ def get_args():
     # Experiments
     parser.add_argument('--seed', nargs="?", type=int, default=1234, help='Seed for random number generator')
     parser.add_argument('--batch_size', nargs="?", type=int, default=32, help='Batch size')
-    parser.add_argument('--num_epochs', nargs="?", type=int, default=3, help='Number of epochs')    
+    parser.add_argument('--num_epochs', nargs="?", type=int, default=2, help='Number of epochs')    
     parser.add_argument('--train_ratio', nargs="?", type=float, default=0.8, help='Ratio of training set')
     parser.add_argument('--val_ratio', nargs="?", type=float, default=0.1, help='Ratio of validation set')
     parser.add_argument('--max_vocab_size', nargs="?", type=int, default=5000, help='Maximum size of the vocabulary')
@@ -47,8 +47,8 @@ def get_args():
     parser.add_argument('--exp_path', nargs="?", type=str, default="/home/qwang/rob/src/cluster/exps")
     parser.add_argument('--exp_name', nargs="?", type=str, default="han", help='Experiment name for building the folder')
     
-    parser.add_argument('--use_gpu', nargs="?", type=str2bool, default=False, help='GPU flag')
-    parser.add_argument('--gpu_id', type=str, default="None", help="A string indicating the gpu to use")
+#    parser.add_argument('--use_gpu', nargs="?", type=str2bool, default=False, help='GPU flag')
+#    parser.add_argument('--gpu_id', type=str, default="None", help="A string indicating the gpu to use")
     
     # Data and embedding
     parser.add_argument('--args_json_path', nargs="?", type=str, default=None, help='Path of argument json file')
@@ -75,9 +75,9 @@ def get_args():
     parser.add_argument('--bidirection', nargs="?", type=str2bool, default=True, help='Apply the bidirectional RNN')
 
     # HAN
-    parser.add_argument('--word_hidden_dim', nargs="?", type=int, default=32, help='Hidden dim in word attention structure')
+    parser.add_argument('--word_hidden_dim', nargs="?", type=int, default=100, help='Hidden dim in word attention structure')
     parser.add_argument('--word_num_layers', nargs="?", type=int, default=1, help='Number of GRU layers in word attention structure')
-    parser.add_argument('--sent_hidden_dim', nargs="?", type=int, default=32, help='Hidden dim in sentence attention structure')
+    parser.add_argument('--sent_hidden_dim', nargs="?", type=int, default=100, help='Hidden dim in sentence attention structure')
     parser.add_argument('--sent_num_layers', nargs="?", type=int, default=1, help='Number of GRU layers in sentence attention structure')
     parser.add_argument('--max_doc_len', nargs="?", type=int, default=0, help='Maximum number of sents in one document overall the batches')
     parser.add_argument('--max_sent_len', nargs="?", type=int, default=0, help='Maximum number of words in one sentence overall the batches')
@@ -96,50 +96,55 @@ def get_args():
 
     
     ## GPU setting
-    gpu_id = str(args.gpu_id)
-    if gpu_id != "None":
-        args.gpu_id = gpu_id  
+#    gpu_id = str(args.gpu_id)
+#    if gpu_id != "None":
+#        args.gpu_id = gpu_id  
+#
+#    if args.use_gpu == True:
+#        num_requested_gpus = len(args.gpu_id.split(","))
+#        num_received_gpus = len(GPUtil.getAvailable(order='first', limit=8, 
+#                                                    maxLoad=0.1, maxMemory=0.1, 
+#                                                    includeNan=False, excludeID=[], excludeUUID=[]))
+#
+#        if num_requested_gpus == 1 and num_received_gpus > 1:
+#            print("Detected Slurm problem with GPUs, attempting automated fix")
+#            gpu_to_use = GPUtil.getAvailable(order='first', limit=num_received_gpus, 
+#                                             maxLoad=0.1, maxMemory=0.1, 
+#                                             includeNan=False, excludeID=[], excludeUUID=[])
+#            if len(gpu_to_use) > 0:
+#                os.environ["CUDA_VISIBLE_DEVICES"] = str(gpu_to_use[0])
+#                print("Using GPU with ID", gpu_to_use[0])
+#            else:
+#                print("Not enough GPUs available, please try on another node now, or retry on this node later")
+#                sys.exit()
+#
+#        elif num_requested_gpus > 1 and num_received_gpus > num_requested_gpus:
+#            print("Detected Slurm problem with GPUs, attempting automated fix")
+#            gpu_to_use = GPUtil.getAvailable(order='first', limit=num_received_gpus,
+#                                             maxLoad=0.1, maxMemory=0.1, 
+#                                             includeNan=False, excludeID=[], excludeUUID=[])
+#            
+#            if len(gpu_to_use) >= num_requested_gpus:
+#                os.environ["CUDA_VISIBLE_DEVICES"] = ",".join(str(gpu_idx) for gpu_idx in gpu_to_use[:num_requested_gpus])
+#                print("Using GPU with ID", gpu_to_use[:num_requested_gpus])
+#            else:
+#                print("Not enough GPUs available, please try on another node now, or retry on this node later")
+#                sys.exit()
 
-    if args.use_gpu == True:
-        num_requested_gpus = len(args.gpu_id.split(","))
-        num_received_gpus = len(GPUtil.getAvailable(order='first', limit=8, 
-                                                    maxLoad=0.1, maxMemory=0.1, 
-                                                    includeNan=False, excludeID=[], excludeUUID=[]))
-
-        if num_requested_gpus == 1 and num_received_gpus > 1:
-            print("Detected Slurm problem with GPUs, attempting automated fix")
-            gpu_to_use = GPUtil.getAvailable(order='first', limit=num_received_gpus, 
-                                             maxLoad=0.1, maxMemory=0.1, 
-                                             includeNan=False, excludeID=[], excludeUUID=[])
-            if len(gpu_to_use) > 0:
-                os.environ["CUDA_VISIBLE_DEVICES"] = str(gpu_to_use[0])
-                print("Using GPU with ID", gpu_to_use[0])
-            else:
-                print("Not enough GPUs available, please try on another node now, or retry on this node later")
-                sys.exit()
-
-        elif num_requested_gpus > 1 and num_received_gpus > num_requested_gpus:
-            print("Detected Slurm problem with GPUs, attempting automated fix")
-            gpu_to_use = GPUtil.getAvailable(order='first', limit=num_received_gpus,
-                                             maxLoad=0.1, maxMemory=0.1, 
-                                             includeNan=False, excludeID=[], excludeUUID=[])
-            
-            if len(gpu_to_use) >= num_requested_gpus:
-                os.environ["CUDA_VISIBLE_DEVICES"] = ",".join(str(gpu_idx) for gpu_idx in gpu_to_use[:num_requested_gpus])
-                print("Using GPU with ID", gpu_to_use[:num_requested_gpus])
-            else:
-                print("Not enough GPUs available, please try on another node now, or retry on this node later")
-                sys.exit()
-
-    ## CUDA
-    args.use_cuda = torch.cuda.is_available()
-    if torch.cuda.is_available():  # checks whether a cuda gpu is available and whether the gpu flag is True
+    ## CUDA setting
+    if torch.cuda.is_available():  
         device = torch.device("cuda")  # torch.cuda.current_device()
-        print("Use {} GPU(s)".format(torch.cuda.device_count()), file=sys.stderr)
+        print("Use {} GPU(s)\n".format(torch.cuda.device_count()), file=sys.stderr)
+        print(f'Using device: {torch.cuda.get_device_name()}')
+        if device.index:
+            device_str = f"{device.type}:{device.index}"
+        else:
+            device_str = f"{device.type}"
+        os.environ["CUDA_VISIBLE_DEVICES"] = device_str
     else:
         print("Use CPU", file=sys.stderr)
-        device = torch.device('cpu')  # sets the device to be CPU
-
+        device = torch.device('cpu')  # sets the device to be CPU   
+        
     return args, device
 
 
