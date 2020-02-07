@@ -52,8 +52,7 @@ class DataIterators(object):
               
         """  
         data_json_path = self.args_dict['data_json_path']        
-        #if os.path.exists(data_json_path) == False:
-        #    raise('Data doesn't exist: {}'.format(os.path.basename(data_json_path)))
+
         
         dat = []
         try: 
@@ -133,6 +132,10 @@ class DataIterators(object):
         embed_path = self.args_dict['embed_path']        
         custom_embedding = vocab.Vectors(name = os.path.basename(embed_path), 
                                          cache = os.path.dirname(embed_path))
+        
+        # !custom_embedding.stoi['cat'])
+        # !custom_embedding.vectors[6])
+
         return custom_embedding
     
     
@@ -175,10 +178,9 @@ class DataIterators(object):
 #             'val_ratio': 0.1,
 #             'max_vocab_size': 5000,
 #             'min_occur_freq': 10,
-#             'max_token_len': 5000,
+#             'max_token_len': 0,
 #             'embed_dim': 200,
-#             'dropout': 0.5,
-#             
+#             'dropout': 0.5,            
 #             'exp_path': '/home/qwang/rob/src/cluster/exps',
 #             'exp_name': 'han',
 #             'rob_name': 'blinded',
@@ -187,7 +189,7 @@ class DataIterators(object):
 #             
 #             'args_json_path': None,
 #             'embed_path': '/media/mynewdrive/rob/wordvec/wikipedia-pubmed-and-PMC-w2v.txt',
-#             'data_json_path': '/home/qwang/rob/amazon_tokens.json',
+#             'data_json_path': '/media/mynewdrive/rob/data/rob_word_sent_tokens.json', #'/home/qwang/rob/amazon_tokens.json',
 #             'use_cuda': False,
 #             
 #             'net_type': 'han',
@@ -196,8 +198,8 @@ class DataIterators(object):
 #             
 #             'sent_hidden_dim': 32,
 #             'sent_num_layers': 1,
-#             'max_sent_len': None,
-#             'max_doc_len': None
+#             'max_sent_len': 0,
+#             'max_doc_len': 0
 #             }
 #
 #helper = DataIterators(args_dict = args_dict)
@@ -218,6 +220,7 @@ class DataIterators(object):
 #helper.TEXT.vocab.stoi[helper.TEXT.unk_token]  # 0
 #helper.TEXT.vocab.vectors.shape  # [611, 20]
 #
+#
 #class BatchWrapper:
 #    def __init__(self, iterator, x_var, y_var):
 #        self.iterator = iterator
@@ -232,8 +235,20 @@ class DataIterators(object):
 #            
 #    
 #train_batch = BatchWrapper(train_iterator, "text", "label")
-#x_sent, y = next(train_batch.__iter__())
-#x_sent.size()  # [20, 9 ,25] => [batch_size, max_doc_len, max_sent_len]
+#
+#max_doc_len_list = []
+#max_sent_len_list = []
+#for i in range(len(train_iterator)): 
+#    x_sent, y = next(train_batch.__iter__())
+#    x_sent.shape  # [20, 9 ,25] => [batch_size, max_doc_len, max_sent_len]
+#    max_doc_len_list.append(x_sent.shape[1])
+#    max_sent_len_list.append(x_sent.shape[2])
+#    print(i)
+#
+#import numpy as np
+#print(max(max_doc_len_list), min(max_doc_len_list), np.mean(max_doc_len_list))     # 564, 255, 371.6    
+#print(max(max_sent_len_list), min(max_sent_len_list), np.mean(max_sent_len_list))  # 1684, 182, 424.3     
+#
 #
 #d0_tokens = x_sent.permute(1,0)[0]
 #s0_tokens = x_sent[0]   # 9 sents in doc 0. Each sent has 25 words
