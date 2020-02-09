@@ -104,7 +104,7 @@ class RecurNet(nn.Module):
         # Obtain the last hidden state from last layer
         batch_len = out.size()[0]
         out_list = []
-        for i in batch_len:
+        for i in range(batch_len):
             # Append hidden state of last word from each batch
             # out[i][-1]: [num_directions*hidden_dim]
             out_list.append(out[i][-1])  

@@ -40,7 +40,7 @@ def get_args():
     parser.add_argument('--train_ratio', nargs="?", type=float, default=0.8, help='Ratio of training set')
     parser.add_argument('--val_ratio', nargs="?", type=float, default=0.1, help='Ratio of validation set')
     parser.add_argument('--max_vocab_size', nargs="?", type=int, default=5000, help='Maximum size of the vocabulary')
-    parser.add_argument('--max_token_len', nargs="?", type=int, default=0, help='Threshold of maximum document legnth [default=0, sequence will not be cut]')
+    parser.add_argument('--max_token_len', nargs="?", type=int, default=5000, help='Threshold of maximum document legnth [default=0, sequence will not be cut]')
     parser.add_argument('--min_occur_freq', nargs="?", type=int, default=10, help='Minimum frequency of including a token in the vocabulary')
     parser.add_argument('--dropout', nargs="?", type=float, default=0.5, help='Dropout rate')
     
@@ -60,7 +60,7 @@ def get_args():
     parser.add_argument('--rob_name', nargs="?", type=str, default="blinded", choices=['random', 'blinded', 'ssz'], help='Name of risk of bias item')
     
     # Model
-    parser.add_argument('--net_type', nargs="?", type=str, default='han', 
+    parser.add_argument('--net_type', nargs="?", type=str, default='attn', 
                         choices=['cnn', 'rnn', 'attn', 'han', 'transformer'], 
                         help="Different networks [options: 'cnn', 'rnn', 'attn', 'han', 'transformer']")
     
@@ -69,10 +69,10 @@ def get_args():
     parser.add_argument('--filter_sizes', nargs="?", type=str, default='2', help='Filter sizes (CNN)')
     
     # RNN/Attention
-    parser.add_argument('--rnn_cell_type', nargs="?", type=str, default="lstm", choices=['cnn', 'rnn', 'attn', 'han'], help="Type of RNN cell [options: 'lstm', 'gru']")
-    parser.add_argument('--rnn_hidden_dim', nargs="?", type=int, default=200, help='Number of features in RNN hidden state')
-    parser.add_argument('--rnn_num_layers', nargs="?", type=int, default=2, help='Number of recurrent layers')
-    parser.add_argument('--bidirection', nargs="?", type=str2bool, default=True, help='Apply the bidirectional RNN')
+    parser.add_argument('--rnn_cell_type', nargs="?", type=str, default="lstm", choices=['lstm', 'gru'], help="Type of RNN cell [options: 'lstm', 'gru']")
+    parser.add_argument('--rnn_hidden_dim', nargs="?", type=int, default=100, help='Number of features in RNN hidden state')
+    parser.add_argument('--rnn_num_layers', nargs="?", type=int, default=1, help='Number of recurrent layers')
+    parser.add_argument('--bidirection', nargs="?", type=str2bool, default=False, help='Apply the bidirectional RNN')
 
     # HAN
     parser.add_argument('--word_hidden_dim', nargs="?", type=int, default=100, help='Hidden dim in word attention structure')

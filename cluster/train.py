@@ -32,6 +32,7 @@ def train(model, iterator, criterion, optimizer, metrics):
     with tqdm(total=len_iter) as progress_bar:
         for batch in iterator:
             optimizer.zero_grad()
+            # batch.text.shape = [seq_len, batch_size]
             # batch.text.shape = [batch_size, max_doc_len, max_sent_len]
             preds = model(batch.text)  # preds.shape = [batch_size, output_dim]
             

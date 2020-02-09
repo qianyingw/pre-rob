@@ -95,7 +95,7 @@ if args.net_type == 'rnn':
                      rnn_num_layers = args.rnn_num_layers, 
                      output_dim = output_dim, 
                      bidirection = args.bidirection, 
-                     net_type = args.rnn_cell_type, 
+                     rnn_cell_type = args.rnn_cell_type,
                      dropout = args.dropout, 
                      pad_idx = pad_idx)
     
