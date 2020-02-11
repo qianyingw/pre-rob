@@ -55,7 +55,7 @@ def text_tokenizer(text):
     text = nlp(text)
     for i, sent in enumerate(text.sentences):
         one_sent = [word.text for word in sent.words if word.text not in string.punctuation]
-        if len(one_sent) > 3:
+        if len(one_sent) > 2:
             sent_tokens.append(one_sent)
     word_tokens = [w for s in sent_tokens for w in s]
     return sent_tokens, word_tokens
