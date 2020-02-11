@@ -28,16 +28,16 @@ def preprocess_text(text):
     # Remove lines with digits/(digits,punctuations,line character) only
     text = re.sub(r"^\W{0,}\d{1,}\W{0,}$", "", text)
     # Remove numbers
-    text = re.sub(r'\d+', ' ', text)
+    text = re.sub(r'\d+', "", text)
     # Replace hyphens to spaces
     text = re.sub(r"-", " ", text)
     # Remove non-ascii characters
     text = text.encode("ascii", errors="ignore").decode()     
     # Strip whitespaces 
-    text = re.sub(r'\s+', ' ', text)
+    text = re.sub(r'\s+', " ", text)
     # Remove the whitespace at start and end of line
-    text = re.sub(r'^[\s]', '', text)
-    text = re.sub(r'[\s]$', '', text)
+    text = re.sub(r'^[\s]', "", text)
+    text = re.sub(r'[\s]$', "", text)
  
     return text.lower()
 
