@@ -17,8 +17,9 @@ def preprocess_text(text):
     text = re.sub(r"Conclusion\s{0,}\n.*|Conclusions\s{0,}\n.*",  
                   " ",  text, flags=re.DOTALL | re.IGNORECASE)
     # Remove references   
-    text = re.sub(r"Reference\s{0,}\n.*|References\s{0,}\n.*|Reference list\s{0,}\n.*",  
-                  " ",  text, flags=re.DOTALL | re.IGNORECASE) 
+    text = re.sub(r"^(?!preference|preferences)Reference\s{0,}\n.*|References\s{0,}\n.*|Reference list\s{0,}\n.*", 
+                  " ", text, flags=re.DOTALL | re.IGNORECASE)    
+    # text = re.sub(r"Reference\s{0,}\n.*|References\s{0,}\n.*|Reference list\s{0,}\n.*", " ", text, flags=re.DOTALL | re.IGNORECASE) 
     # Remove citations 
     text = re.sub(r"\s+[\[][^a-zA-Z]+[\]]", "", text)
     # Remove links
