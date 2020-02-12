@@ -60,13 +60,13 @@ def get_args():
     parser.add_argument('--rob_name', nargs="?", type=str, default="blinded", choices=['random', 'blinded', 'ssz'], help='Name of risk of bias item')
     
     # Model
-    parser.add_argument('--net_type', nargs="?", type=str, default='attn', 
+    parser.add_argument('--net_type', nargs="?", type=str, default='cnn', 
                         choices=['cnn', 'rnn', 'attn', 'han', 'transformer'], 
                         help="Different networks [options: 'cnn', 'rnn', 'attn', 'han', 'transformer']")
     
     # CNN
-    parser.add_argument('--num_filters', nargs="?", type=int, default=3, help='Number of filters for each filter size (CNN)')   
-    parser.add_argument('--filter_sizes', nargs="?", type=str, default='2', help='Filter sizes (CNN)')
+    parser.add_argument('--num_filters', nargs="?", type=int, default=5, help='Number of filters for each filter size (CNN)')   
+    parser.add_argument('--filter_sizes', nargs="?", type=str, default='3,4', help='Filter sizes (CNN)')
     
     # RNN/Attention
     parser.add_argument('--rnn_cell_type', nargs="?", type=str, default="lstm", choices=['lstm', 'gru'], help="Type of RNN cell [options: 'lstm', 'gru']")

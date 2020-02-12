@@ -168,6 +168,23 @@ class DataIterators(object):
             device = device
         )
         
+#        train_iterator, valid_iterator = data.BucketIterator.splits(
+#            (train_data, valid_data),
+#            sort = False,
+#            shuffle = True,
+#            batch_size = self.args_dict['batch_size'],
+#            device = device
+#        )
+#        
+#        
+#        test_iterator = data.Iterator(test_data, 
+#                                      sort = False,
+#                                      sort_within_batch = False, 
+#                                      shuffle = False,
+#                                      batch_size = self.args_dict['batch_size'], 
+#                                      device = device, 
+#                                      repeat=False)
+        
         return train_iterator, valid_iterator, test_iterator
         
 #%% Instance   
@@ -182,17 +199,15 @@ class DataIterators(object):
 #             'embed_dim': 200,
 #             'dropout': 0.5,            
 #             'exp_path': '/home/qwang/rob/src/cluster/exps',
-#             'exp_name': 'han',
+#             'exp_name': 'cnn',
 #             'rob_name': 'blinded',
-#             'use_gpu': False,
-#             'gpu_id': 'None',
 #             
 #             'args_json_path': None,
 #             'embed_path': '/media/mynewdrive/rob/wordvec/wikipedia-pubmed-and-PMC-w2v.txt',
 #             'data_json_path': '/media/mynewdrive/rob/data/rob_word_sent_tokens.json', #'/home/qwang/rob/amazon_tokens.json',
 #             'use_cuda': False,
 #             
-#             'net_type': 'han',
+#             'net_type': 'cnn',
 #             'word_hidden_dim': 32,
 #             'word_num_layers': 1,
 #             
@@ -207,9 +222,10 @@ class DataIterators(object):
 #helper.split_and_save()
 #train_data, valid_data, test_data = helper.create_data()   
 #train_iterator, valid_iterator, test_iterator = helper.create_iterators(train_data, valid_data, test_data)
-#
+
 #print(helper.LABEL.vocab.stoi)  # {0: 0, 1: 1} ~= {'No': 0, 'Yes': 1}
 #helper.TEXT.vocab.itos[:5]  # ['<unk>', '<pad>', 'the', 'i', 'and']
+#helper.ID
 #
 #len(helper.TEXT.vocab)  # 611
 #len(helper.LABEL.vocab)  # 2
@@ -219,8 +235,9 @@ class DataIterators(object):
 #helper.TEXT.vocab.stoi[helper.TEXT.pad_token]  # 1
 #helper.TEXT.vocab.stoi[helper.TEXT.unk_token]  # 0
 #helper.TEXT.vocab.vectors.shape  # [611, 20]
-#
-#
+
+
+
 #class BatchWrapper:
 #    def __init__(self, iterator, x_var, y_var):
 #        self.iterator = iterator
@@ -234,8 +251,37 @@ class DataIterators(object):
 #            yield x, y
 #            
 #    
-#train_batch = BatchWrapper(train_iterator, "text", "label")
+#train_batch = BatchWrapper(train_iterator, "id", "label")
+#valid_batch = BatchWrapper(valid_iterator, "id", "label")
+#test_batch = BatchWrapper(test_iterator, "id", "text")
 #
+## Check goldID of first record in first batch in test_iterator
+#x_id, y = next(train_batch.__iter__()); print(x_id)
+#x_id, y = next(valid_batch.__iter__()); print(x_id)
+#x_id, y = next(test_batch.__iter__()); print(x_id); print(x_id[0][0]) # 2314
+#
+#helper.ID.vocab.itos[x_id[0][0]]  # npqip118
+#
+## Check goldID of first record in test_list
+#data_json_path = args_dict['data_json_path']   
+#dat = []
+#with open(data_json_path, 'r') as fin:
+#    for line in fin:
+#        dat.append(json.loads(line))   
+#
+#random.seed(args_dict['seed'])
+#random.shuffle(dat)
+#    
+#train_size = int(len(dat) * args_dict['train_ratio'])
+#val_size = int(len(dat) * args_dict['val_ratio'])
+#
+#train_list = dat[:train_size]
+#val_list = dat[train_size : (train_size + val_size)]
+#test_list = dat[(train_size + val_size):]
+#test_list[0]['goldID']
+        
+        
+        
 #max_doc_len_list = []
 #max_sent_len_list = []
 #for i in range(len(train_iterator)): 
@@ -244,6 +290,8 @@ class DataIterators(object):
 #    max_doc_len_list.append(x_sent.shape[1])
 #    max_sent_len_list.append(x_sent.shape[2])
 #    print(i)
+    
+            
 #
 #import numpy as np
 #print(max(max_doc_len_list), min(max_doc_len_list), np.mean(max_doc_len_list))     # 564, 255, 371.6    
