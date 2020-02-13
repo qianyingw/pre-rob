@@ -10,16 +10,18 @@ import string
 
 def preprocess_text(text):
     
-    # Remove texts before the 1st occurence of introduction
-    text = re.sub(r"^(.*?)\bIntroduction\b",  " ",  text, flags=re.DOTALL | re.IGNORECASE)
+    # Remove texts before the first occurence of 'Introduction' or 'INTRODUCTION'
+    text = re.sub(r".*?(Introduction|INTRODUCTION)",  " ",  text, count=1, flags=re.DOTALL)
     
-    # Remove texts after conclusions   
-    text = re.sub(r"Conclusion\s{0,}\n.*|Conclusions\s{0,}\n.*",  
-                  " ",  text, flags=re.DOTALL | re.IGNORECASE)
-    # Remove references   
-    text = re.sub(r"^(?!preference|preferences)Reference\s{0,}\n.*|References\s{0,}\n.*|Reference list\s{0,}\n.*", 
-                  " ", text, flags=re.DOTALL | re.IGNORECASE)    
+    # Remove texts after conclusions (may exist in abstract..)   
+    # text = re.sub(r"Conclusion\s{0,}\n.*|Conclusions\s{0,}\n.*", " ",  text, flags=re.DOTALL | re.IGNORECASE)
+    
+    # Remove reference     
+    text = re.sub(r"Reference\s{0,}\n.*|References\s{0,}\n.*|Reference list\s{0,}\n.*|REFERENCE\s{0,}\n.*|REFERENCES\s{0,}\n.*|REFERENCE LIST\s{0,}\n.*", 
+                  " ", text, flags=re.DOTALL)  
+    # text = re.sub(r"^(?!preference|preferences)Reference\s{0,}\n.*|References\s{0,}\n.*|Reference list\s{0,}\n.*", " ", text, flags=re.DOTALL | re.IGNORECASE)    
     # text = re.sub(r"Reference\s{0,}\n.*|References\s{0,}\n.*|Reference list\s{0,}\n.*", " ", text, flags=re.DOTALL | re.IGNORECASE) 
+    
     # Remove citations 
     text = re.sub(r"\s+[\[][^a-zA-Z]+[\]]", "", text)
     # Remove links
