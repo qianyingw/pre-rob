@@ -53,10 +53,10 @@ df_npqip = npqip[column_list]
 
 # IICARus
 iicarus = pd.read_csv("data/iicarus/rob_iicarus_info.txt", sep='\t', engine="python", encoding="utf-8", index_col = 0)   
-iicarus['AllocationConcealment'] = float('nan')
-iicarus['AnimalWelfareRegulations'] = float('nan')
-iicarus['ConflictsOfInterest'] = float('nan')
-iicarus['AnimalExclusions'] = float('nan')
+#iicarus['AllocationConcealment'] = float('nan')
+#iicarus['AnimalWelfareRegulations'] = float('nan')
+#iicarus['ConflictsOfInterest'] = float('nan')
+#iicarus['AnimalExclusions'] = float('nan')
 df_iicarus = iicarus[column_list]
 
 # Concatenate dataframe
@@ -113,11 +113,45 @@ print(max(num_w), min(num_w), np.mean(num_w))  # 15889, 1125, 5000
 print(max(num_s), min(num_s), np.mean(num_s))  # 686, 50, 181        
         
 gold_final = [g for g in gold if g['goldID'] not in goldID_del]  # 7840
-with open('data/rob_tokens_7840.json', 'w') as fout:
+with open('data/rob_tokens.json', 'w') as fout:
     for g in gold_final:     
         fout.write(json.dumps(g) + '\n')
 
-# Histogram for tokens
+# Output info file
+gold_info = df[-df["goldID"].isin(goldID_del)]
+gold_info.to_csv('data/rob_info.txt', sep='\t', encoding='utf-8')
+list(gold_info.columns)
+
+
+#%% Insert annotations for iicarus/npqip
+gold_final = read_json(json_path='data/rob_tokens.json')
+
+for idx, row in df_iicarus.iterrows():
+    try:
+        dct = next(item for item in gold_final if item["goldID"] == row['goldID'])
+        dct['AllocationConcealment'] = row['AllocationConcealment']
+        dct['AnimalWelfareRegulations'] = row['AnimalWelfareRegulations']
+        dct['ConflictsOfInterest'] = row['ConflictsOfInterest']
+        dct['AnimalExclusions'] = row['AnimalExclusions']
+    except:
+        print('Not in final gold data: {}'.format(row['goldID']))
+
+# Check if replacementis done
+for g in gold_final:
+    if g['goldID'][:7] == 'iicarus':
+        print(g['AllocationConcealment'], g['AnimalWelfareRegulations'], g['ConflictsOfInterest'], g['AnimalExclusions'])
+        
+# Output rob_tokens.json and rob_tokens_sub.json (no npqip)
+with open('data/rob_tokens.json', 'w') as fout:
+    for g in gold_final:     
+        fout.write(json.dumps(g) + '\n')  # 7840
+
+with open('data/rob_tokens_sub.json', 'w') as fout:
+    for g in gold_final:   
+        if g['goldID'][:5] != 'npqip':
+            fout.write(json.dumps(g) + '\n')  # 7089
+
+#%% Histogram for tokens
 plt.hist(num_w, bins=40, edgecolor='black', alpha=0.8)
 plt.xlabel("Number of word tokens")
 plt.ylabel("Frequency")
@@ -128,4 +162,4 @@ plt.xlabel("Number of sent tokens")
 plt.ylabel("Frequency")
 plt.show()
 
-#%%
+
