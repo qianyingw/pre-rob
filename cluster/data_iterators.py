@@ -103,10 +103,15 @@ class DataIterators(object):
         """
         rob_item = self.args_dict['rob_name']
         
-        
         if rob_item == 'random': rob_item = 'RandomizationTreatmentControl'
         if rob_item == 'blinded': rob_item = 'BlindedOutcomeAssessment'
         if rob_item == 'ssz': rob_item = 'SampleSizeCalculation'
+        if rob_item == 'exclusion': rob_item = 'AnimalExclusions'
+        
+        if rob_item == 'conceal': rob_item = 'AllocationConcealment'
+        if rob_item == 'welfare': rob_item = 'AnimalWelfareRegulations'
+        if rob_item == 'conflict': rob_item = 'ConflictsOfInterest'
+        
         
         if self.args_dict['net_type'] == 'han':  	
             fields = {'goldID': ('id', self.ID), 
@@ -204,7 +209,7 @@ class DataIterators(object):
 #             
 #             'args_json_path': None,
 #             'embed_path': '/media/mynewdrive/rob/wordvec/wikipedia-pubmed-and-PMC-w2v.txt',
-#             'data_json_path': '/media/mynewdrive/rob/data/rob_word_sent_tokens.json', #'/home/qwang/rob/amazon_tokens.json',
+#             'data_json_path': '/media/mynewdrive/rob/data/rob_tokens_7840.json', #'/home/qwang/rob/amazon_tokens.json',
 #             'use_cuda': False,
 #             
 #             'net_type': 'cnn',
@@ -279,9 +284,14 @@ class DataIterators(object):
 #val_list = dat[train_size : (train_size + val_size)]
 #test_list = dat[(train_size + val_size):]
 #test_list[0]['goldID']
-        
-        
-        
+#        
+#r = 0     
+#b = 0
+#for g in test_list:
+#    r = r + g['RandomizationTreatmentControl']
+#    b = b + g['BlindedOutcomeAssessment']
+#   
+#print(r,b)        
 #max_doc_len_list = []
 #max_sent_len_list = []
 #for i in range(len(train_iterator)): 
@@ -290,7 +300,8 @@ class DataIterators(object):
 #    max_doc_len_list.append(x_sent.shape[1])
 #    max_sent_len_list.append(x_sent.shape[2])
 #    print(i)
-    
+
+  
             
 #
 #import numpy as np
