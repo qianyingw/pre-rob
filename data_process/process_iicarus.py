@@ -13,7 +13,6 @@ import pandas as pd
 import numpy as np
 
 
-
 # Change to src dir
 src_dir = '/home/qwang/rob/'
 os.chdir(src_dir)
@@ -25,15 +24,44 @@ os.chdir(data_dir)
 
 
 #%% Read and format data
+review = pd.read_csv('data/iicarus/ReviewFinalResult.csv', sep=',', engine="python", encoding="utf-8")
 iicarus = pd.read_csv("data/iicarus/IICARus_RawFinal.csv", sep=',', engine="python", encoding="utf-8")   
+
+# AllocationConcealment
+df_conceal = review[(review["CheckListCheckListID"].isin([154])) & (review["Reconcilliation"].isin([True]))][['RecordID', 'OptionName']]
+iicarus = pd.merge(iicarus, df_conceal, how='left', on='RecordID')
+iicarus.rename(columns={'OptionName':'Conceal'}, inplace=True)
+iicarus.Conceal.replace(['Yes', 'No', 'Not Applicable'], [1, 0, 0], inplace=True)
+
+# AnimalWelfareRegulations
+df_welfare = review[(review["CheckListCheckListID"].isin([146])) & (review["Reconcilliation"].isin([True]))][['RecordID', 'OptionName']]
+iicarus = pd.merge(iicarus, df_welfare, how='left', on='RecordID')
+iicarus.rename(columns={'OptionName':'Welfare'}, inplace=True)
+iicarus.Welfare.replace(['Yes', 'No', 'Not Applicable'], [1, 0, 0], inplace=True)
+
+# ConflictsOfInterest
+df_conflict = review[(review["CheckListCheckListID"].isin([187])) & (review["Reconcilliation"].isin([True]))][['RecordID', 'OptionName']]
+iicarus = pd.merge(iicarus, df_conflict, how='left', on='RecordID')
+iicarus.rename(columns={'OptionName':'Conflict'}, inplace=True)
+iicarus.Conflict.replace(['Yes', 'No', 'Not Applicable'], [1, 0, 0], inplace=True)
+
+# AnimalExclusions
+df_exclusion = review[(review["CheckListCheckListID"].isin([168])) & (review["Reconcilliation"].isin([True]))][['RecordID', 'OptionName']]
+iicarus = pd.merge(iicarus, df_exclusion, how='left', on='RecordID')
+iicarus.rename(columns={'OptionName':'Exclusion'}, inplace=True)
+iicarus.Exclusion.replace(['Yes', 'No', 'Not Applicable'], [1, 0, 0], inplace=True)
+
+
 list(iicarus.columns)
-# ['RecordID', 'Randomisation', 'Blinding', 'SampleSize', 'pdfFilePath']
+# ['RecordID', 'Randomisation', 'Blinding', 'SampleSize', 'pdfFilePath', 'Conceal', 'Welfare', 'Conflict', 'Exclusion']
 # Chancge column names
-iicarus.columns = ['RecordID', 
-                   'RandomizationTreatmentControl',
-                   'BlindedOutcomeAssessment',
-                   'SampleSizeCalculation',
-                   'pdfFilePath'] 
+iicarus.rename(columns={'Randomisation':'RandomizationTreatmentControl',
+                        'Blinding': 'BlindedOutcomeAssessment',
+                        'SampleSize': 'SampleSizeCalculation',
+                        'Conceal': 'AllocationConcealment',
+                        'Welfare': 'AnimalWelfareRegulations',
+                        'Conflict': 'ConflictsOfInterest',
+                        'Exclusion': 'AnimalExclusions'}, inplace=True)
 
 iicarus['ID'] = np.arange(1, len(iicarus)+1)
 
@@ -182,37 +210,53 @@ iicarus['goldID'] = 'iicarus' + iicarus['ID'].astype(str)  # ID for all the gold
 iicarus['RandomizationTreatmentControl'].fillna(0, inplace=True)
 iicarus['BlindedOutcomeAssessment'].fillna(0, inplace=True)
 iicarus['SampleSizeCalculation'].fillna(0, inplace=True)
+iicarus['AllocationConcealment'].fillna(0, inplace=True)
+iicarus['AnimalWelfareRegulations'].fillna(0, inplace=True)
+iicarus['ConflictsOfInterest'].fillna(0, inplace=True)
+iicarus['AnimalExclusions'].fillna(0, inplace=True)
 
 # For Jing to check
 #missing = iicarus[pd.isnull(iicarus['RandomizationTreatmentControl']) | pd.isnull(iicarus['BlindedOutcomeAssessment']) | pd.isnull(iicarus['SampleSizeCalculation'])]
 #missing.to_csv('data/iicarus/iicarus_missing.csv', sep=',', encoding='utf-8')    
 
 # Drop records if any of the rob items has missing values
-iicarus = iicarus.dropna(subset=['RandomizationTreatmentControl', 'BlindedOutcomeAssessment', 'SampleSizeCalculation'], how='any')
+iicarus = iicarus.dropna(subset=['RandomizationTreatmentControl', 'BlindedOutcomeAssessment', 'SampleSizeCalculation', 
+                                 'AllocationConcealment', 'AnimalWelfareRegulations', 'ConflictsOfInterest', 'AnimalExclusions'], how='any')
 
 
 # Type conversion
 iicarus.RandomizationTreatmentControl = iicarus.RandomizationTreatmentControl.astype(int)
 iicarus.BlindedOutcomeAssessment = iicarus.BlindedOutcomeAssessment.astype(int)
 iicarus.SampleSizeCalculation = iicarus.SampleSizeCalculation.astype(int)
+iicarus.AllocationConcealment = iicarus.AllocationConcealment.astype(int)
+iicarus.AnimalWelfareRegulations = iicarus.AnimalWelfareRegulations.astype(int)
+iicarus.ConflictsOfInterest = iicarus.ConflictsOfInterest.astype(int)
+iicarus.AnimalExclusions = iicarus.AnimalExclusions.astype(int)
 
 
 iicarus.to_csv('data/iicarus/rob_iicarus_info.txt', sep='\t', encoding='utf-8')
 list(iicarus.columns)
 
-#['RecordID',
-# 'RandomizationTreatmentControl',
-# 'BlindedOutcomeAssessment',
-# 'SampleSizeCalculation',
-# 'pdfFilePath',
-# 'ID',
-# 'DocumentLink',
-# 'fileLink',
-# 'txtLink',
-# 'textLen',
-# 'goldID']
 
-##%% Tokenization to json file
+#    ['RecordID',
+#     'RandomizationTreatmentControl',
+#     'BlindedOutcomeAssessment',
+#     'SampleSizeCalculation',
+#     'pdfFilePath',
+#     'AllocationConcealment',
+#     'AnimalWelfareRegulations',
+#     'ConflictsOfInterest',
+#     'AnimalExclusions',
+#     'ID',
+#     'DocumentLink',
+#     'fileLink',
+#     'txtLink',
+#     'textLen',
+#     'goldID']
+
+
+
+#%% Tokenization to json file
 #iicarus = pd.read_csv("data/iicarus/rob_iicarus_info.txt", sep='\t', engine="python", encoding="utf-8", index_col = 0)   
 #iicarus['AllocationConcealment'] = float('nan')
 #iicarus['AnimalWelfareRegulations'] = float('nan')
