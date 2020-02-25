@@ -11,6 +11,7 @@ import pandas as pd
 import json
 import matplotlib.pyplot as plt
 import numpy as np
+import math
 
 # Change to src dir
 src_dir = '/home/qwang/rob/'
@@ -48,7 +49,7 @@ npqip = pd.read_csv("data/npqip/rob_npqip_info.txt", sep='\t', engine="python", 
 npqip['AllocationConcealment'] = float('nan')
 npqip['AnimalWelfareRegulations'] = float('nan')
 npqip['ConflictsOfInterest'] = float('nan')
-npqip['AnimalExclusions'] = float('nan')
+#npqip['AnimalExclusions'] = float('nan')
 df_npqip = npqip[column_list]
 
 # IICARus
@@ -64,12 +65,12 @@ frames = [df_stroke, df_np, df_psy, df_npqip, df_iicarus]
 df = pd.concat(frames)
 
 #%% Tokenization
-df2json(df_info = df[:1500], json_path = 'data/rob1.json')
-df2json(df_info = df[1500:3000], json_path = 'data/rob2.json')
-df2json(df_info = df[3000:4500], json_path = 'data/rob3.json')
-df2json(df_info = df[4500:6000], json_path = 'data/rob4.json')
-df2json(df_info = df[6000:7000], json_path = 'data/rob5.json')
-df2json(df_info = df[7000:], json_path = 'data/rob6.json')
+#df2json(df_info = df[:1500], json_path = 'data/rob1.json')
+#df2json(df_info = df[1500:3000], json_path = 'data/rob2.json')
+#df2json(df_info = df[3000:4500], json_path = 'data/rob3.json')
+#df2json(df_info = df[4500:6000], json_path = 'data/rob4.json')
+#df2json(df_info = df[6000:7000], json_path = 'data/rob5.json')
+#df2json(df_info = df[7000:], json_path = 'data/rob6.json')
 
 
 def read_json(json_path):
@@ -126,6 +127,7 @@ list(gold_info.columns)
 #%% Insert annotations for iicarus/npqip
 gold_final = read_json(json_path='data/rob_tokens.json')
 
+# Insert iicarus labels
 for idx, row in df_iicarus.iterrows():
     try:
         dct = next(item for item in gold_final if item["goldID"] == row['goldID'])
@@ -136,20 +138,40 @@ for idx, row in df_iicarus.iterrows():
     except:
         print('Not in final gold data: {}'.format(row['goldID']))
 
+# Insert npqip labels
+for idx, row in df_npqip.iterrows():
+    try:
+        dct = next(item for item in gold_final if item["goldID"] == row['goldID'])
+        dct['AnimalExclusions'] = row['AnimalExclusions']
+    except:
+        print('Not in final gold data: {}'.format(row['goldID']))
+      
+        
+#%% Output rob_tokens.json
+with open('data/rob_tokens.json', 'w') as fout:
+    for g in gold_final:     
+        fout.write(json.dumps(g) + '\n')  # 7840
+
+
+#%% Check
 # Check if replacementis done
 for g in gold_final:
     if g['goldID'][:7] == 'iicarus':
         print(g['AllocationConcealment'], g['AnimalWelfareRegulations'], g['ConflictsOfInterest'], g['AnimalExclusions'])
         
-# Output rob_tokens.json and rob_tokens_sub.json (no npqip)
-with open('data/rob_tokens.json', 'w') as fout:
-    for g in gold_final:     
-        fout.write(json.dumps(g) + '\n')  # 7840
+for g in gold_final:
+    if g['goldID'][:5] == 'npqip':
+        print(g['AllocationConcealment'], g['AnimalWelfareRegulations'], g['ConflictsOfInterest'], g['AnimalExclusions'])
+        
+# Check record length for each item
+res = [g for g in gold_final if math.isnan(g['RandomizationTreatmentControl']) == False]; print(len(res))  # 7840
+res = [g for g in gold_final if math.isnan(g['BlindedOutcomeAssessment']) == False]; print(len(res))  # 7840 
+res = [g for g in gold_final if math.isnan(g['SampleSizeCalculation']) == False]; print(len(res))  # 7840  
+res = [g for g in gold_final if math.isnan(g['AnimalExclusions']) == False]; print(len(res))  # 7840  
+res = [g for g in gold_final if math.isnan(g['AllocationConcealment']) == False]; print(len(res))  # 7089  
+res = [g for g in gold_final if math.isnan(g['AnimalWelfareRegulations']) == False]; print(len(res))  # 7089  
+res = [g for g in gold_final if math.isnan(g['ConflictsOfInterest']) == False]; print(len(res))  # 7089  
 
-with open('data/rob_tokens_sub.json', 'w') as fout:
-    for g in gold_final:   
-        if g['goldID'][:5] != 'npqip':
-            fout.write(json.dumps(g) + '\n')  # 7089
 
 #%% Histogram for tokens
 plt.hist(num_w, bins=40, edgecolor='black', alpha=0.8)

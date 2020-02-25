@@ -21,22 +21,25 @@ from src.data_process.df2json import df2json
 data_dir = '/media/mynewdrive/rob/'
 os.chdir(data_dir)
 
-
 #%% Read and format data
+review = pd.read_csv('data/npqip/NPQIP Raw data.csv', sep=',', engine="python", encoding="utf-8")
 npqip = pd.read_csv("data/npqip/NPQIP_RawFinal.csv", sep=',', engine="python", encoding="utf-8")   
+
+# AnimalExclusions
+df_exclusion = review[review["ChecklistID"].isin([42])][['PublicationNumber', 'Optoin']]
+npqip = pd.merge(npqip, df_exclusion, how='left', on='PublicationNumber')
+npqip.rename(columns={'Optoin':'Exclusion'}, inplace=True)
+npqip.Exclusion.replace(['Yes', 'No'], [1, 0], inplace=True)
+
 list(npqip.columns)
-# ['PublicationNumber', 'Randomisation', 'Blinding', 'SampleSize', 'pdfFilePath']
-npqip.columns = ['PublicationNumber', 
-               'RandomizationTreatmentControl',
-               'BlindedOutcomeAssessment',
-               'SampleSizeCalculation',
-               'pdfFilePath'] 
+# ['PublicationNumber', 'Randomisation', 'Blinding', 'SampleSize', 'pdfFilePath', 'Exclusion']
+npqip.rename(columns={'Randomisation':'RandomizationTreatmentControl',
+                      'Blinding': 'BlindedOutcomeAssessment',
+                      'SampleSize': 'SampleSizeCalculation',
+                      'Exclusion': 'AnimalExclusions'}, inplace=True)
 
-
+# Re-index
 npqip['ID'] = np.arange(1, len(npqip)+1)
-# Chancge column names
-
-
 
 # Modify paths
 npqip['pdfFilePath'] = npqip['pdfFilePath'].str.replace('\\', '/')
@@ -219,35 +222,39 @@ npqip.set_index(pd.Series(range(0, len(npqip))), inplace=True)
 #%% Output data
 # Add columns
 npqip['goldID'] = 'npqip' + npqip['ID'].astype(str)  # ID for all the gold data
+# Replace NA by 0
 npqip['RandomizationTreatmentControl'].fillna(0, inplace=True)
 npqip['BlindedOutcomeAssessment'].fillna(0, inplace=True)
 npqip['SampleSizeCalculation'].fillna(0, inplace=True)
-npqip = npqip.dropna(subset=['RandomizationTreatmentControl', 'BlindedOutcomeAssessment', 'SampleSizeCalculation'], how='any')
+npqip['AnimalExclusions'].fillna(0, inplace=True)
+npqip = npqip.dropna(subset=['RandomizationTreatmentControl', 'BlindedOutcomeAssessment', 'SampleSizeCalculation', 'AnimalExclusions'], how='any')
 
 
 # Type conversion
 npqip.RandomizationTreatmentControl = npqip.RandomizationTreatmentControl.astype(int)
 npqip.BlindedOutcomeAssessment = npqip.BlindedOutcomeAssessment.astype(int)
 npqip.SampleSizeCalculation = npqip.SampleSizeCalculation.astype(int)
+npqip.AnimalExclusions = npqip.AnimalExclusions.astype(int)
 
 npqip.to_csv('data/npqip/rob_npqip_info.txt', sep='\t', encoding='utf-8')
 list(npqip.columns)
 
+#    ['PublicationNumber',
+#     'RandomizationTreatmentControl',
+#     'BlindedOutcomeAssessment',
+#     'SampleSizeCalculation',
+#     'pdfFilePath',
+#     'AnimalExclusions',
+#     'ID',
+#     'DocumentLink',
+#     'fileLink',
+#     'txtLink',
+#     'textLen',
+#     'goldID']
 
-#['PublicationNumber',
-# 'RandomizationTreatmentControl',
-# 'BlindedOutcomeAssessment',
-# 'SampleSizeCalculation',
-# 'pdfFilePath',
-# 'ID',
-# 'DocumentLink',
-# 'fileLink',
-# 'txtLink',
-# 'textLen',
-# 'goldID']
 
 
-##%% Tokenization to json file
+#%% Tokenization to json file
 #npqip = pd.read_csv("data/npqip/rob_npqip_info.txt", sep='\t', engine="python", encoding="utf-8", index_col = 0)   
 #npqip['AllocationConcealment'] = float('nan')
 #npqip['AnimalWelfareRegulations'] = float('nan')
