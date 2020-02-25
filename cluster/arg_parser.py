@@ -57,7 +57,8 @@ def get_args():
     parser.add_argument('--embed_path', nargs="?", type=str, default="/media/mynewdrive/rob/wordvec/wikipedia-pubmed-and-PMC-w2v.txt", help='Path of pre-trained vectors')
        
     # RoB item
-    parser.add_argument('--rob_name', nargs="?", type=str, default="blinded", choices=['random', 'blinded', 'ssz'], help='Name of risk of bias item')
+    parser.add_argument('--rob_name', nargs="?", type=str, default="blinded", choices=['random', 'blinded', 'ssz', 'exclusion',
+                                                                                       'conceal', 'welfare', 'conflict'], help='Name of risk of bias item')
     
     # Model
     parser.add_argument('--net_type', nargs="?", type=str, default='cnn', 

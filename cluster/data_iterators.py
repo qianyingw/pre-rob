@@ -10,6 +10,7 @@ Created on Thu Oct 31 15:53:39 2019
 import os
 import json
 import random
+import math
 
 from torchtext import data
 import torchtext.vocab as vocab
@@ -41,6 +42,17 @@ class DataIterators(object):
             self.TEXT = data.NestedField(nest_field, fix_length = max_doc_len)  # fix num of sents (fix max_doc_len)
         else:
             self.TEXT = data.Field()   # word tokens 
+        
+        
+        # Modify rob name
+        self.rob_item = self.args_dict['rob_name']       
+        if self.rob_item == 'random': self.rob_item = 'RandomizationTreatmentControl'
+        if self.rob_item == 'blinded': self.rob_item = 'BlindedOutcomeAssessment'
+        if self.rob_item == 'ssz': self.rob_item = 'SampleSizeCalculation'
+        if self.rob_item == 'exclusion': self.rob_item = 'AnimalExclusions'     
+        if self.rob_item == 'conceal': self.rob_item = 'AllocationConcealment'
+        if self.rob_item == 'welfare': self.rob_item = 'AnimalWelfareRegulations'
+        if self.rob_item == 'conflict': self.rob_item = 'ConflictsOfInterest'
             
  
     
@@ -61,6 +73,10 @@ class DataIterators(object):
                     dat.append(json.loads(line))     
         except:
             print("Data doesn't exist: {}".format(os.path.basename(data_json_path)))
+           
+        # Remove records with NA annotations
+        dat = [g for g in dat if math.isnan(g[self.rob_item]) == False]    
+        print('Overal data size: {}'.format(len(dat)))
         
         
         # Cut sequence
@@ -101,25 +117,14 @@ class DataIterators(object):
         Create train/valid/test data
         
         """
-        rob_item = self.args_dict['rob_name']
-        
-        if rob_item == 'random': rob_item = 'RandomizationTreatmentControl'
-        if rob_item == 'blinded': rob_item = 'BlindedOutcomeAssessment'
-        if rob_item == 'ssz': rob_item = 'SampleSizeCalculation'
-        if rob_item == 'exclusion': rob_item = 'AnimalExclusions'
-        
-        if rob_item == 'conceal': rob_item = 'AllocationConcealment'
-        if rob_item == 'welfare': rob_item = 'AnimalWelfareRegulations'
-        if rob_item == 'conflict': rob_item = 'ConflictsOfInterest'
-        
         
         if self.args_dict['net_type'] == 'han':  	
             fields = {'goldID': ('id', self.ID), 
-        			  rob_item: ('label', self.LABEL), # 'label': ('label', self.LABEL) for rob data
+        			  self.rob_item: ('label', self.LABEL), # 'label': ('label', self.LABEL) for rob data
         			  'sentTokens': ('text', self.TEXT)}		
         else:
             fields = {'goldID': ('id', self.ID), 
-                       rob_item: ('label', self.LABEL), 
+                       self.rob_item: ('label', self.LABEL), 
                        'wordTokens': ('text', self.TEXT)}
             
 
@@ -205,11 +210,11 @@ class DataIterators(object):
 #             'dropout': 0.5,            
 #             'exp_path': '/home/qwang/rob/src/cluster/exps',
 #             'exp_name': 'cnn',
-#             'rob_name': 'blinded',
+#             'rob_name': 'ssz',
 #             
 #             'args_json_path': None,
 #             'embed_path': '/media/mynewdrive/rob/wordvec/wikipedia-pubmed-and-PMC-w2v.txt',
-#             'data_json_path': '/media/mynewdrive/rob/data/rob_tokens_7840.json', #'/home/qwang/rob/amazon_tokens.json',
+#             'data_json_path': '/media/mynewdrive/rob/data/rob_tokens.json', #'/home/qwang/rob/amazon_tokens.json',
 #             'use_cuda': False,
 #             
 #             'net_type': 'cnn',
@@ -223,7 +228,7 @@ class DataIterators(object):
 #             }
 #
 #helper = DataIterators(args_dict = args_dict)
-## Generate train/valid/test.json
+# Generate train/valid/test.json
 #helper.split_and_save()
 #train_data, valid_data, test_data = helper.create_data()   
 #train_iterator, valid_iterator, test_iterator = helper.create_iterators(train_data, valid_data, test_data)
