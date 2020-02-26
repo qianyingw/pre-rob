@@ -47,8 +47,8 @@ class DataIterators(object):
         # Modify rob name
         self.rob_item = self.args_dict['rob_name']       
         if self.rob_item == 'random': self.rob_item = 'RandomizationTreatmentControl'
-        if self.rob_item == 'blinded': self.rob_item = 'BlindedOutcomeAssessment'
-        if self.rob_item == 'ssz': self.rob_item = 'SampleSizeCalculation'
+        if self.rob_item == 'blind': self.rob_item = 'BlindedOutcomeAssessment'
+        if self.rob_item == 'size': self.rob_item = 'SampleSizeCalculation'
         if self.rob_item == 'exclusion': self.rob_item = 'AnimalExclusions'     
         if self.rob_item == 'conceal': self.rob_item = 'AllocationConcealment'
         if self.rob_item == 'welfare': self.rob_item = 'AnimalWelfareRegulations'
