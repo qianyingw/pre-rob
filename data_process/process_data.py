@@ -153,6 +153,9 @@ with open('data/rob_tokens.json', 'w') as fout:
         fout.write(json.dumps(g) + '\n')  # 7840
 
 
+   
+        
+
 #%% Check
 # Check if replacementis done
 for g in gold_final:
@@ -185,3 +188,34 @@ plt.ylabel("Frequency")
 plt.show()
 
 
+#%% Summary stats
+data_json_path = '/media/mynewdrive/rob/data/rob_tokens.json'
+rob = []
+with open(data_json_path, 'r') as fin:
+    for line in fin:
+        rob.append(json.loads(line)) 
+        
+rob = [g for g in rob if math.isnan(g['AllocationConcealment']) == False]           
+
+import random
+random.seed(1234)
+random.shuffle(rob)     
+
+train = rob[:int(len(rob)*0.8)]
+val = rob[int(len(rob)*0.8) : (int(len(rob)*0.8) + int(len(rob)*0.1))]
+test = rob[(int(len(rob)*0.8) + int(len(rob)*0.1)):]    
+     
+dat = train; print(len(dat))
+# Number of positive cases     
+r = [g['RandomizationTreatmentControl'] for g in dat]; print('\n  # random: {}'.format(sum(r)))
+b = [g['BlindedOutcomeAssessment'] for g in dat]; print('  # blind: {}'.format(sum(b)))
+s = [g['SampleSizeCalculation'] for g in dat]; print('  # size: {}'.format(sum(s)))
+e = [g['AnimalExclusions'] for g in dat]; print('  # exclusion: {}'.format(sum(e)))
+    
+c = [g['AllocationConcealment'] for g in dat if math.isnan(g['AllocationConcealment']) == False]; print('  # conceal: {}'.format(sum(c)))   
+w = [g['AnimalWelfareRegulations'] for g in dat if math.isnan(g['AnimalWelfareRegulations']) == False]; print('  # welfare: {}'.format(sum(w)))  
+i = [g['ConflictsOfInterest'] for g in dat if math.isnan(g['ConflictsOfInterest']) == False]; print('  # conflict: {}'.format(sum(i)))  
+
+
+
+     
