@@ -202,39 +202,39 @@ class DataIterators(object):
         return train_iterator, valid_iterator, test_iterator
         
 #%% Instance   
-args_dict = {'seed': 1234,
-             'batch_size': 32,
-             'num_epochs': 2,
-             'train_ratio': 0.8,
-             'val_ratio': 0.1,
-             'max_vocab_size': 5000,
-             'min_occur_freq': 10,
-             'max_token_len': 0,
-             'embed_dim': 200,
-             'dropout': 0.5,            
-             'exp_path': '/home/qwang/rob/src/cluster/exps',
-             'exp_name': 'cnn',
-             'rob_name': 'size',
-             
-             'args_json_path': None,
-             'embed_path': '/media/mynewdrive/rob/wordvec/wikipedia-pubmed-and-PMC-w2v.txt',
-             'data_json_path': '/media/mynewdrive/rob/data/rob_tokens.json', #'/home/qwang/rob/amazon_tokens.json',
-             'use_cuda': False,
-             
-             'net_type': 'cnn',
-             'word_hidden_dim': 32,
-             'word_num_layers': 1,
-             
-             'sent_hidden_dim': 32,
-             'sent_num_layers': 1,
-             'max_sent_len': 0,
-             'max_doc_len': 0
-             }
-
-helper = DataIterators(args_dict = args_dict)
-# Generate train/valid/test.json
-helper.split_and_save()
-train_data, valid_data, test_data = helper.create_data()   
+#args_dict = {'seed': 1234,
+#             'batch_size': 32,
+#             'num_epochs': 2,
+#             'train_ratio': 0.8,
+#             'val_ratio': 0.1,
+#             'max_vocab_size': 5000,
+#             'min_occur_freq': 10,
+#             'max_token_len': 0,
+#             'embed_dim': 200,
+#             'dropout': 0.5,            
+#             'exp_path': '/home/qwang/rob/src/cluster/exps',
+#             'exp_name': 'cnn',
+#             'rob_name': 'size',
+#             
+#             'args_json_path': None,
+#             'embed_path': '/media/mynewdrive/rob/wordvec/wikipedia-pubmed-and-PMC-w2v.txt',
+#             'data_json_path': '/media/mynewdrive/rob/data/rob_tokens.json', #'/home/qwang/rob/amazon_tokens.json',
+#             'use_cuda': False,
+#             
+#             'net_type': 'cnn',
+#             'word_hidden_dim': 32,
+#             'word_num_layers': 1,
+#             
+#             'sent_hidden_dim': 32,
+#             'sent_num_layers': 1,
+#             'max_sent_len': 0,
+#             'max_doc_len': 0
+#             }
+#
+#helper = DataIterators(args_dict = args_dict)
+## Generate train/valid/test.json
+#helper.split_and_save()
+#train_data, valid_data, test_data = helper.create_data()   
 #train_iterator, valid_iterator, test_iterator = helper.create_iterators(train_data, valid_data, test_data)
 
 #print(helper.LABEL.vocab.stoi)  # {0: 0, 1: 1} ~= {'No': 0, 'Yes': 1}
