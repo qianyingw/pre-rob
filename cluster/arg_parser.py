@@ -61,10 +61,10 @@ def get_args():
                                                                                        'conceal', 'welfare', 'conflict'], help='Name of risk of bias item')
     
     # Model
-
     parser.add_argument('--net_type', nargs="?", type=str, default='cnn', 
                         choices=['cnn', 'rnn', 'attn', 'han', 'transformer'], 
                         help="Different networks [options: 'cnn', 'rnn', 'attn', 'han', 'transformer']")
+    parser.add_argument('--weight_balance', nargs="?", type=str2bool, default=False, help='Assign class weights for imbalanced data')
     
     # CNN
     parser.add_argument('--num_filters', nargs="?", type=int, default=5, help='Number of filters for each filter size (CNN)')   

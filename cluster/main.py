@@ -43,10 +43,10 @@ torch.backends.cudnn.benchmark = False   # This makes things slower
 # device
 if torch.cuda.device_count() > 1:
     device = torch.cuda.current_device()
-    print('Use Multi GPUs', device)
+    print('Use {} GPUs'.format(torch.cuda.device_count()), device)
 elif torch.cuda.device_count() == 1:
     device = torch.device("cuda")
-    print('Use GPU', device)
+    print('Use 1 GPU', device)
 else:
     device = torch.device('cpu')     
 
@@ -85,7 +85,6 @@ output_dim = len(helper.LABEL.vocab)  # 2
 
 unk_idx = helper.TEXT.vocab.stoi[helper.TEXT.unk_token]  # 0
 pad_idx = helper.TEXT.vocab.stoi[helper.TEXT.pad_token]  # 1
-
 
 
 if args.net_type == 'cnn':
@@ -157,12 +156,17 @@ del pretrained_embeddings
 
 #%% Define the optimizer, loss function and metrics
 optimizer = optim.Adam(model.parameters())
-criterion = nn.CrossEntropyLoss()    
 metrics_fn = metrics
 
+# Weight balancing
+if args.weight_balance == True:
+    criterion = nn.CrossEntropyLoss(weight=torch.FloatTensor(helper.cls_weight).cuda())
+else:
+    criterion = nn.CrossEntropyLoss()
+ 
+    
 if torch.cuda.device_count() > 1:  # multiple GPUs
     model = nn.DataParallel(module=model)
-
 model = model.to(device)
 criterion = criterion.to(device)
 
