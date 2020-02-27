@@ -52,7 +52,7 @@ def get_args():
     
     # Data and embedding
     parser.add_argument('--args_json_path', nargs="?", type=str, default=None, help='Path of argument json file')
-    parser.add_argument('--data_json_path', nargs="?", type=str, default="/media/mynewdrive/rob/data/rob_word_sent_tokens.json", help='Path of data in json format')
+    parser.add_argument('--data_json_path', nargs="?", type=str, default="/media/mynewdrive/rob/data/rob_tokens.json", help='Path of data in json format')
     parser.add_argument('--embed_dim', nargs="?", type=int, default=200, help='Dimension of pre-trained word vectors')
     parser.add_argument('--embed_path', nargs="?", type=str, default="/media/mynewdrive/rob/wordvec/wikipedia-pubmed-and-PMC-w2v.txt", help='Path of pre-trained vectors')
        
@@ -97,55 +97,29 @@ def get_args():
     print(arg_str)
 
     
-    ## GPU setting
-#    gpu_id = str(args.gpu_id)
-#    if gpu_id != "None":
-#        args.gpu_id = gpu_id  
-#
-#    if args.use_gpu == True:
-#        num_requested_gpus = len(args.gpu_id.split(","))
-#        num_received_gpus = len(GPUtil.getAvailable(order='first', limit=8, 
-#                                                    maxLoad=0.1, maxMemory=0.1, 
-#                                                    includeNan=False, excludeID=[], excludeUUID=[]))
-#
-#        if num_requested_gpus == 1 and num_received_gpus > 1:
-#            print("Detected Slurm problem with GPUs, attempting automated fix")
-#            gpu_to_use = GPUtil.getAvailable(order='first', limit=num_received_gpus, 
-#                                             maxLoad=0.1, maxMemory=0.1, 
-#                                             includeNan=False, excludeID=[], excludeUUID=[])
-#            if len(gpu_to_use) > 0:
-#                os.environ["CUDA_VISIBLE_DEVICES"] = str(gpu_to_use[0])
-#                print("Using GPU with ID", gpu_to_use[0])
-#            else:
-#                print("Not enough GPUs available, please try on another node now, or retry on this node later")
-#                sys.exit()
-#
-#        elif num_requested_gpus > 1 and num_received_gpus > num_requested_gpus:
-#            print("Detected Slurm problem with GPUs, attempting automated fix")
-#            gpu_to_use = GPUtil.getAvailable(order='first', limit=num_received_gpus,
-#                                             maxLoad=0.1, maxMemory=0.1, 
-#                                             includeNan=False, excludeID=[], excludeUUID=[])
-#            
-#            if len(gpu_to_use) >= num_requested_gpus:
-#                os.environ["CUDA_VISIBLE_DEVICES"] = ",".join(str(gpu_idx) for gpu_idx in gpu_to_use[:num_requested_gpus])
-#                print("Using GPU with ID", gpu_to_use[:num_requested_gpus])
-#            else:
-#                print("Not enough GPUs available, please try on another node now, or retry on this node later")
-#                sys.exit()
 
     ## CUDA setting
-    if torch.cuda.is_available():  
-        device = torch.device("cuda")  # torch.cuda.current_device()
-        print("Use {} GPU(s)\n".format(torch.cuda.device_count()), file=sys.stderr)
-        print(f'Using device: {torch.cuda.get_device_name()}')
-        if device.index:
-            device_str = f"{device.type}:{device.index}"
-        else:
-            device_str = f"{device.type}"
-        os.environ["CUDA_VISIBLE_DEVICES"] = device_str
+    if torch.cuda.is_available():  # checks whether a cuda gpu is available and whether the gpu flag is True
+        device = torch.cuda.current_device()
+        print("use {} GPU(s)".format(torch.cuda.device_count()), file=sys.stderr)
     else:
-        print("Use CPU", file=sys.stderr)
-        device = torch.device('cpu')  # sets the device to be CPU   
+        print("use CPU", file=sys.stderr)
+        device = torch.device('cpu')  # sets the device to be CPU
+    
+    
+    
+#    if torch.cuda.is_available():  
+#        device = torch.device("cuda")  # torch.cuda.current_device()
+#        print("Use {} GPU(s)\n".format(torch.cuda.device_count()), file=sys.stderr)
+#        print(f'Using device: {torch.cuda.get_device_name()}')
+#        if device.index:
+#            device_str = f"{device.type}:{device.index}"
+#        else:
+#            device_str = f"{device.type}"
+#        os.environ["CUDA_VISIBLE_DEVICES"] = device_str
+#    else:
+#        print("Use CPU", file=sys.stderr)
+#        device = torch.device('cpu')  # sets the device to be CPU   
         
     return args, device
 
