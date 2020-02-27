@@ -35,23 +35,20 @@ args = get_args()
 #%% Set random seed and device
 random.seed(args.seed)
 torch.manual_seed(args.seed)
+torch.cuda.manual_seed(args.seed)
+torch.backends.cudnn.deterministic = True     
+torch.backends.cudnn.benchmark = False   # This makes things slower  
 
 
+# device
 if torch.cuda.device_count() > 1:
     device = torch.cuda.current_device()
-    model = nn.DataParallel(module=model)
     print('Use Multi GPUs', device)
 elif torch.cuda.device_count() == 1:
     device = torch.device("cuda")
     print('Use GPU', device)
 else:
-    print("use CPU")
-    device = torch.device('cpu')
-
-if device != 'cpu': 
-    torch.cuda.manual_seed(args.seed)
-    torch.backends.cudnn.deterministic = True     
-    torch.backends.cudnn.benchmark = False   # This makes things slower        
+    device = torch.device('cpu')     
 
    
 #%% Set logger
@@ -162,6 +159,9 @@ del pretrained_embeddings
 optimizer = optim.Adam(model.parameters())
 criterion = nn.CrossEntropyLoss()    
 metrics_fn = metrics
+
+if torch.cuda.device_count() > 1:  # multiple GPUs
+    model = nn.DataParallel(module=model)
 
 model = model.to(device)
 criterion = criterion.to(device)
