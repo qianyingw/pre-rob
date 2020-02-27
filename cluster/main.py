@@ -154,19 +154,17 @@ metrics_fn = metrics
 
 if torch.cuda.device_count() > 1:
     device = torch.cuda.current_device()
-    model.to(device)
     model = nn.DataParallel(module=model)
     print('Use Multi GPU', device)
 elif torch.cuda.device_count() == 1:
     device = torch.cuda.current_device()
-    model = model.to(device)  # sends the model from the cpu to the gpu
     print('Use GPU', device)
 else:
     print("use CPU")
     device = torch.device('cpu')  # sets the device to be CPU
     print(device)
 
-#model = model.to(device)
+model = model.to(device)
 criterion = criterion.to(device)
 
 #%% Train the model
