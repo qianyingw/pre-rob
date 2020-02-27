@@ -96,17 +96,7 @@ def get_args():
     arg_str = [(str(key), str(value)) for (key, value) in vars(args).items()]
     print(arg_str)
 
-    
-
-    ## CUDA setting
-    if torch.cuda.is_available():  # checks whether a cuda gpu is available and whether the gpu flag is True
-        device = torch.cuda.current_device()
-        print("use {} GPU(s)".format(torch.cuda.device_count()), file=sys.stderr)
-    else:
-        print("use CPU", file=sys.stderr)
-        device = torch.device('cpu')  # sets the device to be CPU
-    
-    
+   
     
 #    if torch.cuda.is_available():  
 #        device = torch.device("cuda")  # torch.cuda.current_device()
@@ -121,7 +111,7 @@ def get_args():
 #        print("Use CPU", file=sys.stderr)
 #        device = torch.device('cpu')  # sets the device to be CPU   
         
-    return args, device
+    return args
 
 
 class AttributeAccessibleDict(object):
