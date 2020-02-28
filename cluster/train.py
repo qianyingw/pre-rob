@@ -127,7 +127,7 @@ def train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, 
             valid_scores['loss'], valid_scores['accuracy']*100, valid_scores['f1']*100, valid_scores['recall']*100, valid_scores['precision']*100, valid_scores['specificity']*100))
     
     # Write performance to 'expname_prfs.json'
-    with open(os.path.join(exp_dir, args.exp_name+'_prfs.json'), 'w') as fout:
+    with open(os.path.join(exp_dir, args.exp_name+'.json'), 'w') as fout:
         json.dump(output_dict, fout, indent=4)
                    
     
