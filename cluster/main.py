@@ -175,16 +175,17 @@ logging.info("\nStart training for {} epoch(s)...".format(args.num_epochs))
 train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, metrics_fn, args, log_dir)
 
 #%% Test
-logging.info("\nStart testing...")
-test_scores = test(model, test_iterator, criterion, metrics_fn, log_dir, restore_file = 'best')
-
-# Add test performance to '_prfs.json'
-prfs_path = os.path.join(log_dir, args.exp_name+'_prfs.json')
-with open(prfs_path) as fin:
-    output_dict = json.load(fp=fin)
-output_dict['prfs']['test'] = test_scores    
-with open(prfs_path, 'w') as fout:
-    json.dump(output_dict, fout, indent=4)
+if args.save_model:
+    logging.info("\nStart testing...")
+    test_scores = test(model, test_iterator, criterion, metrics_fn, log_dir, restore_file = 'best')
+    
+    # Add test performance to '_prfs.json'
+    prfs_path = os.path.join(log_dir, args.exp_name+'_prfs.json')
+    with open(prfs_path) as fin:
+        output_dict = json.load(fp=fin)
+    output_dict['prfs']['test'] = test_scores    
+    with open(prfs_path, 'w') as fout:
+        json.dump(output_dict, fout, indent=4)
 
 #%% Performance plot
 # plot_performance(train_df, valid_df, png_dir = log_dir)

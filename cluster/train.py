@@ -107,21 +107,18 @@ def train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, 
                            
         # Save weights if is_best
         is_best = valid_scores['loss'] < best_valid_loss
-        utils.save_checkpoint({'epoch': epoch+1,
-                               'state_dict': model.state_dict(),
-                               'optim_Dict': optimizer.state_dict()},
-                              is_best = is_best,
-                              checkdir = exp_dir)
+        if args.save_model:
+            utils.save_checkpoint({'epoch': epoch+1,
+                                   'state_dict': model.state_dict(),
+                                   'optim_Dict': optimizer.state_dict()},
+                                   is_best = is_best, checkdir = exp_dir)
         
         if is_best:
-            best_valid_loss = valid_scores['loss']           
-            # Save the best valid scores in exp_dir
-            best_loss_path = os.path.join(exp_dir, 'best_val_scores.json')
-            utils.save_dict_to_json(valid_scores, best_loss_path)
+            best_valid_loss = valid_scores['loss']                    
+            utils.save_dict_to_json(valid_scores, os.path.join(exp_dir, 'best_val_scores.json')) # Save the best valid scores in exp_dir
         
         # Save the latest valid scores in exp_dir
-        # last_loss_path = os.path.join(exp_dir, 'last_val_scores.json')
-        # utils.save_dict_to_json(valid_scores, last_loss_path)
+        # utils.save_dict_to_json(valid_scores, os.path.join(exp_dir, 'last_val_scores.json'))
 
         logging.info("\nEpoch {}/{}...".format(epoch+1, args.num_epochs))                       
         print('\n[Train] loss: {0:.3f} | acc: {1:.2f}% | f1: {2:.2f}% | recall: {3:.2f}% | precision: {4:.2f}% | specificity: {5:.2f}%'.format(

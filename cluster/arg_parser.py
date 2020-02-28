@@ -46,6 +46,8 @@ def get_args():
     
     parser.add_argument('--exp_path', nargs="?", type=str, default="/home/qwang/rob/src/cluster/exps")
     parser.add_argument('--exp_name', nargs="?", type=str, default="han", help='Experiment name for building the folder')
+    parser.add_argument('--save_model', nargs="?", type=str2bool, default=False, help='Save model.pth.tar')
+    
     
 #    parser.add_argument('--use_gpu', nargs="?", type=str2bool, default=False, help='GPU flag')
 #    parser.add_argument('--gpu_id', type=str, default="None", help="A string indicating the gpu to use")
