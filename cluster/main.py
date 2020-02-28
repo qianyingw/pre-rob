@@ -55,7 +55,7 @@ else:
 log_dir = os.path.join(args.exp_path, args.exp_name)
 if os.path.exists(log_dir) == False:
     os.makedirs(log_dir)       
-utils.set_logger(os.path.join(log_dir, 'train.log'))
+#utils.set_logger(os.path.join(log_dir, 'train.log'))
 
 
 #%% Save args to json
@@ -172,7 +172,7 @@ criterion = criterion.to(device)
 
 #%% Train the model
 logging.info("\nStart training for {} epoch(s)...".format(args.num_epochs)) 
-train_df, valid_df = train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, metrics_fn, args, log_dir)
+train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, metrics_fn, args, log_dir)
 
 #%% Test
 logging.info("\nStart testing...")
