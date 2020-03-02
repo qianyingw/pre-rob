@@ -91,6 +91,7 @@ def train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, 
         
         
     best_valid_f1 = -float('inf')
+    best_valid_loss = float('inf')
     
     # Create args and output dict
     output_dict = {'args': vars(args),
@@ -106,16 +107,27 @@ def train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, 
         output_dict['prfs'][str('valid_'+str(epoch+1))] = valid_scores
                            
         # Save weights if is_best
-        is_best = valid_scores['f1'] > best_valid_f1
-        if args.save_model:
+        is_best_loss = valid_scores['loss'] < best_valid_loss
+        is_best_f1 = valid_scores['f1'] > best_valid_f1
+        
+        if args.save_model == 'loss':
             utils.save_checkpoint({'epoch': epoch+1,
                                    'state_dict': model.state_dict(),
                                    'optim_Dict': optimizer.state_dict()},
-                                   is_best = is_best, checkdir = exp_dir)
+                                   is_best = is_best_loss, checkdir = exp_dir)
+        if args.save_model == 'f1':
+            utils.save_checkpoint({'epoch': epoch+1,
+                                   'state_dict': model.state_dict(),
+                                   'optim_Dict': optimizer.state_dict()},
+                                   is_best = is_best_f1, checkdir = exp_dir)
         
-        if is_best:
+        if is_best_loss:
+            best_valid_loss = valid_scores['loss']                    
+            utils.save_dict_to_json(valid_scores, os.path.join(exp_dir, 'best_val_loss.json'))
+            
+        if is_best_f1:
             best_valid_f1 = valid_scores['f1']                    
-            utils.save_dict_to_json(valid_scores, os.path.join(exp_dir, 'best_val_f1.json')) # Save the best valid scores in exp_dir
+            utils.save_dict_to_json(valid_scores, os.path.join(exp_dir, 'best_val_f1.json'))
         
         # Save the latest valid scores in exp_dir
         # utils.save_dict_to_json(valid_scores, os.path.join(exp_dir, 'last_val_scores.json'))
