@@ -1,2 +1,2 @@
-## Neural network models for risk of bias classification in preclinical publications
-#### CNN, LSTM/GRU, Attention, HAN and Transformer with word level transfer learning
+##Neural networks with word embedding for RoB classification in preclinical publications
+#### CNN, LSTM/GRU, Attention, HAN and Transformer implmented in PyTorch
