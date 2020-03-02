@@ -31,9 +31,10 @@ Created on Fri Sep 27 11:10:39 2019
 import json
 
 from tqdm import tqdm
-from src.data_process.tokenizer import preprocess_text, text_tokenizer
+from src.data_process.tokenizer import preprocess_text, text_tokenizer, sent_encoder
 
 
+#%%
 def df2json(df_info, json_path):
    
     dict_list = df_info.to_dict('records')
@@ -56,6 +57,23 @@ def df2json(df_info, json_path):
         for dic in dict_list:     
             fout.write(json.dumps(dic) + '\n')
         
-    
-    
+#%% For sentence encoder
+def df2json_embed(df_info, json_path, embed_func):
+   
+    dict_list = df_info.to_dict('records')
+    # Add document matrix
+    for i, dic in tqdm(enumerate(dict_list)):
+        txt_path = dic['txtLink']
+        try:
+            with open(txt_path, 'r', encoding='utf-8') as fp:
+                text = fp.read()
+            text_processed = preprocess_text(text)        
+            dict_list[i]['docMat'] = sent_encoder(embed_func, text_processed)
+        except:
+            dict_list[i]['docMat'] = ''
+                 
+    # Covert dictionary list to json
+    with open(json_path, 'w') as fout:
+        for dic in dict_list:     
+            fout.write(json.dumps(dic) + '\n')    
         

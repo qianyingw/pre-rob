@@ -16,11 +16,19 @@ import math
 # Change to src dir
 src_dir = '/home/qwang/rob/'
 os.chdir(src_dir)
-from src.data_process.df2json import df2json
+from src.data_process.df2json import df2json, df2json_embed
 
 # Change to data dir
 data_dir = '/media/mynewdrive/rob/'
 os.chdir(data_dir)
+
+
+def read_json(json_path):
+    df = []
+    with open(json_path, 'r') as fin:
+        for line in fin:
+            df.append(json.loads(line))
+    return df
 
 #%% Read data from different projects
 column_list = ['goldID', 'fileLink', 'DocumentLink', 'txtLink',
@@ -72,14 +80,6 @@ df = pd.concat(frames)
 #df2json(df_info = df[6000:7000], json_path = 'data/rob5.json')
 #df2json(df_info = df[7000:], json_path = 'data/rob6.json')
 
-
-def read_json(json_path):
-    df = []
-    with open(json_path, 'r') as fin:
-        for line in fin:
-            df.append(json.loads(line))
-    return df
-
 rob1 = read_json(json_path='data/rob1.json')
 rob2 = read_json(json_path='data/rob2.json')
 rob3 = read_json(json_path='data/rob3.json')
@@ -98,6 +98,7 @@ gold = rob1 + rob2 + rob3 + rob4 + rob5 + rob6
 # Or tokenize together...
 # df2json(df_info = df, json_path = 'data/rob_word_sent_tokens.json')
 # df = read_json(json_path='data/rob_word_sent_tokens.json')
+
 
 #%% Output
 # Check number of words and sents
@@ -118,10 +119,7 @@ with open('data/rob_tokens.json', 'w') as fout:
     for g in gold_final:     
         fout.write(json.dumps(g) + '\n')
 
-# Output info file
-gold_info = df[-df["goldID"].isin(goldID_del)]
-gold_info.to_csv('data/rob_info.txt', sep='\t', encoding='utf-8')
-list(gold_info.columns)
+
 
 
 #%% Insert annotations for iicarus/npqip
@@ -145,16 +143,31 @@ for idx, row in df_npqip.iterrows():
         dct['AnimalExclusions'] = row['AnimalExclusions']
     except:
         print('Not in final gold data: {}'.format(row['goldID']))
-      
-        
+
+
 #%% Output rob_tokens.json
 with open('data/rob_tokens.json', 'w') as fout:
     for g in gold_final:     
         fout.write(json.dumps(g) + '\n')  # 7840
 
+# Output info file
+for i, g in enumerate(gold_final):
+    del g['wordTokens']
+    del g['sentTokens']
+    gold_final[i] = g
+    
+with open('data/rob_info.json', 'w') as fout:
+    for g in gold_final:     
+        fout.write(json.dumps(g) + '\n')  # 7840
 
-   
-        
+#%% Output rob_mat file from sentence encoder
+import tensorflow_hub as hub
+embed_func = hub.load("https://tfhub.dev/google/universal-sentence-encoder/4")
+
+gold_info = read_json(json_path='data/rob_info.json')                
+df2json_embed(df_info = pd.DataFrame(gold_info), json_path = 'data/rob_mat_dan.json', embed_func = embed_func)
+
+
 
 #%% Check
 # Check if replacementis done

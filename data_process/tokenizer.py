@@ -85,6 +85,42 @@ def text_tokenizer(text):
 #len(word_tokens)
 
 
+#%% Tokenization with sentence embedding
+## stanford tokenizer
+def sent_encoder(embed_func, text):    
+    sent_list = []
+    text = nlp(text)
+    for i, sent in enumerate(text.sentences):
+        one_sent_list = [word.text for word in sent.words]
+        if len(one_sent_list) > 2:
+            one_sent = ' '.join(one_sent_list)
+            sent_list.append(one_sent)
+    doc_mat = embed_func(sent_list).numpy().tolist()
+    return doc_mat
+
+# nltk
+#from nltk.tokenize import word_tokenize, sent_tokenize
+#def sent_encoder(embed_func, text):    
+#    sent_list = sent_tokenize(text)
+#    sent_list = [s for s in sent_list if len(word_tokenize(s)) > 2]            
+#    doc_mat = embed_func(sent_list).numpy()
+#    return doc_mat
+
+### Example                   
+#text = "i don't like mustard, but he likes it. yk is hungry. he wants a banana. she's 5-social. i. not. he - not really.    9. "
+#text = preprocess_text(text)
+#text = nlp(text)
+#temp = sent_encoder(embed_func, text)
+#sent_list = []
+#for i, sent in enumerate(text.sentences):
+#    one_sent_list = [word.text for word in sent.words if word.text]
+#    if len(one_sent_list) > 2:
+#        one_sent = ' '.join(one_sent_list)
+#        sent_list.append(one_sent)
+#        
+#doc_vec = sent_embed(sent_list).numpy()
+
+
 #%% Tokenization (spacy)
 #    import spacy
 #    nlp = spacy.load('en')
