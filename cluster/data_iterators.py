@@ -78,10 +78,6 @@ class DataIterators(object):
         dat = [g for g in dat if math.isnan(g[self.rob_item]) == False]    
         print('Overal data size: {}'.format(len(dat)))
         
-        # Calculate weight for balancing data
-        num_pos = len([g for g in dat if g[self.rob_item] == 1])
-        num_neg = len([g for g in dat if g[self.rob_item] == 0])
-        self.cls_weight = [1/num_neg, 1/num_pos]
     
         # Cut sequence
         if self.args_dict['max_token_len'] != 0:
@@ -114,6 +110,10 @@ class DataIterators(object):
             for dic in test_list:     
                 fout.write(json.dumps(dic) + '\n')   
           
+        # Calculate weight for balancing data
+        num_pos = len([g for g in train_list if g[self.rob_item] == 1])
+        num_neg = len([g for g in train_list if g[self.rob_item] == 0])
+        self.cls_weight = [1/num_neg, 1/num_pos]
         
         
     def create_data(self):
