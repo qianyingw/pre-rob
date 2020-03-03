@@ -15,7 +15,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
-# os.chdir('/home/qwang/rob/src/cluster')
+# os.chdir('/media/qwang/rob/src-pome/cluster')
 
 import utils
 from utils import metrics
@@ -43,10 +43,10 @@ torch.backends.cudnn.benchmark = False   # This makes things slower
 # device
 if torch.cuda.device_count() > 1:
     device = torch.cuda.current_device()
-    print('Use {} GPUs'.format(torch.cuda.device_count()), device)
+    print('Use {} GPUs: '.format(torch.cuda.device_count()), device)
 elif torch.cuda.device_count() == 1:
     device = torch.device("cuda")
-    print('Use 1 GPU', device)
+    print('Use 1 GPU: ', device)
 else:
     device = torch.device('cpu')     
 

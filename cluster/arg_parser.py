@@ -45,8 +45,8 @@ def get_args():
     parser.add_argument('--dropout', nargs="?", type=float, default=0.5, help='Dropout rate')
     
     parser.add_argument('--exp_path', nargs="?", type=str, default="/home/qwang/rob/src/cluster/exps")
-    parser.add_argument('--exp_name', nargs="?", type=str, default="han", help='Experiment name for building the folder')
-    parser.add_argument('--save_model', nargs="?", type=str, default=None, choices=['loss', 'f1', None], help='Save model.pth.tar with best loss/f1')
+    parser.add_argument('--exp_name', nargs="?", type=str, default="cnn", help='Experiment name for building the folder')
+    parser.add_argument('--save_model', nargs="?", type=str, default='No', choices=['loss', 'f1', 'No'], help='Save model.pth.tar with best loss/f1')
     
     
 #    parser.add_argument('--use_gpu', nargs="?", type=str2bool, default=False, help='GPU flag')
@@ -60,7 +60,7 @@ def get_args():
        
     # RoB item
     parser.add_argument('--rob_name', nargs="?", type=str, default="blind", choices=['random', 'blind', 'size', 'exclusion',
-                                                                                       'conceal', 'welfare', 'conflict'], help='Name of risk of bias item')
+                                                                                     'conceal', 'welfare', 'conflict'], help='Name of risk of bias item')
     
     # Model
     parser.add_argument('--net_type', nargs="?", type=str, default='cnn', 
