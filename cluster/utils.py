@@ -11,10 +11,11 @@ import logging
 import shutil
 import torch
 import json
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
 
-        
-        
-
+#%% Logging
 def set_logger(log_path):
     """
     Set the logger to log info in terminal and file 'log_path'
@@ -53,7 +54,7 @@ def save_dict_to_json(d, json_path):
         json.dump(d, fout, indent=4)
         
         
-        
+#%% Checkpoint 
 def save_checkpoint(state, is_best, checkdir):
     """
     Save model and training parameters at checkpoint + 'last.pth.tar'. 
@@ -125,24 +126,46 @@ def metrics(preds, y):
     
     return {'accuracy': acc, 'f1': f1, 'recall': rec, 'precision': ppv, 'specificity': spc}
 
-def confusion(preds, y):
-    """
-    Params:
-        preds: torch tensor, [batch_size, output_dim]
-        y: torch tensor, [batch_size]
-        
-    Yields:
-        4 counts of true positive, true negative, false positive, false negative       
-        
-    """   
-    y_preds = preds.argmax(dim=1, keepdim=False)  # [batch_size, output_dim]  --> [batch_size]
-        
-    ones = torch.ones_like(y_preds)
-    zeros = torch.zeros_like(y_preds)
 
-    tp = (torch.eq(y_preds, ones) & torch.eq(y, ones)).sum().item()
-    tn = (torch.eq(y_preds, zeros) & torch.eq(y, zeros)).sum().item()
-    fp = (torch.eq(y_preds, ones) & torch.eq(y, zeros)).sum().item()
-    fn = (torch.eq(y_preds, zeros) & torch.eq(y, ones)).sum().item() 
+
+#%% Plot performance 
+def plot_prfs(prfs_json_path):
     
-    return tp, tn, fp, fn
+    with open(prfs_json_path) as f:
+        dat = json.load(f)
+        
+    # Create scores dataframe
+    epochs = int(len(dat['prfs'])/2)
+    train_df = pd.DataFrame(columns=['Loss', 'Accuracy', 'F1', 'Recall', 'Precision', 'Specificity'])
+    valid_df = pd.DataFrame(columns=['Loss', 'Accuracy', 'F1', 'Recall', 'Precision', 'Specificity'])
+    for i in range(epochs):
+        train_df.loc[i] = list(dat['prfs']['train_'+str(i+1)].values())
+        valid_df.loc[i] = list(dat['prfs']['valid_'+str(i+1)].values()) 
+    
+    # Plot
+    plt.figure(figsize=(15,5))
+    x = np.arange(len(train_df)) + 1   
+    # Loss / F1
+    plt.subplot(1, 2, 1)
+    plt.title("Loss and F1")
+    plt.plot(x, train_df['Loss'], label="train_loss", color='C5')
+    plt.plot(x, valid_df['Loss'], label="val_loss", color='C5', linestyle='--')
+    plt.plot(x, train_df['F1'], label="train_f1", color='C9')
+    plt.plot(x, valid_df['F1'], label="val_f1", color='C9', linestyle='--')
+    plt.xticks(np.arange(2, len(x)+2, step=2))
+    plt.legend(loc='upper right')
+    # Accuracy / Recall
+    plt.subplot(1, 2, 2)
+    plt.title("Accuracy and Score")
+    plt.plot(x, train_df['Accuracy'], label="train_acc", color='C0', alpha=0.8)
+    plt.plot(x, valid_df['Accuracy'], label="val_acc", color='C0', linestyle='--', alpha=0.8)
+    #plt.plot(x, train_df['F1'], label="train_f1", color='C9')
+    #plt.plot(x, valid_df['F1'], label="val_f1", color='C9', linestyle='--')
+    plt.plot(x, train_df['Recall'], label="train_rec", color='C1', alpha=0.8)
+    plt.plot(x, valid_df['Recall'], label="val_rec", color='C1', linestyle='--', alpha=0.8)
+    plt.xticks(np.arange(2, len(x)+2, step=2))
+    plt.legend(loc='lower right')    
+    
+    # Save png
+    output_dir = os.path.dirname(prfs_json_path)
+    plt.savefig(os.path.join(output_dir, 'prfs.png'))

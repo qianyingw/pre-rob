@@ -17,7 +17,6 @@ import torch.optim as optim
 
 # os.chdir('/media/qwang/rob/src-pome/cluster')
 
-import utils
 from utils import metrics
 from arg_parser import get_args
 from data_iterators import DataIterators
@@ -25,7 +24,7 @@ from data_iterators import DataIterators
 from model import ConvNet, RecurNet, AttnNet
 from model_han import HAN
 from model_transformer import TransformerNet
-from train import train_evaluate, test #, plot_performance
+from train import train_evaluate #, test
 
 
 #%% Get arguments from command line
@@ -52,21 +51,14 @@ else:
 
    
 #%% Set logger
-log_dir = os.path.join(args.exp_path, args.exp_name)
-if os.path.exists(log_dir) == False:
-    os.makedirs(log_dir)       
+#log_dir = os.path.join(args.exp_path, args.exp_name)
+#if os.path.exists(log_dir) == False:
+#    os.makedirs(log_dir)       
 #utils.set_logger(os.path.join(log_dir, 'train.log'))
 
-
-#%% Save args to json
-args_dict = vars(args)
-with open(os.path.join(log_dir, 'args.json'), 'w') as fout:
-    json.dump(args_dict, fout, indent=4)
-        
         
 #%% Load data and create iterators
-logging.info("Loading the datasets...")
-helper = DataIterators(args_dict = args_dict)
+helper = DataIterators(args_dict = vars(args))
 
 # Create train/valid/test.json
 json_dir = os.path.dirname(args.data_json_path)
@@ -77,7 +69,7 @@ train_data, valid_data, test_data = helper.create_data()
 
 # Create iterators
 train_iterator, valid_iterator, test_iterator = helper.create_iterators(train_data, valid_data, test_data)
-logging.info("Done.")
+
 
 #%% Define the model
 input_dim = len(helper.TEXT.vocab)  # max_vocab_size + 2
@@ -86,9 +78,8 @@ output_dim = len(helper.LABEL.vocab)  # 2
 unk_idx = helper.TEXT.vocab.stoi[helper.TEXT.unk_token]  # 0
 pad_idx = helper.TEXT.vocab.stoi[helper.TEXT.pad_token]  # 1
 
-
 if args.net_type == 'cnn':
-    sizes = args_dict['filter_sizes'].split(',')
+    sizes = args.filter_sizes.split(',')
     sizes = [int(s) for s in sizes]
     model = ConvNet(vocab_size = input_dim,
                     embedding_dim = args.embed_dim, 
@@ -138,7 +129,10 @@ if args.net_type == 'transformer':
                            num_encoder_layers = args.num_encoder_layers, 
                            output_dim = output_dim, 
                            pad_idx = pad_idx)
+    
+n_pars = sum(p.numel() for p in model.parameters())
 print(model)
+print("Number of parameters: {}".format(n_pars))
 
 #%% Load pre-trained embedding
 pretrained_embeddings = helper.TEXT.vocab.vectors
@@ -171,21 +165,17 @@ model = model.to(device)
 criterion = criterion.to(device)
 
 #%% Train the model
-logging.info("\nStart training for {} epoch(s)...".format(args.num_epochs)) 
-train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, metrics_fn, args, log_dir)
+train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, metrics_fn, args)
 
 #%% Test
-if args.save_model:
-    logging.info("\nStart testing...")
-    test_scores = test(model, test_iterator, criterion, metrics_fn, log_dir, restore_file = 'best')
-    
-    # Add test performance to '_prfs.json'
-    prfs_path = os.path.join(log_dir, args.exp_name+'_prfs.json')
-    with open(prfs_path) as fin:
-        output_dict = json.load(fp=fin)
-    output_dict['prfs']['test'] = test_scores    
-    with open(prfs_path, 'w') as fout:
-        json.dump(output_dict, fout, indent=4)
-
-#%% Performance plot
-# plot_performance(train_df, valid_df, png_dir = log_dir)
+#if args.save_model:
+#    logging.info("\nStart testing...")
+#    test_scores = test(model, test_iterator, criterion, metrics_fn, restore_file = 'best')
+#    
+#    # Add test performance to '_prfs.json'
+#    prfs_path = os.path.join(args.exp_dir, 'prfs.json')
+#    with open(prfs_path) as fin:
+#        output_dict = json.load(fp=fin)
+#    output_dict['prfs']['test'] = test_scores    
+#    with open(prfs_path, 'w') as fout:
+#        json.dump(output_dict, fout, indent=4)
