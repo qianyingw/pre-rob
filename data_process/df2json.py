@@ -76,4 +76,5 @@ def df2json_embed(df_info, json_path, embed_func):
     with open(json_path, 'w') as fout:
         for dic in dict_list:     
             fout.write(json.dumps(dic) + '\n')    
+
         

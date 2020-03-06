@@ -12,6 +12,7 @@ import json
 import matplotlib.pyplot as plt
 import numpy as np
 import math
+from tqdm import tqdm
 
 # Change to src dir
 src_dir = '/home/qwang/rob/'
@@ -160,12 +161,31 @@ with open('data/rob_info.json', 'w') as fout:
     for g in gold_final:     
         fout.write(json.dumps(g) + '\n')  # 7840
 
-#%% Output rob_mat file from sentence encoder
+#%% Output rob_mat file from USE
 import tensorflow_hub as hub
 embed_func = hub.load("https://tfhub.dev/google/universal-sentence-encoder/4")
 
-gold_info = read_json(json_path='data/rob_info.json')                
-df2json_embed(df_info = pd.DataFrame(gold_info), json_path = 'data/rob_mat_dan.json', embed_func = embed_func)
+#gold_info = read_json(json_path='data/rob_info.json')                
+#df2json_embed(df_info = pd.DataFrame(gold_info[:1000]), json_path = 'data/rob_mat_1.json', embed_func = embed_func)
+                   
+# Another way
+rob_tokens = read_json(json_path='data/rob_tokens.json')               
+for i, g in tqdm(enumerate(rob_tokens)): 
+    sentTokens = g['sentTokens'] 
+    d_mat = []        
+    del g['wordTokens']; del g['sentTokens']
+    del g['fileLink']; del g['DocumentLink']; del g['txtLink']
+                 
+    for sl in sentTokens:
+        s = [' '.join(sl)]
+        s_vec = embed_func(s).numpy().astype('float16') 
+        s_vec = s_vec.tolist()[0]
+        d_mat.append(s_vec)
+    rob_tokens[i]['docMat'] = d_mat
+
+with open('data/rob_mat.json', 'w') as fout:
+    for g in rob_tokens:     
+        fout.write(json.dumps(g) + '\n')  # 7840
 
 
 
@@ -229,6 +249,21 @@ c = [g['AllocationConcealment'] for g in dat if math.isnan(g['AllocationConcealm
 w = [g['AnimalWelfareRegulations'] for g in dat if math.isnan(g['AnimalWelfareRegulations']) == False]; print('  # welfare: {}'.format(sum(w)))  
 i = [g['ConflictsOfInterest'] for g in dat if math.isnan(g['ConflictsOfInterest']) == False]; print('  # conflict: {}'.format(sum(i)))  
 
-
-
      
+### Document length
+rob_tokens = read_json(json_path='data/rob_tokens.json')
+import tensorflow_hub as hub
+embed_func = hub.load("https://tfhub.dev/google/universal-sentence-encoder/4")
+                      
+d_len = []                      
+for i, r in tqdm(enumerate(rob_tokens)):
+    sentTokens = r['sentTokens']                      
+    d_mat = []
+    for sl in sentTokens:
+        s = [' '.join(sl)]
+        s_vec = embed_func(s).numpy().astype('float16') 
+        s_vec = s_vec.tolist()[0]
+        d_mat.append(s_vec)
+    d_len.append(len(d_mat))
+
+print(min(d_len), max(d_len), int(np.mean(d_len)))  # 50, 686, 181    

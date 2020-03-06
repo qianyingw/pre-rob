@@ -95,7 +95,8 @@ def sent_encoder(embed_func, text):
         if len(one_sent_list) > 2:
             one_sent = ' '.join(one_sent_list)
             sent_list.append(one_sent)
-    doc_mat = embed_func(sent_list).numpy().tolist()
+    doc_mat = embed_func(sent_list).numpy().astype('float_')                 
+    doc_mat = doc_mat.tolist()
     return doc_mat
 
 # nltk
@@ -118,7 +119,7 @@ def sent_encoder(embed_func, text):
 #        one_sent = ' '.join(one_sent_list)
 #        sent_list.append(one_sent)
 #        
-#doc_vec = sent_embed(sent_list).numpy()
+#doc_vec = sent_embed(sent_list).numpy().tolist()
 
 
 #%% Tokenization (spacy)
