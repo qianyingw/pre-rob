@@ -78,6 +78,9 @@ def train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, 
     """
     
     """
+    if os.path.exists(args.exp_dir) == False:
+        os.makedirs(args.exp_dir)   
+            
     if restore_file is not None:
         restore_path = os.path.join(args.exp_dir, restore_file + '.pth.tar')
         logging.info("Restoring parameters from {}...".format(restore_path))  

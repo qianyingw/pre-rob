@@ -46,10 +46,7 @@ def get_args():
     parser.add_argument('--stop_criterion', nargs="?", type=float, default=999, help='Acceptable difference compared with the best loss')
     parser.add_argument('--dropout', nargs="?", type=float, default=0.5, help='Dropout rate')
     
-    parser.add_argument('--exp_path', nargs="?", type=str, default="/home/qwang/rob/src/cluster/exps")
-    parser.add_argument('--exp_name', nargs="?", type=str, default="cnn", help='Experiment name for building the folder')
-    
-    parser.add_argument('--exp_dir', nargs="?", type=str, default="/media/qwang/rob/temp2", help='Folder of the experiment')
+    parser.add_argument('--exp_dir', nargs="?", type=str, default="/media/qwang/rob/temp", help='Folder of the experiment')
     parser.add_argument('--save_model', nargs="?", type=str2bool, default=False, help='Save model.pth.tar with best loss')
     
        
