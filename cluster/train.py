@@ -148,7 +148,7 @@ def train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, 
         json.dump(output_dict, fout, indent=4)
         
     # Save performance plot    
-    utils.plot_prfs(prfs_json_path=prfs_path)
+    # utils.plot_prfs(prfs_json_path=prfs_path)
 
     
 
