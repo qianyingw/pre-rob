@@ -34,7 +34,7 @@ def get_args():
     # Experiments
     parser.add_argument('--seed', nargs="?", type=int, default=1234, help='Seed for random number generator')
     parser.add_argument('--batch_size', nargs="?", type=int, default=32, help='Batch size')
-    parser.add_argument('--num_epochs', nargs="?", type=int, default=2, help='Number of epochs')    
+    parser.add_argument('--num_epochs', nargs="?", type=int, default=20, help='Number of epochs')    
     parser.add_argument('--train_ratio', nargs="?", type=float, default=0.8, help='Ratio of training set')
     parser.add_argument('--val_ratio', nargs="?", type=float, default=0.1, help='Ratio of validation set')
     
@@ -42,7 +42,8 @@ def get_args():
     parser.add_argument('--max_token_len', nargs="?", type=int, default=5000, help='Threshold of maximum document legnth [default=0, sequence will not be cut]')
     parser.add_argument('--min_occur_freq', nargs="?", type=int, default=10, help='Minimum frequency of including a token in the vocabulary')
     
-    parser.add_argument('--stop_patience', nargs="?", type=int, default=5, help='Number of cases when valid loss is lower than best loss')
+    parser.add_argument('--stop_patience', nargs="?", type=int, default=999, help='Number of cases when valid loss is lower than the best loss')
+    parser.add_argument('--stop_criterion', nargs="?", type=float, default=999, help='Acceptable difference compared with the best loss')
     parser.add_argument('--dropout', nargs="?", type=float, default=0.5, help='Dropout rate')
     
     parser.add_argument('--exp_path', nargs="?", type=str, default="/home/qwang/rob/src/cluster/exps")

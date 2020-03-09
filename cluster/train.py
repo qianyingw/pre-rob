@@ -86,6 +86,7 @@ def train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, 
     # For early stopping
     n_worse = 0
     best_valid_loss = float('inf')
+    best_valid_f1 = -float('inf')
     
     # Create args and output dictionary (for json output)
     output_dict = {'args': vars(args), 'prfs': {}}
@@ -98,21 +99,28 @@ def train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, 
         # Update output dictionary
         output_dict['prfs'][str('train_'+str(epoch+1))] = train_scores
         output_dict['prfs'][str('valid_'+str(epoch+1))] = valid_scores
-                           
-        # Save weights if is_best
-        is_best_loss = valid_scores['loss'] < best_valid_loss
         
+        # Save scores
+        is_best_loss = valid_scores['loss'] < best_valid_loss 
+        if is_best_loss:
+            best_valid_loss = valid_scores['loss'] 
+        
+        is_best_f1 = valid_scores['f1'] > best_valid_f1 
+        if is_best_f1:
+            best_valid_f1 = valid_scores['f1'] 
+        
+        is_best = (valid_scores['loss']-best_valid_loss <= args.stop_criterion) and (is_best_f1 == True)
+        if is_best:       
+            utils.save_dict_to_json(valid_scores, os.path.join(args.exp_dir, 'best_val_scores.json'))
+        
+        # Save model
         if args.save_model == True:
             utils.save_checkpoint({'epoch': epoch+1,
                                    'state_dict': model.state_dict(),
                                    'optim_Dict': optimizer.state_dict()},
-                                   is_best = is_best_loss, checkdir = args.exp_dir)
-            
-        if is_best_loss:
-            best_valid_loss = valid_scores['loss']                    
-            utils.save_dict_to_json(valid_scores, os.path.join(args.exp_dir, 'best_val_loss.json'))
-            
-        
+                                   is_best = is_best, checkdir = args.exp_dir)
+                 
+       
         # Save the latest valid scores in exp_dir
         # utils.save_dict_to_json(valid_scores, os.path.join(exp_dir, 'last_val_scores.json'))
 
@@ -122,12 +130,12 @@ def train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, 
         print('[Val] loss: {0:.3f} | acc: {1:.2f}% | f1: {2:.2f}% | recall: {3:.2f}% | precision: {4:.2f}% | specificity: {5:.2f}%\n'.format(
             valid_scores['loss'], valid_scores['accuracy']*100, valid_scores['f1']*100, valid_scores['recall']*100, valid_scores['precision']*100, valid_scores['specificity']*100))
     
-    
+        
         # Early stopping             
-        if valid_scores['loss'] > best_valid_loss:
+        if valid_scores['loss'] - best_valid_loss > args.stop_criterion:
             n_worse += 1
         if n_worse == args.stop_patience:
-            print("Early stopping (patience={}).".format(args.stop_patience))
+            print("Early stopping (patience={}, criterion={}).".format(args.stop_patience, args.stop_criterion))
             break
 
     # Write performance and args to json
