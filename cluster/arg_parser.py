@@ -61,12 +61,12 @@ def get_args():
        
     # RoB item
     parser.add_argument('--rob_item', nargs="?", type=str, default="RandomizationTreatmentControl", 
-                        choices=['RandomizationTreatmentControl'
-                                 'BlindedOutcomeAssessment'
-                                 'SampleSizeCalculation'
-                                 'AnimalExclusions'     
-                                 'AllocationConcealment'
-                                 'AnimalWelfareRegulations'
+                        choices=['RandomizationTreatmentControl',
+                                 'BlindedOutcomeAssessment',
+                                 'SampleSizeCalculation',
+                                 'AnimalExclusions',
+                                 'AllocationConcealment',
+                                 'AnimalWelfareRegulations',
                                  'ConflictsOfInterest'], 
                         help='Risk of bias item')
 
