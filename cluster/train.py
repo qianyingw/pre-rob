@@ -88,8 +88,8 @@ def train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, 
 
     # For early stopping
     n_worse = 0
-    best_valid_loss = float('inf')
-    best_valid_f1 = -float('inf')
+    min_valid_loss = float('inf')
+    max_valid_f1 = -float('inf')
     
     # Create args and output dictionary (for json output)
     output_dict = {'args': vars(args), 'prfs': {}}
@@ -104,16 +104,14 @@ def train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, 
         output_dict['prfs'][str('valid_'+str(epoch+1))] = valid_scores
         
         # Save scores
-        is_best_loss = valid_scores['loss'] < best_valid_loss 
-        if is_best_loss:
-            best_valid_loss = valid_scores['loss'] 
+        if valid_scores['loss'] < min_valid_loss:
+            min_valid_loss = valid_scores['loss']    
+        if valid_scores['f1'] > max_valid_f1:
+            max_valid_f1 = valid_scores['f1'] 
         
-        is_best_f1 = valid_scores['f1'] > best_valid_f1 
-        if is_best_f1:
-            best_valid_f1 = valid_scores['f1'] 
         
-        is_best = (valid_scores['loss']-best_valid_loss <= args.stop_criterion) and (is_best_f1 == True)
-        if is_best:       
+        is_best = (valid_scores['loss']-min_valid_loss <= args.stop_c1) and (max_valid_f1-valid_scores['f1'] <= args.stop_c2)
+        if is_best == True:       
             utils.save_dict_to_json(valid_scores, os.path.join(args.exp_dir, 'best_val_scores.json'))
         
         # Save model
@@ -135,10 +133,10 @@ def train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, 
     
         
         # Early stopping             
-        if valid_scores['loss'] - best_valid_loss > args.stop_criterion:
+        if is_best == False:
             n_worse += 1
-        if n_worse == args.stop_patience:
-            print("Early stopping (patience={}, criterion={}).".format(args.stop_patience, args.stop_criterion))
+        if n_worse == args.stop_p:
+            print("Early stopping")
             break
 
     # Write performance and args to json

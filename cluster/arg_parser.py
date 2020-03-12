@@ -42,8 +42,9 @@ def get_args():
     parser.add_argument('--max_token_len', nargs="?", type=int, default=5000, help='Threshold of maximum document legnth [default=0, sequence will not be cut]')
     parser.add_argument('--min_occur_freq', nargs="?", type=int, default=10, help='Minimum frequency of including a token in the vocabulary')
     
-    parser.add_argument('--stop_patience', nargs="?", type=int, default=999, help='Number of cases when valid loss is lower than the best loss')
-    parser.add_argument('--stop_criterion', nargs="?", type=float, default=999, help='Acceptable difference compared with the best loss')
+    parser.add_argument('--stop_p', nargs="?", type=int, default=999, help='Number of cases when valid loss and F1 do not meet criteria')
+    parser.add_argument('--stop_c1', nargs="?", type=float, default=999, help='Acceptable difference compared with the best loss')
+    parser.add_argument('--stop_c2', nargs="?", type=float, default=999, help='Acceptable difference compared with the best f1')
     parser.add_argument('--dropout', nargs="?", type=float, default=0.5, help='Dropout rate')
     
     parser.add_argument('--exp_dir', nargs="?", type=str, default="/media/qwang/rob/temp", help='Folder of the experiment')
