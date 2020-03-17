@@ -133,7 +133,7 @@ def train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, 
     
         
         # Early stopping             
-        if is_best == False:
+        if (valid_scores['loss']-min_valid_loss > args.stop_c1) and (max_valid_f1-valid_scores['f1'] > args.stop_c2):
             n_worse += 1
         if n_worse == args.stop_p:
             print("Early stopping")
