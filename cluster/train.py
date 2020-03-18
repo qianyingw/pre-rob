@@ -16,7 +16,7 @@ import torch
 import utils
 
 
-def train(model, iterator, criterion, optimizer, metrics):
+def train(model, iterator, criterion, optimizer, metrics, threshold):
     
     scores = {'loss': 0, 'accuracy': 0, 'f1': 0, 'recall': 0, 'precision': 0, 'specificity': 0}
     len_iter = len(iterator)
@@ -31,7 +31,7 @@ def train(model, iterator, criterion, optimizer, metrics):
             preds = model(batch.text)  # preds.shape = [batch_size, output_dim]
             
             loss = criterion(preds, batch.label)       
-            epoch_scores = metrics(preds, batch.label)  # dictionary of 5 metric scores
+            epoch_scores = metrics(preds, batch.label, threshold)  # dictionary of 5 metric scores
                    
             loss.backward()
             optimizer.step()
@@ -47,7 +47,7 @@ def train(model, iterator, criterion, optimizer, metrics):
     return scores
 
 
-def evaluate(model, iterator, criterion, metrics):
+def evaluate(model, iterator, criterion, metrics, threshold):
     
     scores = {'loss': 0, 'accuracy': 0, 'f1': 0, 'recall': 0, 'precision': 0, 'specificity': 0}
     len_iter = len(iterator)
@@ -60,7 +60,7 @@ def evaluate(model, iterator, criterion, metrics):
                 preds = model(batch.text)
                 
                 loss = criterion(preds, batch.label)
-                epoch_scores = metrics(preds, batch.label)  # # dictionary of 5 metric scores
+                epoch_scores = metrics(preds, batch.label, threshold)  # # dictionary of 5 metric scores
                 
                 scores['loss'] += loss.item()
                 for key, value in epoch_scores.items():               
@@ -96,8 +96,8 @@ def train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, 
     
     for epoch in range(args.num_epochs):
      
-        train_scores = train(model, train_iterator, criterion, optimizer, metrics)
-        valid_scores = evaluate(model, valid_iterator, criterion, metrics)        
+        train_scores = train(model, train_iterator, criterion, optimizer, metrics, args.threshold)
+        valid_scores = evaluate(model, valid_iterator, criterion, metrics, args.threshold)        
         
         # Update output dictionary
         output_dict['prfs'][str('train_'+str(epoch+1))] = train_scores

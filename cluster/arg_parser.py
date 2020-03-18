@@ -72,7 +72,7 @@ def get_args():
     parser.add_argument('--net_type', nargs="?", type=str, default='cnn', choices=['cnn', 'rnn', 'attn', 'han', 'transformer'], 
                         help="Different networks [options: 'cnn', 'rnn', 'attn', 'han', 'transformer']")
     parser.add_argument('--weight_balance', nargs="?", type=str2bool, default=False, help='Assign class weights for imbalanced data')
-    
+    parser.add_argument('--threshold', nargs="?", type=float, default=0.5, help='Threshold for positive class value')
     
     # CNN
     parser.add_argument('--num_filters', nargs="?", type=int, default=100, help='Number of filters for each filter size (CNN)')   
