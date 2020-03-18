@@ -54,7 +54,8 @@ class ConvNet(nn.Module):
         
         cat = torch.cat(pooled, dim=1)  # [batch_size, n_filters * len(filter_sizes)]
         dp = self.dropout(cat)
-        out = self.fc(dp)  # # [batch_size, output_dim]
+        z = self.fc(dp)  # # [batch_size, output_dim]
+        out = F.softmax(z, dim=1)  # [batch_size, output_dim]  
         
         return out
 
