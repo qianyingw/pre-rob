@@ -105,7 +105,7 @@ def metrics(preds, y, th=0.5):
         A dictionary of accuracy, f1 score, recall, precision and specificity       
         
     """   
-    # y_preds = preds.argmax(dim=1, keepdim=False)  # [batch_size, output_dim]  --> [batch_size]
+#    y_preds = preds.argmax(dim=1, keepdim=False)  # [batch_size, output_dim]  --> [batch_size]
     y_preds = (preds[:,1] > th).int().type(torch.LongTensor)
     
     ones = torch.ones_like(y_preds)

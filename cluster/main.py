@@ -153,7 +153,9 @@ optimizer = optim.Adam(model.parameters())
 metrics_fn = metrics
 
 # Weight balancing
-if args.weight_balance == True:
+if args.weight_balance == True and torch.cuda.device_count() == 0:
+    criterion = nn.CrossEntropyLoss(weight=torch.FloatTensor(helper.cls_weight))
+elif args.weight_balance == True and torch.cuda.device_count() > 0:
     criterion = nn.CrossEntropyLoss(weight=torch.FloatTensor(helper.cls_weight).cuda())
 else:
     criterion = nn.CrossEntropyLoss()

@@ -34,7 +34,7 @@ def get_args():
     # Experiments
     parser.add_argument('--seed', nargs="?", type=int, default=1234, help='Seed for random number generator')
     parser.add_argument('--batch_size', nargs="?", type=int, default=32, help='Batch size')
-    parser.add_argument('--num_epochs', nargs="?", type=int, default=20, help='Number of epochs')    
+    parser.add_argument('--num_epochs', nargs="?", type=int, default=5, help='Number of epochs')    
     parser.add_argument('--train_ratio', nargs="?", type=float, default=0.8, help='Ratio of training set')
     parser.add_argument('--val_ratio', nargs="?", type=float, default=0.1, help='Ratio of validation set')
     
@@ -58,7 +58,7 @@ def get_args():
     parser.add_argument('--embed_path', nargs="?", type=str, default="/media/mynewdrive/rob/wordvec/wikipedia-pubmed-and-PMC-w2v.txt", help='Path of pre-trained vectors')
        
     # RoB item
-    parser.add_argument('--rob_item', nargs="?", type=str, default="RandomizationTreatmentControl", 
+    parser.add_argument('--rob_item', nargs="?", type=str, default="SampleSizeCalculation", 
                         choices=['RandomizationTreatmentControl',
                                  'BlindedOutcomeAssessment',
                                  'SampleSizeCalculation',
@@ -71,7 +71,7 @@ def get_args():
     # Model
     parser.add_argument('--net_type', nargs="?", type=str, default='cnn', choices=['cnn', 'rnn', 'attn', 'han', 'transformer'], 
                         help="Different networks [options: 'cnn', 'rnn', 'attn', 'han', 'transformer']")
-    parser.add_argument('--weight_balance', nargs="?", type=str2bool, default=False, help='Assign class weights for imbalanced data')
+    parser.add_argument('--weight_balance', nargs="?", type=str2bool, default=True, help='Assign class weights for imbalanced data')
     parser.add_argument('--threshold', nargs="?", type=float, default=0.5, help='Threshold for positive class value')
     
     # CNN

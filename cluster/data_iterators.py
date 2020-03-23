@@ -106,7 +106,8 @@ class DataIterators(object):
         # Calculate weight for balancing data
         num_pos = len([g for g in train_list if g[self.rob_item] == 1])
         num_neg = len([g for g in train_list if g[self.rob_item] == 0])
-        self.cls_weight = [1/num_neg, 1/num_pos]
+        self.cls_weight = [1/num_neg, 1/num_pos] #[1/num_neg*2*len(train_list), 1/num_pos*2*len(train_list)]
+        #print(self.cls_weight)
         
         
     def create_data(self):
