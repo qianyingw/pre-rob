@@ -106,7 +106,7 @@ def metrics(preds, y, th=0.5):
         
     """   
 #    y_preds = preds.argmax(dim=1, keepdim=False)  # [batch_size, output_dim]  --> [batch_size]
-    y_preds = (preds[:,1] > th).int().type(torch.LongTensor)
+    y_preds = (preds[:,1] > th).int().type(torch.LongTensor).cuda()
     
     ones = torch.ones_like(y_preds)
     zeros = torch.zeros_like(y_preds)
