@@ -106,7 +106,7 @@ def metrics(preds, y, th=0.5):
         
     """   
 #    y_preds = preds.argmax(dim=1, keepdim=False)  # [batch_size, output_dim]  --> [batch_size]
-    if torch.cuda.device_count() > 1:
+    if torch.cuda.device_count() == 1:
         y_preds = (preds[:,1] > th).int().type(torch.LongTensor).cuda()
     else:
         y_preds = (preds[:,1] > th).int().type(torch.LongTensor)
