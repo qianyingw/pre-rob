@@ -106,7 +106,7 @@ class SentAttn(nn.Module):
         a = a.squeeze(2) # [batch_size, num_sents]
         d = d.squeeze(2)  # [batch_size, 2*sent_hidden_dim]
         
-        d = F.softmax(d, dim=1)  # [batch_size, 2*sent_hidden_dim]
+#        d = F.softmax(d, dim=1)  # [batch_size, 2*sent_hidden_dim]
 #        z = self.linear(z)  # [batch_size, output_dim]
         
         return a, d
@@ -159,49 +159,50 @@ class HAN(nn.Module):
         self.doc_a, doc_s = self.sent_attn(sent_s)
         
         z = self.linear(doc_s)  # [batch_size, output_dim]
+        z = F.softmax(z, dim=1)
         
         return z
 
 
 #%% Instance
-#    batch_size = 20
-#    vocab_size = 5000
-#    embed_dim = 200
-#    max_sent_len = 15
-#    max_doc_len = 8
-#    output_dim = 2
-#    word_hidden_dim = 22
-#    sent_hidden_dim = 33
-#    word_num_layers = 1
-#    sent_num_layers = 1
-#    pad_idx = 1
-#    
-#    word_attn = WordAttn(vocab_size, embed_dim, word_hidden_dim, word_num_layers, pad_idx)
-#    sent_attn = SentAttn(word_hidden_dim, sent_hidden_dim, sent_num_layers)
-#    linear = nn.Linear(2*sent_hidden_dim, output_dim)
-#    
-#    
-#    
-#    X = torch.randint(999, (batch_size, max_doc_len, max_sent_len))
-#    X = X.permute(1, 0, 2)
-#    X.shape
-#    
-#    word_a_ls, word_s_ls = [], []      
-#    for sent in X:
-#        word_a, word_s = word_attn(sent)
-#        word_a = word_a.unsqueeze(1)  # word_a: [batch_size, 1, max_sent_len]
-#        word_s = word_s.unsqueeze(1)  # word_s: [batch_size, 1, 2*word_hidden_dim]               
-#        word_a_ls.append(word_a)  # [batch_size, 1, max_sent_len] * max_doc_len
-#        word_s_ls.append(word_s)  # [batch_size, 1, 2*word_hidden_dim] * max_doc_len
-#    
-#    sent_a = torch.cat(word_a_ls, 1)  # sent_a: [batch_size, max_doc_len, max_sent_len]  
-#    sent_s = torch.cat(word_s_ls, 1)  # sent_s: [batch_size, max_doc_len, 2*word_hidden_dim]
-#    doc_a, doc_s = sent_attn(sent_s)
-#    z = linear(doc_s)  # [batch_size, output_dim]
-#    
-#    
-#    sent_a.shape
-#    sent_s.shape
-#    doc_a.shape
-#    doc_s.shape
-#    z.shape
+#batch_size = 20
+#vocab_size = 5000
+#embed_dim = 200
+#max_sent_len = 15
+#max_doc_len = 8
+#output_dim = 2
+#word_hidden_dim = 22
+#sent_hidden_dim = 33
+#word_num_layers = 1
+#sent_num_layers = 1
+#pad_idx = 1
+#
+#word_attn = WordAttn(vocab_size, embed_dim, word_hidden_dim, word_num_layers, pad_idx)
+#sent_attn = SentAttn(word_hidden_dim, sent_hidden_dim, sent_num_layers)
+#linear = nn.Linear(2*sent_hidden_dim, output_dim)
+#
+#
+#
+#X = torch.randint(999, (batch_size, max_doc_len, max_sent_len))
+#X = X.permute(1, 0, 2)  # [max_doc_len, batch_size, max_sent_len]
+#X.shape
+#
+#word_a_ls, word_s_ls = [], []      
+#for sent in X:
+#    word_a, word_s = word_attn(sent)  # sent: [batch_size, max_sent_len]
+#    word_a = word_a.unsqueeze(1)  # word_a: [batch_size, 1, max_sent_len]
+#    word_s = word_s.unsqueeze(1)  # word_s: [batch_size, 1, 2*word_hidden_dim]               
+#    word_a_ls.append(word_a)  # [batch_size, 1, max_sent_len] * max_doc_len
+#    word_s_ls.append(word_s)  # [batch_size, 1, 2*word_hidden_dim] * max_doc_len
+#
+#sent_a = torch.cat(word_a_ls, 1)  # sent_a: [batch_size, max_doc_len, max_sent_len]  
+#sent_s = torch.cat(word_s_ls, 1)  # sent_s: [batch_size, max_doc_len, 2*word_hidden_dim]
+#doc_a, doc_s = sent_attn(sent_s)
+#z = linear(doc_s)  # [batch_size, output_dim]
+#z = F.softmax(z, dim=1)
+#
+#print(sent_a.shape)
+#print(sent_s.shape)
+#print(doc_a.shape)
+#print(doc_s.shape)
+#print(z.shape)
