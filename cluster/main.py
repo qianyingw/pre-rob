@@ -87,7 +87,8 @@ if args.net_type == 'cnn':
                     filter_sizes = sizes, 
                     output_dim = output_dim, 
                     dropout = args.dropout, 
-                    pad_idx = pad_idx)
+                    pad_idx = pad_idx,
+                    embed_trainable = args.embed_trainable)
 
 if args.net_type == 'rnn':
     model = RecurNet(vocab_size = input_dim, 
@@ -98,7 +99,8 @@ if args.net_type == 'rnn':
                      bidirection = args.bidirection, 
                      rnn_cell_type = args.rnn_cell_type,
                      dropout = args.dropout, 
-                     pad_idx = pad_idx)
+                     pad_idx = pad_idx,
+                     embed_trainable = args.embed_trainable)
     
 if args.net_type == 'attn':
     model = AttnNet(vocab_size = input_dim, 
@@ -109,14 +111,16 @@ if args.net_type == 'attn':
                     bidirection = args.bidirection, 
                     rnn_cell_type = args.rnn_cell_type, 
                     dropout = args.dropout, 
-                    pad_idx = pad_idx)
+                    pad_idx = pad_idx,
+                    embed_trainable = args.embed_trainable)
 
 if args.net_type == 'han':
     model = HAN(vocab_size = input_dim,
                 embedding_dim = args.embed_dim,
                 word_hidden_dim = args.word_hidden_dim,
                 word_num_layers = args.word_num_layers,
-                pad_idx = pad_idx,            
+                pad_idx = pad_idx,    
+                embed_trainable = args.embed_trainable,
                 sent_hidden_dim = args.sent_hidden_dim,
                 sent_num_layers = args.sent_num_layers,
                 output_dim = output_dim)

@@ -12,11 +12,14 @@ import torch.nn.functional as F
 #%%
 class WordAttn(nn.Module):
     
-    def __init__(self, vocab_size, embedding_dim, word_hidden_dim, word_num_layers, pad_idx):
+    def __init__(self, vocab_size, embedding_dim, word_hidden_dim, word_num_layers, pad_idx, embed_trainable):
         
         super(WordAttn, self).__init__()
         
         self.embedding = nn.Embedding(vocab_size, embedding_dim, padding_idx = pad_idx)
+        if embed_trainable == False:
+            self.embedding.weight.requires_grad = False  # Freeze embedding
+        
         self.gru = nn.GRU(input_size = embedding_dim, hidden_size = word_hidden_dim,
                           num_layers = word_num_layers, batch_first=True, bidirectional = True)
         
@@ -114,7 +117,7 @@ class SentAttn(nn.Module):
 #%%
 class HAN(nn.Module):
     
-    def __init__(self, vocab_size, embedding_dim, word_hidden_dim, word_num_layers, pad_idx,
+    def __init__(self, vocab_size, embedding_dim, word_hidden_dim, word_num_layers, pad_idx, embed_trainable,
                        sent_hidden_dim, sent_num_layers, output_dim):
         
         super(HAN, self).__init__()
@@ -123,7 +126,8 @@ class HAN(nn.Module):
                                   embedding_dim = embedding_dim,
                                   word_hidden_dim = word_hidden_dim,
                                   word_num_layers = word_num_layers,
-                                  pad_idx = pad_idx)
+                                  pad_idx = pad_idx,
+                                  embed_trainable = embed_trainable)
         
         self.sent_attn = SentAttn(word_hidden_dim = word_hidden_dim,
                                   sent_hidden_dim = sent_hidden_dim,

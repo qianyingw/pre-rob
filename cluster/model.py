@@ -22,11 +22,14 @@ import torch.nn.functional as F
 
 class ConvNet(nn.Module):
     
-    def __init__(self, vocab_size, embedding_dim, n_filters, filter_sizes, output_dim, dropout, pad_idx):
+    def __init__(self, vocab_size, embedding_dim, n_filters, filter_sizes, output_dim, dropout, pad_idx, embed_trainable):
     
         super().__init__()
         
         self.embedding = nn.Embedding(vocab_size, embedding_dim, padding_idx = pad_idx)
+        if embed_trainable == False:
+            self.embedding.weight.requires_grad = False  # Freeze embedding
+            
         self.convs = nn.ModuleList([nn.Conv2d(in_channels = 1,
                                               out_channels = n_filters,
                                               kernel_size = (fsize, embedding_dim)) for fsize in filter_sizes
@@ -63,11 +66,13 @@ class ConvNet(nn.Module):
 
 class RecurNet(nn.Module):
     
-    def __init__(self, vocab_size, embedding_dim, rnn_hidden_dim, rnn_num_layers, output_dim, bidirection, rnn_cell_type, dropout, pad_idx):
+    def __init__(self, vocab_size, embedding_dim, rnn_hidden_dim, rnn_num_layers, output_dim, bidirection, rnn_cell_type, dropout, pad_idx, embed_trainable):
        
         super(RecurNet, self).__init__()
         
         self.embedding = nn.Embedding(vocab_size, embedding_dim, padding_idx = pad_idx)
+        if embed_trainable == False:
+            self.embedding.weight.requires_grad = False  # Freeze embedding
         
         self.lstm = nn.LSTM(input_size = embedding_dim, hidden_size = rnn_hidden_dim,
                             num_layers = rnn_num_layers, dropout = 0, 
@@ -123,12 +128,14 @@ class RecurNet(nn.Module):
 
 class AttnNet(nn.Module):
     
-    def __init__(self, vocab_size, embedding_dim, rnn_hidden_dim, rnn_num_layers, output_dim, bidirection, rnn_cell_type, dropout, pad_idx):
+    def __init__(self, vocab_size, embedding_dim, rnn_hidden_dim, rnn_num_layers, output_dim, bidirection, rnn_cell_type, dropout, pad_idx, embed_trainable):
         
         super(AttnNet, self).__init__()
         
         self.embedding = nn.Embedding(vocab_size, embedding_dim, padding_idx = pad_idx)
-        
+        if embed_trainable == False:
+            self.embedding.weight.requires_grad = False  # Freeze embedding
+            
         self.lstm = nn.LSTM(input_size = embedding_dim, hidden_size = rnn_hidden_dim,
                             num_layers = rnn_num_layers, dropout = 0, 
                             batch_first = True, bidirectional = bidirection)

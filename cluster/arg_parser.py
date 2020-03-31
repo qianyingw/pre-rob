@@ -58,7 +58,7 @@ def get_args():
     parser.add_argument('--embed_path', nargs="?", type=str, default="/media/mynewdrive/rob/wordvec/wikipedia-pubmed-and-PMC-w2v.txt", help='Path of pre-trained vectors')
        
     # RoB item
-    parser.add_argument('--rob_item', nargs="?", type=str, default="SampleSizeCalculation", 
+    parser.add_argument('--rob_item', nargs="?", type=str, default="RandomizationTreatmentControl", 
                         choices=['RandomizationTreatmentControl',
                                  'BlindedOutcomeAssessment',
                                  'SampleSizeCalculation',
@@ -69,10 +69,11 @@ def get_args():
                         help='Risk of bias item')
 
     # Model
-    parser.add_argument('--net_type', nargs="?", type=str, default='cnn', choices=['cnn', 'rnn', 'attn', 'han', 'transformer'], 
+    parser.add_argument('--net_type', nargs="?", type=str, default='han', choices=['cnn', 'rnn', 'attn', 'han', 'transformer'], 
                         help="Different networks [options: 'cnn', 'rnn', 'attn', 'han', 'transformer']")
     parser.add_argument('--weight_balance', nargs="?", type=str2bool, default=True, help='Assign class weights for imbalanced data')
     parser.add_argument('--threshold', nargs="?", type=float, default=0.5, help='Threshold for positive class value')
+    parser.add_argument('--embed_trainable', nargs="?", type=str2bool, default=True, help='Embedding trainable or not')
     
     # CNN
     parser.add_argument('--num_filters', nargs="?", type=int, default=100, help='Number of filters for each filter size (CNN)')   
@@ -85,9 +86,9 @@ def get_args():
     parser.add_argument('--bidirection', nargs="?", type=str2bool, default=False, help='Apply the bidirectional RNN')
 
     # HAN
-    parser.add_argument('--word_hidden_dim', nargs="?", type=int, default=100, help='Hidden dim in word attention structure')
+    parser.add_argument('--word_hidden_dim', nargs="?", type=int, default=30, help='Hidden dim in word attention structure')
     parser.add_argument('--word_num_layers', nargs="?", type=int, default=1, help='Number of GRU layers in word attention structure')
-    parser.add_argument('--sent_hidden_dim', nargs="?", type=int, default=100, help='Hidden dim in sentence attention structure')
+    parser.add_argument('--sent_hidden_dim', nargs="?", type=int, default=20, help='Hidden dim in sentence attention structure')
     parser.add_argument('--sent_num_layers', nargs="?", type=int, default=1, help='Number of GRU layers in sentence attention structure')
     parser.add_argument('--max_doc_len', nargs="?", type=int, default=0, help='Maximum number of sents in one document overall the batches')
     parser.add_argument('--max_sent_len', nargs="?", type=int, default=0, help='Maximum number of words in one sentence overall the batches')
