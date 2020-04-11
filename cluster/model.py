@@ -63,7 +63,12 @@ class ConvNet(nn.Module):
         return out
 
 
+#net = ConvNet(10000, 200, 100, [3,4,5], 2, 0.5, 1, True)
+#for p in net.parameters():
+#    print(p.size())
+    
 
+#%%
 class RecurNet(nn.Module):
     
     def __init__(self, vocab_size, embedding_dim, rnn_hidden_dim, rnn_num_layers, output_dim, bidirection, rnn_cell_type, dropout, pad_idx, embed_trainable):
@@ -125,7 +130,7 @@ class RecurNet(nn.Module):
 
 
 
-
+#%%
 class AttnNet(nn.Module):
     
     def __init__(self, vocab_size, embedding_dim, rnn_hidden_dim, rnn_num_layers, output_dim, bidirection, rnn_cell_type, dropout, pad_idx, embed_trainable):
@@ -194,3 +199,7 @@ class AttnNet(nn.Module):
         
         return z
 
+
+#net = AttnNet(10000, 200, 30, 1, 2, True, 'lstm', 0.5, 1, True)
+#for p in net.parameters():
+#    print(p.size())

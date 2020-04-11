@@ -151,12 +151,12 @@ def train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, 
     
 
         
-def test(model, test_iterator, criterion, metrics, exp_dir, restore_file):   
+def test(model, test_iterator, criterion, metrics, args, restore_file):   
      
-    utils.load_checkpoint(os.path.join(exp_dir, restore_file + '.pth.tar'), model)
-    test_scores = evaluate(model, test_iterator, criterion, metrics)
-    # save_path = os.path.join(exp_dir, "test_scores.json")
-    # utils.save_dict_to_json(test_scores, save_path)  
+    utils.load_checkpoint(os.path.join(args.exp_dir, restore_file + '.pth.tar'), model)
+    test_scores = evaluate(model, test_iterator, criterion, metrics, args.threshold)
+    save_path = os.path.join(args.exp_dir, "test_scores.json")
+    utils.save_dict_to_json(test_scores, save_path)  
     print('\n[Test] loss: {0:.3f} | acc: {1:.2f}% | f1: {2:.2f}% | recall: {3:.2f}% | precision: {4:.2f}% | specificity: {5:.2f}%'.format(
             test_scores['loss'], test_scores['accuracy']*100, test_scores['f1']*100, test_scores['recall']*100, test_scores['precision']*100, test_scores['specificity']*100))
     

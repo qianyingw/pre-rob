@@ -24,7 +24,7 @@ from data_iterators import DataIterators
 from model import ConvNet, RecurNet, AttnNet
 from model_han import HAN
 from model_transformer import TransformerNet
-from train import train_evaluate #, test
+from train import train_evaluate, test
 
 
 #%% Get arguments from command line
@@ -174,14 +174,5 @@ criterion = criterion.to(device)
 train_evaluate(model, train_iterator, valid_iterator, criterion, optimizer, metrics_fn, args)
 
 #%% Test
-#if args.save_model:
-#    logging.info("\nStart testing...")
-#    test_scores = test(model, test_iterator, criterion, metrics_fn, restore_file = 'best')
-#    
-#    # Add test performance to '_prfs.json'
-#    prfs_path = os.path.join(args.exp_dir, 'prfs.json')
-#    with open(prfs_path) as fin:
-#        output_dict = json.load(fp=fin)
-#    output_dict['prfs']['test'] = test_scores    
-#    with open(prfs_path, 'w') as fout:
-#        json.dump(output_dict, fout, indent=4)
+if args.save_model:
+    test_scores = test(model, test_iterator, criterion, metrics_fn, args, restore_file = 'best')
