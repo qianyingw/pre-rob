@@ -12,16 +12,18 @@ import torch.nn.functional as F
 
 class TransformerNet(nn.Module):
     
-    def __init__(self, vocab_size, embedding_dim, num_heads, num_encoder_layers, output_dim, pad_idx):
+    def __init__(self, vocab_size, embedding_dim, num_heads, ff_dim, num_enc_layers, output_dim, dropout, pad_idx, embed_trainable):
         
         super(TransformerNet, self).__init__()
         
         self.embedding = nn.Embedding(vocab_size, embedding_dim, padding_idx = pad_idx)
+        if embed_trainable == False:
+            self.embedding.weight.requires_grad = False  # Freeze embedding
         
         encoder_layer = nn.TransformerEncoderLayer(d_model = embedding_dim,
                                                    nhead = num_heads, 
-                                                   dim_feedforward = 2048, dropout = 0.1)        
-        self.transformer_encoder = nn.TransformerEncoder(encoder_layer, num_layers = num_encoder_layers)     
+                                                   dim_feedforward = ff_dim, dropout = dropout)        
+        self.transformer_encoder = nn.TransformerEncoder(encoder_layer, num_layers = num_enc_layers)     
         
         self.linear = nn.Linear(embedding_dim, output_dim) 
      
@@ -41,7 +43,7 @@ class TransformerNet(nn.Module):
         # Obtain encoder output of the last word
         batch_len = enc.size()[0]
         enc_list = []
-        for i in batch_len:
+        for i in range(batch_len):
             # Append encoder output of last word from each batch           
             # out[i][-1]: [embedding_dim]
             enc_list.append(enc[i][-1])  

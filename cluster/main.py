@@ -15,7 +15,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
-# os.chdir('/media/qwang/rob/src-pome/cluster')
+# os.chdir('/home/qwang/rob/rob-pome/cluster')
 
 from utils import metrics
 from arg_parser import get_args
@@ -130,10 +130,15 @@ if args.net_type == 'transformer':
     model = TransformerNet(vocab_size = input_dim, 
                            embedding_dim = args.embed_dim, 
                            num_heads = args.num_heads, 
-                           num_encoder_layers = args.num_encoder_layers, 
+                           ff_dim = args.ff_dim,
+                           num_enc_layers = args.num_enc_layers, 
                            output_dim = output_dim, 
-                           pad_idx = pad_idx)
-    
+                           dropout = args.dropout, 
+                           pad_idx = pad_idx,
+                           embed_trainable = args.embed_trainable)
+
+
+
 n_pars = sum(p.numel() for p in model.parameters())
 print(model)
 print("Number of parameters: {}".format(n_pars))

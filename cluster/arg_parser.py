@@ -69,7 +69,7 @@ def get_args():
                         help='Risk of bias item')
 
     # Model
-    parser.add_argument('--net_type', nargs="?", type=str, default='han', choices=['cnn', 'rnn', 'attn', 'han', 'transformer'], 
+    parser.add_argument('--net_type', nargs="?", type=str, default='transformer', choices=['cnn', 'rnn', 'attn', 'han', 'transformer'], 
                         help="Different networks [options: 'cnn', 'rnn', 'attn', 'han', 'transformer']")
     parser.add_argument('--weight_balance', nargs="?", type=str2bool, default=True, help='Assign class weights for imbalanced data')
     parser.add_argument('--threshold', nargs="?", type=float, default=0.5, help='Threshold for positive class value')
@@ -94,8 +94,9 @@ def get_args():
     parser.add_argument('--max_sent_len', nargs="?", type=int, default=0, help='Maximum number of words in one sentence overall the batches')
     
     # Transformer encoder
-    parser.add_argument('--num_heads', nargs="?", type=int, default=8, help='Number of heads in the multi-head attention module')
-    parser.add_argument('--num_encoder_layers', nargs="?", type=int, default=6, help='Number of sub-encoder-layers in the encoder')
+    parser.add_argument('--num_heads', nargs="?", type=int, default=2, help='Number of heads in the multi-head attention module')
+    parser.add_argument('--ff_dim', nargs="?", type=int, default=10, help='Dimension of the feedforward network model')
+    parser.add_argument('--num_enc_layers', nargs="?", type=int, default=2, help='Number of sub-encoder-layers in the encoder')
     
     args = parser.parse_args()
     
