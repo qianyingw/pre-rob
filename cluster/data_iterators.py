@@ -42,8 +42,7 @@ class DataIterators(object):
             self.TEXT = data.NestedField(nest_field, fix_length = max_doc_len)  # fix num of sents (fix max_doc_len)
         else:
             self.TEXT = data.Field()   # word tokens 
-        
-        
+               
         # Modify rob name
         self.rob_item = self.args_dict['rob_item']       
 
@@ -71,8 +70,20 @@ class DataIterators(object):
         dat = [g for g in dat if math.isnan(g[self.rob_item]) == False]    
         print('Overal data size: {}'.format(len(dat)))
         
-    
-        # Cut sequence
+        
+        # Cut head/tail by ratio
+        if self.args_dict['cut_head_ratio'] != 0 or self.args_dict['cut_tail_ratio'] != 0:
+            for d in dat:
+                token_len = len(d['wordTokens'])
+                word_tokens = d['wordTokens']
+                if self.args_dict['cut_head_ratio'] != 0:
+                    word_tokens = word_tokens[int(token_len * self.args_dict['cut_head_ratio']):]
+                if self.args_dict['cut_tail_ratio'] != 0:
+                    word_tokens = word_tokens[:-int(token_len * self.args_dict['cut_head_ratio'])]
+                
+                d['wordTokens'] = word_tokens
+        
+        # Limit token numbers of each doc to max_token_len
         if self.args_dict['max_token_len'] != 0:
             for d in dat:
                 if len(d['wordTokens']) > self.args_dict['max_token_len']:
