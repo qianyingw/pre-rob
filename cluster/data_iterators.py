@@ -44,7 +44,9 @@ class DataIterators(object):
             self.TEXT = data.Field()   # word tokens 
                
         # Modify rob name
-        self.rob_item = self.args_dict['rob_item']       
+        self.rob_item = self.args_dict['rob_item']
+        
+        self.under_sample_ratio = self.args_dict['under_sample_ratio']
 
  
     
@@ -99,6 +101,19 @@ class DataIterators(object):
         val_list = dat[train_size : (train_size + val_size)]
         test_list = dat[(train_size + val_size):]
          
+        
+        if self.under_sample_ratio is not None:
+            t_pos = [g for g in train_list if g[self.rob_item] == 1]
+            t_neg = [g for g in train_list if g[self.rob_item] == 0]
+           
+            random.shuffle(t_neg)
+            t_neg_new = t_neg[:len(t_pos) * self.under_sample_ratio] 
+            train_list = t_pos + t_neg_new
+            random.shuffle(train_list)
+            print('[train]: pos ({}) | neg({})'.format(len(t_pos), len(t_neg_new)))
+            print('\nNew training size: {}'.format(len(train_list)))
+            
+        
         
         data_dir = os.path.dirname(self.args_dict['data_json_path'])
         
