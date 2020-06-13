@@ -117,7 +117,7 @@ class SentAttn(nn.Module):
 #%%
 class HAN(nn.Module):
     
-    def __init__(self, vocab_size, embedding_dim, word_hidden_dim, word_num_layers, pad_idx, embed_trainable, batch_norm
+    def __init__(self, vocab_size, embedding_dim, word_hidden_dim, word_num_layers, pad_idx, embed_trainable, batch_norm,
                        sent_hidden_dim, sent_num_layers, output_dim):
         
         super(HAN, self).__init__()
