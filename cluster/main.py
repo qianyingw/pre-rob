@@ -88,7 +88,8 @@ if args.net_type == 'cnn':
                     output_dim = output_dim, 
                     dropout = args.dropout, 
                     pad_idx = pad_idx,
-                    embed_trainable = args.embed_trainable)
+                    embed_trainable = args.embed_trainable,
+                    batch_norm = args.batch_norm)
 
 if args.net_type == 'rnn':
     model = RecurNet(vocab_size = input_dim, 
@@ -100,7 +101,8 @@ if args.net_type == 'rnn':
                      rnn_cell_type = args.rnn_cell_type,
                      dropout = args.dropout, 
                      pad_idx = pad_idx,
-                     embed_trainable = args.embed_trainable)
+                     embed_trainable = args.embed_trainable,
+                     batch_norm = args.batch_norm)
     
 if args.net_type == 'attn':
     model = AttnNet(vocab_size = input_dim, 
@@ -112,7 +114,8 @@ if args.net_type == 'attn':
                     rnn_cell_type = args.rnn_cell_type, 
                     dropout = args.dropout, 
                     pad_idx = pad_idx,
-                    embed_trainable = args.embed_trainable)
+                    embed_trainable = args.embed_trainable,
+                    batch_norm = args.batch_norm)
 
 if args.net_type == 'han':
     model = HAN(vocab_size = input_dim,
@@ -121,6 +124,7 @@ if args.net_type == 'han':
                 word_num_layers = args.word_num_layers,
                 pad_idx = pad_idx,    
                 embed_trainable = args.embed_trainable,
+                batch_norm = args.batch_norm,
                 sent_hidden_dim = args.sent_hidden_dim,
                 sent_num_layers = args.sent_num_layers,
                 output_dim = output_dim)
@@ -158,7 +162,7 @@ else:
 del pretrained_embeddings
 
 #%% Define the optimizer, loss function and metrics
-optimizer = optim.Adam(model.parameters())
+optimizer = optim.Adam(model.parameters(1e-4))
 metrics_fn = metrics
 
 # Weight balancing

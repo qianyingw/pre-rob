@@ -22,7 +22,7 @@ import torch.nn.functional as F
 
 class ConvNet(nn.Module):
     
-    def __init__(self, vocab_size, embedding_dim, n_filters, filter_sizes, output_dim, dropout, pad_idx, embed_trainable):
+    def __init__(self, vocab_size, embedding_dim, n_filters, filter_sizes, output_dim, dropout, pad_idx, embed_trainable, batch_norm):
     
         super().__init__()
         
@@ -35,7 +35,10 @@ class ConvNet(nn.Module):
                                               kernel_size = (fsize, embedding_dim)) for fsize in filter_sizes
                                    ])                
         self.fc = nn.Linear(n_filters * len(filter_sizes), output_dim)
+        self.fc_bn = nn.BatchNorm1d(output_dim)
         self.dropout = nn.Dropout(dropout)
+        
+        self.apply_bn = batch_norm
     
     
     def forward(self, text):
@@ -58,6 +61,8 @@ class ConvNet(nn.Module):
         cat = torch.cat(pooled, dim=1)  # [batch_size, n_filters * len(filter_sizes)]
         dp = self.dropout(cat)
         out = self.fc(dp)  # # [batch_size, output_dim]
+        if self.apply_bn == True:
+            out = self.fc_bn(out)
         out = F.softmax(out, dim=1)  # [batch_size, output_dim]  
         
         return out
@@ -71,7 +76,7 @@ class ConvNet(nn.Module):
 #%%
 class RecurNet(nn.Module):
     
-    def __init__(self, vocab_size, embedding_dim, rnn_hidden_dim, rnn_num_layers, output_dim, bidirection, rnn_cell_type, dropout, pad_idx, embed_trainable):
+    def __init__(self, vocab_size, embedding_dim, rnn_hidden_dim, rnn_num_layers, output_dim, bidirection, rnn_cell_type, dropout, pad_idx, embed_trainable, batch_norm):
        
         super(RecurNet, self).__init__()
         
@@ -92,6 +97,7 @@ class RecurNet(nn.Module):
         self.dropout = nn.Dropout(dropout)
         self.linear = nn.Linear(rnn_hidden_dim*num_directions, output_dim)
         self.rnn_cell_type = rnn_cell_type
+        self.apply_bn = batch_norm
         
     
     def forward(self, text):
@@ -124,6 +130,8 @@ class RecurNet(nn.Module):
         
         z = self.dropout(out_last)  # [batch_size, num_directions*hidden_dim]
         z = self.linear(z)  # [batch_size, output_dim]
+        if self.apply_bn == True:
+            z = self.fc_bn(z)
         z = F.softmax(z, dim=1)  # [batch_size, output_dim]
         
         return z
@@ -133,7 +141,7 @@ class RecurNet(nn.Module):
 #%%
 class AttnNet(nn.Module):
     
-    def __init__(self, vocab_size, embedding_dim, rnn_hidden_dim, rnn_num_layers, output_dim, bidirection, rnn_cell_type, dropout, pad_idx, embed_trainable):
+    def __init__(self, vocab_size, embedding_dim, rnn_hidden_dim, rnn_num_layers, output_dim, bidirection, rnn_cell_type, dropout, pad_idx, embed_trainable, batch_norm):
         
         super(AttnNet, self).__init__()
         
@@ -151,6 +159,7 @@ class AttnNet(nn.Module):
         
         num_directions = 2 if bidirection == True else 1
         self.rnn_cell_type = rnn_cell_type
+        self.apply_bn = batch_norm
         
         
         # Initialize weight
@@ -195,6 +204,8 @@ class AttnNet(nn.Module):
         
         z = self.dropout(z)  # [batch_size, num_directions*hidden_dim]
         z = self.linear(z)  # [batch_size, output_dim]
+        if self.apply_bn == True:
+            z = self.fc_bn(z)
         z = F.softmax(z, dim=1)  # [batch_size, output_dim]
         
         return z

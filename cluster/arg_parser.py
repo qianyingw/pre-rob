@@ -34,7 +34,7 @@ def get_args():
     # Experiments
     parser.add_argument('--seed', nargs="?", type=int, default=1234, help='Seed for random number generator')
     parser.add_argument('--batch_size', nargs="?", type=int, default=32, help='Batch size')
-    parser.add_argument('--num_epochs', nargs="?", type=int, default=10, help='Number of epochs')    
+    parser.add_argument('--num_epochs', nargs="?", type=int, default=4, help='Number of epochs')    
     parser.add_argument('--train_ratio', nargs="?", type=float, default=0.8, help='Ratio of training set')
     parser.add_argument('--val_ratio', nargs="?", type=float, default=0.1, help='Ratio of validation set')
         
@@ -42,7 +42,7 @@ def get_args():
     parser.add_argument('--stop_c1', nargs="?", type=float, default=999, help='Acceptable difference compared with the best loss')
     parser.add_argument('--stop_c2', nargs="?", type=float, default=999, help='Acceptable difference compared with the best f1')
     
-    parser.add_argument('--exp_dir', nargs="?", type=str, default="/media/qwang/rob/temp", help='Folder of the experiment')
+    parser.add_argument('--exp_dir', nargs="?", type=str, default="/media/qwang/rob/try", help='Folder of the experiment')
     parser.add_argument('--save_model', nargs="?", type=str2bool, default=False, help='Save model.pth.tar with best loss')
        
     # Data and embedding
@@ -52,7 +52,7 @@ def get_args():
     parser.add_argument('--embed_path', nargs="?", type=str, default="/media/mynewdrive/rob/wordvec/wikipedia-pubmed-and-PMC-w2v.txt", help='Path of pre-trained vectors')
        
     # RoB item
-    parser.add_argument('--rob_item', nargs="?", type=str, default="RandomizationTreatmentControl", 
+    parser.add_argument('--rob_item', nargs="?", type=str, default="AnimalWelfareRegulations", 
                         choices=['RandomizationTreatmentControl',
                                  'BlindedOutcomeAssessment',
                                  'SampleSizeCalculation',
@@ -63,16 +63,17 @@ def get_args():
                         help='Risk of bias item')
 
     # Model
-    parser.add_argument('--net_type', nargs="?", type=str, default='transformer', choices=['cnn', 'rnn', 'attn', 'han', 'transformer'], 
+    parser.add_argument('--net_type', nargs="?", type=str, default='cnn', choices=['cnn', 'rnn', 'attn', 'han', 'transformer'], 
                         help="Different networks [options: 'cnn', 'rnn', 'attn', 'han', 'transformer']")
     
     parser.add_argument('--weight_balance', nargs="?", type=str2bool, default=True, help='Assign class weights for imbalanced data')
     parser.add_argument('--dropout', nargs="?", type=float, default=0.5, help='Dropout rate')
+    parser.add_argument('--batch_norm', nargs="?", type=str2bool, default=True, help='Add batch norm after fc layer')
     parser.add_argument('--threshold', nargs="?", type=float, default=0.5, help='Threshold for positive class value')
     parser.add_argument('--embed_trainable', nargs="?", type=str2bool, default=True, help='Embedding trainable or not')
     
     parser.add_argument('--max_vocab_size', nargs="?", type=int, default=5000, help='Maximum size of the vocabulary')
-    parser.add_argument('--max_token_len', nargs="?", type=int, default=4000, help='Threshold of maximum document legnth [default=0, sequence will not be cut]')
+    parser.add_argument('--max_token_len', nargs="?", type=int, default=5000, help='Threshold of maximum document legnth [default=0, sequence will not be cut]')
     parser.add_argument('--min_occur_freq', nargs="?", type=int, default=10, help='Minimum frequency of including a token in the vocabulary')
     parser.add_argument('--cut_head_ratio', nargs="?", type=float, default=0, help='Ratio of tokens cut from head')
     parser.add_argument('--cut_tail_ratio', nargs="?", type=float, default=0, help='Ratio of tokens cut from tail')
