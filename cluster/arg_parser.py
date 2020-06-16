@@ -71,7 +71,7 @@ def get_args():
     parser.add_argument('--batch_norm', nargs="?", type=str2bool, default=True, help='Add batch norm after fc layer')
     parser.add_argument('--threshold', nargs="?", type=float, default=0.5, help='Threshold for positive class value')
     parser.add_argument('--embed_trainable', nargs="?", type=str2bool, default=True, help='Embedding trainable or not')
-    parser.add_argument('--under_sample_ratio', nargs="?", type=int, default=2, help='Ratio of neg/pos')
+    parser.add_argument('--under_sample_ratio', nargs="?", type=int, default=None, help='Ratio of neg/pos')
     
     parser.add_argument('--max_vocab_size', nargs="?", type=int, default=5000, help='Maximum size of the vocabulary')
     parser.add_argument('--max_token_len', nargs="?", type=int, default=5000, help='Threshold of maximum document legnth [default=0, sequence will not be cut]')
