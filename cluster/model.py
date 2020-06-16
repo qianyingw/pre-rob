@@ -178,6 +178,7 @@ class AttnNet(nn.Module):
         self.dropout = nn.Dropout(dropout)
         self.tanh = nn.Tanh()
         self.linear = nn.Linear(num_directions*rnn_hidden_dim, output_dim)
+        self.fc_bn = nn.BatchNorm1d(output_dim)
         
         
     def forward(self, text):
