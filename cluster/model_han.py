@@ -134,6 +134,7 @@ class HAN(nn.Module):
                                   sent_num_layers = sent_num_layers)
         
         self.linear = nn.Linear(2*sent_hidden_dim, output_dim)
+        self.fc_bn = nn.BatchNorm1d(output_dim)
         self.apply_bn = batch_norm
     
     
