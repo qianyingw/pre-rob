@@ -115,7 +115,8 @@ if args.net_type == 'attn':
                     dropout = args.dropout, 
                     pad_idx = pad_idx,
                     embed_trainable = args.embed_trainable,
-                    batch_norm = args.batch_norm)
+                    batch_norm = args.batch_norm,
+                    output_attn = args.output_attn)
 
 if args.net_type == 'han':
     model = HAN(vocab_size = input_dim,

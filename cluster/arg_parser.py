@@ -89,6 +89,7 @@ def get_args():
     parser.add_argument('--rnn_hidden_dim', nargs="?", type=int, default=100, help='Number of features in RNN hidden state')
     parser.add_argument('--rnn_num_layers', nargs="?", type=int, default=1, help='Number of recurrent layers')
     parser.add_argument('--bidirection', nargs="?", type=str2bool, default=False, help='Apply the bidirectional RNN')
+    parser.add_argument('--output_attn', nargs="?", type=str2bool, default=False, help='Output attention scores for inference visualization')
 
     # HAN
     parser.add_argument('--word_hidden_dim', nargs="?", type=int, default=30, help='Hidden dim in word attention structure')

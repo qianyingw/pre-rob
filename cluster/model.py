@@ -141,7 +141,9 @@ class RecurNet(nn.Module):
 #%%
 class AttnNet(nn.Module):
     
-    def __init__(self, vocab_size, embedding_dim, rnn_hidden_dim, rnn_num_layers, output_dim, bidirection, rnn_cell_type, dropout, pad_idx, embed_trainable, batch_norm):
+    def __init__(self, vocab_size, embedding_dim, rnn_hidden_dim, rnn_num_layers, output_dim, 
+                 bidirection, rnn_cell_type, dropout, pad_idx, 
+                 embed_trainable, batch_norm, output_attn):
         
         super(AttnNet, self).__init__()
         
@@ -209,7 +211,12 @@ class AttnNet(nn.Module):
             z = self.fc_bn(z)
         z = F.softmax(z, dim=1)  # [batch_size, output_dim]
         
-        return z
+        if self.output_attn == True:
+            output = (z, s)
+        else:
+            output = z
+            
+        return output
 
 
 #net = AttnNet(10000, 200, 30, 1, 2, True, 'lstm', 0.5, 1, True)
