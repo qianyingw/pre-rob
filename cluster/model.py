@@ -162,6 +162,7 @@ class AttnNet(nn.Module):
         num_directions = 2 if bidirection == True else 1
         self.rnn_cell_type = rnn_cell_type
         self.apply_bn = batch_norm
+        self.output_attn = output_attn
         
         
         # Initialize weight
