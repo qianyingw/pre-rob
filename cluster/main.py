@@ -128,7 +128,8 @@ if args.net_type == 'han':
                 batch_norm = args.batch_norm,
                 sent_hidden_dim = args.sent_hidden_dim,
                 sent_num_layers = args.sent_num_layers,
-                output_dim = output_dim)
+                output_dim = output_dim,
+                output_attn = args.output_attn)
 
     
 if args.net_type == 'transformer':

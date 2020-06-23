@@ -117,8 +117,10 @@ class SentAttn(nn.Module):
 #%%
 class HAN(nn.Module):
     
-    def __init__(self, vocab_size, embedding_dim, word_hidden_dim, word_num_layers, pad_idx, embed_trainable, batch_norm,
-                       sent_hidden_dim, sent_num_layers, output_dim):
+    def __init__(self, vocab_size, embedding_dim, word_hidden_dim, word_num_layers, pad_idx, 
+                 embed_trainable, batch_norm,
+                 sent_hidden_dim, sent_num_layers, output_dim,
+                 output_attn):
         
         super(HAN, self).__init__()
         
@@ -136,7 +138,7 @@ class HAN(nn.Module):
         self.linear = nn.Linear(2*sent_hidden_dim, output_dim)
         self.fc_bn = nn.BatchNorm1d(output_dim)
         self.apply_bn = batch_norm
-    
+        self.output_attn = output_attn
     
     def forward(self, text):
         """
@@ -169,7 +171,12 @@ class HAN(nn.Module):
             z = self.fc_bn(z)
         z = F.softmax(z, dim=1)
         
-        return z
+        if self.output_attn == True:
+            output = (z, doc_a)
+        else:
+            output = z
+        
+        return output
 
 
 #%% Instance

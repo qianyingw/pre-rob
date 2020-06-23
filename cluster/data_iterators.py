@@ -114,7 +114,6 @@ class DataIterators(object):
             print('\nNew training size: {}'.format(len(train_list)))
             
         
-        
         data_dir = os.path.dirname(self.args_dict['data_json_path'])
         
         with open(os.path.join(data_dir, 'train.json'), 'w') as fout:
