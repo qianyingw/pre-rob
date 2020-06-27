@@ -172,7 +172,7 @@ class HAN(nn.Module):
         z = F.softmax(z, dim=1)
         
         if self.output_attn == True:
-            output = (z, doc_a)
+            output = (z, self.doc_a)
         else:
             output = z
         
