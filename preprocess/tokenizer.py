@@ -14,18 +14,10 @@ p_ref = re.compile(r"(.*Reference\s{0,}\n)|(.*References\s{0,}\n)|(.*Reference l
 def preprocess_text(text):
     
     # Remove texts before the first occurence of 'Introduction' or 'INTRODUCTION'
-    text = re.sub(r".*?(Introduction|INTRODUCTION)\s{0,}\n{1,}", " ", text, count=1, flags=re.DOTALL)
-    
-    # Remove texts after conclusions (may exist in abstract..)   
-    # text = re.sub(r"Conclusion\s{0,}\n.*|Conclusions\s{0,}\n.*", " ",  text, flags=re.DOTALL | re.IGNORECASE)
-
+    text = re.sub(r".*?(Introduction|INTRODUCTION)\s{0,}\n{1,}", " ", text, count=1, flags=re.DOTALL)    
     # Remove reference after the last occurence 
     s = re.search(p_ref, text)
-    if s: text = s[0]
-    # text = re.sub(r"Reference\s{0,}\n.*|References\s{0,}\n.*|Reference list\s{0,}\n.*|REFERENCE\s{0,}\n.*|REFERENCES\s{0,}\n.*|REFERENCE LIST\s{0,}\n.*", " ", text, flags=re.DOTALL)  
-    # text = re.sub(r"^(?!preference|preferences)Reference\s{0,}\n.*|References\s{0,}\n.*|Reference list\s{0,}\n.*", " ", text, flags=re.DOTALL | re.IGNORECASE)    
-    # text = re.sub(r"Reference\s{0,}\n.*|References\s{0,}\n.*|Reference list\s{0,}\n.*", " ", text, flags=re.DOTALL | re.IGNORECASE) 
-    
+    if s: text = s[0]  
     # Remove citations 
     text = re.sub(r"\s+[\[][^a-zA-Z]+[\]]", "", text)
     # Remove links
@@ -68,23 +60,6 @@ def text_tokenizer(text):
     return sent_tokens, word_tokens
 
 
-
-# Example
-#text = "i don't like mustard. yk is hungry. he wants a banana. she's 5-social. i. not. he - not really.    9. "
-#text = preprocess_text(text)
-#text = nlp(text)
-#sent_tokens = []
-#word_tokens = []
-#for i, sent in enumerate(text.sentences):
-#    one_sent = [word.text for word in sent.words if word.text not in string.punctuation]
-#    sent_tokens.append(one_sent)
-#word_tokens = [w for s in sent_tokens for w in s]    
-#    
-#print(sent_tokens)
-#print(word_tokens)
-#len(word_tokens)
-
-
 #%% Tokenization with sentence embedding
 ## stanford tokenizer
 def sent_encoder(embed_func, text):    
@@ -98,28 +73,6 @@ def sent_encoder(embed_func, text):
     doc_mat = embed_func(sent_list).numpy().astype('float_')                 
     doc_mat = doc_mat.tolist()
     return doc_mat
-
-# nltk
-#from nltk.tokenize import word_tokenize, sent_tokenize
-#def sent_encoder(embed_func, text):    
-#    sent_list = sent_tokenize(text)
-#    sent_list = [s for s in sent_list if len(word_tokenize(s)) > 2]            
-#    doc_mat = embed_func(sent_list).numpy()
-#    return doc_mat
-
-### Example                   
-#text = "i don't like mustard, but he likes it. yk is hungry. he wants a banana. she's 5-social. i. not. he - not really.    9. "
-#text = preprocess_text(text)
-#text = nlp(text)
-#temp = sent_encoder(embed_func, text)
-#sent_list = []
-#for i, sent in enumerate(text.sentences):
-#    one_sent_list = [word.text for word in sent.words if word.text]
-#    if len(one_sent_list) > 2:
-#        one_sent = ' '.join(one_sent_list)
-#        sent_list.append(one_sent)
-#        
-#doc_vec = sent_embed(sent_list).numpy().tolist()
 
 
 #%% Tokenization (spacy)
