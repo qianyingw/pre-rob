@@ -23,7 +23,6 @@ from data_iterators import DataIterators
 
 from model import ConvNet, RecurNet, AttnNet
 from model_han import HAN
-from model_transformer import TransformerNet
 from train import train_evaluate, test
 
 
