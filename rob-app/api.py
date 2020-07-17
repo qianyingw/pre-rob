@@ -114,7 +114,7 @@ class Dir(Resource):
         output = rober.pred_probs()
         
         dirs[dir_id] = txt_dir
-        return {dir_id: dirs[dir_id], 'dir_output': {'score_list': output}}
+        return {dir_id: dirs[dir_id], 'dir_output': output}
     
 api.add_resource(Dir, '/<string:dir_id>')
 
