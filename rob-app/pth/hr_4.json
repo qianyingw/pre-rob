@@ -1,0 +1,129 @@
+{
+    "args": {
+        "seed": 1234,
+        "batch_size": 32,
+        "num_epochs": 20,
+        "train_ratio": 0.8,
+        "val_ratio": 0.1,
+        "stop_p": 2,
+        "stop_c1": 0.01,
+        "stop_c2": 0.008,
+        "exp_dir": "/disk/scratch/s1515896/rob/output/hr_4_test",
+        "save_model": true,
+        "args_json_path": null,
+        "data_json_path": "/disk/scratch/s1515896/rob/input/pome/rob_tokens.json",
+        "embed_dim": 200,
+        "embed_path": "/disk/scratch/s1515896/rob/input/pome/wikipedia-pubmed-and-PMC-w2v.txt",
+        "rob_item": "RandomizationTreatmentControl",
+        "net_type": "han",
+        "weight_balance": true,
+        "dropout": 0.5,
+        "batch_norm": false,
+        "threshold": 0.5,
+        "embed_trainable": true,
+        "under_sample_ratio": null,
+        "max_vocab_size": 5000,
+        "max_token_len": 10000,
+        "min_occur_freq": 10,
+        "cut_head_ratio": 0,
+        "cut_tail_ratio": 0,
+        "num_filters": 100,
+        "filter_sizes": "3,4,5",
+        "rnn_cell_type": "lstm",
+        "rnn_hidden_dim": 100,
+        "rnn_num_layers": 1,
+        "bidirection": false,
+        "output_attn": false,
+        "word_hidden_dim": 50,
+        "word_num_layers": 1,
+        "sent_hidden_dim": 50,
+        "sent_num_layers": 1,
+        "max_doc_len": 500,
+        "max_sent_len": 40,
+        "num_heads": 2,
+        "ff_dim": 10,
+        "num_enc_layers": 2
+    },
+    "prfs": {
+        "train_1": {
+            "loss": 0.489564843779924,
+            "accuracy": 0.8168048469387755,
+            "f1": 0.6910705752740298,
+            "recall": 0.8034884899680818,
+            "precision": 0.642801471870248,
+            "specificity": 0.8196965776801487
+        },
+        "valid_1": {
+            "loss": 0.40431057453155517,
+            "accuracy": 0.9,
+            "f1": 0.8083305430628586,
+            "recall": 0.9352352092352093,
+            "precision": 0.7304342324342327,
+            "specificity": 0.8932805136892094
+        },
+        "train_2": {
+            "loss": 0.4175152736050742,
+            "accuracy": 0.9017857142857143,
+            "f1": 0.8228872558509164,
+            "recall": 0.8761623155755808,
+            "precision": 0.7953449624105381,
+            "specificity": 0.9118920529446907
+        },
+        "valid_2": {
+            "loss": 0.396829149723053,
+            "accuracy": 0.91625,
+            "f1": 0.8404612166643127,
+            "recall": 0.9223924963924963,
+            "precision": 0.79016611819553,
+            "specificity": 0.9147404178089599
+        },
+        "train_3": {
+            "loss": 0.40658188869758527,
+            "accuracy": 0.9140625,
+            "f1": 0.8409174455012163,
+            "recall": 0.8852703277448175,
+            "precision": 0.8148311922171464,
+            "specificity": 0.9235402902692172
+        },
+        "valid_3": {
+            "loss": 0.38925684452056886,
+            "accuracy": 0.92875,
+            "f1": 0.8621534129441251,
+            "recall": 0.9125339105339105,
+            "precision": 0.8309659229659231,
+            "specificity": 0.9374374234461194
+        },
+        "train_4": {
+            "loss": 0.56290003657341,
+            "accuracy": 0.8451849489795918,
+            "f1": 0.5083174233158327,
+            "recall": 0.5239170551670549,
+            "precision": 0.5054963177412152,
+            "specificity": 0.9650106486881459
+        },
+        "valid_4": {
+            "loss": 0.7610143256187439,
+            "accuracy": 0.75375,
+            "f1": 0.0,
+            "recall": 0.0,
+            "precision": 0.0,
+            "specificity": 1.0
+        },
+        "train_5": {
+            "loss": 0.8041055962747458,
+            "accuracy": 0.7256058673469388,
+            "f1": 0.0,
+            "recall": 0.0,
+            "precision": 0.0,
+            "specificity": 1.0
+        },
+        "valid_5": {
+            "loss": 0.7670273518562317,
+            "accuracy": 0.755,
+            "f1": 0.0,
+            "recall": 0.0,
+            "precision": 0.0,
+            "specificity": 1.0
+        }
+    }
+}
