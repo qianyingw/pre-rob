@@ -1,0 +1,786 @@
+RESEARCH ARTICLE
+
+Adeno-Associated Virus Vector Mediated
+Delivery of the HBV Genome Induces Chronic
+Hepatitis B Virus Infection and Liver Fibrosis
+in Mice
+Lei Ye1, Haisheng Yu2, Chengwen Li3, Matthew L. Hirsch3, Liguo Zhang2, R.
+Jude Samulski3, Wuping Li1,4*, Zhong Liu1
+
+a11111
+
+1 Institute of Blood Transfusion, Chinese Academy of Medical Sciences and Peking Union Medical College,
+Chengdu, China, 2 Key Laboratory of Immunity and Infection, Institute of Biophysics, Chinese Academy of
+Sciences, Beijing, China, 3 Gene Therapy Center, Department of Pharmacology, University of North
+Carolina, Chapel Hill, North Carolina, United States of America, 4 MOH Key Laboratory of Systems Biology
+of Pathogens, Institute of Pathogen Biology, Chinese Academy of Medical Sciences & Peking Union Medical
+College, Beijing, China
+* lwpzhr@sina.com
+
+Abstract
+OPEN ACCESS
+Citation: Ye L, Yu H, Li C, Hirsch ML, Zhang L,
+Samulski RJ, et al. (2015) Adeno-Associated Virus
+Vector Mediated Delivery of the HBV Genome
+Induces Chronic Hepatitis B Virus Infection and Liver
+Fibrosis in Mice. PLoS ONE 10(6): e0130052.
+doi:10.1371/journal.pone.0130052
+Academic Editor: Xiangzhi Meng, University of
+Texas HSC at San Antonio, UNITED STATES
+Received: March 19, 2015
+Accepted: May 15, 2015
+Published: June 15, 2015
+Copyright: This is an open access article, free of all
+copyright, and may be freely reproduced, distributed,
+transmitted, modified, built upon, or otherwise used
+by anyone for any lawful purpose. The work is made
+available under the Creative Commons CC0 public
+domain dedication.
+Data Availability Statement: All relevant data are
+within the paper and its Supporting Information files.
+
+Liver cirrhosis and hepatocellular carcinomas are major health problems of chronic hepatitis
+B virus (HBV) infection. To date, rare model has reproduced liver fibrosis associated with
+long-term HBV infection which in turn has hindered both the understanding of HBV biology
+and the development of new treatment options. Here, using adeno-associated virus serotype 8 (AAV8) mediated delivery of a 1.2-kb HBV genome, we successfully generated a
+chronic HBV infectious mouse model that presents the associated liver fibrosis observed
+following human infection. After AAV8/HBV1.2 vector administration, mice demonstrated effective HBV replication and transcription which resulted in HBV antigen expression and viremia over 6 months. Although no obvious acute inflammatory response was noted, these
+mice still developed chronic liver disease and hepatic fibrogenesis as demonstrated by increased ground glass-like hepatocytes, an increasing trend of collagen deposition and
+upregulated fibrosis markers, including type I collagen, type III collagen, tissue inhibitor of
+metalloproteinase (TIMP), and transforming growth factor-β1(TGF-β1). Taken together,
+AAV-mediated HBV gene delivery to the mouse liver, induced HBV persistent infection accompanied by liver fibrosis which can serve as a model for investigating the precise mechanisms underlying liver fibrosis following chronic HBV infection as well as for the potential
+development of novel therapeutics.
+
+Funding: Peking Union Medical College graduated
+student innovation fund, 2011-1001-033, LY. The
+basic grant of Institute of Pathogen Biology, Chinese
+Academy of Medical Sciences, 2011IPB106, WPL.
+
+Introduction
+
+Competing Interests: The authors have declared
+that no competing interests exist.
+
+Approximately 240 million people worldwide are chronically infected with hepatitis B virus
+(HBV) and a large proportion of chronic infections develop into hepatocellular carcinoma or
+
+PLOS ONE | DOI:10.1371/journal.pone.0130052 June 15, 2015
+
+1 / 16
+
+Generation of Persistent HBV Infection Mouse Model
+
+cirrhosis [1]. These complications often result in liver failure and over one million deaths are
+reported annually [2–4]. Thus, HBV-related diseases remain a major public health challenge.
+Chronically-infected patients can be treated with several drugs, including IFN-α and nucleoside analogs such as lamivudine or adefovir. IFN-α regulates the immune response by increasing viral clearance, whereas nucleoside analogs interfere with viral DNA replication. However,
+the effectiveness of these drugs is limited. And challenges remain in terms of their clinical application, including low efficacy, undesirable side effects, and resistant HBV mutations[5–9].
+Thus, there is a need to develop both novel therapeutic reagents that inhibit HBV replication
+and representative HBV animal models to evaluate new therapeutic strategies.
+The key characteristic of hepadnaviruses is their high degree of species-specificity and hepatic tropism, such as lack specific receptors and cellular factors that are needed in viral entry
+and trafficking which could make mice resistant to HBV infection [10–13]. Up to date, chimpanzees are the only permissive animals that are fully infected to HBV,and acute infections and
+hepatitis would develop upon inoculation with HBV positive serum; however, these animals do
+not envolve chronic liver disease, but develop cellular immune response similar to that demonstrated in human being during acute infection [14, 15]. However, several limitations including
+large size, ethical issues, and high costs restrict their use for basic research and therapeutic drug
+screening. The tree shrew (Tupaia belangeri) is a squirrel-like HBV permissive small animal,
+but HBV infection only result in mild and transient infections [16]. HBV transgenic mice are
+used to clarify the HBV replication mechanism and specific oncogenes function [17–20]. However, due to HBV genes integrated into the host genome and expressed as self-proteins and
+thus, the mice are tolerant to these immunologically antigens and do not induce liver disease.
+Mouse models using recombinant viral vectors or by hydrodynamic injection of naked HBV
+genome DNA into hepatocytes were used to investigate immune tolerance to HBV antigens
+and to study the mechanisms of viral clearance [21–24]. However, acute but not chronic, HBV
+infection is often induced. Two recent studies used AAV to deliver HBV genome DNA to
+mouse liver and induced HBV persistent infection and immune tolerance to HBV [25, 26].
+Both papers tried to elucidate immune mechanism of the persistence HBV infection. Another
+study elucidated the mechanisms of chronic HBV infection and immunopathogenesis in a humanized mouse model [27]. Thus, there is a need to develop a novel mouse model of persistent
+HBV infection to investigate viral pathogenesis and to screen new antiviral drugs.
+The present study developed a mouse model of persistent HBV infection by using an AAV
+vector to transfer the hepatitis B virus genome (HBV1.2) into mouse liver cells which initiated
+hepatitis B virus production, thereby leading to persistent viremia and the induction of liver fibrosis. This mouse model could be used to elucidate the biological process underlying HBV
+pathogenesis and to screen small molecules that may be effective for the treatment of chronic
+HBV infection and liver fibrosis.
+
+Materials and Methods
+Cell lines
+HEK 293T cells and Huh7.5.1 cells were maintained in Dulbecco's modified Eagle's medium
+(Sigma, St Louis, MO) supplemented with 10% fetal bovine serum and penicillin-streptomycin
+(100U/ml). The cells were maintained at 37°C in a 5% CO2 atmosphere.
+
+Generation of the AAV-HBV vector (SSV9-1.2HBV)
+A pHBV1.2 plasmid containing 1.2 copies of the HBV genome (genotype D) was used to generate the HBV fragment. This fragment was cloned into the pSSV9 vector (which contained
+the inverted terminal repeat of AAV type 2 at both ends because the rep and cap genes were
+
+PLOS ONE | DOI:10.1371/journal.pone.0130052 June 15, 2015
+
+2 / 16
+
+Generation of Persistent HBV Infection Mouse Model
+
+exchanged) to generate pSSV9-1.2HBV. Briefly, p-SSV9 was digested with Xbal to generate a
+linear vector and pHBV1.2 was digested with SacI and HindIII to generate the inserted fragment. The linearized p-SSV9 backbone and the HBV fragment were blunted using Klenow I
+and then ligated using T4 ligase. Pseudotyped AAV8 vectors were produced in 293T cells using
+a triple-plasmid transfection protocol and purified with CsCl gradients[28]. The vector titers
+were determined by quantitative PCR (qPCR).
+
+In vitro study
+Huh7.5.1 cells were seeded into a six well plate at 4×105 per well and cultured at 37°C in a 5%
+CO2 atmosphere. pSSV9-1.2HBV DNA (3μg) was transfected into the Huh7.5.1 cells of each
+well using Lipofectamine 2000 (Invitrogen, Carlsbad, CA, USA) according to the manufacturer's instructions. PBS was used as control. The supernatant and transfected cells were harvested 72 hrs post-transfection and subjected to nucleic acid extraction using a viral DNA
+isolation kit (QIANGEN) and then digested with DpnI. The recovered HBV viral DNA was
+measured via qPCR. In a parallel assay, the supernatant was collected everyday for seven days
+and replaced with the same amount of media to determine the cumulative abundance of
+HBsAg and HBeAg by ELISA. At the same time, pSSV9-1.2HBV (10μg) was transfected to
+Huh7.5 cell (2×106 cell) in 100mm dish. Southern-blot analysis of total DNA extrated from
+transfected Huh7.5.1 cell and DNA samples extrated from HepG2.2.15 cell and Huh7.5.1 cell
+as positive control and negtive control respectively. All DNA samples were digested with or
+without selected restriction enzymes(EcoRI or HindIII) and were treated with Rnase A before
+1.2% gel electrophoresis. The filters were hybridized with a DIG-labeled 3.2kb HBV specific
+probe.
+
+Animal study
+Normal C57BL/6 mice (aged 6–8 weeks; Sichuan University, Sichuan, China) were bred and
+maintained at the Laboratory Animal Facility of the Institute of Blood Transfusion, Chinese
+Academy of Medical Science, Chengdu. Animal care and procedures were performed in accordance with the Guide for the Care and Use of Laboratory Animals, which was approved by the
+Institutional Animal Care and Use Committee at the Chinese Academy of Medical Science
+(Permit Number: ILAS-PG-2014-001). All efforts were made to minimize suffering. Mice were
+injected with the AAV vector [2×1011 vector genome equivalents (vg)] in 200μl of phosphatebuffered saline (PBS) via the tail vein. The serum for the ELISAs was prepared from tail bleeding, which was collected in heparinized capillary tubes using standard methods. After dilution
+with PBS, the serum HBsAg and HBeAg concentrations were measured using an Auszyme
+Monoclonal Diagnostic ELISA kit (Abbott Laboratories, Abbott Park, IL). Serum alanine aminotransferase (ALT) and aspartate aminotransferase (AST) levels were analyzed using commercially available colorimetric assays (Teco Diagnostics, Anaheim, CA). To collect the livers
+for the immunohistochemical and nucleic acid analyses, mice were anesthetized using 2.5%
+avertin and perfused transcardially with cold PBS (pH 7.4), followed by 4% paraformaldehyde
+in phosphate buffer (0.1 mol/L pH 7.4). Intrahepatic HBcAg and HBsAg were visualized by
+immunohistochemical staining of OCT-embedded tissues using rabbit anti-HBc and anti-HBs
+antibodies (Dako, Carpinteria, CA), respectively, and the Envision HRP (diaminobenzidine)
+system (Dako, Carpinteria, CA). Ten random fields were selected per slide and the percentages
+of HBsAg- and HBcAg-positive hepatocytes were quantified using Image-Pro Plus software
+(Media Cybernetics, Rockville, MD). The liver sections were also examined by light microscopy
+after standard hematoxylin and eosin (H&E) and Masson’s trichrome staining [29, 30]. Sirus
+red staining of liver sections were observed by polarizingmicroscope.
+
+PLOS ONE | DOI:10.1371/journal.pone.0130052 June 15, 2015
+
+3 / 16
+
+Generation of Persistent HBV Infection Mouse Model
+
+qPCR and reverse transcription (RT)-qPCR
+To measure the DNA levels of HBV and the AAV vector, nucleic acids were extracted using
+DNeasy Blood and Tissue Kits (Invitrogen, Carlsbad, CA) according to the manufacturer’s instructions and stored at -80°C prior to PCR analyses. A qPCR standard curve was generated
+using 10-fold dilutions of the SSV9-1.2HBV plasmid (1.0×103–1.0×109copies/ml). To measure
+the mRNA levels of HBV, Timp-1, and Tgf-β1, total RNA was isolated using a NucleoSpinRNA
+II kit (Macherey Nagal,GmbH & Co. KG, Germany) and reverse transcribed using a First
+Strand cDNA Synthesis Kit (Toyobo, Japan). All of the qPCR reactions were performed in triplicate in 96-well optical reaction plates using an ABI 7900 Sequence Detection System (Applied
+Biosystems, Foster City, CA) and SYBR Green I PCR mix (Roche Diagnostics, Indianapolis,
+IN) as previously described [31]. The primer sequences are shown in the S1 Table.
+
+ELISA
+The levels of collagen I and III in the liver and serum samples were determined using commercially available ELISA kits (Mouse Collagentype I (Col I) ELISA kit and Mouse Collagentype
+III (Col III) ELISA kit); (R&D Systems, Minneapolis, MN). The serum levels of TIMP-1 and
+TGF-β1 were also determined using commercially available ELISA kits (R&D Systems, Minneapolis, MN). To prepare liver samples, up to100 mg of tissue was homogenized in 200μl of PBS
+and centrifuged at 2000–3000g for 20 min. The supernatant was collected and analyzed using
+an ELISA kit.
+
+Southern and Northern blotting
+HBV replicative DNA intermediates and viral RNA were detected by Southern and Northern
+blot analysis of total genomic liver DNA and RNA respectively with DIG High Prime DNA Labeling and Detection Starter Kit II and DIG Northern Starter Kit (Roche Diagnostics, Indianapolis, IN). 3.2kb HBV genome was labeled by DIG as southern blot probe. For northern
+blotting, PCR products were used for labeling and synthesized DIG labeled RNA as northern
+blotting probes. GAPDH (house keeping gene) sequence from homo sapiens and rattus were
+amplified by RT-PCR and used to normalize the amount of RNA bound to the membrane.
+
+Statistical analysis
+Data were expressed as the mean ±SD. Statistical analysis was performed using two-way analysis of variance (ANOVA, Graphpad prism 5) to determine statistically significant differences
+between groups. P<0.05 was considered statistically significant.
+
+Results
+In vitro characterization of the recombinant AAV-HBV vector
+HBV genomes have been delivered into the livers of mice via hydrodynamic injection and by
+using an adenoviral vector; however, these methods can lead to the rapid clearance of the HBV
+genomes. Alternatively, HBV-transgenic mice have been used to model HBV infections, however these mice are tolerant to the viral antigens and the persistent expression of self-antigens
+limits their use for evaluating antiviral drugs. To overcome these limitations, the present study
+attempted to generate a mouse model that faithfully mimics chronic HBV infection in humans.
+As mice cannot be directly infected by HBV due to the lack of the HBV receptor required for
+viral uptake, mice were injected with an AAV vector harboring HBV1.2 genomic DNA, which
+has been used previously to induce HBV replication in both mouse hepatocytes and human
+HepG2 cells[32, 33]. AAV8 is highly efficient in transducing mouse liver, so this serotype was
+
+PLOS ONE | DOI:10.1371/journal.pone.0130052 June 15, 2015
+
+4 / 16
+
+Generation of Persistent HBV Infection Mouse Model
+
+used to mediate HBV gene transfer in the present mouse model. As shown in Fig 1a, a fragment
+that comprised 1.2 copies of HBV (genome D) was cloned into the p-SSV9 vector, which contained the ITR of AAV type 2 at both ends. To verify the HBV production and gene expression
+of the construct, pSSV9-1.2HBV was transfected into Huh7.5.1 and the amount of viral genome DNA and HBsAg and HBeAg expression was evaluated. As indicated in Fig 1b, HBV
+viral genome DNA was produced both in supernatant and in cells three days after transfection
+(Fig 1b). However, the intracellular viral DNA content was approximately 300 times higher
+than that found in the supernatant (Fig 1b). As shown in Fig 1c, HBsAg and HBeAg were produced at increasing trend overtime and secreted into the supernatant of the transfected cell. At
+the same time, southern blot analysis of total DNA extracted from transfected Huh7.5.1 cell
+showed relaxed-circle (rc) DNA, ds DNA and ssDNA (Fig 2a). EcoRI restriction enzyme (restriction enzyme cutting site included in HBV genome) and HindIII restriction enzyme (restriction enzyme cutting site was not included in HBV genome) were chosen to digest samples
+in order to cut high molecular weight DNA strands into smaller fragments. Southern blot analysis of uncut total DNA sample was similar to HindIII treated sample, but different from EcoRI
+treated sample. HBV relaxed-circle (rc) DNA and ds DNA were digested in EcoRI treated sample. These data verified that pITR2-1.2HBV induces HBV replication and gene expression in
+Huh7.5.1 cell.
+
+AAV vector mediates HBV genome transfer, replication, and
+transcription in mouse liver
+Following the in vitro plasmid vector verification, AAV8 vectors that harbor the 1.2HBV genome were produced in 293T cells as described previously[28]. Then, mice were injected intravenously with the AAV8-1.2HBV vector (2×1011vg). Two days post-injection (p.i.), over 90%
+of the HBV DNA was distributed in the liver (Fig 3a). At 6 months p.i., the HBV DNA levels in
+the liver had increased by 40% compared to two days p.i., whereas the levels were reduced
+markedly in all other tissues examined (muscle, kidney, intestine, heart, and lung). This suggests that the HBV genome replicated in mouse liver. Two pairs of qPCR primers (S1 Table)
+were used to quantify the HBV genome copy number. The first pair, which included a forward
+primer located in the AAV2 ITR and a reverse primer located in the HBV X region, was used
+to quantify the AAV vector DNA. The second pair of forward and reverse primers targeted in
+the HBV S region and was used to quantify the HBV genome (including the AAV vector, replicated HBV, and HBV packaged virus). First, the HBV genome copy number was examined in
+the serum at 0–6 months p.i.. The viral genome levels peaked at 2 weeks p.i., before decreasing
+rapidly as they were cleared from the serum (Fig 3b). This was followed by a slow decrease in
+genome abundance after 2 months. At the 2 week time point, the HBV genome and AAV vector levels detected by the two sets of primers were approximately equal; however, there was a
+2–5-fold difference at the later time points (Fig 3b), suggesting that the HBV virus was secreted
+into the serum. The HBV genome content of the mouse liver was also measured using the same
+primer pairs. At the 1, 3, and 6 month time points, the overall HBV genome content was significantly higher than that of the AAV vector (Fig 3c). There was also an increasing trend at the
+first three months, which suggested that the HBV genome replicated in the mouse liver. During
+1–6 month post AAV8-1.2HBV injected, HBV replication intermediates(rc DNA, ds DNA and
+ss DNA) were also observed in C57BL/6 mice by Southern blot analysis (Fig 2b), but covalently
+closed circular DNA was not detected. These results demonstrated that encapsulated HBV
+viral DNA was produced and that physiologically relevant viremia was present in the mouse
+model. Transcription of HBV in the mouse liver was also examined by RT-qPCR and Northern
+blot. Compared to the 1 month time point (3.65 ×107 copies/g), the amount of viral cDNA was
+
+PLOS ONE | DOI:10.1371/journal.pone.0130052 June 15, 2015
+
+5 / 16
+
+Generation of Persistent HBV Infection Mouse Model
+
+Fig 1. Schematic illustration of the AAV vector used to transfer the HBV genome and in vitro determination of the replication ability of the
+construct. (a) A fragment containing 1.2 copies of the HBV genome (genotype D) was generated from the pHBV1.2 plasmid and cloned into the p-SSV9
+vector, which contained the ITR of AAV type 2 at both ends by exchanging the rep and cap genes (see Materials and Methods). The q-PCR primers were
+indicated. (b, c) Plasmid of pSSV9-1.2HBV (3μg) was transfected to Huh7.5.1 cell and determined the HBV viral genomes contents and/or the cumulative
+expression of HBsA and HBeAg in the cell and/or supernatant respectively, by Q-PCR and ELISA. Data represent the mean ±SD (n = 4).
+doi:10.1371/journal.pone.0130052.g001
+
+200-fold higher at 3 months p.i., reaching 1.01×1010 copies/g at 6 months p.i. (Fig 3d). And
+northern blot analysis of total Hepatic RNA extracted from injected mice, 3.5kb, 2.4kb and
+2.1kb HBV transcripts were detected correlated with the expression of HBsAg in serum (Fig
+2c). This confirmed that transgene transcription occurred following AAV-1.2HBV
+vector delivery.
+
+In vivo HBV gene expression levels and kinetics
+Viral replication and viremia were detected in AAV-1.2HBV infected mice, but it was not sufficient for an adequate experimental model of HBV infection. Thus, AAV-mediated gene transduction in the serum and liver were analyzed by ELISA and immunohistochemical staining for
+the HBV antigen, respectively. The results showed that AAV8-1.2HBV injection led to a persistent infection, which was characterized by the presence of HBsAg and HBeAg, or HBcAg in
+the mouse serum and/or liver for 6 months. The secretion of viral antigens into the blood
+was monitored over time. HBV surface antigen was detectable at 2 weeks p.i., peaking at
+4.85×102ng/ml at 2 months. After this, the serum HBsAg level declined slowly and reached a
+plateau concentration of 4.0×102ng/ml at 6 months p.i. (Fig 4a). The expression profile of
+HBeAg showed a similar trend, except that it peaked at 1 month p.i. (Fig 4b). Interestingly, the
+serum level of HBsAg remained relatively steady over the course of 6 months and there was a
+lack of seroconversion to anti-HBs (both IgM and IgG). Immunohistochemical staining was
+used to detect the expression of HBsAg and HBcAg in the livers of mice treated with
+AAV8-HBV1.2. As shown in Fig 4c, similar to the serum expression profile, HBsAg-positive
+hepatocytes were distributed randomly throughout the liver at 1 month p.i. and most visual
+
+PLOS ONE | DOI:10.1371/journal.pone.0130052 June 15, 2015
+
+6 / 16
+
+Generation of Persistent HBV Infection Mouse Model
+
+Fig 2. Southern and Northern blot analysis of HBV replication and transcription in vitro and in vivo. (a) Detection of HBV DNA replicative
+intermediates 7 days post pSSV9-1.2HBV transfected to Huh7.5.1 cell. (b) Intermediates of HBV DNA replication 1, 3, 6 months after AAV8-1.2HBV
+injection. The relaxed-circular(RC), double-stranded linear (DS) and single-stranded (SS)DNAs were indicated.(c) Northern blotting to detect 3.5kb
+pregenomic, 2.4kb and 2.1kb mRNAs in the livers post injection. The amount of RNA bound to the membrane was normalized by housekeeping gene
+(GAPDH). HBV(-) mice, PBS injected mice.
+doi:10.1371/journal.pone.0130052.g002
+
+fields contained no stained cells, although some rare hepatocytes showed light staining of the
+cytoplasm. However, the expression of HBsAg showed an increasing trend during the 6
+months period, which may have reflected a cumulative effect. The expression of HBcAg occurred rapidly, which was obvious throughout the liver at 1 month p.i., and increased significantly at 3 months p.i. before remaining relatively stable. By contrast, cells from the HBV(-)
+group exhibited no staining. These results demonstrate that the AAV vector mediated HBV
+transgene production.
+
+AAV8-1.2HBV does not generate obvious acute inflammation, but
+induces liver fibrosis accompanied by chronic liver injury
+ALT and AST are enzymes located in liver cells that are released into the circulation by necrotic
+hepatocytes. Therefore, we monitored these transaminase concentrations in the serum to assess
+the toxicity following AAV8-1.2HBV vector administration. Compared with HBV(-) mice,
+AAV8-1.2HBV infection did not increase the serum ALT levels over the course of 6 months
+(Fig 5a), whereas the serum AST level increased modestly at 1 and 2 months p.i.; however, this
+difference was not statistically significant. Animals treated with AAV8-1.2HBV did not exhibit
+other symptoms of systemic toxicity (data not shown). The increased AST levels at 1 and 2
+
+PLOS ONE | DOI:10.1371/journal.pone.0130052 June 15, 2015
+
+7 / 16
+
+Generation of Persistent HBV Infection Mouse Model
+
+Fig 3. AAV-HBV-mediated efficient HBV gene transfer, replication, and transcription in mouse liver. Mice were injected intravenously with the
+AAV-HBV vector (2 × 1011viral genome equivalents (vg)) and then bled or sacrificed at the indicated time points. (a) HBV viral genomes in selected tissues at
+2 days and 6 months after injection. (b, c) Levels of AAV vector and whole HBV genome in serum (b) and liver (c) samples. HBV viremia is expressed as the
+difference between the whole HBV genome content and the AAV vector genome content. (d) Reverse transcription quantitative PCR analysis of the HBV
+cDNA content of the liver. Statistical analyses were performed using a two-way analysis of variance. Data represent the mean ±SD (n = 4).
+doi:10.1371/journal.pone.0130052.g003
+
+months p.i. may have been associated with HBV transgene expression. These results demonstrate that there was no obvious acute inflammatory response after AAV8-1.2HBV injection.
+Previous studies show that the chronic inflammation related to HBV infection contributed
+to liver fibrosis in human patients[34, 35]. To investigate whether liver fibrosis and chronic
+liver injury were present following AAV81.2HBV transduction, histopathological changes in
+liver sections were analyzed overtime by H&E, Masson’s staining and Sirus red stain. As shown
+in Fig 5b, mild inflammation and hepatic necrosis were indicated. A mild inflammatory cell infiltration surrounding the portal area (black arrow) was shown by H&E staining at 1, 3, and 6
+months p.i., and most of hepatocytes were normal up to 3 months p.i.. At 6 months p.i., however, the hepatic lobular structure was marked damage and ground glass-like hepatocytes were
+indicated, macrovesicular steatosis degeneration (blue arrow) was also observed and the vascular and portal areas was obviously broadened. Collagen (stained blue by Masson’s staining and
+red by Sirus red stain; yellow and white arrow) deposition was observed by an increasing trend
+during the study period (Fig 5b). Proliferated fibers were stained blue in liver by Masson stain,
+and proliferated collagen I fibers were stained red by Sirus Red stain in liver (Fig 5b). The levels
+of collagen I and III in the serum and liver of the model mice were determined to facilitate a
+quantitative assessment of the major extracellular matrix proteins. Compared with normal mice
+at 1 month p.i., model mice showed a 20–45% increase in collagen I (Fig 6a) and a 30–70%
+
+PLOS ONE | DOI:10.1371/journal.pone.0130052 June 15, 2015
+
+8 / 16
+
+Generation of Persistent HBV Infection Mouse Model
+
+Fig 4. AAV-HBV-mediated efficient gene transduction in vivo. (a) Serum HBsAg was measured in a quantitative ELISA and the average ng/ml serum was
+plotted at the indicated times p.i.. Data represent the mean ±SEM. (b) Serum HBeAg was measured in a quantitative ELISA and the average NCU/ml serum
+was plotted at the indicated times p.i.. Data represent the mean ±SEM. (c) Immunohistochemical staining of HBsAg and HBcAg in liver sections. Staining was
+performed in tissue sections from four animals per group. Representative sections are shown. (d) Quantification of the immunohistochemical data shown in
+(c).Ten random fields were selected per slide and the percentages of HBsAg- and HBcAg-positive hepatocytes were quantified using Image-Pro Plus (Media
+Cybernetics, Rockville, MD). Statistical analyses were performed using two-way analysis of variance. HBV(-) mice, PBS injected mice.
+doi:10.1371/journal.pone.0130052.g004
+
+PLOS ONE | DOI:10.1371/journal.pone.0130052 June 15, 2015
+
+9 / 16
+
+Generation of Persistent HBV Infection Mouse Model
+
+Fig 5. Injection AAV-HBV induces chronic liver injury but not acute inflammation. Serum and liver samples were collected from HBV(+) and HBV(-)
+mice at the indicated time points. (a) ALT and AST levels. (b) Liver samples stained with hematoxylin and eosin to detect inflammatory responses and with
+Masson’s stain and Sirus red stain to detect collagen deposition. Black arrows, inflammatory cell infiltration; blue arrows, fat vacuoles; yellow and white
+arrows, collagen deposition. HBV(-) mice, PBS injected mice.
+doi:10.1371/journal.pone.0130052.g005
+
+increase in collagen III (Fig 6b) in the serum and the liver, respectively. ELISA and RT-qPCR
+were next used to examine the expression of fibrosis related proteins and genes, respectively.
+The levels of TGF-β1 and TIMP-1 protein (Fig 6c) and mRNA (Fig 6d) were significantly higher
+in HBV(+) mice than in HBV(-) mice. These results suggest that AAV-HBV injection did not
+induce a serious acute inflammatory response, whereas it did induce fibrosis and chronic liver
+injury.
+
+Discussion
+The present study investigated the use of an AAV vector to transfer the HBV genome into
+mouse liver cells. Mice were injected with the AAV8-1.2HBV vector via the tail vein, which
+
+PLOS ONE | DOI:10.1371/journal.pone.0130052 June 15, 2015
+
+10 / 16
+
+Generation of Persistent HBV Infection Mouse Model
+
+Fig 6. Fibrosis-related markers were significantly upregulated in AAV-HBV injected mice. (a, b) ELISA
+measurements of the collagen I (a) and III (b) levels in serum and liver samples. (c) ELISA measurements of
+the TGF-β1 and TIMP-1 protein levels in the serum. (d) Reverse transcription quantitative PCR
+measurements of Tgf-β1 and Timp-1 mRNA levels in the liver. Statistical analyses were performed using a
+two-way analysis of variance. Data represent the mean±SD (n = 4). HBV(-) mice, PBS injected mice.
+doi:10.1371/journal.pone.0130052.g006
+
+PLOS ONE | DOI:10.1371/journal.pone.0130052 June 15, 2015
+
+11 / 16
+
+Generation of Persistent HBV Infection Mouse Model
+
+initiated HBV production with persistent antigenemia, viremia and hepatic fibrosis with no obvious acute inflammation. HBV replication, transcription, and expression persisted for more
+than 6 months. The viremia level was similar to that previously reported for an adenovirus vector-mediated mouse model [20, 21] and a transfection mouse model established via hydrodynamic injection of naked DNA [22]. The small animal model is desirable for evaluating the
+effects of antiviral treatment and has several advantages over other mouse models. For example, in the HBV-transgenic mouse model, the HBV genome cannot be eliminated due to integrate into the host genome. In other work, Adenoviral vectors carrying a 1.3-fold HBV genome
+to mouse liver, and HBV replication was established successfully, and HBV viremia was detectable in the serum; however, the persistent infection using AdHBV vectors is severely restricted
+by the immune response against the vectors capsid [21]. In the hydrodynamic mouse model,
+only a small ratio of mouse hepatocytes were transduced and the viral replication rate persisted
+low. The HBV replication levels also decreased after 7 days in immunocompetent mice, and
+HBV was already eliminated from the blood 1 week later [22].
+In the present study, AAV8-1.2HBV infection successfully constructed a model of persistent
+HBV infection (prolonged high-level viremia and antigenemia). There was little or no acute infection or liver inflammation, as indicated by normal transaminase levels and low levels of lymphocyte infiltration (Fig 5b); however, the mice did develop chronic liver disease,
+demonstrated by the presence of ground glass-like hepatocytes like that was observed in the
+chronically-infected patients livers[36–38]. This is very like the pathogenesis in adults; patients
+develop persistent infection with HBV after acute infection and evolve chronic infection with
+different degrees of severity[39, 40]. Generally, the liver diseases is usually thought caused by
+the immune response against viral antigens but not virus itself [40, 41]. There was no direct cytopathic effects on hepatocytes by HBV infection by the presence of a lot of asymptomatic
+chronic HBV carriers with no signs of liver injury[42]. Previous studies found defects of the
+immune response in HBV chronic infected patients, including reduction of HBV-specific antibodies[43, 44], delayed lymphocytes migration, and increment of suppressor lymphocytes[45].
+Circulating HBsAg is probably the mechanism of defective immune response in HBV carriers
+[43, 46]. Further studies are needed to identify the immunological factors that responsible for
+the development of pathogenesis during persistent HBV infection in this mouse model and to
+identify the correlation between liver fibrosis and the immune response.
+Liver fibrosis is a utmost pathway to most chronic liver diseases and evolvements as a consequence of liver damage caused by viral, parasitic, toxic, metabolic, and or autoimmune disorders[47]. The stylemark of liver fibrosis is the increment in the degree and composition of the
+extracellular matrix, which leads to the deposition of collagen I. Hepatic stellate cells post an
+important role in liver fibrogenesis[48–50]. Several factors could stimulate resting hepatic stellate cells to an active fibrogenic cell type. Activated hepatic stellate cells generate fibrotic components, including collagen type I, inhibitors of matrix degradation such as TIMP-1, and other
+growth factors (TGF-β1, etc.)[51]. The novel mouse model described herein showed up-regulation of fibrotic markers, such as type I collagen and type III collagen, in the liver and serum.
+TIMP-1 is a critical factor regarded to fibrogenesis and can prohibit the degradation of the extracellular matrix, and its expression leads to the deposition of extracellular matrix in models
+of liver fibrosis[52]. TIMP-1 was also significantly increased in the serum of the model mice in
+the present study. TGF-β1 plays a major role in the homeostasis of fibrogenesis processes, and
+its expression was up-regulated and maintained throughout the fibrotic process in the present
+study.
+In summary, we have developed a model of persistent HBV infection that induced liver fibrosis in immunocompetent mice, which resembles that in patients with chronic HBV infection. Although previous studies have established mouse models of liver fibrosis[53–55], no
+
+PLOS ONE | DOI:10.1371/journal.pone.0130052 June 15, 2015
+
+12 / 16
+
+Generation of Persistent HBV Infection Mouse Model
+
+current animal model mimics liver fibrosis during long-term HBV infection in immune competent mice. Therefore, this new model may be useful for investigating the precise mechanisms
+that underlie liver fibrosis during chronic HBV infection, and may facilitate the development
+of new therapeutics.
+
+Supporting Information
+S1 Table. Primer sequence used in this study.
+(DOCX)
+
+Acknowledgments
+The authors thank Dr. Yang Wei who gave a critical view of the immunohistochemical
+staining data.
+This study was supported by Peking Union Medical College graduated student innovation
+fund (2011-1001-033) and the basic grant of Institute of Pathogen Biology, Chinese Academy
+of Medical Sciences (grant NO: 2011IPB106).
+
+Author Contributions
+Conceived and designed the experiments: WL RJS LY. Performed the experiments: LY. Analyzed the data: WL LY. Contributed reagents/materials/analysis tools: RJS LZ HY WL ZL.
+Wrote the paper: WL CL MLH RJS LY.
+
+References
+1.
+
+WHO. Guidelines for the prevention, care and treatment of persons with chronic hepatitis B infection.
+World Health Organization. 2015: 19. Available: http://apps.who.int/iris/bitstream/10665/154590/1/
+9789241549059_eng.pdf?ua=1.
+
+2.
+
+Lee WM. Hepatitis B virus infection. N Engl J Med. 1997; 337(24):1733–45. Epub 1997/12/11. doi: 10.
+1056/nejm199712113372406 PMID: 9392700.
+
+3.
+
+McMahon BJ, Holck P, Bulkow L, Snowball M. Serologic and clinical outcomes of 1536 Alaska Natives
+chronically infected with hepatitis B virus. Ann Intern Med. 2001; 135(9):759–68. Epub 2001/11/06.
+PMID: 11694101.
+
+4.
+
+Nebbia G, Peppa D, Maini MK. Hepatitis B infection: current concepts and future challenges. Qjm.
+2012; 105(2):109–13. Epub 2012/01/19. doi: 10.1093/qjmed/hcr270 PMID: 22252919; PubMed Central
+PMCID: PMCPmc3259419.
+
+5.
+
+Hoofnagle JH, di Bisceglie AM. The treatment of chronic viral hepatitis. N Engl J Med. 1997; 336
+(5):347–56. Epub 1997/01/30. doi: 10.1056/nejm199701303360507 PMID: 9011789.
+
+6.
+
+Lau DT, Everhart J, Kleiner DE, Park Y, Vergalla J, Schmid P, et al. Long-term follow-up of patients with
+chronic hepatitis B treated with interferon alfa. Gastroenterology. 1997; 113(5):1660–7. Epub 1997/11/14.
+PMID: 9352870.
+
+7.
+
+Lai CL, Chien RN, Leung NW, Chang TT, Guan R, Tai DI, et al. A one-year trial of lamivudine for chronic
+hepatitis B. Asia Hepatitis Lamivudine Study Group. N Engl J Med. 1998; 339(2):61–8. Epub 1998/07/
+09. doi: 10.1056/nejm199807093390201 PMID: 9654535.
+
+8.
+
+Zhang Q, Lapalus M, Asselah T, Laouenan C, Moucari R, Martinot-Peignoux M, et al. IFNL3 (IL28B)
+polymorphism does not predict long-term response to interferon therapy in HBeAg-positive chronic
+hepatitis B patients. Journal of viral hepatitis. 2014; 21(7):525–32. doi: 10.1111/jvh.12177 PMID:
+24118626.
+
+9.
+
+Brunetto MR, Marcellin P, Cherubini B, Yurdaydin C, Farci P, Hadziyannis SJ, et al. Response to peginterferon alfa-2a (40KD) in HBeAg-negative CHB: on-treatment kinetics of HBsAg serum levels vary by
+HBV genotype. Journal of hepatology. 2013; 59(6):1153–9. doi: 10.1016/j.jhep.2013.07.017 PMID:
+23872601.
+
+10.
+
+Barrera A, Guerra B, Notvall L, Lanford RE. Mapping of the hepatitis B virus pre-S1 domain involved in
+receptor recognition. Journal of virology. 2005; 79(15):9786–98. Epub 2005/07/15. doi: 10.1128/jvi.79.
+15.9786-9798.2005 PMID: 16014940; PubMed Central PMCID: PMCPmc1181564.
+
+PLOS ONE | DOI:10.1371/journal.pone.0130052 June 15, 2015
+
+13 / 16
+
+Generation of Persistent HBV Infection Mouse Model
+
+11.
+
+Yan H, Peng B, He W, Zhong G, Qi Y, Ren B, et al. Molecular determinants of hepatitis B and D virus
+entry restriction in mouse sodium taurocholate cotransporting polypeptide. Journal of virology. 2013; 87
+(14):7977–91. Epub 2013/05/17. doi: 10.1128/jvi.03540-12 PMID: 23678176; PubMed Central PMCID:
+PMCPmc3700185.
+
+12.
+
+Zhong G, Yan H, Wang H, He W, Jing Z, Qi Y, et al. Sodium taurocholate cotransporting polypeptide
+mediates woolly monkey hepatitis B virus infection of Tupaia hepatocytes. Journal of virology. 2013; 87
+(12):7176–84. doi: 10.1128/JVI.03533-12 PMID: 23596296; PubMed Central PMCID: PMC3676132.
+
+13.
+
+Yan H, Zhong G, Xu G, He W, Jing Z, Gao Z, et al. Sodium taurocholate cotransporting polypeptide is a
+functional receptor for human hepatitis B and D virus. Elife. 2012; 1: e00049. doi: 10.7554/eLife.00049.
+001 10.7554/eLife.00049.002. PubMed Central PMCID: PMCPMC3485615. PMID: 23150796
+
+14.
+
+Bertoni R, Sette A, Sidney J, Guidotti LG, Shapiro M, Purcell R, et al. Human class I supertypes and
+CTL repertoires extend to chimpanzees. J Immunol. 1998; 161(8):4447–55. Epub 1998/10/21. PMID:
+9780224.
+
+15.
+
+Barker LF, Chisari FV, McGrath PP, Dalgard DW, Kirschstein RL, Almeida JD, et al. Transmission of
+type B viral hepatitis to chimpanzees. J Infect Dis. 1973; 127(6):648–62. Epub 1973/06/01. PMID:
+4574998.
+
+16.
+
+Baumert TF, Yang C, Schurmann P, Kock J, Ziegler C, Grullich C, et al. Hepatitis B virus mutations associated with fulminant hepatitis induce apoptosis in primary Tupaia hepatocytes. Hepatology. 2005;
+41(2):247–56. Epub 2005/01/22. doi: 10.1002/hep.20553 PMID: 15660384.
+
+17.
+
+Chisari FV, Pinkert CA, Milich DR, Filippi P, McLachlan A, Palmiter RD, et al. A transgenic mouse
+model of the chronic hepatitis B surface antigen carrier state. Science. 1985; 230(4730):1157–60.
+Epub 1985/12/06. PMID: 3865369.
+
+18.
+
+Araki K, Miyazaki J, Hino O, Tomita N, Chisaka O, Matsubara K, et al. Expression and replication of
+hepatitis B virus genome in transgenic mice. Proc Natl Acad Sci U S A. 1989; 86(1):207–11. Epub
+1989/01/01. PMID: 2911569; PubMed Central PMCID: PMCPmc286433.
+
+19.
+
+Kim CM, Koike K, Saito I, Miyamura T, Jay G. HBx gene of hepatitis B virus induces liver cancer in
+transgenic mice. Nature. 1991; 351(6324):317–20. Epub 1991/05/23. doi: 10.1038/351317a0 PMID:
+2034275.
+
+20.
+
+Guidotti LG, Matzke B, Schaller H, Chisari FV. High-level hepatitis B virus replication in transgenic
+mice. Journal of virology. 1995; 69(10):6158–69. Epub 1995/10/01. PMID: 7666518; PubMed Central
+PMCID: PMCPmc189513.
+
+21.
+
+Sprinzl MF, Oberwinkler H, Schaller H, Protzer U. Transfer of hepatitis B virus genome by adenovirus
+vectors into cultured cells and mice: crossing the species barrier. Journal of virology. 2001; 75
+(11):5108–18. Epub 2001/05/03. doi: 10.1128/jvi.75.11.5108-5118.2001 PMID: 11333892; PubMed
+Central PMCID: PMCPmc114916.
+
+22.
+
+Yang PL, Althage A, Chung J, Chisari FV. Hydrodynamic injection of viral DNA: a mouse model of
+acute hepatitis B virus infection. Proc Natl Acad Sci U S A. 2002; 99(21):13825–30. Epub 2002/10/11.
+doi: 10.1073/pnas.202398599 PMID: 12374864; PubMed Central PMCID: PMCPmc129782.
+
+23.
+
+Isogawa M, Kakimi K, Kamamoto H, Protzer U, Chisari FV. Differential dynamics of the peripheral and
+intrahepatic cytotoxic T lymphocyte response to hepatitis B surface antigen. Virology. 2005; 333
+(2):293–300. Epub 2005/02/22. doi: 10.1016/j.virol.2005.01.004 PMID: 15721363.
+
+24.
+
+Huang LR, Wu HL, Chen PJ, Chen DS. An immunocompetent mouse model for the tolerance of human
+chronic hepatitis B virus infection. Proc Natl Acad Sci U S A. 2006; 103(47):17862–7. Epub 2006/11/11.
+doi: 10.1073/pnas.0608578103 PMID: 17095599; PubMed Central PMCID: PMCPmc1635544.
+
+25.
+
+Yang D, Liu L, Zhu D, Peng H, Su L, Fu YX, et al. A mouse model for HBV immunotolerance and immunotherapy. Cell Mol Immunol. 2014; 11(1):71–8. Epub 2013/10/01. doi: 10.1038/cmi.2013.43 PMID:
+24076617; PubMed Central PMCID: PMCPmc4002146.
+
+26.
+
+Dion S, Bourgine M, Godon O, Levillayer F, Michel ML. Adeno-associated virus-mediated gene transfer
+leads to persistent hepatitis B virus replication in mice expressing HLA-A2 and HLA-DR1 molecules.
+Journal of virology. 2013; 87(10):5554–63. Epub 2013/03/08. doi: 10.1128/jvi.03134-12 PMID:
+23468504; PubMed Central PMCID: PMCPmc3648192.
+
+27.
+
+Bility MT, Cheng L, Zhang Z, Luan Y, Li F, Chi L, et al. Hepatitis B virus infection and immunopathogenesis in a humanized mouse model: induction of human-specific liver fibrosis and M2-like macrophages.
+PLoS pathogens. 2014; 10(3):e1004032. doi: 10.1371/journal.ppat.1004032 PMID: 24651854;
+PubMed Central PMCID: PMC3961374.
+
+28.
+
+Xiao X, Li J, Samulski RJ. Production of high-titer recombinant adeno-associated virus vectors in the
+absence of helper adenovirus. Journal of virology. 1998; 72(3):2224–32. Epub 1998/03/14. PMID:
+9499080; PubMed Central PMCID: PMCPmc109519.
+
+PLOS ONE | DOI:10.1371/journal.pone.0130052 June 15, 2015
+
+14 / 16
+
+Generation of Persistent HBV Infection Mouse Model
+
+29.
+
+Wu EX, Wu Y, Nicholls JM, Wang J, Liao S, Zhu S, et al. MR diffusion tensor imaging study of postinfarct myocardium structural remodeling in a porcine model. Magn Reson Med. 2007; 58(4):687–95.
+Epub 2007/09/28. doi: 10.1002/mrm.21350 PMID: 17899595.
+
+30.
+
+Kim H, Booth CJ, Pinus AB, Chen P, Lee A, Qiu M, et al. Induced hepatic fibrosis in rats: hepatic steatosis, macromolecule content, perfusion parameters, and their correlations—preliminary MR imaging in
+rats. Radiology. 2008; 247(3):696–705. Epub 2008/04/12. doi: 10.1148/radiol.2473070605 PMID:
+18403622.
+
+31.
+
+Ke L, He M, Li C, Liu Y, Gao L, Yao F, et al. The prevalence of human parvovirus B19 DNA and antibodies in blood donors from four Chinese blood centers. Transfusion. 2011; 51(9):1909–18. Epub 2011/03/
+09. doi: 10.1111/j.1537-2995.2011.03067.x PMID: 21382040.
+
+32.
+
+Mabit H, Dubanchet S, Capel F, Dauguet C, Petit MA. In vitro infection of human hepatoma cells
+(HepG2) with hepatitis B virus (HBV): spontaneous selection of a stable HBV surface antigen-producing HepG2 cell line containing integrated HBV DNA sequences. J Gen Virol. 1994; 75 (Pt 10):2681–9.
+Epub 1994/10/01. PMID: 7931154.
+
+33.
+
+Dong Q, Liu Z, Chen Y, Chan CY, Lin MC, Kung HF, et al. High level virion production and surface antigen expression with 1.5 copies of hepatitis B viral genome. J Virol Methods. 2009; 159(2):135–40.
+Epub 2009/06/06. doi: 10.1016/j.jviromet.2009.03.012 PMID: 19490966.
+
+34.
+
+Perz JF, Armstrong GL, Farrington LA, Hutin YJ, Bell BP. The contributions of hepatitis B virus and hepatitis C virus infections to cirrhosis and primary liver cancer worldwide. Journal of hepatology. 2006; 45
+(4):529–38. Epub 2006/08/02. doi: 10.1016/j.jhep.2006.05.013 PMID: 16879891.
+
+35.
+
+Gutierrez-Reyes G, Gutierrez-Ruiz MC, Kershenobich D. Liver fibrosis and chronic viral hepatitis. Arch
+Med Res. 2007; 38(6):644–51. Epub 2007/07/07. doi: 10.1016/j.arcmed.2006.10.001 PMID:
+17613356.
+
+36.
+
+Gerber MA, Hadziyannis S, Vissoulis C, Schaffner F, Paronetto F, Popper H. Hepatitis B antigen: nature and distribution of cytoplasmic antigen in hepatocytes of carriers. Proc Soc Exp Biol Med. 1974;
+145(3):863–7. Epub 1974/03/01. PMID: 4594446.
+
+37.
+
+Gerber MA, Hadziyannis S, Vissoulis C, Schaffner F, Paronetto F, Popper H. Electron microscopy and
+immunoelectronmicroscopy of cytoplasmic hepatitis B antigen in hepatocytes. Am J Pathol. 1974; 75
+(3):489–502. Epub 1974/06/01. PMID: 4134380; PubMed Central PMCID: PMCPmc1910854.
+
+38.
+
+Chisari FV, Filippi P, Buras J, McLachlan A, Popper H, Pinkert CA, et al. Structural and pathological effects of synthesis of hepatitis B virus large envelope polypeptide in transgenic mice. Proc Natl Acad Sci
+U S A. 1987; 84(19):6909–13. Epub 1987/10/01. PMID: 3477814; PubMed Central PMCID:
+PMCPmc299194.
+
+39.
+
+Peters M, Vierling J, Gershwin ME, Milich D, Chisari FV, Hoofnagle JH. Immunology and the liver.
+Hepatology. 1991; 13(5):977–94. Epub 1991/05/01. PMID: 2030002.
+
+40.
+
+Chisari FV. Hepatitis B virus transgenic mice: insights into the virus and the disease. Hepatology. 1995;
+22(4 Pt 1):1316–25. Epub 1995/10/01. PMID: 7557887.
+
+41.
+
+Yamada G, Tsuji T. Immunological mechanism of chronic liver injury in viral hepatitis. Intern Med. 1993;
+32(12):911–3. Epub 1993/12/01. PMID: 7515736.
+
+42.
+
+Hoofnagle JH, Shafritz DA, Popper H. Chronic type B hepatitis and the "healthy" HBsAg carrier state.
+Hepatology. 1987; 7(4):758–63. Epub 1987/07/01. PMID: 3301618.
+
+43.
+
+Dusheiko GM, Hoofnagle JH, Cooksley WG, James SP, Jones EA. Synthesis of antibodies to hepatitis
+B virus by cultured lymphocytes from chronic hepatitis B surface antigen carriers. J Clin Invest. 1983;
+71(5):1104–13. Epub 1983/05/01. PMID: 6602149; PubMed Central PMCID: PMCPmc436971.
+
+44.
+
+Nowicki MJ, Tong MJ, Nair PV, Stevenson D. Impaired antibody synthesis in patients with chronic hepatitis B infection. Hepatology. 1986; 6(2):180–5. Epub 1986/03/01. PMID: 3957229.
+
+45.
+
+Brattig NW, Berg PA. Immunosuppressive serum factors in viral hepatitis. I. Characterization of serum
+inhibition factor(s) as lymphocyte antiactivator(s). Hepatology. 1983; 3(5):638–46. Epub 1983/09/01.
+PMID: 6225715.
+
+46.
+
+Fernan A, Cayzer CJ, Cooksley WG. HBsAg-induced antigen-specific T and B lymphocyte responses
+in chronic hepatitis B virus carriers and immune individuals. Clin Exp Immunol. 1989; 76(2):222–6.
+Epub 1989/05/01. PMID: 2788046; PubMed Central PMCID: PMCPmc1541835.
+
+47.
+
+Arthur MJ. Collagenases and liver fibrosis. Journal of hepatology. 1995; 22(2 Suppl):43–8. Epub 1995/
+01/01. PMID: 7665849.
+
+48.
+
+Bedossa P, Paradis V. Liver extracellular matrix in health and disease. J Pathol. 2003; 200(4):504–15.
+Epub 2003/07/08. doi: 10.1002/path.1397 PMID: 12845618.
+
+49.
+
+Lalazar A, Wong L, Yamasaki G, Friedman SL. Early genes induced in hepatic stellate cells during
+wound healing. Gene. 1997; 195(2):235–43. Epub 1997/08/22. PMID: 9305769.
+
+PLOS ONE | DOI:10.1371/journal.pone.0130052 June 15, 2015
+
+15 / 16
+
+Generation of Persistent HBV Infection Mouse Model
+
+50.
+
+Eng FJ, Friedman SL. Fibrogenesis I. New insights into hepatic stellate cell activation: the simple becomes complex. Am J Physiol Gastrointest Liver Physiol. 2000; 279(1):G7–g11. Epub 2000/07/18.
+PMID: 10898741.
+
+51.
+
+Knittel T, Schuppan D, Meyer zum Buschenfelde KH, Ramadori G. Differential expression of collagen
+types I, III, and IV by fat-storing (Ito) cells in vitro. Gastroenterology. 1992; 102(5):1724–35. Epub 1992/
+05/01. PMID: 1373696.
+
+52.
+
+Iredale JP, Benyon RC, Arthur MJ, Ferris WF, Alcolado R, Winwood PJ, et al. Tissue inhibitor of metalloproteinase-1 messenger RNA expression is enhanced relative to interstitial collagenase messenger
+RNA in experimental liver injury and fibrosis. Hepatology. 1996; 24(1):176–84. Epub 1996/07/01. doi:
+10.1002/hep.510240129 PMID: 8707259.
+
+53.
+
+Constandinou C, Henderson N, Iredale JP. Modeling liver fibrosis in rodents. Methods Mol Med. 2005;
+117:237–50. Epub 2005/08/25. doi: 10.1385/1-59259-940-0:237 PMID: 16118456.
+
+54.
+
+Tsukamoto H, Matsuoka M, French SW. Experimental models of hepatic fibrosis: a review. Semin Liver
+Dis. 1990; 10(1):56–65. Epub 1990/02/01. doi: 10.1055/s-2008-1040457 PMID: 2110685.
+
+55.
+
+Iredale JP. Models of liver fibrosis: exploring the dynamic nature of inflammation and repair in a solid
+organ. J Clin Invest. 2007; 117(3):539–48. Epub 2007/03/03. doi: 10.1172/jci30542 PMID: 17332881;
+PubMed Central PMCID: PMCPmc1804370.
+
+PLOS ONE | DOI:10.1371/journal.pone.0130052 June 15, 2015
+
+16 / 16
+
+

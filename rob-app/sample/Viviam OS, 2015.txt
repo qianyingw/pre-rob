@@ -1,0 +1,1004 @@
+RESEARCH ARTICLE
+
+β-Glucans (Saccharomyces cereviseae)
+Reduce Glucose Levels and Attenuate
+Alveolar Bone Loss in Diabetic Rats with
+Periodontal Disease
+Viviam de Oliveira Silva1☯, Raquel Vieira Lobato1☯, Eric Francelino Andrade1☯, Cristina
+Gomes de Macedo2☯, Juliana Trindade Clemente Napimoga2☯, Marcelo
+Henrique Napimoga3☯, Michel Reis Messora4☯, Ramiro Mendonça Murata5☯, Luciano
+José Pereira6☯*
+
+OPEN ACCESS
+Citation: Silva VdO, Lobato RV, Andrade EF, de
+Macedo CG, Napimoga JTC, Napimoga MH, et al.
+(2015) β-Glucans (Saccharomyces cereviseae)
+Reduce Glucose Levels and Attenuate Alveolar Bone
+Loss in Diabetic Rats with Periodontal Disease. PLoS
+ONE 10(8): e0134742. doi:10.1371/journal.
+pone.0134742
+Editor: Özlem Yilmaz, University of Florida, UNITED
+STATES
+Received: March 19, 2015
+Accepted: July 13, 2015
+Published: August 20, 2015
+Copyright: © 2015 Silva et al. This is an open
+access article distributed under the terms of the
+Creative Commons Attribution License, which permits
+unrestricted use, distribution, and reproduction in any
+medium, provided the original author and source are
+credited.
+Data Availability Statement: All relevant data are
+within the paper and its Supporting Information files.
+Funding: The authors would like to thank the
+Research Support Foundation of the State of Minas
+Gerais (Fundação de Amparo à Pesquisa do Estado
+de Minas Gerais—FAPEMIG APQ—01692-12;
+PPM00268/14 and BPD—00312-14), National
+Council for Scientific and Technological Development
+(Conselho Nacional de Desenvolvimento Científico e
+Tecnológico – CNPq 481125/2013-2 and 302424/
+2011-3) and Coordination for the Improvement of
+
+1 Department of Veterinary Medicine, Physiology and Pharmacology Area, Federal University of Lavras,
+Lavras, Minas Gerais, Brazil, 2 Laboratory of Orofacial Pain, Department of Physiological Sciences,
+Piracicaba Dental School, University of Campinas, Piracicaba, São Paulo, Brazil, 3 Laboratory of
+Immunology and Molecular Biology, São Leopoldo Mandic Institute and Research Center, Campinas, São
+Paulo, Brazil, 4 Department of Surgery and Bucco-Maxillofacial Traumatology, Division of Periodontics,
+School of Dentistry of Ribeirão Preto, University of São Paulo, Ribeirão Preto, São Paulo, Brazil, 5 University
+of Southern California, Herman Ostrow School of Dentistry, Division of Periodontology Diagnostic Sciences,
+Dental Hygiene & Biomedical Science, Los Angeles, California, United States of America, 6 Department of
+Health Sciences, Physiology and Pharmacology Area, Federal University of Lavras, Lavras, Minas Gerais,
+Brazil
+☯ These authors contributed equally to this work.
+* lucianopereiraufla@gmail.com
+
+Abstract
+The objective of this study was to assess the effects of oral ingestion of β-glucans isolated
+from Saccharomyces cereviseae on the metabolic profile, expression of gingival inflammatory markers and amount of alveolar bone loss in diabetic rats with periodontal disease. Diabetes mellitus was induced in 48 Wistar rats by intraperitoneal injection of streptozotocin
+(80 mg/kg). After confirming the diabetes diagnosis, the animals were treated with β-glucans (by gavage) for 28 days. On the 14th day of this period, periodontal disease was
+induced using a ligature protocol. β-glucans reduced the amount of alveolar bone loss in
+animals with periodontal disease in both the diabetic and non-diabetic groups (p < 0.05).
+β-glucans reduced blood glucose, cholesterol and triacylglycerol levels in diabetic animals,
+both with and without periodontal disease (p < 0.05). Furthermore, treatment with β-glucans
+reduced the expression of cyclooxygenase-2 and receptor activator of nuclear factor
+kappa-B ligand and increased osteoprotegerin expression in animals with diabetes and
+periodontal disease (p < 0.05). It was concluded that treatment with β-glucans has beneficial metabolic and periodontal effects in diabetic rats with periodontal disease.
+
+PLOS ONE | DOI:10.1371/journal.pone.0134742 August 20, 2015
+
+1 / 13
+
+β-Glucans Reduce Glucose Levels and Attenuate Alveolar Bone Loss
+
+Higher Education Personnel (Coordenação de
+Aperfeiçoamento de Pessoal de Nível Superior –
+CAPES) for the support provided. The funders had no
+role in study design, data collection and analysis,
+decision to publish, or preparation of the manuscript.
+Competing Interests: The authors have declared
+that no competing interests exist.
+
+Introduction
+Periodontal disease is characterized by chronic inflammation that affects tooth support tissues
+and may lead to tooth loss [1,2]. Although the primary etiologic factor for this disease is the
+presence of dental biofilm and the associated host response, systemic diseases such as diabetes
+mellitus modulate the development and progress of periodontal disease [3,4].
+Diabetes mellitus is a disease in which carbohydrate, protein and lipid metabolism homeostasis is inadequately regulated by the pancreatic hormone insulin, resulting in an increase in
+blood glucose levels [5]. Periodontal disease is the sixth most common co-morbid condition in
+patients with diabetes mellitus [6,7] and evidence indicates a bidirectional relationship between
+these two pathologies [8,9]. In non-compensated diabetic patients, hyperglycemia promotes
+vascular alterations (microangiopathies) as well as inefficacious phagocytosis by neutrophils
+and macrophages. In addition, it causes retardation of collagen synthesis, which delays tissue
+repair [10]. The chronic release of pro-inflammatory cytokines in active periodontal disease
+reduces insulin action and consequently aggravates these metabolic alterations [11].
+Naturally derived compounds such as β-glucans have shown promise for blood glucose and
+immune response control in both animal and human studies [12–14]. β-glucans are the main
+structural components of fungi, plants, cereal grains and some bacterial cell walls [13]. The different origins of these polysaccharides as well as their physico-chemical characteristics determine their main action [15]. β-glucans found in plants and grains (β-1,3/1,4) are known to
+promote metabolic activity [16], while those from fungi (β-1,3/1,6) promote immune activity
+[15,17].
+β-glucans have shown the capacity to modulate both specific and non-specific immune
+responses [13], stimulating the production of pro-inflammatory cytokines and phagocytosis
+[18,19]. Orally administered β-(1,3/1,6) glucan solutions have been used in periodontal disease
+models and have reduced alveolar bone loss [12,20]. Also, these polymer fibers have known
+hypoglycemic action [14,21], since they form a gelatinous layer in the intestine, thereby reducing the absorption of carbohydrates [15,22,23].
+The efficacy of β-glucans as an immunomodulatory agent in periodontal disease in diabetic
+patients is poorly understood. In addition, there is a scarcity of studies investigating the effects
+of these compounds on the association of these two diseases, which emphasizes the importance
+and novelty of this study. Because of the bidirectional relationship and significant co-morbidity
+between diabetes mellitus and periodontal disease, research involving a compound that is able
+to modulate inflammatory response and concomitantly reduce blood glucose levels is of
+extreme interest. This fact is even more important when we take into account that periodontal
+disease is more frequent and more severe in patients with inadequate blood glucose control
+[24]. Furthermore, because periodontal disease and diabetes mellitus show high prevalence and
+have chronic characteristics [10], the improvement of control techniques is relevant from the
+public health perspective. Thus, the present study aimed to assess the effects of ingesting βglucans isolated from Saccharomyces cereviseae on the metabolic profile and alveolar bone loss
+parameters in diabetic rats with periodontal disease.
+
+Materials and Methods
+Animals
+The present study was approved by the Ethics Committee for Animals Use (CEUA) from the
+Federal University of Lavras (UFLA) through protocol number 083/11, according to national
+legislation enforced by the National Council of Animal Experimentation Control (CONCEA)
+of Brazil.
+
+PLOS ONE | DOI:10.1371/journal.pone.0134742 August 20, 2015
+
+2 / 13
+
+β-Glucans Reduce Glucose Levels and Attenuate Alveolar Bone Loss
+
+A total of 48 healthy male adult rats (Rattus norvegicus albinus, Wistar) weighing 192 ± 21 g
+(approximately seven weeks old) were used in the present study. The animals were provided
+from UFLA Central Bioterium (conventional bioterium). A totally causalized design was used,
+with a factorial scheme 2x2x2 (diabetic or not; induced to periodontal disease or not, treated or
+not treated with β-glucans), with n = 6 animals per group. The animals were submitted to a
+seven-day period of acclimation with the environment and the project execution team. They
+were placed in individual metabolic cages and the room was acclimatized to a 22 ± 2°C temperature, with 12/12 hour light/dark cycles. Commercial animal food and pure water were supplied ad libitum during the whole experimental period.
+After the acclimation week, the 48 animals were randomly divided into eight groups. A
+power calculation was performed to determine the sample size. The animal was considered the
+study unit. The sample size was determined to provide 80% power to recognize a significant
+difference of 20% among groups and a standard deviation of 15% with a 95% confidence interval (α = 0.05). Therefore, a sample size of six animals per group was required.
+Experimental groups were divided as follows: Group 1—control (without diabetes induction, without periodontal disease induction; without β-glucan administration); Group 2—
+diabetes control (with diabetes induction; without periodontal disease induction; without
+β-glucan administration); Group 3—periodontal disease control (with periodontal disease
+induction; without diabetes induction; without β-glucan administration); Group 4—β-glucan
+(with β-glucan administration; without diabetes induction; without periodontal disease induction); Group 5—Diabetes and periodontal disease; Group 6—Diabetes with β-glucan administration; Group 7—Periodontal disease with β-glucan administration; Group 8—Diabetes and
+periodontal disease with β-glucan administration (Fig 1).
+
+Diabetes induction
+To induce experimental diabetes mellitus, half of the animals received an intraperitoneal injection with 80 mg/kg of streptozotocin (Sigma, St. Louis, MO, USA) dissolved in citrate buffer
+[25], administered 48 hours before the experiment started (Fig 1). Animals of the groups without diabetes received only citrate buffer. Before starting the β-glucan administration, the animals were submitted to eight hours of fasting and blood glucose was measured, through
+amputation of the tail tip, using a glucose meter (Accu-Chek Roche, Basel, Swiss). Animals
+with a glucose serum level above 200 mg/dL after fasting were considered diabetic, from one
+reading before the beginning of experiment [26,27].
+
+Fig 1. Schematic representation of the experimental design across time. 1All animals were acclimated in individual metabolic cages for seven days;
+2
+For animals in the following groups: diabetes; diabetes + periodontal disease; diabetes + β-glucan; diabetes + periodontal disease + β-glucan; 3For animals
+in the following groups: β-glucan; diabetes + β-glucan; periodontal disease + β-glucan; diabetes + periodontal disease + β-glucan; 4For animals in the
+following groups: periodontal disease; diabetes + periodontal disease; periodontal disease + β-glucan; diabetes + periodontal disease + β-glucan;
+5
+Collection of blood samples and removal of the jaws.
+doi:10.1371/journal.pone.0134742.g001
+
+PLOS ONE | DOI:10.1371/journal.pone.0134742 August 20, 2015
+
+3 / 13
+
+β-Glucans Reduce Glucose Levels and Attenuate Alveolar Bone Loss
+
+Induction of periodontal disease
+Periodontal disease was induced in groups 3, 5, 7, and 8 in the first right mandibular molar
+through a ligature protocol. The animals received general anesthesia through an intraperitoneal
+injection of xylazine hydrochloride at 10 mg/kg and ketamine hydrochloride at 80 mg/kg. Ligatures were placed under anesthesia to induce periodontal disease [28]. Periodontal disease was
+induced on the 14th day and ligatures remained in place until the 28th day, when the animals
+were euthanized (Fig 1).
+
+β-glucan administration
+The β-glucans used in the present study came from Saccharomyces cerevisiae leaven and the
+solution had the following composition: β-glucans—Min. 60.0%; Crude Protein—Max. 8.0%;
+pH (solution 2%) 4.0–7.0; Ash—Max.10.0g/100g. Distribution of particle size: mean—41 μm;
+< 20 μm 19%; 20–50 μm 43%; 50–100 μm 28%; 100–200 μm 10%; >200 μm 0%. Fluidity (seconds) – 70.2; Angle of repose (degrees) 31.2; Compressibility 37%; Water retention capacity
+(mean) 7.4; Solubility rate in water 7.9.
+Daily doses of 30 mg/kg/day of β-glucans dissolved in 0.3 ml of saline solution were administered by gavage each morning for 28 days. The non-treated groups of animals received the
+same volume of saline solution. The animals with periodontal disease received β-glucans during the 14 days before induction and also during the 14 days after ligature placement, amounting to 28 days of treatment with β-glucans (Fig 1).
+
+Collection of material for analysis
+At the end of the 28-day experimental period, blood glucose was measured through tail tip
+amputation using a glucometer (Accu-Chek Roche, Basel, Swiss) after a fasting period of 8
+hours. Afterwards, they were killed through cardiac puncture under anesthesia with intraperitoneal 50 mg/kg thiopental sodium.
+Blood samples were collected to determine total cholesterol plasmatic concentrations and
+triacylglycerol by colorimetric essay using commercial kits (Gold Analisa, Belo Horizonte, Brazil). Plasmatic concentrations of C-Peptide were determined by ELISA assay using commercial
+kits (Merck Millipore, Solna, Sweden). The analysis were performed in duplicate and all procedures were performed according to kit protocol. The absorbance was read at 450nm in a plate
+reader (Epoch–BioTek, Winooski, USA).
+Immediately after euthanasia, the soft tissues of the jaws (marginal gingiva) were removed
+with the aid of sterile forceps and bistoury and then were stored in liquid nitrogen for subsequent ribonucleic acid (RNA) extraction. These tissues were used for COX-2 (cyclooxygenase
+2), RANK-L (receptor activator of nuclear factor kappa-B ligand) and OPG (osteoprotegerin)
+gene expression analyses, carried out through quantitative polymerase chain reaction in real
+time (RT-PCR). The levels of alveolar bone loss were assessed directly in the dissected mandible after removal of soft tissues by means of morphometric analysis [29].
+All analyses were blindly performed by trained evaluators.
+
+RT-PCR for COX-2, RANK-L and OPG genes
+Total RNA was isolated using a Qiagen RNeasy Mini Kit (Qiagen; Valencia, CA, USA), according to the manufacturer’s recommendations. Total RNA concentration was determined from
+optical density using a micro volume spectrophotometer (Nanodrop 1000, Nanodrop Technologies LLC, Wilmington, NC, USA). Total RNA reverse transcription was performed using
+DNase (Turbo DNA-frees, Ambion Inc., Austin, TX, USA), and one microgram was used for
+
+PLOS ONE | DOI:10.1371/journal.pone.0134742 August 20, 2015
+
+4 / 13
+
+β-Glucans Reduce Glucose Levels and Attenuate Alveolar Bone Loss
+
+cDNA synthesis. The reaction was performed using the First Strand cDNA synthesis kit (Ferments, Glen Burnie, MD, USA), following the manufacturer’s recommendations.
+Primer sets for genes COX2, RANK-L, OPG and glyceraldehyde-3-phosphate dehydrogenase (GAPDH) were designed based on sequences available on GenBank using Primer Express
+3.0, a probe design software (Applied Biosystem, Foster City, CA, EUA). Primers sequences
+were the following: COX2: forward: 5’—ACT TGC GTT GAT GGT GGC TGT CTT—3’,
+reverse: 5’—CTG TAT CCC GCC CTG CTG GTG—3’; OPG: forward: 5’–TCC TGG CAC
+CTA CCT AAA ACA GCA—3’, reverse: 5’—CTA CAC TCT CGG CAT TCA CTT TGG—3’;
+RANKL: forward: 5’–CAT CGG GTT CCC ATA AAG—3’, reverse: 5’–GAA GCA AAT GTT
+GGC GTA—3’; and GAPDH: forward: 5'–GAC TGT GGA TGG CCC CTC TG-3', reverse: 5'–
+CGC CTG CTT CAC CAC CTT CT—3'. The RT-PCR was performed using a 7300 PCR Real
+Time machine (Applied Biosystem) and SYBR Green PCR Master Mix (Ferments, Glen Burnie,
+MD, USA). The reaction product was quantified with the relative quantification tool, using
+GAPDH as a reference gene. Negative controls with SYBR Green PCR Master Mix and water
+were made for all reactions.
+
+Alveolar bone loss morphometric analysis
+Mandibles were dissected and immersed in sodium hypochlorite 1% solution for four hours
+and the whole remaining bone soft tissue was mechanically removed. The pieces were colored
+with methylene blue (1g/100ml) for one minute to delimit the cement-enamel junction. Mandibles were observed with a stereoscopic magnifying glass and positioned so that vestibular and
+lingual cuspids overlapped, with no possibility of viewing the occlusal surface. Digital images
+were taken using a camera. A previously described method [30] was used to perform linear
+measurement of the cement-enamel junction at the alveolar bone crest, at half of each root, following the axis. Measurements were obtained of the three roots of first molar to the vestibular
+face, using the Image J software package (Bethesda, MD, USA). These measurements were
+obtained by a trained examiner and without knowledge of experimental groups. The average of
+three measurements per animal was used to express alveolar bone loss.
+
+Statistical analysis
+Statistical analyses were performed using Variance Analysis (ANOVA). When F values indicated significant interactions, these were unfolded between factors. The analyses were performed in the statistical program SISVAR [31] at significance level fixed at 95%.
+
+Results
+A significant difference in mean initial blood glucose was found between the diabetic and nondiabetic groups (p < 0.05). The mean initial blood glucose of animals from the diabetic groups
+was 428 ± 18 mg/dL.
+It was observed that the metabolic parameters criteria, namely analyzed: final blood glucose,
+total cholesterol and triacylglycerols, were higher in diabetic animal groups compared to nondiabetic groups (Table 1—p < 0.05). Animals with diabetes and periodontal disease have
+shown higher glucose plasmatic and cholesterol concentrations when compared to diabetic
+animals without periodontal disease (Table 1—p < 0.05). The triacylglycerols, on the other
+hand, showed opposite results; animals with diabetes and periodontal disease treated or not
+with β-glucan have presented lower concentrations against those diabetic with and without βglucan (Table 1—p < 0.05). β-glucans reduced blood glucose and triacylglycerol levels in diabetic animals, both with and without periodontal disease. When compared to the non-treated
+
+PLOS ONE | DOI:10.1371/journal.pone.0134742 August 20, 2015
+
+5 / 13
+
+β-Glucans Reduce Glucose Levels and Attenuate Alveolar Bone Loss
+
+Table 1. Glucose, total cholesterol and triacylglycerols levels (mg/dL—mean ± standard deviation) of animals treated with β-glucans from Saccharomyces cerevisiae (30mg/kg/day) during 28 days.
+β-GLUCANS
+
+PERIODONTAL
+DIABETES
+DISEASE
+
+Without
+
+With
+
+Glucose
+Without *
+With
+
+Without
+
+91 (9)
+
+97 (4)
+
+With
+
+111 (4)
+
+106 (11)
+
+Without
+
+517 (32) a x
+
+367 (24) a y
+
+b x
+
+440 (73) b y
+
+With
+
+561 (44)
+Total cholesterol
+
+Without *
+With
+
+Without
+
+50 (5)
+
+With
+
+59 (5)
+
+53 (4)
+58 (9)
+
+Without
+
+82 (18) a
+
+72 (10) a
+
+With
+
+97 (5) b x
+
+83 (10) b y
+
+Without
+
+82 (16)
+
+68 (13)
+
+With
+
+68 (13)
+
+63 (16)
+
+Without
+
+276 (49) b x
+
+191 (16) b y
+
+With
+
+229 (72) a x
+
+144 (25) a y
+
+Triacylglycerols
+Without *
+With
+a,b
+
+Means followed by different letters in columns indicate signiﬁcant differences between groups with and without periodontal disease by F test (p < 0,05).
+
+Means followed by different letters in lines indicate signiﬁcant difference between groups with and without β-glucans ingestion by F test (p < 0,05).
+* Signiﬁcant difference between groups with and without diabetes by F test (p < 0,05)
+
+x,y
+
+doi:10.1371/journal.pone.0134742.t001
+
+group, cholesterol concentrations decreased due to the use of β-glucan in diabetic animals with
+periodontal disease (Table 1—p < 0.05).
+In general, animals with periodontal disease presented lower levels of C-peptide than those
+without the disease, except animals with diabetes treated with β-glucans (Table 2—p < 0.05).
+In animals not receiving β-glucans, C-peptide levels were lower in diabetic animals when compared to non-diabetic ones (Table 2—p < 0.05). C-peptide levels in diabetic animals with periodontal disease treated with β-glucans were higher than the untreated (Table 2—p < 0.05).
+The groups of animals with periodontal disease presented higher alveolar bone loss than the
+groups without the disease induction (Fig 2 and Table 3—p < 0.05). Diabetic animals with
+periodontal disease exhibited more alveolar bone loss than the animals with diabetes and
+Table 2. Serum levels of C-peptide (pM—mean ± standard deviation) of animals treated with β-glucans from Saccharomyces cerevisiae (30mg/kg/
+day) during 28 days.
+β-GLUCANS
+
+PERIODONTAL
+DIABETES
+DISEASE
+Without
+With
+A,B
+
+Without
+With
+Without
+With
+
+Without
+413 (56)
+
+b B
+
+277 (108)
+226 (14)
+
+With
+395 (73) b B
+
+a B
+
+b A
+
+119 (2) a A y
+
+310 (51) a
+252 (41) A
+280 (8) x
+
+Means followed by different letters in columns indicate signiﬁcant differences between groups with and without diabetes by F test (p < 0,05).
+
+Means followed by different letters in columns indicate signiﬁcant differences between groups with and without periodontal disease by F test (p < 0,05).
+x,y
+Means followed by different letters in lines indicate signiﬁcant differences between groups with and without β-glucan ingestion by F test (p < 0,05).
+a,b
+
+doi:10.1371/journal.pone.0134742.t002
+
+PLOS ONE | DOI:10.1371/journal.pone.0134742 August 20, 2015
+
+6 / 13
+
+β-Glucans Reduce Glucose Levels and Attenuate Alveolar Bone Loss
+
+Fig 2. Alveolar bone loss in animals treated with β-glucans (30 mg/kg/day for 28 days). A—control; B—
+diabetes; C—periodontal disease; D—β-glucan; E—diabetes + periodontal disease; F—diabetes + β-glucan;
+G—periodontal disease + β-glucan, H—diabetes + periodontal disease + β-glucan. Only one representative
+animal per group is depicted in this figure.
+doi:10.1371/journal.pone.0134742.g002
+
+without periodontal disease (Table 3—p < 0.05). The administration of β-glucans has reduced
+alveolar bone loss in both diabetic and non-diabetic animals with periodontal disease (Table 3
+—p < 0.05).
+The Fig 2 showed, illustratively, the progression of periodontal disease (indicated by alveolar
+bone loss parameter) in animals which were submitted to the ligation protocol (Fig 2C). It was
+observed a aggravation of the disease when they were diabetic (Fig 2E). In all the groups which
+received treatment with β-glucan was observed a decrease in alveolar bone loss (Fig 2F, 2G and
+2H) when they were compared to the respective untreated groups (Fig 2B, 2C and 2E). Again,
+this figure is simply illustrative. The results regarding to alveolar bone loss are presented in
+Table 3In diabetic animals, the presence of periodontal disease has caused an increase in the
+expression of COX-2 (Table 4—p < 0.05). The treatment with β-glucans has reduced the
+expression of this gene in animals with periodontal disease, both diabetics and non-diabetics,
+against those that were not treated (Table 4—p < 0.05).
+Animals with diabetes and periodontal disease showed higher expression of RANK-L compared to non-diabetic animals with periodontal disease (Table 4—p < 0.05). A reduction in the
+expression of this gene was observed in animals with periodontal disease and diabetes in function of β-glucan treatment (Table 4—p < 0.05). In untreated animals, the groups with periodontal disease showed higher expression of RANK-L (Table 4—p < 0.05).
+With regard to OPG expression in non-diabetic animals, groups without periodontal
+disease have presented higher OPG expression than the groups with periodontal disease
+Table 3. Alveolar bone loss (mm—mean ± standard deviation) in animals treated with β-glucans from Saccharomyces cerevisiae (30mg/kg/day)
+during 28 days.
+β-GLUCANS
+
+PERIODONTAL
+DIABETES
+DISEASE
+Without
+With
+A,B
+
+Without
+With
+Without
+With
+
+Without
+
+0,98 (0,12) a
+
+b A x
+
+1,78 (0,35) b A y
+
+a
+
+1,13 (0,13) a
+
+1,20 (0,14)
+2,10 (0,36)
+
+With
+a
+
+1,16 (0,10)
+
+2,63 (0,13) b B x
+
+2,10 (0,36) b B y
+
+Means followed by different letters in columns indicate signiﬁcant differences between groups with and without diabetes by F test (p < 0,05).
+
+Means followed by different letters in columns indicate signiﬁcant differences between groups with and without periodontal disease by F test (p < 0,05).
+x,y
+Means followed by different letters in lines indicate signiﬁcant differences between groups with and without β-glucan ingestion by F test (p < 0,05).
+a,b
+
+doi:10.1371/journal.pone.0134742.t003
+
+PLOS ONE | DOI:10.1371/journal.pone.0134742 August 20, 2015
+
+7 / 13
+
+β-Glucans Reduce Glucose Levels and Attenuate Alveolar Bone Loss
+
+Table 4. COX-2, RANK-L and OPG gene expression (mean ± standard deviation) of animals treated with β-glucan from Saccharomyces cerevisiae
+(30mg/kg/day) during 28 days.
+β-GLUCANS
+
+PERIODONTAL
+DIABETES
+DISEASE
+
+Without
+
+With
+
+COX-2
+Without
+With
+
+Without
+
+1,08 (0,18)
+
+0,89 (0,12)
+
+With
+
+1,40 (0,44) x
+
+0,92 (0,24) y
+
+Without
+
+0,84 (0,07) a
+
+0,72 (0,15)
+
+With
+
+1,54 (0,44) b x
+
+0,82 (0,08) y
+
+1,46 (0,42) a
+
+1,54 (0,53) A
+
+RANK-L
+Without
+With
+
+Without
+With
+
+4,21 (1,60)
+
+Without
+
+b A x
+
+2,41 (0,63) y
+
+a
+
+3,71 (0,93) B
+
+2,22, (0,32)
+
+With
+
+6,74(2,46)
+
+b B x
+
+2,09 (0,65) y
+
+OPG
+Without
+With
+A,B
+
+Without
+With
+
+3,86 (0,52) b B
+
+3,92 (0,82) b B
+
+a y
+
+2,57 (0,21) a x
+
+1,17 (0,33)
+
+Without
+
+2,24 (0,33) A
+
+2,12 (0,96) A
+
+With
+
+1,47 (0,36)
+
+2,14 (0,63)
+
+Means followed by different letters in columns indicate signiﬁcant differences between groups with and without diabetes by F test (p < 0,05).
+
+Means followed by different letters in columns indicate signiﬁcant differences between groups with and without periodontal disease by F test (p < 0,05).
+x,y
+Means followed by different letters in lines indicate signiﬁcant differences between groups with and without β-glucan ingestion by F test (p < 0,05).
+a,b
+
+doi:10.1371/journal.pone.0134742.t004
+
+(Table 4—p < 0.05). These same groups (non-diabetic and without periodontal disease) have
+also presented a higher OPG expression when compared to diabetic animals without periodontal disease (Table 4—p < 0.05). Treatment with β-glucans resulted in increased OPG expression in non-diabetic animals with periodontal disease (Table 4—p< 0.05).
+No animals were lost during the experimental period. All animals were included in the statistical analyses (6/6 per group). At the end of the experiment, the animals presented good
+health status.
+
+Discussion
+The results of the present study demonstrate that β-glucans were efficient in improving metabolic parameters (blood glucose, total cholesterol and triacylglycerols) and reducing alveolar
+bone loss in diabetic animals with periodontal disease.
+The positive effects of β-glucans on the metabolism of diabetic rats are known [21,32]. The
+improvement of these parameters with the use of β-glucans may be associated to the ability of
+these compounds to act directly in digestion. These polysaccharides form a gelatinous layer
+that works as a barrier, that renders carbohydrate absorption difficult and thus leading to lower
+concentrations of glucose and lipids in the blood [22,23]. Our results are in agreement with a
+previous study that showed significant improvement in blood glucose, triacylglycerols and
+total cholesterol in diabetic rats treated with β-glucans, elucidating its beneficial effect on glucose tolerance and lipid metabolism [33,34].
+Animals with periodontal disease presented lower levels of C-peptide. This result may be associated with high cytokine levels (interleukin-1 beta, tumor necrosis factor alpha), which increase
+insulin resistance and induce pancreatic beta cell apoptosis [35]. C-peptide levels in diabetic animals with periodontal disease treated with β-glucans were increased in relation to animals in the
+
+PLOS ONE | DOI:10.1371/journal.pone.0134742 August 20, 2015
+
+8 / 13
+
+β-Glucans Reduce Glucose Levels and Attenuate Alveolar Bone Loss
+
+same condition that did not received β-glucans. The effects of β-glucans in the modulation of
+inflammatory profile (as observed in COX-2 expression) can indicate a reduction in the gingival
+inflammation and a preventive effect was observed in beta cell C-peptide secretion [36].
+The worsening of alveolar bone loss observed in diabetic animals with periodontal disease
+corroborates previous studies, since there is a bidirectional relationship between these diseases
+[12,20,37]. However, blood glucose control seemed not to be the only factor associated with the
+action of β-glucans in preventing alveolar bone loss, since it was also effective in rats with normal
+glucose levels. Such result may be associated with the immunomodulatory properties of β-glucans, specifically the reduction of RANK-L expression (a parameter associated with alveolar bone
+loss). Thus, we can associate the improvement in alveolar bone loss (both in diabetic and nondiabetic animals) to the known immunomodulatory effects of β-glucans from fungi [19,38,39].
+The immune action of these polysaccharides is associated with their capacity to activate leucocytes, stimulating their phagocytic and cytotoxic functions and antimicrobial activity [40,41].
+In the present study, animals with induced periodontal disease exhibited high levels of
+RANK-L and reduction in OPG expression. The ratio RANK-L/OPG balance is essential to bone
+tissue homeostasis [42]. OPG regulates bone remodeling through controlling osteoclast differentiation and activation [43,44]. On the other hand, RANK-L favors osteoclastogenesis, stimulating
+osteoclastic activity and inhibiting apoptosis [44,45]. RANK-L and OPG involvement in periodontal disease was evidenced in a study where mice were induced to periodontitis through inoculation of a pathogenic micro-organism. In this model, the periodontal disease activity was
+associated with high levels of RANK-L, while the increase in OPG expression inhibited this binding action [46]. Similar results to those of the present study were also found in experiments with
+diabetic mice induced by inoculation of bacteria, which showed higher RANK-L expression in
+sick animals. These results indicated that there was less bone loss when higher levels of OPG
+were observed [47]. Similar results were found in studies with rats induced to periodontal disease
+by ligature, where OPG was associated with alveolar bone volume preservation [48].
+In the present study, the use of β-glucans has reduced RANK-L expression in animals with
+periodontal disease, while an increase in OPG expression was observed in non-diabetic animals
+with periodontal disease. Once again this result may indicate a modulating effect of β-glucans
+on the immune system [33,49]. Similarly, the lower COX-2 expression in diabetic animals with
+periodontal disease treated with β-glucans may be attributed to the anti-inflammatory activity
+of these compounds.
+The hypothesis of this study was to investigate the effects of β-glucans in concomitant periodontal disease and diabetes mellitus. The results presented in this study showed that treatment with β-glucans improved blood glucose control and attenuated alveolar bone loss.
+The present study has demonstrated that β-glucans from Saccharomyces cerevisiae present
+both immunomodulatory and metabolic properties, and may be beneficial for diabetic patients
+with periodontal disease. There are no reports of toxicity associated with β-glucan consumption, which makes this compound relatively safe for consumption [15]. Hence, β-glucans arise
+as a feasible complementary treatment for those patients in the future.
+Considering that alveolar bone loss is also prevalent in patients with diabetes mellitus type
+2, it would be interesting to evaluate the effects of β-glucans in models of type 2 diabetes associated with induced periodontal disease.
+
+Conclusion
+Treatment with β-glucans from Saccharomyces cerevisiae administered during a 28-day period
+reduced blood glucose levels and attenuated alveolar bone loss in diabetic rats with periodontal
+disease.
+
+PLOS ONE | DOI:10.1371/journal.pone.0134742 August 20, 2015
+
+9 / 13
+
+β-Glucans Reduce Glucose Levels and Attenuate Alveolar Bone Loss
+
+Supporting Information
+S1 Checklist. The ARRIVE Guidelines Checklist Animal Research: Reporting In Vivo
+Experiments.
+(PDF)
+S1 Fig. Schematic representation of the experimental design across time. 1All animals were
+acclimated in individual metabolic cages for seven days; 2For animals in the following groups:
+diabetes; diabetes + periodontal disease; diabetes + β-glucan; diabetes + periodontal disease +
+β-glucan; 3For animals in the following groups: β-glucan; diabetes + β-glucan; periodontal
+disease + β-glucan; diabetes + periodontal disease + β-glucan; 4For animals in the following
+groups: periodontal disease; diabetes + periodontal disease; periodontal disease + β-glucan; diabetes + periodontal disease + β-glucan; 5Collection of blood samples and removal of the jaws.
+(TIFF)
+S2 Fig. Alveolar bone loss in animals treated with β-glucans (30 mg/kg/day for 28 days). A
+—control; B—diabetes; C—periodontal disease; D—β-glucan; E—diabetes + periodontal disease; F—diabetes + β-glucan; G—periodontal disease + β-glucan, H—diabetes + periodontal
+disease + β-glucan. Only one representative animal per group is depicted in this figure.
+(TIFF)
+S1 Table. Glucose, total cholesterol and triacylglycerols levels (mg/dL—mean β standard
+deviation) of animals treated with β-glucans from Saccharomyces cerevisiae (30mg/kg/day)
+during 28 days.
+(DOCX)
+S2 Table. Serum levels of C-peptide (pM—mean β standard deviation) of animals treated
+with β-glucans from Saccharomyces cerevisiae (30mg/kg/day) during 28 days.
+(DOCX)
+S3 Table. Alveolar bone loss (mm—mean ± standard deviation) in animals treated with βglucans from Saccharomyces cerevisiae (30mg/kg/day) during 28 days.
+(DOCX)
+S4 Table. COX-2, RANK-L and OPG gene expression (mean ± standard deviation) of animals treated with β-glucan from Saccharomyces cerevisiae (30mg/kg/day) during 28 days.
+(DOCX)
+
+Acknowledgments
+The authors would like to thank the Research Support Foundation of the State of Minas Gerais
+(Fundação de Amparo à Pesquisa do Estado de Minas Gerais—FAPEMIG APQ- 01692–12
+and PPM00268/14), National Council for Scientific and Technological Development (Conselho Nacional de Desenvolvimento Científico e Tecnológico–CNPq 481125/2013-2 and
+302424/2011-3) and Coordination for the Improvement of Higher Education Personnel (Coordenação de Aperfeiçoamento de Pessoal de Nível Superior–CAPES) for the support provided.
+
+Author Contributions
+Conceived and designed the experiments: VOS RVL EFA CGM JTCN MHN MRM RMM LJP.
+Performed the experiments: VOS RVL EFA CGM JTCN MHN MRM RMM LJP. Analyzed the
+
+PLOS ONE | DOI:10.1371/journal.pone.0134742 August 20, 2015
+
+10 / 13
+
+β-Glucans Reduce Glucose Levels and Attenuate Alveolar Bone Loss
+
+data: VOS RVL EFA CGM JTCN MHN MRM RMM LJP. Contributed reagents/materials/
+analysis tools: VOS RVL EFA CGM JTCN MHN MRM RMM LJP. Wrote the paper: VOS RVL
+EFA CGM JTCN MHN MRM RMM LJP.
+
+References
+1.
+
+Irfan UM, Dawson D V, Bissada NF. Epidemiology of periodontal disease: a review and clinical perspectives. J Int Acad Periodontol. 2001 Jan; 3(1):14–21. PMID: 12666973
+
+2.
+
+Michaud DS, Joshipura K, Giovannucci E, Fuchs CS. A prospective study of periodontal disease and
+pancreatic cancer in US male health professionals. J Natl Cancer Inst. 2007 Jan 17; 99(2):171–5.
+PMID: 17228001
+
+3.
+
+Reddy MS, Geurs NC, Gunsolley JC. Periodontal host modulation with antiproteinase, anti-inflammatory, and bone-sparing agents. A systematic review. Ann Periodontol. 2003 Dec; 8(1):12–37. PMID:
+14971246
+
+4.
+
+Williams RC, Offenbacher S. Periodontal medicine: the emergence of a new branch of periodontology.
+Periodontol 2000. 2000 Jun; 23:9–12. PMID: 11276770
+
+5.
+
+Sunil C, Ignacimuthu S, Agastian P. Antidiabetic effect of Symplocos cochinchinensis (Lour.) S. Moore.
+in type 2 diabetic rats. J Ethnopharmacol. 2011 Mar 24; 134(2):298–304. doi: 10.1016/j.jep.2010.12.
+018 PMID: 21182925
+
+6.
+
+Al-Maskari AY, Al-Maskari MY, Al-Sudairy S. Oral Manifestations and Complications of Diabetes Mellitus: A review. Sultan Qaboos Univ Med J. 2011 May; 11(2):179–86. PMID: 21969888
+
+7.
+
+Löe H. Periodontal disease. The sixth complication of diabetes mellitus. Diabetes Care. 1993 Jan; 16
+(1):329–34. PMID: 8422804
+
+8.
+
+Awuti G, Younusi K, Li L, Upur H, Ren J. Epidemiological survey on the prevalence of periodontitis and
+diabetes mellitus in Uyghur adults from rural Hotan area in Xinjiang. Exp Diabetes Res. 2012 Jan;
+2012:758921. doi: 10.1155/2012/758921 PMID: 21826136
+
+9.
+
+Lakschevitz F, Aboodi G, Tenenbaum H, Glogauer M. Diabetes and periodontal diseases: interplay
+and links. Curr Diabetes Rev. 2011 Nov; 7(6):433–9. PMID: 22091748
+
+10.
+
+Deshpande K, Jain A, Sharma R, Prashar S, Jain R. Diabetes and periodontitis. J Indian Soc Periodontol. 2010 Oct; 14(4):207–12. doi: 10.4103/0972-124X.76917 PMID: 21731243
+
+11.
+
+Koromantzos PA, Makrilakis K, Dereka X, Katsilambros N, Vrotsos IA, Madianos PN. A randomized,
+controlled trial on the effect of non-surgical periodontal therapy in patients with type 2 diabetes. Part I:
+effect on periodontal status and glycaemic control. J Clin Periodontol. 2011 Mar; 38(2):142–7. doi: 10.
+1111/j.1600-051X.2010.01652.x PMID: 21114680
+
+12.
+
+Breivik T, Opstad PK, Engstad R, Gundersen G, Gjermo P, Preus H. Soluble beta-1,3/1,6-glucan from
+yeast inhibits experimental periodontal disease in Wistar rats. J Clin Periodontol. 2005 Apr; 32(4):347–
+52. PMID: 15811050
+
+13.
+
+Samuelsen ABC, Schrezenmeir J, Knutsen SH. Effects of orally administered yeast-derived beta-glucans: a review. Mol Nutr Food Res. 2014 Jan; 58(1):183–93. doi: 10.1002/mnfr.201300338 PMID:
+24019098
+
+14.
+
+Tosh SM. Review of human studies investigating the post-prandial blood-glucose lowering ability of oat
+and barley food products. Eur J Clin Nutr. 2013 Apr; 67(4):310–7. doi: 10.1038/ejcn.2013.25 PMID:
+23422921
+
+15.
+
+Francelino Andrade E, Vieira Lobato R, Vasques Araújo T, Gilberto Zangerônimo M, Vicente Sousa R,
+José Pereira L. Effect of beta-glucans in the control of blood glucose levels of diabetic patients: a systematic review. Nutr Hosp. 2014 Jan; 31(1):170–7.
+
+16.
+
+Queenan KM, Stewart ML, Smith KN, Thomas W, Fulcher RG, Slavin JL. Concentrated oat beta-glucan, a fermentable fiber, lowers serum cholesterol in hypercholesterolemic adults in a randomized controlled trial. Nutr J. 2007 Mar; 26; 6:6. PMID: 17386092
+
+17.
+
+Wang Z, Guo Y, Yuan J. Effect of Dietary ß-1,3/1,6-glucan Supplementation on Growth Performance,
+Immune Response and Plasma Prostaglandin E2, Growth Hormone and Ghrelin in Weanling Piglets.
+Asian-Aust J Anim Sci 2008; 21:707–714.
+
+18.
+
+Rubin-Bejerano I, Abeijon C, Magnelli P, Grisafi P, Fink GR. Phagocytosis by human neutrophils is
+stimulated by a unique fungal cell wall component. Cell Host Microbe. 2007 Jul 12; 2(1):55–67. PMID:
+18005717
+
+19.
+
+Vetvicka V. Glucan-immunostimulant, adjuvant, potential drug. World J Clin Oncol. 2011 Mar 10; 2
+(2):115–9. doi: 10.5306/wjco.v2.i2.115 PMID: 21603320
+
+PLOS ONE | DOI:10.1371/journal.pone.0134742 August 20, 2015
+
+11 / 13
+
+β-Glucans Reduce Glucose Levels and Attenuate Alveolar Bone Loss
+
+20.
+
+Kim YS, Kang SJ, Kim JW, Cho HR, Moon SB, Kim KY, et al. Effects of Polycan, a β-glucan, on experimental periodontitis and alveolar bone loss in Sprague-Dawley rats. J Periodontal Res. 2012 Dec; 47
+(6):800–10. doi: 10.1111/j.1600-0765.2012.01502.x PMID: 22780690
+
+21.
+
+Lo H-C, Tsai F-A, Wasser SP, Yang J-G, Huang B-M. Effects of ingested fruiting bodies, submerged
+culture biomass, and acidic polysaccharide glucuronoxylomannan of Tremella mesenterica Retz.:Fr.
+on glycemic responses in normal and diabetic rats. Life Sci. 2006 Mar 20; 78(17):1957–66. PMID:
+16289235
+
+22.
+
+Choi JS, Kim H, Jung MH, Hong S, Song J. Consumption of barley beta-glucan ameliorates fatty liver
+and insulin resistance in mice fed a high-fat diet. Mol Nutr Food Res. 2010 Jul; 54(7):1004–13. doi: 10.
+1002/mnfr.200900127 PMID: 20112296
+
+23.
+
+Tappy L, Gugolz E, Wursch P. Effects of breakfast cereals containing various amounts of beta-glucan
+fibers on plasma glucose and insulin responses in NIDDM subjects. Diabetes Care. 1996 Aug; 19
+(8):831–4. PMID: 8842600
+
+24.
+
+Friedlander AH. Effect of periodontal treatment on glycemic control of diabetic patients: comment to
+Teeuw, Gerdes, and Loos. Diabetes Care. 2010 Jul; 33(7):e101; author reply e102. doi: 10.2337/dc100637 PMID: 20587707
+
+25.
+
+Hendarto H, Inoguchi T, Maeda Y, Ikeda N, Zheng J, Takei R, et al. GLP-1 analog liraglutide protects
+against oxidative stress and albuminuria in streptozotocin-induced diabetic rats via protein kinase Amediated inhibition of renal NAD(P)H oxidases. Metabolism. 2012 Oct; 61(10):1422–34. doi: 10.1016/j.
+metabol.2012.03.002 PMID: 22554832
+
+26.
+
+Kharbanda C, Sarwar Alam M, Hamid H, Bano S, Haider S, Nazreen S, et al. Trapa natans L. root
+extract suppresses hyperglycemic and hepatotoxic effects in STZ-induced diabetic rat model. J Ethnopharmacol. 2014 Feb 3; 151(2):931–6. doi: 10.1016/j.jep.2013.12.007 PMID: 24333959
+
+27.
+
+Noda K, Nakao S, Zandi S, Sun D, Hayes KC, Hafezi-Moghadam A. Retinopathy in a novel model of
+metabolic syndrome and type 2 diabetes: new insight on the inflammatory paradigm. FASEB J. 2014
+May; 28(5):2038–46. doi: 10.1096/fj.12-215715 PMID: 24571922
+
+28.
+
+Messora MR, Oliveira LFF, Foureaux RC, Taba M, Zangerônimo MG, Furlaneto FAC, et al. Probiotic
+therapy reduces periodontal tissue destruction and improves the intestinal morphology in rats with ligature-induced periodontitis. J Periodontol. 2013 Dec; 84(12):1818–26. doi: 10.1902/jop.2013.120644
+PMID: 23327675
+
+29.
+
+de Souza DM, de Prado FA, de Prado MA, da Rocha RF, Carvalho YR. Evaluation of periodontal bone
+loss in rats for radiographic and morphometric methods. Periodontia. 2011;67–73.
+
+30.
+
+Crawford JM, Taubman MA, Smith DJ. The natural history of periodontal bone loss in germfree and
+gnotobiotic rats infected with periodontopathic microorganisms. J Periodontal Res. 1978 Jul; 13
+(4):316–25. PMID: 149851
+
+31.
+
+Ferreira DF. Sisvar: a computer statistical analysis system. Ciência e Agrotecnologia. Editora UFLA.
+2000; 35(6):1039–42.
+
+32.
+
+Kim Y-W, Kim K-H, Choi H-J, Lee D-S. Anti-diabetic activity of beta-glucans and their enzymatically
+hydrolyzed oligosaccharides from Agaricus blazei. Biotechnol Lett. 2005 Apr; 27(7):483–7. PMID:
+15928854
+
+33.
+
+Gao R, Wang Y, Wu Z, Ming J, Zhao G. Interaction of barley β-glucan and tea polyphenols on glucose
+metabolism in streptozotocin-induced diabetic rats. J Food Sci. 2012 Jun; 77(6):H128–34. doi: 10.
+1111/j.1750-3841.2012.02688.x PMID: 22583021
+
+34.
+
+Miranda-Nantes CCBO, Fonseca EAI, Zaia CTB V, Dekker RFH, Khaper N, Castro IA, et al. Hypoglycemic and Hypocholesterolemic Effects of Botryosphaeran from Botryosphaeria rhodina MAMB-05 in Diabetes-Induced and Hyperlipidemia Conditions in Rats. Mycobiology. 2011 Sep; 39(3):187–93. doi: 10.
+5941/MYCO.2011.39.3.187 PMID: 22783102
+
+35.
+
+Santos Tunes R, Foss-Freitas MC, Nogueira-Filho Gda R. Impact of periodontitis on the diabetesrelated inflammatory status. J Can Dent Assoc. 2010; 76:35.
+
+36.
+
+Shanmugam N, Kim YS, Lanting L, Natarajan R. Regulation of Cyclooxygenase-2 Expression in Monocytes by Ligation of the Receptor for Advanced Glycation End Products. J Biol Chem. 2003 Sep; 12
+(278)34834–34844.
+
+37.
+
+Matthews DC. The relationship between diabetes and periodontal disease. J Can Dent Assoc. 2002
+Mar; 68(3):161–4. PMID: 11911811
+
+38.
+
+Sonck E, Stuyven E, Goddeeris B, Cox E. The effect of beta-glucans on porcine leukocytes. Vet Immunol Immunopathol. 2010 Jun 15; 135(3–4):199–207. doi: 10.1016/j.vetimm.2009.11.014 PMID:
+20034677
+
+39.
+
+Xiao Z, Trincado CA, Murtaugh MP. Beta-glucan enhancement of T cell IFNgamma response in swine.
+Vet Immunol Immunopathol. 2004 Dec; 102(3):315–20. PMID: 15507314
+
+PLOS ONE | DOI:10.1371/journal.pone.0134742 August 20, 2015
+
+12 / 13
+
+β-Glucans Reduce Glucose Levels and Attenuate Alveolar Bone Loss
+
+40.
+
+Akramiene D, Kondrotas A, Didziapetriene J, Kevelaitis E. Effects of beta-glucans on the immune system. Medicina (Kaunas). 2007 Jan; 43(8):597–606.
+
+41.
+
+Sandvik A, Wang YY, Morton HC, Aasen AO, Wang JE, Johansen F-E. Oral and systemic administration of beta-glucan protects against lipopolysaccharide-induced shock and organ injury in rats. Clin Exp
+Immunol. 2007 Apr; 148(1):168–77. PMID: 17349015
+
+42.
+
+Cochran DL. Inflammation and bone loss in periodontal disease. J Periodontol. 2008 Aug; 79(8):1569–
+76. doi: 10.1902/jop.2008.080233 PMID: 18673012
+
+43.
+
+Simonet WS, Lacey DL, Dunstan CR, Kelley M, Chang MS, Lüthy R, et al. Osteoprotegerin: a novel
+secreted protein involved in the regulation of bone density. Cell. 1997 Apr 18; 89(2):309–19. PMID:
+9108485
+
+44.
+
+Yasuda H, Shima N, Nakagawa N, Yamaguchi K, Kinosaki M, Mochizuki S, et al. Osteoclast differentiation factor is a ligand for osteoprotegerin/osteoclastogenesis-inhibitory factor and is identical to
+TRANCE/RANKL. Proc Natl Acad Sci U S A. 1998 Mar; 95(7):3597–602. PMID: 9520411
+
+45.
+
+Fuller K, Wong B, Fox S, Choi Y, Chambers TJ. TRANCE is necessary and sufficient for osteoblastmediated activation of bone resorption in osteoclasts. J Exp Med. 1998 Sep; 188(5):997–1001. PMID:
+9730902
+
+46.
+
+Teng YT, Nguyen H, Gao X, Kong YY, Gorczynski RM, Singh B, et al. Functional human T-cell immunity and osteoprotegerin ligand control alveolar bone destruction in periodontal infection. J Clin Invest.
+2000 Sep; 106(6):R59–67. PMID: 10995794
+
+47.
+
+Mahamed DA, Marleau A, Alnaeeli M, Singh B, Zhang X, Penninger JM, et al. G(-) Anaerobes-Reactive
+CD4+ T-Cells Trigger RANKL-Mediated Enhanced Alveolar Bone Loss in Diabetic NOD Mice. Diabetes. 2005 Apr; 54(5):1477–86. PMID: 15855336
+
+48.
+
+Jin Q, Cirelli JA, Park CH, Sugai J V, Taba M, Kostenuik PJ, et al. RANKL inhibition through osteoprotegerin blocks bone loss in experimental periodontitis. J Periodontol. 2007 Jul; 78(7):1300–8. PMID:
+17608585
+
+49.
+
+Lee DH, Kim HW. Innate immunity induced by fungal β-glucans via dectin-1 signaling pathway. Int J
+Med Mushrooms. 2014 Jan; 16(1):1–16. PMID: 24940900
+
+PLOS ONE | DOI:10.1371/journal.pone.0134742 August 20, 2015
+
+13 / 13
+
+

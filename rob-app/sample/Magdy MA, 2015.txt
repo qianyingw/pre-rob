@@ -1,0 +1,1009 @@
+RESEARCH ARTICLE
+
+Mangiferin Mitigates Gastric Ulcer in
+Ischemia/ Reperfused Rats: Involvement of
+PPAR-γ, NF-κB and Nrf2/HO-1 Signaling
+Pathways
+Magdy Mahmoud-Awny1, Ahmed S. Attia2, Mohamed F. Abd-Ellah3, Hanan Salah ElAbhar4*
+1 Department of Pharmacology & Toxicology, October University, Cairo, Egypt, 2 Department of
+Microbiology & Immunologyology, Cairo University, Cairo, Egypt, 3 Department of Pharmacology &
+Toxicology, El-Azhar University, Cairo, Egypt, 4 Department of Pharmacology & Toxicology, Cairo
+University, Cairo, Egypt
+* Hanabhar@yahoo.com
+
+Abstract
+
+OPEN ACCESS
+Citation: Mahmoud-Awny M, Attia AS, Abd-Ellah MF,
+El-Abhar HS (2015) Mangiferin Mitigates Gastric
+Ulcer in Ischemia/ Reperfused Rats: Involvement of
+PPAR-γ, NF-κB and Nrf2/HO-1 Signaling Pathways.
+PLoS ONE 10(7): e0132497. doi:10.1371/journal.
+pone.0132497
+Editor: Ashraf B. Abdel-Naim, Faculty of Pharmacy,
+Ain Shams University, EGYPT
+Received: March 18, 2015
+Accepted: June 15, 2015
+Published: July 21, 2015
+Copyright: © 2015 Mahmoud-Awny et al. This is an
+open access article distributed under the terms of the
+Creative Commons Attribution License, which permits
+unrestricted use, distribution, and reproduction in any
+medium, provided the original author and source are
+credited.
+Data Availability Statement: All relevant data are
+within the paper.
+
+Mangiferin (MF), a xanthonoid from Mangifera indica, has been proved to have antisecretory and antioxidant gastroprotective effects against different gastric ulcer models; however,
+its molecular mechanism has not been previously elucidated. Therefore, the aim of this
+study was to test its modulatory effect on several signaling pathways using the ischemia/
+reperfusion model for the first time. Animals were treated with MF, omeprazole (OMP), and
+the vehicle. The mechanistic studies revealed that MF mediated its gastroprotective effect
+partly via inducing the expression of Nrf2, HO-1 and PPAR-γ along with downregulating that
+of NF-κB. Surprisingly, the effect of MF, especially the high dose, exceeded that mediated
+by OMP except for Nrf2. The molecular results were reflected on the biomarkers measured,
+where the antioxidant effect of MF was manifested by increasing total antioxidant capacity
+and glutathione, besides normalizing malondialdehyde level. Additionally, MF decreased
+the I/R-induced nitric oxide elevation, an effect that was better than that of OMP. In the
+serum, MF, dose dependently, enhanced endothelial nitric oxide synthase, while reduced
+the inducible isoform. Regarding the anti-inflammatory effect of MF, it reduced serum level
+of IL-1β and sE-selectin, effects that were mirrored on the tissue level of myeloperoxidase,
+the neutrophil infiltration marker. In addition, MF possessed an antiapoptotic character evidenced by elevating Bcl-2 level and reducing that of caspase-3 in a dose related order. As a
+conclusion, the intimated gastroprotective mechanisms of MF are mediated, partially, by
+modulation of oxidative stress, inflammation and apoptosis possibly via the Nrf2/HO-1,
+PPAR-γ/NF-κB signaling pathways.
+
+Funding: The authors have no support or funding to
+report.
+Competing Interests: The authors have declared
+that no competing interests exist.
+
+PLOS ONE | DOI:10.1371/journal.pone.0132497 July 21, 2015
+
+1 / 14
+
+Mangiferin Possible Gastroprotective Molecular Mechanisms
+
+Introduction
+During gastric ulcer malady prosperity of upshots congregated to distress the balance between
+the destructive and the protective events. Oxidative stress is a key factor that engenders gastric
+ulcer and results in the overproduction of free radicals (FRs) [1]. The gastric ischemia/reperfusion (I/R) archetype mimics stress-induced gastric ulcer, in which case, elevated FRs, nitric
+oxide (NO), leucocyte adhesion molecule “E-selectin” [2], neutrophil infiltration [3], and redox
+imbalance [4] play a substantial role in its pathogenesis. Likewise, nuclear factor-kappa B (NFκB), a redox-sensitive transcription factor, has a pivotal role in the I/R injury [5]. It regulates
+the expression of several genes associated with inflammation and cell injury, such as interleukin (IL) -1β, -6, cellular adhesion molecules and inducible nitric oxide synthase (iNOS). On the
+other hand, several factors mediate their gastroprotection against oxidative injury by alleviating
+the inflammatory response, these include peroxisome proliferator-activated receptor (PPAR)-γ
+[6, 7] and heamoxygenase-1 (HO-1) [8]. The latter is the inducible isoform of HO that
+responds to stresses, such as oxidative stress and it remains widely regarded as a protective
+mechanism against oxidative tissue injury [9].
+One of the transcriptional regulators of HO-1 is the nuclear factor-E2-related factor-2
+(Nrf2) [9], which is localized in the cytoplasm under normal conditions and interacts with
+Keap1 (the molecular sensor cysteine-rich protein Kelch-like ECH associating protein 1) to be
+rapidly degraded by the ubiquitin-proteasome pathway [10, 11]. Contrariwise, under oxidative
+stress conditions, Keap1 is oxidized and Nrf2 ubiquitination is lowered [11], liberating, thus,
+Nrf2 from Keap1. Nrf2 is then translocated into the nucleus to tether with the antioxidant
+response element of the target gene promoter [12, 13] causing immediate transactivation of the
+encoding genes. These genes include many enzymatic antioxidant and detoxifying genes, such
+as glutathione (GSH) peroxidase/reductase, HO-1, and GSH S-transferase [14].
+Mangiferin (MF), a naturally occurring glucosylxanthone, possesses a gastroprotective effect
+via its antisecretory and antioxidant activities, as verified in different animal models of gastric
+ulceration [15], but not the I/R model, which is the goal of the current work. MF was reported
+to mediate its antioxidant activity at different levels of the oxidative sequence. It generates MF
+phenoxy radicals and binds to metal ions (Fe 2+/3+) in the form of a stable MF-iron complex
+that does not allow the generation of hydroxyl (OH_) radicals and/or oxo-ferryl groups and
+scavenges lipid peroxy/alkoxy radicals, thereby, maintaining the cellular oxidation-antioxidant
+balance [16]. Despite the detailed cellular reactions described, however, the molecular signaling
+pathways has not been tackled before.
+On the molecular level, the present aim was to assess the possible involvement of Nrf2/HO1, PPARγ, and NF-κB signaling pathways in the gastroprotective effect of MF, besides other
+biomarkers to delineate the potential gastroprotective mechanisms using the hypoxia/ reoxygenation model.
+
+Materials and Method
+Animals
+Male Wistar rats, weighing 180–220 g (Research Institute of Ophthalmology, Giza, Egypt)
+were kept on a 12h light/dark cycles, constant environmental conditions and were maintained
+on a proper diet chow and water ad libitum. Prior to experiment (24 hrs) all animals were kept
+individually in wide mesh bottom cages and fasted. Animals were handled according to the
+guidelines approved by the Animal Care and Use Committee of Faculty of Pharmacy, Cairo
+University, Cairo, Egypt (Permit Number: PT 575). All the surgical processes were performed
+under thiopental anesthesia, and all efforts were made to minimize suffering.
+
+PLOS ONE | DOI:10.1371/journal.pone.0132497 July 21, 2015
+
+2 / 14
+
+Mangiferin Possible Gastroprotective Molecular Mechanisms
+
+Drugs
+Mangiferin [MF] was purchased from Sigma-Aldrich Chemical Company (St Louis, MO,
+USA) and omeprazole [OMP] from Chemo S.A (Lugano, Switzerland). All other chemicals
+and reagents used were of analytical grade. MF and OMP were dissolved in saline to be injected
+intraperitoneally.
+
+Induction of gastric mucosal ischemia/ reperfusion (I/R) and treatments
+The I/R model was performed according to the method previously described by Kotani et al.
+[17] with some modifications. Briefly, under thiopental anaesthesia (50 mg/kg, i.p), the rat coeliac artery was occluded for 30 min., after which reperfusion was allowed for 72 hrs by
+declamping the artery. Rats were allotted into 5 groups (n = 7–9); animals in the first group
+received saline and the celiac artery was handled without clamping to serve as the sham-operated control group. Rats in the following groups were subjected to I/R; the untreated (second)
+group, received saline and was denoted as the positive control (I/R), while the other 3 groups
+were treated, with MF (10 mg/ kg; MF10; third group), MF (20 mg/ kg; MF20; fourth group),
+and OMP (20 mg/ kg; OMP20; fifth group). All treatments were done 30 min. before operation
+and for 3 days after reperfusion.
+
+Histopathological examinations
+Stomach, from three representative animals in each group, was immediately immersed in 10%
+formalin-saline, embedded in paraffin, and 5μm sections were prepared, stained with hematoxylin and eosin (H & E), and examined microscopically.
+
+Biochemical measurements
+At the end of the reperfusion time and under deep ether anesthesia, blood was collected from
+the jugular vein to prepare sera, then animals were euthanized and the stomach was excised,
+opened along the greater curvature, and rinsed with an ice cold saline. The extent of gross
+mucosal damage (Ulcer Index) was assessed and expressed as the sum of ulcer lengths per
+stomach in mm [18]. Briefly, an illuminated magnifier (3x) was used to measure the length of
+the long lesions (mm) in the glandular part of the stomach, while the petechea lesions were
+counted and each five lesions were represented as 1 mm of ulcer.
+About 50 mg of gastric mucosa was submerged overnight in RNA later solution, stored at
+-80°C till quantitative real-time PCR (qRT-PCR) quantification. The remaining mucosa was
+scrapped off and homogenized in ice-cold saline (MPW-120, Poland) using the maximum
+speed for 1 min. The homogenate was centrifuged at 5000 rpm for 5 min at 4°C and the resulting supernatants were kept in aliquotes and stored at -80°C till the determination of gastric
+parameters.
+Estimation of homogenate/serum parameters using ELISA technique. The homogenate/serum levels of the following parameters were evaluated using the corresponding ELISA
+kits as shown in parentheses: IL-1β, sE-selectin (Abcam Inc., Cambridge, UK, Cat. No.
+ab100768 and ab171334, respectively), iNOS, eNOS (EIAab, Wuhan, China, Cat. No. E0837r
+and E0868r, respectively), B cell leukemia/lymphoma-2 (Bcl-2; USCN Life Science Inc.,
+Wuhan, China, Cat. No. E90778Bo) and caspase-3 (Cusabio Biotech Co., Wuhan, China, Cat.
+No. CSB-E08857r). Each biomarker was processed according to the manufacturers' procedures
+provided. Serum total antioxidant capacity (TAC) was measured using the method of Benzie
+and Starin [19]. Briefly, ferric tripyridyltriazine (Fe3+-TPTZ) complex was reduced to the ferrous form by the antioxidants present in the sample at an acidic pH, to yield an intense blue
+
+PLOS ONE | DOI:10.1371/journal.pone.0132497 July 21, 2015
+
+3 / 14
+
+Mangiferin Possible Gastroprotective Molecular Mechanisms
+
+color that can be monitored by measuring the change in absorbance at 593 nm. The change is
+directly related to the combined or total reducing power of electron donating non-enzymatic
+antioxidants present in the reaction mixture. The TAC level was expressed as μM/L.
+Estimation of gastric activity/content of myeloperoxidase (MPO), malondialdehyde
+(MDA), reduced glutathione (GSH) and total nitric oxide (NOx). The activity of MPO (U/
+gm), a marker of tissue neutrophil infitration, was assessed according to Bradley et al. [20]. The
+method is based upon measuring the hydrogen peroxide-dependent oxidation of o-dianisidine,
+catalyzed by MPO, which results in the formation of a compound exhibiting an increased
+absorbance at 460 nm. As an index of lipid peroxidation thiobarbituric acid reactive substances
+(TBARS), represented by MDA, was used to determine the oxidative damage, following the
+method of Mihara and Uchiyama [21]. The MDA-TBA adduct develops pink color, which was
+extracted by n-butanol and measured at two wave lengths, viz., 520 and 535nm. The method
+described by Ahmed et al. [22] was adopted to assess the non-protein sulfhydryl groups
+(mainly GSH) by reacting with Ellman’s reagent after precipitating the protein SH–groups.
+The reaction with Ellman’s reagent formed a stable yellow color of 5 mercapto-2-nitrobenzoic
+acid, which was measured colorimetrically at 412 nm (mg/gm).
+Gastric mucosal NO production was estimated indirectly as nitrite/nitrate concentration
+according to the method of Miranda et al. [23], where vanadium trichloride was used to reduce
+nitrate into nitrite. The pink azo-dye produced by the reaction of nitrite with sulfanilic acid followed by the subsequent coupling with N-(1-naphthyl)-ethylenediamine was measured colorimetrically at 540 nm and NOx was expressed as μM/gm.
+
+Quantitative real-time (RT)-PCR
+Total RNA was extracted from the gastric mucosa using Simply P Total RNA Extraction kit
+(BioFlux, Hangzhou, China). The purity of the obtained RNA was verified spectrophoto-metrically at 260/280 nm. Equal amounts of RNA (0.368 μg) were retrotranscribed into first-strand
+complementary DNA (cDNA) at 37°C for 50 min. using 200 U/μl M-MuLV reverse-transcriptase (SibEnzyme, Novosibirsk, Russia), 1 μl random hexamer (Qiagen, LRS Laboratories, Inc.
+Korea), and 0.1 M DTT in a 50 μL reaction mixture. To assess the expression of antioxidant
+and inflammation-associated target genes, RT-PCR was performed using SYBR green PCR
+Master Mix (Qiagen) as described by the manufacturer. Briefly, in a 25 μl reaction volume, 5 μl
+of cDNA was added to 12.5 μl of 2x SYBR green master mix and 2.5 μl (2.5 μM) of each primer.
+The sequences of primers were: PPAR-γ sense primer 5'-GCGGAGATCTCCAGTGATATC
+-3'; antisense primer 5'-TCA GCGACTGGGACTTTTCT-3'; NF-κB p65 sense primer 5'-TGC
+AGAAAGAAGACATTGAGGTG-3'; antisense primer 5'- AGGCTAGGGTCAGCGTAT
+GG-3'; Nrf2 sense primer 5'-ATGGCC ACACTTTTCTGGAC-3'; antisense primer 5'-AGAT
+GTCAAGCGGGTCACTT-3'; HO-1 sense primer 5'- CGTGCAGAGAATTCTGAGTTC-3';
+antisense primer 5'- AGACG CTTTACGTAGTGCTG-3'; and glyceraldehyde-3 phosphate
+dehydrogenase (GAPDH) sense primer 5'-GGGCAGCCCAGAACATCA-3'; antisense primer
+5'-TGACCTTG CCCACAGCCT-3'. PCR reactions included 15 min at 95°C for activation of
+HotStarTaq DNA Polymerase, followed by 45 cycles at 94°C for 15 sec (denaturing), 55°C for
+30 sec (annealing), and 72°C for 30 sec (extension). The relative expression was calculated
+from the 2-ΔΔCT formula [24].
+
+Statistical analysis
+Data were expressed as mean ± S.E.M of 7–9 animals. Statistical comparisons between means
+were carried out using one-way analysis of variance (ANOVA), followed by Student-NewmanKeuls test. The statistical significance of difference was considered at P < 0.05.
+
+PLOS ONE | DOI:10.1371/journal.pone.0132497 July 21, 2015
+
+4 / 14
+
+Mangiferin Possible Gastroprotective Molecular Mechanisms
+
+Results
+Effect of MF and OMP on I/R-induced ulcer index
+MF, dose dependently, prohibited the I/R-induced gastric injury, as presented by values of
+ulcer index (Table 1) and the effect of MF20 was comparable to that offered by OMP20.
+
+Effect of MF and OMP on the mRNA expression of antioxidant genes
+As illustrated in Fig 1A and 1B, adaptive response against the I/R injury was evidenced in the
+upregulation of Nrf2 and HO-1 mRNA, which explains the reason behind the elevated GSH
+level in untreated I/R group. These mRNA upregulations were even more vivid in the treated
+groups, pointing, thus, to the antioxidant capacity of MF.
+
+Effect of MF and OMP on redox parameters
+As presented in Tables 2 and 3 the I/R insult caused an imbalance in the oxidative/nitrosative
+status. A surge in MDA level (182%) and NOx production (187.6%), paralleled with 5.1 folds
+increase in iNOS, was perceived in the I/R untreated group. On the contrary, the I/R injury
+halved the beneficial eNOS and reduced the TAC (69.7%), compared to sham group. All these
+alterations were reverted by OMP, as well as MF, in a dose dependent manner. In almost all the
+parameters MF20 had the prominent effect. Regarding GSH, the I/R model, unexpectedly, elevated it by 32%, an effect that was further enhanced by the different drug regimens.
+
+Effect of MF and OMP on the mRNA expression of PPAR-γ and NF-κB
+genes
+As depicted in Fig 1C, animals with I/R injury revealed a significant decrease in the gastric
+expression of the anti-inflammatory PPAR-γ (25% of the sham level), with a marked increase
+in that of the proinflammatory factor NF-κB (11.9 fold) (Fig 1D). Interestingly, MF treated
+groups were able to counteract the I/R-related effects according to the dose level tested. OMP,
+on the other hand, showed a lesser effect than MF did on NF-κB, but did not alter the lessened
+PPAR-γ.
+
+Effect of MF and OMP on gastric inflammatory cytokines and neutrophils
+infiltration
+Table 4 depicts the I/R-mediated gastric mischief, which aggravated the inflammatory biomarkers. It boosted the serum levels of IL-1β, sE-selectin, and gastric MPO activity by 5.2, 5.6,
+and 2.2 folds, respectively, as compared to the sham operated control group. All these
+Table 1. Effect of mangiferin and omeprazole on ulcer index in ischemia/reperfused rats. Mangiferin
+(10 & 20 mg/kg; MF10 & MF20) and omeprazole (20 mg/kg; OMP20) were administered intraperitoneally 30
+min. before induction of ischemia/ reperfusion (I/R) and for 3 days after reperfusion. Values are means of 7–9
+rats ± S.E.M; as compared with sham (*), I/R (@), MF10 (δ), and OMP (#) treated groups (one-way ANOVA followed by Student-Newman-Keuls multiple comparison tests), P< 0.05.
+Groups
+
+Ulcer index (mm)
+
+Sham
+
+0±0
+
+I/R
+
+5 ± 0.4*
+
+I/R+MF10
+
+1.1± 0.08 @#
+
+I/R+MF20
+
+0.3 ± 0.05 @δ
+
+I/R+OMP20
+
+0.3±0.06 @
+
+doi:10.1371/journal.pone.0132497.t001
+
+PLOS ONE | DOI:10.1371/journal.pone.0132497 July 21, 2015
+
+5 / 14
+
+Mangiferin Possible Gastroprotective Molecular Mechanisms
+
+Fig 1. Effect of mangiferin and omeprazole on the mRNA expression of (A) Nrf2, (B) HO-1, (C) PPAR-γ, and (D) NF-κB genes in ischemia/reperfused
+rats. Mangiferin (10 & 20 mg/kg; MF10 & MF20) and omeprazole (20 mg/kg; OMP20) were administered intraperitoneally 30 min before induction of ischemia/
+reperfusion (I/R) and for 3 days after reperfusion. Values are means of 7–9 rats ± S.E.M; as compared with sham (*), I/R (@), MF10 (δ), and OMP (#) treated
+groups (one-way ANOVA followed by Student-Newman-Keuls multiple comparison tests) at P< 0.05.
+doi:10.1371/journal.pone.0132497.g001
+
+alterations were significantly halted by the treatment with MF in a dose dependent manner.
+Nonetheless, the MF20 effects superseded that mediated by the reference standard OMP. These
+
+PLOS ONE | DOI:10.1371/journal.pone.0132497 July 21, 2015
+
+6 / 14
+
+Mangiferin Possible Gastroprotective Molecular Mechanisms
+
+Table 2. Effect of mangiferin and omeprazole on redox parameters in ischemia/ reperfused rats. Mangiferin (10 & 20 mg/kg; MF10 & MF20) and omeprazole (20 mg/kg; OMP20) were administered intraperitoneally 30 min. before induction of ischemia/ reperfusion (I/R) and for 3 days after reperfusion. Values
+are means of 7–9 rats ± S.E.M; as compared with sham (*), I/R (@), MF10 (δ) and OMP (#) treated groups (one-way ANOVA followed by student-NewmanKeuls multiple comparison tests), P< 0.05. MDA (malondialdehyde), GSH (glutathione), and TAC (total antioxidant capacity).
+Groups
+
+MDA (nM/gm)
+
+GSH (mg/gm)
+
+TAC (μM/L)
+
+Sham
+
+35.2 ± 2.5
+
+0.41 ± 0.03
+
+153.3 ± 10.3
+
+I/R
+
+64 ± 1.8 *
+
+0.54 ± 0.04 *
+
+106.8 ± 6.4 *
+
+I/R + MF10
+
+45.2 ± 0.85*
+
+0.63 ± 0.05 *
+
+192.7 ± 13.4*@
+
+I/R + MF20
+
+38.3 ± 3.3
+
+I/R + OMP20
+
+38.2 ± 3.1
+
+@
+
+@
+
+0.67±0.04*
+
+@
+
+239.5±12.6*@δ#
+
+0.58 ± 0.02 *
+
+@
+
+193.7 ± 13 *@
+
+doi:10.1371/journal.pone.0132497.t002
+
+observations indicate that MF can modulate the inflammatory cytokines and neutrophils
+recruitment to mitigate I/R-induced injury.
+
+Effect of MF and OMP on the apoptotic biomarkers
+As presented in Table 4, the I/R insult triggered apoptosis of gastric mucosa as evidenced by
+the 6.85 folds increase of caspase-3 level. In the same context, I/R decreased the level of the
+anti-apoptotic marker Bcl-2 (59%). However, administration of MF, in a dose dependent manner, has halted these alterations significantly, effects that have surpassed those mediated by
+OMP.
+
+Effect of MF and OMP on gastric histopathological changes
+The improving effects of the different drug regimens on the tested biomarkers were further
+confirmed by the histological findings presented in Fig 2. The figure illustrates the photomicrographs of stomach mucosa, which show [A] normal gastric mucosal (mu), submucosal (sm)
+and muscularis (mL) architecture in the sham-operated rat section. [B] I/R sections reveal
+sloughed mucosa (m), juxtraposed with underlying haemorrhage (black arrow), [C] severe vascular congestion (V), focal inflammatory cells infiltration (m), mainly as neutrophils, and
+oedema (O) in submucosa. [D] MF10 section divulges only congestion in the submucosal blood
+vessels (V) with mild inflammatory cell infiltration (yellow arrow) and/or edema. On the other
+hand, [E] MF20 section, similar to sham-operated control, shows normal intact histological
+structure, except for a very mild vascular congestion (v) in the submucosa; the MF20 effect
+superseded that of [F] OMP, where congested blood vessels (V) and oedema in the submucosal
+layer are still detected in the OMP sections.
+Table 3. Effect of mangiferin and omeprazole on nitrosative stress parameters in ischemia/reperfused
+rats. Mangiferin (10 & 20 mg/kg; MF10 & MF20) and omeprazole (20 mg/kg; OMP20) were administered intraperitoneally 30 min before induction of ischemia/ reperfusion (I/R) and for 3 days after reperfusion. Values are
+means of 7–9 rats ± S.E.M, as compared with sham (*), I/R (@), MF10 (δ) and OMP (#) treated groups (oneway ANOVA followed by student-Newman-Keuls multiple comparison tests), P< 0.05. NOx (total nitric oxide),
+eNOS (endothelial nitric oxide synthase), and iNOS (inducible nitric oxide synthase)
+Groups
+
+NOx (μM/gm)
+
+Enos (U/L)
+
+iNOS (ng/mL)
+
+Sham
+
+142.5±11.6
+
+25.6 ± 1.6
+
+15.3 ±0.9
+
+I/R
+
+267.3±13.0*
+
+14.1± 0.4 *
+
+80.9±3.8*
+
+I/R + MF10
+
+177.8 ±9.1
+
+I/R + MF20
+
+192 ±10.2*
+
+I/R + OMP20
+
+204.7±5.9 *
+
+@
+@
+@
+
+@
+
+40.5±1.1*@#
+
+@δ#
+
+28.1 ±0.8*@δ
+
+17.7±0.4*
+23±0.4 *
+
+18.2±0.5*
+
+@
+
+29.1±0.7*@
+
+doi:10.1371/journal.pone.0132497.t003
+
+PLOS ONE | DOI:10.1371/journal.pone.0132497 July 21, 2015
+
+7 / 14
+
+Mangiferin Possible Gastroprotective Molecular Mechanisms
+
+Table 4. Effect of mangiferin and omeprazole on inflammatory cytokines, neutrophils infiltration and apoptotic biomarkers in ischemia/reperfused
+rats. Mangiferin (10 & 20 mg/kg; MF10 & MF20) and omeprazole (20 mg/kg; OMP20) were administered intraperitoneally 30 min before induction of ischemia/
+reperfusion (I/R) and for 3 days after reperfusion. Values are means of 7–9 rats ± S.E.M, as compared with sham (*), I/R (@), MF10 (δ), and OMP (#) treated
+groups (one-way ANOVA followed by Student-Newman-Keuls multiple comparison tests) at P< 0.05. IL-1β (interleukin-1beta), MPO (myeloperoxidase), Bcl2 (B cell leukemia/lymphoma2).
+Groups
+
+IL-1β (pg/mL)
+
+sE-selectin (pg/mL)
+
+MPO (U/gm)
+
+Bcl-2 (ng/mL)
+
+Caspase-3 (ng/gm)
+
+Sham
+
+11.4±0.5
+
+1.9 ± 0.1
+
+1.1± 0.1
+
+61.3 ±1.2
+
+6 ± 0.2
+
+I/R
+
+59.5±4.1 *
+
+10.7 ± 0.3 *
+
+2.4 ± 0.07 *
+
+25.4 ±1.2*
+
+41.1 ± 0.6 *
+
+I/R + MF10
+
+33 ±1.1 *@
+
+8.8 ± 0.5 *,@,#
+
+1.2± 0.07@
+
+30.4 ±0.5*@
+
+25 ±0.6 *@
+
+I/R + MF20
+
+15.5±0.4@δ
+
+4.8 ± 0.3*@δ#
+
+0.4±0.04*@δ#
+
+45.8±1.3*@ δ#
+
+14.5 ± 0.5 *@ δ#
+
+32.3 ±0.9*
+
+17.6 ±0.6 *@ δ
+
+I/R + OMP20
+
+@δ
+
+16.1± 0.4
+
+1.8 ± 0.03
+
+@
+
+0.9± 0.01
+
+@δ
+
+@
+
+doi:10.1371/journal.pone.0132497.t004
+
+Discussion
+Though previous studies have documented the antioxidant [15] and anti-inflammatory [25]
+capacities of MF, yet none has clarified the potential molecular pathways involved in mending
+the disturbed redox/inflammatory systems. Thus, in the present work we have verified the gastric mucosal expression of Nrf2/HO-1 to understand if this signaling pathway is involved in
+the MF antioxidant mechanism. Additionally, the study targeted the expression of NF-κB and
+PPAR-γ to explore also some of the possible MF anti-inflammatory molecular machinery.
+Our signal transduction studies revealed that I/R has significantly upregulated the mRNA of
+Nrf2 and HO-1 pointing to a possible adaptive effect of the body against the I/R damaging
+insult; these findings mimic that of Pan and coworkers [26] in a retinal I/R model. Enhanced
+
+Fig 2. Representative photomicrographs of stomach mucosa. [A] Sham-operated rat section shows
+normal gastric mucosal (mu), submucosal (sm) and muscularis (mL) architecture. [B] Ischemia/reperfusion (I/
+R) sections show sloughed mucosa (m), juxtraposed with underlying haemorrhage (black arrow), [C] severe
+vascular congestion (V), focal inflammatory cells infiltration (m) and oedema (O) in submucosa. [D] MF10
+section reveals only congestion in the submucosal blood vessels (V) with mild inflammatory cell infiltration
+(yellow arrow) and/or edema. [E] MF20 section, similar to sham-operated control, shows normal intact
+histological structure except for very mild vascular congestion (v) in the submucosa. [F] OMP20 section
+mimics that of MF20, but shows only congested blood vessels (V) in the submucosal layer.
+doi:10.1371/journal.pone.0132497.g002
+
+PLOS ONE | DOI:10.1371/journal.pone.0132497 July 21, 2015
+
+8 / 14
+
+Mangiferin Possible Gastroprotective Molecular Mechanisms
+
+HO-1 protein expression, regulated by Nrf2 [27], can occur in response to oxidative stress [28]
+and inflammatory diseases and is widely accepted as a protective mechanism against oxidative
+tissue injury [9], facts that support our findings. MF, on the other hand, affirmed its antioxidant effect by elevating further the expression of Nrf2 and HO-1, results that were recorded
+previously in a hepatotoxic model [29]. To the best of our knowledge, this finding is the first
+direct evidence for a gastroprotective role of MF through the Nrf2/HO-1 antioxidant pathway
+in the I/R-induced ulcer model.
+The antioxidant character of MF was further manifested herein by its ability to combat the
+I/R-induced elevation in lipid peroxides [30] and the decrease in TAC [31]. However, the effect
+of I/R and MF on GSH showed the same pattern observed in Nrf2 and HO-1 expression, where
+I/R caused a subtle, yet significant rise in GSH, an effect that was magnified further by MF [32].
+This action, points to a possible compensatory response against I/R injury and links GSH with
+the Nrf2/HO-1 signaling pathway as supported hitherto by Das et al. [29]. The correlation
+between GSH and Nrf2 may be related to the molecular cross talk between the upregulated
+Nrf2 and the γ-glutamylcysteine ligase [10, 33], an enzyme that catalyzes the rate limiting step
+in GSH synthesis [34]. Additionally, HO-1 antioxidant role stems from its ability to catalyze
+the breakdown of the pro-oxidant heme into iron, biliverdin, and carbon monoxide [35]; biliverdin is then converted to bilirubin, which acts as an antioxidant against lipid peroxidation
+[36].
+Besides mending the perturbed redox status, MF extended its effect to entail the nitrosative
+stress, as well. MF opposed the I/R effect on the levels of eNOS/iNOS, where it restored the
+activity of the constitutive enzyme eNOS [37] and decreased the noxious inducible isoform
+[38]. Therefore, it is expected that the elevated level of iNOS in the untreated group is responsible for the surplus level of NOx, which undermines gastric mucosal integrity via its interaction
+with superoxide anion and the formation of peroxynitrite [39]. The latter is a potent free radical that perturbs cell macromolecules through lipid peroxidation, direct mitochondrial
+impairment, inhibition of membrane Na+/K+-ATPase activity, and oxidative protein modification [40]. Contrariwise, the MF-mediated production of NOx can be driven from the restored
+eNOS, and not iNOS, supporting, thus, the antioxidant/free radical scavenging properties of
+MF [16]. The protective NO quenches free radicals with the consequent preservation of GSH
+in gastric mucosa; GSH acts both as a nucleophilic scavenger of superoxides and as a cofactor
+in the GSH peroxidase-mediated reduction of hydrogen peroxides [41].
+The deleterious events that follow the I/R insult include increased release of proinflammatory mediators and recruitment of leukocytes, besides disturbing the oxidative/nitrosative
+machineries [42]. In the current study, MF validated its anti-inflammatory/ immune-modulatory effect, which was documented previously [25, 43], by inhibiting IL-1β [43], E-selectin [25]
+and neutrophil infiltration [44] in other different models. These effects can be linked partly to
+the MF-modulatory changes on the molecular level. MF induced the gene expression of PPARγ, along with the downregulation of the parent inflammatory transcription factor/mediator
+NF-κB, hindering, thus, the I/R effect. Earlier studies have reported that the I/R injurious effect
+is mediated partially via suppressing the PPAR-γ mRNA [7, 45], which is a transcription factor
+that acts as an influential pleiotropic regulator of anti-inflammation, antioxidant, and phagocyte-mediated cleanup processes. Apart from its direct genomic effect, PPARγ was found to
+interact negatively with other transcription factors as NF-κB, which underlies many aspects of
+the anti-inflammatory/immunomodulatory effect of PPARγ [25, 46], facts that tone with our
+findings. Furthermore, the enhanced expression of PPARγ was reported to inhibit the production of NOx/iNOS [47], offering, thus, an explanation for the MF-mediated inhibition in
+iNOS. PPARγ also impedes the macrophages-driven cytokines and leukocyte adhesion molecules, as seen herein, partly via suppressing the gene expression of NF-κB [25, 48].
+
+PLOS ONE | DOI:10.1371/journal.pone.0132497 July 21, 2015
+
+9 / 14
+
+Mangiferin Possible Gastroprotective Molecular Mechanisms
+
+Furthermore, MF was reported to reduce the adhesion of PMNs to the endothelium and
+guarded against their infiltration into gastric tissue [49], alongside the modulation of PPAR-γ
+and NF-κB expression. These findings support ours on E-selectin, iNOS, and MPO, as mentioned before. Additionally, the MF-induced HO-1 upregulation can rationalize the antiinflammatory character of MF, via its byproduct carbon monoxide, which confers an antiinflammatory property [50]. To that end, the experimental results of our study identify another
+gastroprotective mechanisms at both the molecular and cellular levels by which MF protected
+gastric mucosa against I/R-induced injury. These results corroborate with the findings of earlier studies in an experimental colitis model [51, 52], and pin down the anti-inflammatory
+action of MF.
+Previously Wu et al. [53] reported that PPAR-γ overexpression also protects mitochondrial
+membrane potential and prevents apoptosis by upregulating the expression of the anti-apoptotic Bcl-2 family proteins. Similarly, carbon monoxide, the byproduct of HO-1 activity, confers
+an anti-apoptotic activity by the up-regulation of the anti-apoptotic molecule Bcl-2, and the
+down-regulation of the pro-apoptotic signal Bax [54]. Data of the current study demonstrated
+that I/R-induced gastric injury is associated also with apoptosis as evidenced by the marked
+reduction of Bcl-2 [55] and the elevation of caspase-3 [56], while MF reverted the I/R-induced
+apoptosis by a dose dependent elevation of Bcl-2 level, and reduction of caspase-3 level. The
+MF anti-apoptotic effect coincides with the results of Ghosh et al. [38] and may be attributed
+to the MF-mediated upregulation of PPAR-γ and/or HO-1 mRNA levels.
+All these findings were further reflected on the histological changes; the I/R insult caused
+shedding of the epithelial protective layer and resulted in an underlying haemorrhage with a
+marked congestion of blood vessels along with inflammatory cells infiltration in the lamina
+propria, an effect which designates blood flow cessation that was accompanied by oedema. The
+congestion of blood vessels may result from the elevation of the vasoconstrictor endothelin-1
+in gastric tissue [57], increased leukocyte infiltration [58], and/or decreased activity of eNOS as
+documented in the current study. Accordingly, I/R was not only accompanied by free radical
+formation, but also with a clear decrease in the levels of endogenous antioxidants and increased
+infiltration of inflammatory cells, alterations that were hindered by MF, especially at the high
+dose level, where normal histological structure was observed.
+Regarding the reference drug OMP, which exerts its gastroprotective effect by its antioxidant, antiapoptotic [59], and anti-inflammatory [60] actions, beyond acid suppression [61], we
+delineated herein the molecular events, which contribute to these effects. In the present study,
+we documented that OMP antioxidant effects, evidenced by inhibiting lipid peroxidation and
+increasing the defense biomarkers, are mediated via the Nrf2/HO-1 signaling pathway. OMP
+also inhibited the proinflammatory cytokine IL-1β, as well as neutrophil adhesion and infiltration as represented by reducing sE-selectin level and MPO activity, respectively. Although
+OMP downregulated the expression of NF-κB, yet it could not combat the I/R effect on PPARγ, suggesting that the anti-inflammatory/ immune-modulatory effect of OMP stems from suppressing NF-κB gene expression, and possibly other mechanisms, but not that of PPAR-γ.
+Although the effect of OMP on Nrf2 expression exceeded that of MF20, yet the opposite was
+obvious on HO-1 and GSH, a discrepancy that may be linked to their effects on NF-κB. The
+latter was proved to act as a negative regulator of the Nrf2 pathway by competing with it for
+binding to the transcriptional co-activator CREB-binding protein (CBP) and also to promote
+the binding of the co-repressor histone deacetylase 3 (HDAC3) to the antioxidant response element (ARE) [62]; these effects may retard the Nrf2 mediated transcription of its downstream
+targets.
+Furthermore, the antiapoptotic property of OMP relied not only on its ability to increase
+the level of the antiapoptotic protein, Bcl-2 or to decrease the level of the apoptotic marker,
+
+PLOS ONE | DOI:10.1371/journal.pone.0132497 July 21, 2015
+
+10 / 14
+
+Mangiferin Possible Gastroprotective Molecular Mechanisms
+
+caspase-3, as detected in the present study, but also on the reduction of oxidative DNA damage
+[59].
+Finally, one can conclude that the gastroprotective effect of MF, especially at a dose of 20
+mg/kg, may be ascribed to the activation of the Nrf2/HO-1 antioxidant pathway, the PPAR-γ
+anti-inflammatory pathway via downregulating NF-κB, and to increasing the antiapoptotic
+protein Bcl-2 and decreasing caspase-3. All these mechanisms finally maintain normal gastric
+mucosal barrier integrity.
+
+Author Contributions
+Conceived and designed the experiments: MM ASA HSE. Performed the experiments: MM.
+Analyzed the data: MM ASA HSE. Contributed reagents/materials/analysis tools: MM ASA
+HSE. Wrote the paper: MM ASA MFA HSE.
+
+References
+1.
+
+Tanaka J, Yuda Y, Inouye S, Yamakawa T. The role of nitric oxide in the gastric acid secretion induced
+by ischemia–reperfusion in the pylorus-ligated rat. Eur J Pharmacol. 2001; 424: 69–74. PMID:
+11470262
+
+2.
+
+Chamoun F, Burne M, O’Donnell M, Rabb H. Pathophysiologic role of selectins and their ligands in
+ischemia reperfusion injury. Front Biosci. 2000; 5:103–109.
+
+3.
+
+Abdallah DM, El-Abhar HS, Abdel-Aziz DH. TEMPOL, a membrane-permeable radical scavenger,
+attenuates gastric mucosal damage induced by ischemia/reperfusion: A key role for superoxide anion.
+Eur J Pharmacol. 2009; 603: 93–97. doi: 10.1016/j.ejphar.2008.11.057 PMID: 19087872
+
+4.
+
+El-Abhar HS, Abdallah DM, Saleh S. Gastroprotective activity of Nigella sativa oil and its constituent,
+thymoquinone against gastric mucosal injury induced by ischaemia/reperfusion in rats. J Ethnopharmacol. 2003; 84: 251–258. PMID: 12648823
+
+5.
+
+Serracino-Inglott F, Habib NA, Mathie RT. Hepatic ischemia-reperfusion injury. Am J Surg. 2001; 181:
+160–166. PMID: 11425059
+
+6.
+
+Nakajima A, Wada K, Miki H, Kubota N, Nakajima N, Terauchi Y, et al. Endogenous PPARγ mediates
+anti-inflammatory activity in murine ischemia-reperfusion injury. Gastroenterology. 2001; 120: 460–
+469. PMID: 11159886
+
+7.
+
+Wada K, Nakajima A, Takahashi H, Yoneda M, Fujisawa N, Ohsawa E, et al. Protective effect of endogenous PPARgamma against acute gastric mucosal lesions associated with ischemia-reperfusion. Am J
+Physiol Gastrointest Liver Physiol. 2004; 287: 452–458.
+
+8.
+
+Pae HO, Lee YC, Chung HT. Heme oxygenase-1 and carbon monoxide: emerging therapeutic targets
+in inflammation and allergy. Recent Pat Inflamm Allergy Drug Discov. 2008; 2: 159–165. PMID:
+19076005
+
+9.
+
+Ryter SW, Choi AM. Heme oxygenase-1: redox regulation of a stress protein in lung and cell culture
+models. Antioxid Redox Sig. 2005; 7: 80–91.
+
+10.
+
+Kaspar JW, Niture SK, Jaiswal AK. Nrf2:INrf2 (Keap1) signaling in oxidative stress. Free Radic Biol
+Med. 2009; 47: 1304–1309. doi: 10.1016/j.freeradbiomed.2009.07.035 PMID: 19666107
+
+11.
+
+Villeneuve NF, Lau A, Zhang DD. Regulation of the Nrf2-Keap1 antioxidant response by the ubiquitin
+proteasome system: an insight into cullin-ring ubiquitin ligases. Antioxid Redox Signal. 2010; 13:
+1699–1712. doi: 10.1089/ars.2010.3211 PMID: 20486766
+
+12.
+
+He CH, Gong P, Hu B, Stewart D, Choi ME, Choi AM, et al. Identification of activating transcription factor 4 (ATF4) as an Nrf2-interacting protein. Implication for heme oxygenase-1 gene regulation. J Biol
+Chem. 2001; 276: 20858–20865. PMID: 11274184
+
+13.
+
+Itoh K, Tong KI, Yamamoto M. Molecular mechanism activating Nrf-2-keap1 pathway in regulation of
+adaptive response to electrophiles. Free Radic Biol Med. 2004; 36: 1208–1213. PMID: 15110385
+
+14.
+
+Surh YJ, Kundu JK, Na HK. Nrf2 as a master redox switch in turning on the cellular signaling involved in
+the induction of cytoprotective genes by some chemopreventive phytochemicals. Planta Med. 2008;
+74: 1526–1539. doi: 10.1055/s-0028-1088302 PMID: 18937164
+
+15.
+
+Carvalho AC, Guedes MM, de Souza AL, Trevisan MT, Lima AF, Santos F.A, et al. Gastroprotective
+effect of mangiferin, a xanthonoid from Mangifera indica, against gastric injury induced by ethanol and
+indomethacin in rodents. Planta Med. 2007; 73:1372–1376. PMID: 17918041
+
+PLOS ONE | DOI:10.1371/journal.pone.0132497 July 21, 2015
+
+11 / 14
+
+Mangiferin Possible Gastroprotective Molecular Mechanisms
+
+16.
+
+Ghosal S, Rao G. A plausible chemical mechanism of the bioactivities of mangiferin. Indian J Chem.
+1996; 35:561–566.
+
+17.
+
+Kotani T, Murashima Y, Kobata A, Amagase K, Takeuchi K. Pathogenic importance of pepsin in ischemia-reperfusion-induced gastric injury. Life Sci. 2007; 80:1984–1992. PMID: 17395212
+
+18.
+
+Nishida K, Ohta Y, Ishiguro I. Relation of inducible nitric oxide synthase activity to lipid peroxidation and
+non protein sulfhydryl oxidation in the development of stress-induced gastric mucosal lesions in rats.
+Nitric Oxide. 1998; 2: 215–223. PMID: 9851362
+
+19.
+
+Benzie IFF, Strain JJ. The ferric reducing ability of plasma (FRAP) as a measure of “antioxidant power”:
+the FRAP Assay. Anal Biochem. 1996; 239: 70–76. PMID: 8660627
+
+20.
+
+Bradley PP, Priebat DA, Christenen RD, Rothstein G. Measurement of cutaneous inflammation: estimation of neutrophil content with an enzyme marker. J Invest Dermatol. 1982; 78: 206–209. PMID:
+6276474
+
+21.
+
+Mihara M, Uchiyama M. Determination of malonaldehyde precursor in tissues by thiobarbituric acid
+test. Annual Biochem. 1978; 86: 271–278.
+
+22.
+
+Ahmed AE, Hussein GI, Loth JP, Abdel-Rahman SZ. Studies on the mechanism of haloacetonitrileinduced gastrointestinal toxicity: interaction of dihaloacetonitrile with glutathione and glutathione-Stransferase in rats. J Biochem Toxicol. 1991; 6: 115–121. PMID: 1941897
+
+23.
+
+Miranda KM, Espey MG, Wink DA. A rapid, simple spectrophotometric method for simultaneous detection of nitrate and nitrite. Nitric oxide. 2001; 5: 62–71. PMID: 11178938
+
+24.
+
+Livak KJ, Schmittgen TD. Analysis of relative gene expression data using real-time quantitative PCR
+and the 2(-Delta Delta C (T)). Methods. 2001; 25: 402–408. PMID: 11846609
+
+25.
+
+Leiro J, Arranz JA, Yanez M, Ubeira FM, Sanmartin ML, Orallo F. Expression profiles of genes involved
+in the mouse nuclear factor-kappa B signal transduction pathway are modulated by mangiferin. Int
+Immunopharmacol. 2004; 4: 763–778. PMID: 15135318
+
+26.
+
+Pan H, He M, Liu R, Brecha NC, Yu AC, Pu M. Sulforaphane Protects Rodent Retinas Against Ischemia-Reperfusion Injury Through The Activation Of The Nrf2/HO-1 Antioxidant Pathway. PloS One.
+2014 Dec 3;(12: ) 9:e114186. doi: 10.1371 PMID: 25470382
+
+27.
+
+Gong X, Zhang L, Jiang R, Ye M, Yin X, Wan J. Anti-inflammatory effects of mangiferin on sepsisinduced lung injury in mice via up-regulation of heme oxygenase-1. Nutr Biochem. 2013; 24: 1173–
+1181.
+
+28.
+
+Inoue K, Akagi R, Matsumi M, Katayama H, Morita K. Heme Oxygenase-1 is an essential cytoprotective
+component in oxidative tissue injury induced by hemorrhagic shock. J Clin Biochem Nutr. 2009; 44:
+28–40. doi: 10.3164/jcbn.08-210-HO PMID: 19177185
+
+29.
+
+Das J, Ghosh J, Roy A, Sil PC. Mangiferin exerts hepatoprotective activity against D- galactosamine
+induced acute toxicity and oxidative/nitrosative stress via Nrf2-NFκB pathways. Toxicol Appl Pharmacol. 2012; 260: 35–47. doi: 10.1016/j.taap.2012.01.015 PMID: 22310181
+
+30.
+
+Rajendran P, Ekambaram G, Sakthisekaran D. Effect of mangiferin on benzo(a)pyrene induced lung
+carcinogenesis in experimental Swiss albino mice. Nat Pro Res. 2008; 22: 672–680.
+
+31.
+
+Gilberto L, Andreu P, Riaño-Montalvo A, Avila-González R, Delgado D. Mangifera indica L. Extract
+(vimang) protects against LPS induced oxidative damage. Pharmacology. 2006; 3: 712–719.
+
+32.
+
+Sarkar A, Sreenivasan Y, Ramesh TG, Sunil K, Manna SK. B-D-Glucoside Suppresses Tumor Necrosis Factor-induced Activation of Nuclear Transcription Factor kB but Potentiates Apoptosis. J Biochem.
+2004; 279: 33768–33781.
+
+33.
+
+Nguyen T, Huang HC, Pickett CB. Transcriptional regulation of the antioxidant response element. Activation by Nrf2 and repression by MafK. J Biol Chem. 2000; 275: 15466–15473. PMID: 10747902
+
+34.
+
+Franklin CC, Backos DS, Mohar I, White CC, Forman HJ, Kavanagh TJ. Structure, function, and posttranslational regulation of the catalytic and modifier subunits of glutamate cysteine ligase. Mol Aspects
+Med. 2009; 30: 86–98. doi: 10.1016/j.mam.2008.08.009 PMID: 18812186
+
+35.
+
+Idriss NK, Blann AD, Lip GY. Hemoxygenase-1 in cardiovascular disease. J Am Coll Cardiol. 2008;
+52:971–978. doi: 10.1016/j.jacc.2008.06.019 PMID: 18786476
+
+36.
+
+Stocker R, Yamamoto Y, McDonagh AF, Glazer AN, Ames BN. Bilirubin is an antioxidant of possible
+physiological importance. Science. 1987; 235: 1043–1046. PMID: 3029864
+
+37.
+
+Vieira AB, Coelho LP, Insuela DB, Carvalho VF, dos Santos MH, Silva PM, et al. Mangiferin prevents
+guinea pig tracheal contraction via activation of the nitric oxide-cyclic GMP pathway. PLoS One. 2013
+Aug 8; 8(8):e71759. doi: 10.1371 PMID: 23951240
+
+38.
+
+Ghosh M, Das J, Sil PCD. (+) Galactosamine induced oxidative and nitrosative stress-mediated renal
+damage in rats via NF-κB and inducible nitric oxide synthase (iNOS) pathways is ameliorated by a
+
+PLOS ONE | DOI:10.1371/journal.pone.0132497 July 21, 2015
+
+12 / 14
+
+Mangiferin Possible Gastroprotective Molecular Mechanisms
+
+polyphenol xanthone, mangiferin. Free Radic Res. 2012; 46:116–132. doi: 10.3109/10715762.2011.
+644240 PMID: 22118634
+39.
+
+Flögel U, Decking UK, Gödecke A, Schrader J. Contribution of NO to ischemia-reperfusion injury in the
+saline-perfused heart: A study in endothelial NO synthase knockout mice. J Mol Cell Cardiol. 1999;
+31:827–836. PMID: 10329210
+
+40.
+
+Glantzounis GK, Salacinski HJ, Yang W, Davidson BR, Seifalian AM. The contemporary role of antioxidant therapy in attenuating liver ischemia-reperfusion injury. Liver Transpl. 2005; 11: 1031–1047.
+PMID: 16123965
+
+41.
+
+Meister A, Anderson ME. Transport and direct utilization of gamma-glutamylcyst(e)ine for glutathione
+synthesis. Proc Natl Acad Sci USA. 1983; 80: 707–711. PMID: 6572362
+
+42.
+
+Villegas I, Martín AR, Toma W, de la Lastra CA. Rosiglitazone, an agonist of peroxisome proliferatoractivated receptor gamma, protects against gastric ischemia-reperfusion damage in rats: role of oxygen
+free radicals generation. Eur J Pharmacol. 2004; 505:195–203. PMID: 15556153
+
+43.
+
+Jangra A, Lukhi MM, Sulakhiya K, Baruah CC, Lahkar M. Protective effect of mangiferin against lipopolysaccharide-induced depressive and anxiety-like behaviour in mice. Eur J Pharmacol. 2014;
+740:337–345. doi: 10.1016/j.ejphar.2014.07.031 PMID: 25064341
+
+44.
+
+Wang B, Wan J, Gong X, Kuang G, Cheng X, Min S. Mangiferin attenuates renal ischemia-reperfusion
+injury by inhibiting inflammation and inducing adenosine production. Int Immunopharmacol. 2014;
+23:170–178.
+
+45.
+
+Matsuyama M, Yoshimura R, Hase T, Uchida J, Tsuchida K, Takemoto Y, et al. Expression of peroxisome proliferator-activated receptor-gamma in renal ischemia-reperfusion injury. Transplant Proc.
+2005; 37: 1684–1685. PMID: 15919430
+
+46.
+
+Zhao X, Gonzales N, Aronowski J. Pleiotropic Role of PPARγ in Intracerebral Hemorrhage: An Intricate
+System Involving Nrf2, RXR, and NF-κB. CNS Neurosci Ther. 2015 Apr; 21(4): 357–66. doi: 10.1111
+PMID: 25430543
+
+47.
+
+Konturek PC, Brzozowski T, Kania J, Konturek SJ, Kwiecien S, Pajdo R, et al. Pioglitazone, a specific
+ligand of peroxisome proliferator-activated receptor-gamma, accelerates gastric ulcerhealing in rat. Eur
+J Pharmacol. 2003; 472: 213–220. PMID: 12871756
+
+48.
+
+Ricote MF, Li AC, Willson TM, Kelly CJ, Glass CK. The peroxisome proliferator-activated receptor
+gamma is a negative regulator of macrophage activation. Nature. 1998; 391: 79–82 PMID: 9422508
+
+49.
+
+Sánchez GM, Rodríguez HMA, Giuliani A, Núñez Sellés AJ, Rodríguez NP, León Fernández OS, et al.
+Protective effect of Mangifera indica L. extract (Vimang) on the injury associated with hepatic ischaemia/reperfusion. Phytother Res. 2003; 17: 197–201. PMID: 12672145
+
+50.
+
+Otterbein LE, Bach FH, Alam J, Soares M, Tao LH, Wysk M, et al. Carbon monoxide has anti- inflammatory effects involving the mitogen-activated protein kinase pathway. Nat Med. 2000; 6: 422–428.
+PMID: 10742149
+
+51.
+
+Márquez L, Pérez-Nievas BG, Gárate I, García-Bueno B, Madrigal JL, Menchén L, et al. Anti-inflammatory effects of Mangifera indica L. extract in a model of colitis. World J Gastroenterol. 2010; 16: 4922–
+4931. PMID: 20954278
+
+52.
+
+Dou W, Zhang J, Ren G, Ding L, Sun A, Deng C, et al. Mangiferin attenuates the symptoms of dextran
+sulfate sodium-induced colitis in mice via NF-κB and MAPK signaling inactivation. Int Immunopharmacol. 2014; 23: 170–178. doi: 10.1016/j.intimp.2014.08.025 PMID: 25194678
+
+53.
+
+Wu JS, Lin TN, Wu KK. Rosiglitazone and PPAR-gamma overexpression protect mitochondrial membrane potential and prevent apoptosis by upregulating anti-apoptotic Bcl-2 family proteins. J Cell Physiol. 2009; 220: 58–71. doi: 10.1002/jcp.21730 PMID: 19229877
+
+54.
+
+Nakao A, Kimizuka K, Stolz DB, Neto JS, Kaizu T, Choi AM, et al. Carbon monoxide inhalation protects
+rat intestinal grafts from ischemia/reperfusion injury. Am J Pathol. 2003; 163: 1587–1598. PMID:
+14507665
+
+55.
+
+Qiao WL, Wang GM, Shi Y, Wu JX, Qi YJ, Zhang JF, et al. Differential expression of Bcl-2 and Bax during gastric ischemia-reperfusion of rats. World J Gastroenterol. 2011; 7:1718–1724.
+
+56.
+
+Giakoustidis AE, Giakoustidis DE, Koliakou K, Kaldrymidou E, Iliadis S, Antoniadis N, et al. Inhibition of
+intestinal ischemia/repurfusion induced apoptosis and necrosis via down-regulation of the NF-κB, c-Jun
+and caspase-3 expression by epigallocatechin-3-gallate administration. Free Radic Res. 2008; 42:
+180–188. doi: 10.1080/10715760701840039 PMID: 18297611
+
+57.
+
+Wood JG, Zhang Q, Yan ZY, Cheung LY. Nitric oxide attenuates endothelin-1-induced vasoconstriction
+in canine stomach. Am J Physiol. 1996; 271: 27–35.
+
+58.
+
+Sato N, Kawano S, Tsuji T, Ogihara T, Yamada S. Gastric blood flow in ulcer diseases. Gastroenterology. 1995; 30: 14–20.
+
+PLOS ONE | DOI:10.1371/journal.pone.0132497 July 21, 2015
+
+13 / 14
+
+Mangiferin Possible Gastroprotective Molecular Mechanisms
+
+59.
+
+Biswas K, Bandyopadhyay U, Chattopadhyay I, Varadaraj A, Ali E. A novel antioxidant and antiapoptotic role of omeprazole to block gastric ulcer through scavenging of hydroxyl radical. J Biol Chem. 2003;
+28:10993–11001.
+
+60.
+
+Handa O, Yoshida N, Fujita N, Tanaka Y, Ueda M, Takagi T, et al. Molecular mechanisms involved in
+anti-inflammatory effects of proton pump inhibitors. Inflamm Res. 2006; 55:476–480. PMID: 17122965
+
+61.
+
+Sener-Muratoğlu G, Paskaloğlu K, Arbak S, Hürdağ C, Ayanoğlu-Dülger G. Protective effect of famotidine, omeprazole, and melatonin against acetylsalicylic acid-induced gastric damage in rats. Dig Dis
+Sci. 2001; 46:318–330. PMID: 11281181
+
+62.
+
+Liu GH, Qu J, Shen X. NF-kappaB/p65 antagonizes Nrf2-ARE pathway by depriving CBP from Nrf2
+and facilitating recruitment of HDAC3 to MafK, Biochim Biophys Acta. 2008; 1783: 713–727. doi: 10.
+1016/j.bbamcr.2008.01.002 PMID: 18241676
+
+PLOS ONE | DOI:10.1371/journal.pone.0132497 July 21, 2015
+
+14 / 14
+
+
