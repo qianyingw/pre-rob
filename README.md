@@ -24,13 +24,13 @@ conda activate rob
 ```
 python -m spacy download en_core_web_sm
 ```
-#### Running API (replace '../rob-pome/rob-app/sample' with your folder containing txt files
+#### Running API (replace '../rob-pome/rob-app/sample' with your folder containing txt files)
 ```
 python api.py
 curl http://0.0.0.0:8080/111 -d "data=../rob-pome/rob-app/sample" -X PUT
 ```
 
-#### Sample output
+#### Sample output 'score.json'
 ```
 {"folder1": "../rob-app/sample", 
  "dir_output": [
