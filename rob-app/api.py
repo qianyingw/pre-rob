@@ -116,7 +116,7 @@ class Dir(Resource):
         dirs[dir_id] = txt_dir
         out = {dir_id: dirs[dir_id], 'dir_output': output}
         
-        with open('score.json', 'w') as fp:
+        with open(os.path.join(txt_dir, 'scores.json'), 'w') as fp:
             json.dump(out, fp)
 
         return out
