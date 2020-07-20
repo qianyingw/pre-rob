@@ -112,9 +112,14 @@ class Dir(Resource):
         rober = PreRob(PROB_PATH, txt_dir)
         rober.get_txt_path()
         output = rober.pred_probs()
-        
+    
         dirs[dir_id] = txt_dir
-        return {dir_id: dirs[dir_id], 'dir_output': output}
+        out = {dir_id: dirs[dir_id], 'dir_output': output}
+        
+        with open('score.json', 'w') as fp:
+            json.dump(out, fp)
+
+        return out
     
 api.add_resource(Dir, '/<string:dir_id>')
 
