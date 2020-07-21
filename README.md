@@ -25,9 +25,8 @@ conda activate rob
 python -m spacy download en_core_web_sm
 ```
 
-#### Download pre-trained weights from biobert
+#### Download pre-trained weights from [biobert](https://drive.google.com/file/d/1NNxtvdCkUvZobsJjW7vcKFbdqCnHwnBs/view?usp=sharing) and unzip
 ```
-https://drive.google.com/file/d/1NNxtvdCkUvZobsJjW7vcKFbdqCnHwnBs/view?usp=sharing
 unzip biobert.zip -d ../rob-pome/rob-app/fld
 ```
 
