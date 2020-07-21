@@ -19,6 +19,9 @@ from model import ConvNet, AttnNet
 from model_han import HAN
 
 
+import transformers
+from transformers import BertConfig, BertTokenizer
+from model_bert import BertPoolConv
 
 
 #%%
@@ -95,7 +98,95 @@ def pred_prob(arg_path, field_path, pth_path, doc, device=torch.device('cpu')):
     # print("Prob of RoB reported: {:.4f}".format(probs[1]))
     
     return probs[1]
- 
+
+
+#%%
+# arg_path = '/media/mynewdrive/rob/dice/kiwi/bcr/bio_conv_0_120e/bio_conv_0_120e_prfs.json'
+# args['wgts_dir'] = '/media/mynewdrive/rob/data/pre_wgts/biobert'
+# pth_path = '/media/mynewdrive/rob/dice/kiwi/bcr/bio_conv_0_120e/best.pth.tar'
+# device = torch.device('cpu')
+
+# with open('sample/Minwoo A, 2015.txt', 'r', encoding='utf-8', errors='ignore') as fin:
+#     doc = fin.read() 
+
+def pred_prob_bert(arg_path, field_path, pth_path, doc, device=torch.device('cpu')):
+    # Load args
+    with open(arg_path) as f:
+        args = json.load(f)['args']
+        
+    # Load model
+    # Tokenizer & Config & Model
+    if args['net_type'] == "bert_pool_conv":
+        # Tokenizer
+        tokenizer = BertTokenizer.from_pretrained(args['wgts_dir'], do_lower_case=True)  
+        # Config
+        config = BertConfig.from_pretrained(args['wgts_dir'])  
+        config.output_hidden_states = True
+        config.num_labels = args['num_labels']
+        config.unfreeze = args['unfreeze']
+        config.pool_method = args['pool_method']
+        config.pool_layers = args['pool_layers']
+          
+        if args['num_hidden_layers']:  config.num_hidden_layers = args['num_hidden_layers']
+        if args['num_attention_heads']:  config.num_attention_heads = args['num_attention_heads']
+        
+        config.num_filters = args['num_filters']
+        sizes = args['filter_sizes'].split(',')
+        config.filter_sizes = [int(s) for s in sizes]
+        model = BertPoolConv.from_pretrained(args['wgts_dir'], config=config)
+    
+    # Load checkpoint
+    checkpoint = torch.load(pth_path, map_location=device)
+    state_dict = checkpoint['state_dict']
+    model.load_state_dict(state_dict)
+    model.cpu()
+     
+
+    # Tokenization
+    if type(tokenizer) == transformers.tokenization_bert.BertTokenizer:
+        # Convert text to tokens by WordPiece
+        tokens = tokenizer.tokenize(doc)
+        
+        # Split tokens into chunks
+        n_chunks = len(tokens) // (args['max_chunk_len'] - 2)
+        if len(tokens) % (args['max_chunk_len'] - 2) != 0:
+            n_chunks += 1  
+                
+        # Limit number of chunks
+        if n_chunks > args['max_n_chunk']:
+            tokens = tokens[:args['max_chunk_len']*args['max_n_chunk']]
+            n_chunks = args['max_n_chunk']  
+
+        # Document tensor
+        doc_tensor = torch.zeros((n_chunks, 3, args['max_chunk_len']), dtype=torch.long)
+        for i in range(n_chunks):
+            chunk_tokens = tokens[(args['max_chunk_len']-2) * i : (args['max_chunk_len']-2) * (i+1)]
+            chunk_tokens.insert(0, "[CLS]")
+            chunk_tokens.append("[SEP]")              
+            chunk_tokens_ids = tokenizer.convert_tokens_to_ids(chunk_tokens)
+                  
+            attn_masks = [1] * len(chunk_tokens_ids)         
+            # Pad the last chunk
+            while len(chunk_tokens_ids) < args['max_chunk_len']:
+                chunk_tokens_ids.append(0)
+                attn_masks.append(0)
+                
+            token_type_ids = [0] * args['max_chunk_len']     
+            assert len(chunk_tokens_ids) == args['max_chunk_len'] and len(attn_masks) == args['max_chunk_len']
+                         
+            doc_tensor[i] = torch.cat((torch.LongTensor(chunk_tokens_ids).unsqueeze(0),
+                                    torch.LongTensor(attn_masks).unsqueeze(0),
+                                    torch.LongTensor(token_type_ids).unsqueeze(0)), dim=0)
+      
+    # Prediction
+    model.eval()
+    doc_tensor = doc_tensor.to(device)
+    doc_tensor = doc_tensor.unsqueeze(0)  # bec BertPoolConv input shape is [batch_size, n_chunks, 3, max_chunk_len]
+    probs = model(doc_tensor)
+    probs = probs.data.cpu().numpy()[0]
+    # print("Prob of RoB reported: {:.4f}".format(probs[1]))    
+    return probs[1]
+
 #%%
 def extract_words(arg_path, field_path, pth_path, doc, num_words, device=torch.device('cpu')):  
     # Load args
