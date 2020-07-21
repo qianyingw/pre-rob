@@ -1,18 +1,21 @@
 name: rob
 channels:
   - pytorch
-  - conda-forge
   - anaconda
+  - conda-forge
   - defaults
 dependencies:
   - _libgcc_mutex=0.1=main
+  - absl-py=0.9.0=py37hc8dfbb8_1
   - aniso8601=8.0.0=py_0
+  - astor=0.8.1=pyh9f0ad1d_0
   - attrs=19.3.0=py_0
   - blas=1.0=mkl
   - brotlipy=0.7.0=py37h8f50634_1000
-  - ca-certificates=2020.6.24=0
+  - c-ares=1.16.1=h516909a_0
+  - ca-certificates=2020.6.20=hecda079_0
   - catalogue=1.0.0=py_0
-  - certifi=2020.6.20=py37_0
+  - certifi=2020.6.20=py37hc8dfbb8_0
   - cffi=1.14.0=py37hd463f26_0
   - chardet=3.0.4=py37hc8dfbb8_1006
   - click=7.1.2=py_0
@@ -21,20 +24,39 @@ dependencies:
   - cymem=2.0.3=py37h3340039_2
   - cython-blis=0.4.1=py37h8f50634_1
   - dill=0.3.2=pyh9f0ad1d_0
+  - filelock=3.0.12=pyh9f0ad1d_0
   - flask=1.1.2=py_0
   - flask-restful=0.3.8=py_0
+  - gast=0.3.3=py_0
+  - google-pasta=0.2.0=pyh8c360ce_0
+  - gperftools=2.7=h767d802_2
+  - grpcio=1.30.0=py37hb0870dc_0
+  - h5py=2.10.0=nompi_py37h90cd8ad_104
+  - hdf5=1.10.6=nompi_h3c11f04_100
   - idna=2.10=pyh9f0ad1d_0
   - importlib-metadata=1.7.0=py37hc8dfbb8_0
   - importlib_metadata=1.7.0=0
   - intel-openmp=2020.1=217
   - itsdangerous=1.1.0=py37_0
   - jinja2=2.11.2=py_0
+  - joblib=0.16.0=py_0
   - jsonschema=3.2.0=py37hc8dfbb8_1
+  - keras-applications=1.0.8=py_1
+  - keras-preprocessing=1.1.0=py_0
+  - krb5=1.17.1=hfafb76e_1
+  - libblas=3.8.0=16_mkl
+  - libcblas=3.8.0=16_mkl
+  - libcurl=7.71.1=hcdd3856_3
   - libedit=3.1.20191231=h14c3975_1
   - libffi=3.2.1=hd88cf55_4
   - libgcc-ng=9.1.0=hdf63c60_0
   - libgfortran-ng=7.3.0=hdf63c60_0
+  - liblapack=3.8.0=16_mkl
+  - libpng=1.6.37=hed695b0_1
+  - libprotobuf=3.12.3=h8b12597_2
+  - libssh2=1.9.0=hab1572f_4
   - libstdcxx-ng=9.1.0=hdf63c60_0
+  - markdown=3.2.2=py_0
   - markupsafe=1.1.1=py37h14c3975_1
   - mkl=2020.1=217
   - mkl-service=2.3.0=py37he904b0f_0
@@ -46,12 +68,16 @@ dependencies:
   - numpy=1.18.5=py37ha1c710e_0
   - numpy-base=1.18.5=py37hde5b4d6_0
   - openssl=1.1.1g=h516909a_0
+  - packaging=20.4=pyh9f0ad1d_0
   - pandas=1.0.5=py37h0573a6f_0
+  - perl=5.26.2=h516909a_1006
   - pip=20.1.1=py37_1
   - plac=0.9.6=py37_1
   - preshed=3.0.2=py37h3340039_3
+  - protobuf=3.12.3=py37h3340039_0
   - pycparser=2.20=pyh9f0ad1d_2
   - pyopenssl=19.1.0=py_1
+  - pyparsing=2.4.7=pyh9f0ad1d_0
   - pyrsistent=0.16.0=py37h8f50634_0
   - pysocks=1.7.1=py37hc8dfbb8_1
   - python=3.7.4=h265db76_1
@@ -60,21 +86,33 @@ dependencies:
   - pytorch=1.5.1=py3.7_cuda10.2.89_cudnn7.6.5_0
   - pytz=2020.1=py_0
   - readline=7.0=h7b6447c_5
+  - regex=2020.7.14=py37h8f50634_0
   - requests=2.24.0=pyh9f0ad1d_0
+  - sacremoses=0.0.43=pyh9f0ad1d_0
+  - scipy=1.5.1=py37ha3d9a3c_0
+  - sentencepiece=0.1.92=py37h99015e2_0
   - setuptools=49.2.0=py37_0
   - six=1.15.0=py_0
   - spacy=2.3.2=py37h99015e2_0
   - sqlite=3.32.3=h62c20be_0
   - srsly=1.0.2=py37h3340039_0
+  - tensorboard=1.14.0=py37_0
+  - tensorflow=1.14.0=h4531e10_0
+  - tensorflow-base=1.14.0=py37h4531e10_0
+  - tensorflow-estimator=1.14.0=py37h5ca1d4c_0
+  - termcolor=1.1.0=py_2
   - thinc=7.4.1=py37h99015e2_0
   - tk=8.6.10=hbc83047_0
+  - tokenizers=0.8.1=py37h4c3b196_0
   - torchtext=0.6.0=py_1
   - tqdm=4.47.0=pyh9f0ad1d_0
+  - transformers=3.0.2=py_0
   - urllib3=1.25.9=py_0
   - waitress=1.4.4=py_0
   - wasabi=0.7.0=pyh9f0ad1d_0
   - werkzeug=1.0.1=py_0
   - wheel=0.34.2=py37_0
+  - wrapt=1.12.1=py37h8f50634_1
   - xz=5.2.5=h7b6447c_0
   - zipp=3.1.0=py_0
   - zlib=1.2.11=h7b6447c_3
