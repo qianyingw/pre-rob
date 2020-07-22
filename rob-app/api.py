@@ -44,20 +44,39 @@ PROB_PATH = {
 }
 
 class PreRob():
-    def __init__(self, prob_path, txt_dir):      
+    def __init__(self, prob_path, txt_info):      
     
         for key, value in prob_path.items():
             prob_path[key] = os.path.join(os.getcwd(), value)
         self.prob_path = prob_path
-        self.txt_dir = txt_dir
+        self.txt_info = txt_info
+        self.txt_paths = []
         
-    def get_txt_path(self):
-        txt_paths = []
-        for root, _, files in os.walk(self.txt_dir):            
-            for f in files:
-                if f.endswith(".txt"):
-                    txt_paths.append(os.path.join(root, f))
+    def get_txt_path(self):       
+        txt_info = self.txt_info
+        txt_paths = self.txt_paths
+        
+        # If 'txt_info' is a folder
+        if os.path.isdir(txt_info) == True:
+            # txt_info = os.path.join(os.getcwd(), txt_info)      
+            for root, _, files in os.walk(txt_info):            
+                for f in files:
+                    if f.endswith(".txt"):
+                        txt_paths.append(os.path.join(root, f))
+               
+        # if 'txt_info' is a single txt path
+        if os.path.exists(txt_info) == True and txt_info.endswith(".txt") == True:
+            txt_paths.append(txt_info)
+        
+        # if 'txt_info' is a string containing multiple txt paths       
+        if len(txt_info.split(".txt,")) > 1:
+            paths = txt_info.split(".txt,")
+            for p in paths[:-1]:
+                txt_paths.append(p+'.txt')
+            txt_paths.append(paths[-1])   
+            
         self.txt_paths = txt_paths
+    
     
     def process_text(self, text):       
         text = re.sub(r"^(?:[\t ]*(?:\r?\n|\r))+", " ", text, flags=re.MULTILINE)  # Remove emtpy lines        
@@ -65,63 +84,64 @@ class PreRob():
         text = re.sub(r'\s+', " ", text)  # Strip whitespaces     
         text = re.sub(r'^[\s]', "", text)  # Remove the whitespace at start and end of line
         text = re.sub(r'[\s]$', "", text)
-        return text
+        return text 
           
     def pred_probs(self): 
-        output = []
-        Id = 0
-        for path in self.txt_paths:
-            with open(path, 'r', encoding='utf-8', errors='ignore') as fin:
-                text = fin.read()           
-            text = self.process_text(text)    
+        if self.txt_paths == []:
+            output = {"message": "Folder/TXTs not found"}  # folder doesn't exist or no txt files found in the folder
             
-            pr = pred_prob(self.prob_path['arg-r'], self.prob_path['fld-r'], self.prob_path['pth-r'], text).astype(float)
-            pb = pred_prob(self.prob_path['arg-b'], self.prob_path['fld-b'], self.prob_path['pth-b'], text).astype(float)
-            pi = pred_prob(self.prob_path['arg-i'], self.prob_path['fld-i'], self.prob_path['pth-i'], text).astype(float)
-            pw = pred_prob(self.prob_path['arg-w'], self.prob_path['fld-w'], self.prob_path['pth-w'], text).astype(float)
-            pe = pred_prob(self.prob_path['arg-e'], self.prob_path['fld-e'], self.prob_path['pth-e'], text).astype(float)
-            
-            score = {"txt_id": Id, "txt_path": path,
-        			 "random": pr,
-        			 "blind": pb,
-        			 "interest": pi,
-        			 "welfare": pw,
-        			 "exclusion": pe}
-            Id = Id + 1
-            output.append(score)
+        else:          
+            output = []
+            Id = 0
+            for path in self.txt_paths:
+                try:
+                    if os.path.isabs(path) == False:
+                        path = os.path.join(os.getcwd(), path)
+                    with open(path, 'r', encoding='utf-8', errors='ignore') as fin:
+                        text = fin.read()           
+                    text = self.process_text(text)   
+                                
+                    pr = pred_prob(self.prob_path['arg-r'], self.prob_path['fld-r'], self.prob_path['pth-r'], text).astype(float)
+                    pb = pred_prob(self.prob_path['arg-b'], self.prob_path['fld-b'], self.prob_path['pth-b'], text).astype(float)
+                    pi = pred_prob(self.prob_path['arg-i'], self.prob_path['fld-i'], self.prob_path['pth-i'], text).astype(float)
+                    pw = pred_prob(self.prob_path['arg-w'], self.prob_path['fld-w'], self.prob_path['pth-w'], text).astype(float)
+                    pe = pred_prob(self.prob_path['arg-e'], self.prob_path['fld-e'], self.prob_path['pth-e'], text).astype(float)          
+                    score = {"txt_id": Id, "txt_path": path,
+                			 "random": pr,
+                			 "blind": pb,
+                			 "interest": pi,
+                			 "welfare": pw,
+                			 "exclusion": pe}
+                except: 
+                    score = {"txt_id": Id, "txt_path": path, "message": "Path not found"}                    
+                Id = Id + 1
+                output.append(score)
         return output
-             
+
 
 #%%
 app = Flask(__name__)
 api = Api(app)
 
-dirs = {}
+class ROB(Resource):
+    def get(self):
+        return {}
 
-class Dir(Resource):
-    def get(self, dir_id):
-        return {dir_id: dirs[dir_id]}
-
-    def put(self, dir_id):
-        txt_dir = request.form['data']
-        if os.path.isabs(txt_dir) == False:
-            txt_dir = os.path.join(os.getcwd(), txt_dir)         
-        if os.path.isdir(txt_dir) == False:
-            txt_dir = 'Invalid path'
-        
-        rober = PreRob(PROB_PATH, txt_dir)
+    def put(self):
+        txt_info = request.form['data'] 
+         
+        rober = PreRob(PROB_PATH, txt_info)
         rober.get_txt_path()
-        output = rober.pred_probs()
-    
-        dirs[dir_id] = txt_dir
-        out = {dir_id: dirs[dir_id], 'dir_output': output}
+        output = rober.pred_probs()        
         
-        with open(os.path.join(txt_dir, 'scores.json'), 'w') as fp:
-            json.dump(out, fp)
+        if request.form['out']:
+            with open(request.form['out'], 'w') as fp:
+                json.dump(output, fp)
 
-        return out
-    
-api.add_resource(Dir, '/<string:dir_id>')
+        return output
+
+api.add_resource(ROB, '/')
+# api.add_resource(ROB, '/<string:task_id>')
 
 if __name__ == '__main__':
     # app.run(debug=False)
