@@ -134,10 +134,11 @@ class ROB(Resource):
         rober.get_txt_path()
         output = rober.pred_probs()        
         
-        if request.form['out']:
-            with open(request.form['out'], 'w') as fp:
-                json.dump(output, fp)
-
+        if (len(request.form)) == 2:
+            json_path = request.form['out']
+            if os.path.dirname(json_path):  # if output dir exists
+                with open(request.form['out'], 'w') as fp:
+                    json.dump(output, fp)
         return output
 
 api.add_resource(ROB, '/')
