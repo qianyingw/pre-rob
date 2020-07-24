@@ -49,9 +49,9 @@ curl http://0.0.0.0:8080 -d "data=/home/.../rob-app/sample" -d "out=/home/.../xx
 ```
 
 ##### Output
-```json
+```
 [{'txt_id': 0,
-  'txt_path': '/home/qwang/rob/rob-pome/rob-app/sample/stroke_613.txt',
+  'txt_path': '/home/.../rob-app/sample/stroke_613.txt',
   'random': 0.9999920129776001,
   'blind': 0.9990461468696594,
   'interest': 1.0,
@@ -62,9 +62,6 @@ curl http://0.0.0.0:8080 -d "data=/home/.../rob-app/sample" -d "out=/home/.../xx
                 'interest': ['Approved the final version of the manuscript on behalf of all authors : LB.', 'Authors contributions Author contributions to the study and manuscript preparation include the following.'],
                 'welfare': ['Docosahexaenoic acid improves behavior and attenuates bloodbrain barrier injury induced by focal cerebral ischemia in rats Abstract Background : Ischemic brain injury disrupts the bloodbrain barrier (BBB) and then triggers a cascade of events, leading to edema formation, secondary brain injury and poor neurological outcomes.', 'Recently, we have shown that docosahexaenoic acid (DHA) improves functional and histological outcomes following experimental stroke.'],
                 'exclusion': ['The severity of stroke injury was assessed by behavioral examination of each rat at 60 min after onset of MCAo.', 'Rats that did not demonstrate high-grade contralateral deficit (score, 1011) were excluded from further study.']}}]
-```
-```
-curl http://0.0.0.0:8080 -d "data=/home/.../rob-app/sample/Viviam OS, 2015.txt" -X PUT
 ```
 
 #### Multiple txts
