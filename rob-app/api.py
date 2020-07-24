@@ -13,7 +13,7 @@ import os
 import sys
 import re
 import json
-from pred import pred_prob
+from pred import pred_prob, extract_sents
 
 
 
@@ -43,12 +43,36 @@ PROB_PATH = {
     'fld-e': 'fld/awe_8.Field',
 }
 
+SENT_PATH = {
+    'arg-r': 'pth/hr_4.json',
+    'pth-r': 'pth/hr_4.pth.tar',
+    'fld-r': 'fld/hr_4.Field',
+    
+    'arg-b': 'pth/hb_5.json',
+    'pth-b': 'pth/hb_5.pth.tar',
+    'fld-b': 'fld/hb_5.Field',
+    
+    'arg-i': 'pth/hi_4.json',
+    'pth-i': 'pth/hi_4.pth.tar',
+    'fld-i': 'fld/hi_4.Field',
+    
+    'arg-w': 'pth/hw_17.json',
+    'pth-w': 'pth/hw_17.pth.tar',
+    'fld-w': 'fld/hw_17.Field',
+    
+    'arg-e': 'pth/he_26.json',
+    'pth-e': 'pth/he_26.pth.tar',
+    'fld-e': 'fld/he_26.Field'
+}
+
+
 class PreRob():
-    def __init__(self, prob_path, txt_info):      
+    def __init__(self, prob_path, sent_path, txt_info):      
     
         for key, value in prob_path.items():
             prob_path[key] = os.path.join(os.getcwd(), value)
         self.prob_path = prob_path
+        self.sent_path = sent_path
         self.txt_info = txt_info
         self.txt_paths = []
         
@@ -86,7 +110,7 @@ class PreRob():
         text = re.sub(r'[\s]$', "", text)
         return text 
           
-    def pred_probs(self): 
+    def pred_probs(self, num_sents=0): 
         if self.txt_paths == []:
             output = {"message": "Folder/TXTs not found"}  # folder doesn't exist or no txt files found in the folder
             
@@ -105,13 +129,23 @@ class PreRob():
                     pb = pred_prob(self.prob_path['arg-b'], self.prob_path['fld-b'], self.prob_path['pth-b'], text).astype(float)
                     pi = pred_prob(self.prob_path['arg-i'], self.prob_path['fld-i'], self.prob_path['pth-i'], text).astype(float)
                     pw = pred_prob(self.prob_path['arg-w'], self.prob_path['fld-w'], self.prob_path['pth-w'], text).astype(float)
-                    pe = pred_prob(self.prob_path['arg-e'], self.prob_path['fld-e'], self.prob_path['pth-e'], text).astype(float)          
+                    pe = pred_prob(self.prob_path['arg-e'], self.prob_path['fld-e'], self.prob_path['pth-e'], text).astype(float)  
+                    
                     score = {"txt_id": Id, "txt_path": path,
                 			 "random": pr,
                 			 "blind": pb,
                 			 "interest": pi,
                 			 "welfare": pw,
                 			 "exclusion": pe}
+                    
+                    if num_sents > 0:
+                        sr = extract_sents(self.sent_path['arg-r'], self.sent_path['fld-r'], self.sent_path['pth-r'], text, num_sents)
+                        sb = extract_sents(self.sent_path['arg-b'], self.sent_path['fld-b'], self.sent_path['pth-b'], text, num_sents)
+                        si = extract_sents(self.sent_path['arg-i'], self.sent_path['fld-i'], self.sent_path['pth-i'], text, num_sents)
+                        sw = extract_sents(self.sent_path['arg-w'], self.sent_path['fld-w'], self.sent_path['pth-w'], text, num_sents)
+                        se = extract_sents(self.sent_path['arg-e'], self.sent_path['fld-e'], self.sent_path['pth-e'], text, num_sents)
+                        score['sentences'] = {"random": sr, "blind": sb, "interest": si, "welfare": sw, "exclusion": se}             
+                    
                 except: 
                     score = {"txt_id": Id, "txt_path": path, "message": "Path not found"}                    
                 Id = Id + 1
@@ -130,15 +164,31 @@ class ROB(Resource):
     def put(self):
         txt_info = request.form['data'] 
          
-        rober = PreRob(PROB_PATH, txt_info)
+        rober = PreRob(PROB_PATH, SENT_PATH, txt_info)
         rober.get_txt_path()
-        output = rober.pred_probs()        
         
+        if (len(request.form)) == 1:
+            output = rober.pred_probs()
+    
         if (len(request.form)) == 2:
+            try:
+                json_path = request.form['out']
+                output = rober.pred_probs()
+                if os.path.dirname(json_path):  # if output dir exists
+                    with open(request.form['out'], 'w') as fp:
+                        json.dump(output, fp)
+            except:
+                num_sents = int(request.form['sent'])
+                output = rober.pred_probs(num_sents)  
+        
+        if (len(request.form)) == 3:
             json_path = request.form['out']
+            num_sents = request.form['sent'] 
+            output = rober.pred_probs(num_sents)  
             if os.path.dirname(json_path):  # if output dir exists
                 with open(request.form['out'], 'w') as fp:
-                    json.dump(output, fp)
+                    json.dump(output, fp)          
+                
         return output
 
 api.add_resource(ROB, '/')
