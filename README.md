@@ -1,6 +1,6 @@
 ## Preclinical risk of bias assessment with CNN/Attention/HAN
 
-Predict five risk of bias items for preclinical publications:
+Predict reporting scores and extract relevant sentences of five risk of bias items for preclinical publications:
 - Random Allocation to Treatment/Control Group
 - Blinded Assessment Outcome
 - Conflict of Interest
@@ -37,48 +37,41 @@ unzip biobert.zip -d ../rob-pome/rob-app/fld
 ```
 python api.py
 ```
-##### 1) Single txt path as input
+#### Single txt path as input
+```
+curl http://0.0.0.0:8080 -d "data=/home/.../rob-app/sample/stroke_613.txt" -X PUT
+
+# Extract two relevant sentences
+curl http://0.0.0.0:8080 -d "data=/home/.../rob-app/sample/stroke_613.txt" -d "sent=2" -X PUT
+
+# Generate output into a json file 
+curl http://0.0.0.0:8080 -d "data=/home/.../rob-app/sample" -d "out=/home/.../xxx.json" -X PUT
+```
+
+##### Output
+```json
+[{'txt_id': 0,
+  'txt_path': '/home/qwang/rob/rob-pome/rob-app/sample/stroke_613.txt',
+  'random': 0.9999920129776001,
+  'blind': 0.9990461468696594,
+  'interest': 1.0,
+  'welfare': 0.058055195957422256,
+  'exclusion': 0.37490183115005493,
+  'sentences': {'random': ['Treatment groups Animals were randomly assigned to DHA (5 mg / kg, Cayman, Ann Arbor, MI) or vehicle (0.9 % saline) treatment groups.', 'All treatments were administered intravenously at 3 h after the onset of MCAo at a constant rate over 3 min using an infusion pump.'],
+                'blind': ['Behavioral tests Behavioral tests were conducted before, during MCAo (at 60 min), and then at 6, 24, 48 and 72 h after MCAo by an investigator who was blinded to the experimental groups.', 'EB, FITC and histopathological analyses were conducted by an investigator who was blinded to the experimental groups.'],
+                'interest': ['Approved the final version of the manuscript on behalf of all authors : LB.', 'Authors contributions Author contributions to the study and manuscript preparation include the following.'],
+                'welfare': ['Docosahexaenoic acid improves behavior and attenuates bloodbrain barrier injury induced by focal cerebral ischemia in rats Abstract Background : Ischemic brain injury disrupts the bloodbrain barrier (BBB) and then triggers a cascade of events, leading to edema formation, secondary brain injury and poor neurological outcomes.', 'Recently, we have shown that docosahexaenoic acid (DHA) improves functional and histological outcomes following experimental stroke.'],
+                'exclusion': ['The severity of stroke injury was assessed by behavioral examination of each rat at 60 min after onset of MCAo.', 'Rats that did not demonstrate high-grade contralateral deficit (score, 1011) were excluded from further study.']}}]
+```
 ```
 curl http://0.0.0.0:8080 -d "data=/home/.../rob-app/sample/Viviam OS, 2015.txt" -X PUT
 ```
-##### Output
-```json
-[{"txt_id": 0, 
-  "txt_path": "/home/.../rob-app/sample/Viviam OS, 2015.txt", 
-  "random": 0.9999871253967285, 
-  "blind": 2.2311729708235362e-07, 
-  "interest": 0.9999998807907104, 
-  "welfare": 0.7780912518501282, 
-  "exclusion": 0.49079954624176025}]
-```
 
-##### 2) Mutiple txt paths as input
+#### Multiple txts
 ```
+# Mutiple txt paths as input
 curl http://0.0.0.0:8080 -d "data=/home/.../rob-app/sample/Viviam OS, 2015.txt,/home/.../rob-app/sample/Minwoo A, 2015.txt" -X PUT
-```
-##### Output
-```json
-[
-  {"txt_id": 0, "txt_path": "/home/qwang/rob/rob-pome/rob-app/sample/Viviam OS, 2015.txt", "random": 0.9999871253967285, "blind": 2.2311729708235362e-07, "interest": 0.9999998807907104, "welfare": 0.7780912518501282, "exclusion": 0.49079954624176025}, 
-  {"txt_id": 1, "txt_path": "/home/qwang/rob/rob-pome/rob-app/sample/Minwoo A, 2015.txt", "random": 0.9999921321868896, "blind": 6.691859653074061e-07, "interest": 0.5779701471328735, "welfare": 0.3498053252696991, "exclusion": 0.18937094509601593}
-]  
-```
 
-##### 3) Folder containing txt files as input
-```
+# Folder containing txt files as input
 curl http://0.0.0.0:8080 -d "data=/home/.../rob-app/sample" -X PUT
-```
-##### Output
-```json
-[
-  {"txt_id": 0, "txt_path": "/home/qwang/rob/rob-pome/rob-app/sample/Minwoo A, 2015.txt", "random": 0.9999921321868896, "blind": 6.691859653074061e-07, "interest": 0.5779701471328735, "welfare": 0.3498053252696991, "exclusion": 0.18937094509601593}, 
-  {"txt_id": 1, "txt_path": "/home/qwang/rob/rob-pome/rob-app/sample/Magdy MA, 2015.txt", "random": 0.989575982093811, "blind": 1.9913262860882242e-07, "interest": 0.9999996423721313, "welfare": 0.41483962535858154, "exclusion": 0.21046914160251617},
-  {"txt_id": 2, "txt_path": "/home/qwang/rob/rob-pome/rob-app/sample/doc.txt", "random": 0.9994767308235168, "blind": 3.3118402598120156e-07, "interest": 0.7622259855270386, "welfare": 0.1603413075208664, "exclusion": 0.22129464149475098}, 
-  {"txt_id": 3, "txt_path": "/home/qwang/rob/rob-pome/rob-app/sample/Viviam OS, 2015.txt", "random": 0.9999871253967285, "blind": 2.2311729708235362e-07, "interest": 0.9999998807907104, "welfare": 0.7780912518501282, "exclusion": 0.49079954624176025}, 
-  {"txt_id": 4, "txt_path": "/home/qwang/rob/rob-pome/rob-app/sample/Lei Y, 2015.txt", "random": 0.999850869178772, "blind": 2.312341536025997e-07, "interest": 1.0, "welfare": 0.4824756979942322, "exclusion": 0.20606695115566254}  
-]  
-```
-#### Generate output into a json file
-```
-curl http://0.0.0.0:8080 -d "data=/home/.../rob-app/sample" -d "out=/home/.../xxx.json" -X PUT
 ```
