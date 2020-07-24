@@ -9,6 +9,7 @@ Created on Sun Jun 21 16:16:31 2020
 import json
 import pandas as pd
 import dill
+import re
 
 import spacy
 nlp = spacy.load("en_core_web_sm")
@@ -331,8 +332,23 @@ def extract_sents(arg_path, field_path, pth_path, doc, num_sents,  device=torch.
     df = df.sort_values(by=['attn'], ascending=False)
     
     out_sent_tokens = list(df['sent_token'][:num_sents])
-    out_sents = [' '.join(sent) for sent in out_sent_tokens]
+    # out_sents = [' '.join(sent) for sent in out_sent_tokens]
     
+    out_sents = []
+    for s in out_sent_tokens:
+        sent = ' '.join(s)
+        sent = re.sub(r" \.", ".", sent)
+        sent = re.sub(r" \,", ",", sent)
+        try:
+            sent = re.sub(r"\( ", "(", sent)
+            sent = re.sub(r" \)", ")", sent)
+            sent = re.sub(r"\[ ", "[", sent)
+            sent = re.sub(r" \]", "]", sent)
+            sent = re.sub(r" \- ", "-", sent)
+        except:
+            pass
+        out_sents.append(sent)
+        
     return out_sents  
     
 
