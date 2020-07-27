@@ -1,4 +1,4 @@
-## Preclinical risk of bias assessment with CNN/Attention/HAN
+## Preclinical risk of bias assessment with CNN/Attention/HAN/BERT
 
 Predict reporting scores and extract relevant sentences of five risk of bias items for preclinical publications:
 - Random Allocation to Treatment/Control Group
