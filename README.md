@@ -9,7 +9,6 @@ Predict reporting scores and extract relevant sentences of five risk of bias ite
 
 
 ### Usage
-[![DOI](https://zenodo.org/badge/222727172.svg)](https://zenodo.org/badge/latestdoi/222727172)
 #### Clone source code
 ```
 git clone https://github.com/qianyingw/rob-pome.git
@@ -73,3 +72,6 @@ curl http://0.0.0.0:8080 -d "data=/home/.../rob-app/sample/Viviam OS, 2015.txt,/
 # Folder containing txt files as input
 curl http://0.0.0.0:8080 -d "data=/home/.../rob-app/sample" -X PUT
 ```
+
+### Citation
+[![DOI](https://zenodo.org/badge/222727172.svg)](https://zenodo.org/badge/latestdoi/222727172)
