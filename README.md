@@ -1,4 +1,4 @@
-## Preclinical risk of bias assessment with CNN/Attention/HAN/BERT [![DOI](https://zenodo.org/badge/222727172.svg)](https://zenodo.org/badge/latestdoi/222727172)
+## Preclinical risk of bias assessment with CNN/Attention/HAN/BERT
 
 Predict reporting scores and extract relevant sentences of five risk of bias items for preclinical publications:
 - Random Allocation to Treatment/Control Group
@@ -8,7 +8,7 @@ Predict reporting scores and extract relevant sentences of five risk of bias ite
 - Animal Exclusions
 
 
-### Usage
+### Usage [![DOI](https://zenodo.org/badge/222727172.svg)](https://zenodo.org/badge/latestdoi/222727172)
 #### Clone source code
 ```
 git clone https://github.com/qianyingw/rob-pome.git
