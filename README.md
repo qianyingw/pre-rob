@@ -8,7 +8,8 @@ Predict reporting scores and extract relevant sentences of five risk of bias ite
 - Animal Exclusions
 
 
-### Usage [![DOI](https://zenodo.org/badge/222727172.svg)](https://zenodo.org/badge/latestdoi/222727172)
+### Usage
+[![DOI](https://zenodo.org/badge/222727172.svg)](https://zenodo.org/badge/latestdoi/222727172)
 #### Clone source code
 ```
 git clone https://github.com/qianyingw/rob-pome.git
