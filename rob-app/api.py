@@ -13,7 +13,7 @@ import os
 import sys
 import re
 import json
-from pred import pred_prob, extract_sents
+from pred import pred_prob, pred_prob_bert, extract_sents
 
 
 
@@ -34,9 +34,9 @@ PROB_PATH = {
     'pth-i': 'pth/cwi_6.pth.tar',
     'fld-i': 'fld/cwi_6.Field',
     
-    'arg-w': 'pth/cww_15.json',
-    'pth-w': 'pth/cww_15.pth.tar',
-    'fld-w': 'fld/cww_15.Field',
+    'arg-w': 'pth/bert_w0.json',
+    'pth-w': 'pth/biobert/bert_w0.pth.tar',
+    'wgt-w': 'pth/biobert',
     
     'arg-e': 'pth/awe_8.json',
     'pth-e': 'pth/awe_8.pth.tar',
@@ -128,7 +128,7 @@ class PreRob():
                     pr = pred_prob(self.prob_path['arg-r'], self.prob_path['fld-r'], self.prob_path['pth-r'], text).astype(float)
                     pb = pred_prob(self.prob_path['arg-b'], self.prob_path['fld-b'], self.prob_path['pth-b'], text).astype(float)
                     pi = pred_prob(self.prob_path['arg-i'], self.prob_path['fld-i'], self.prob_path['pth-i'], text).astype(float)
-                    pw = pred_prob(self.prob_path['arg-w'], self.prob_path['fld-w'], self.prob_path['pth-w'], text).astype(float)
+                    pw = pred_prob_bert(self.prob_path['arg-w'], self.prob_path['wgt-w'], self.prob_path['pth-w'], text).astype(float)
                     pe = pred_prob(self.prob_path['arg-e'], self.prob_path['fld-e'], self.prob_path['pth-e'], text).astype(float)  
                     
                     score = {"txt_id": Id, "txt_path": path,
