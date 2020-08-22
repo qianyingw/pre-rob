@@ -102,19 +102,20 @@ def pred_prob(arg_path, field_path, pth_path, doc, device=torch.device('cpu')):
 
 
 #%%
-# arg_path = '/media/mynewdrive/rob/dice/kiwi/bcr/bio_conv_0_120e/bio_conv_0_120e_prfs.json'
-# args['wgts_dir'] = '/media/mynewdrive/rob/data/pre_wgts/biobert'
-# pth_path = '/media/mynewdrive/rob/dice/kiwi/bcr/bio_conv_0_120e/best.pth.tar'
+# arg_path = 'pth/bert_w0.json'
+# wgt_path = 'pth/biobert'
+# pth_path = 'pth/biobert/bert_w0.pth.tar'
 # device = torch.device('cpu')
 
 # with open('sample/Minwoo A, 2015.txt', 'r', encoding='utf-8', errors='ignore') as fin:
 #     doc = fin.read() 
 
-def pred_prob_bert(arg_path, field_path, pth_path, doc, device=torch.device('cpu')):
+def pred_prob_bert(arg_path, wgt_path, pth_path, doc, device=torch.device('cpu')):
     # Load args
     with open(arg_path) as f:
         args = json.load(f)['args']
-        
+    
+    args['wgts_dir'] = wgt_path
     # Load model
     # Tokenizer & Config & Model
     if args['net_type'] == "bert_pool_conv":
