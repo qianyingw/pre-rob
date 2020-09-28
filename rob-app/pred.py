@@ -70,7 +70,7 @@ def pred_prob(arg_path, field_path, pth_path, doc, device=torch.device('cpu')):
     # Load checkpoint
     checkpoint = torch.load(pth_path, map_location=device)
     state_dict = checkpoint['state_dict']
-    model.load_state_dict(state_dict)
+    model.load_state_dict(state_dict, strict=False)
     model.cpu()
      
     # Load pre-trained embedding
@@ -140,7 +140,7 @@ def pred_prob_bert(arg_path, wgt_path, pth_path, doc, device=torch.device('cpu')
     # Load checkpoint
     checkpoint = torch.load(pth_path, map_location=device)
     state_dict = checkpoint['state_dict']
-    model.load_state_dict(state_dict)
+    model.load_state_dict(state_dict, strict=False)
     model.cpu()
      
 
