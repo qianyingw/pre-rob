@@ -13,11 +13,17 @@ import pandas as pd
 import torch
 from torch.utils.data import Dataset
 
-# import transformers
-from transformers import BertTokenizer
+from transformers import DistilBertTokenizer, BertTokenizer
+
 from sentence_transformers import SentenceTransformer, util
 sbert_model = SentenceTransformer('distilbert-base-nli-stsb-mean-tokens')
-tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+
+from arg_parser import get_args
+args = get_args()
+if args.model == 'distil':
+    tokenizer = DistilBertTokenizer.from_pretrained('distilbert-base-uncased')
+if args.model == 'bert':  
+    tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 
 #%%
 class RobDataset(Dataset):
@@ -102,7 +108,7 @@ class RobDataset(Dataset):
         return sim_text, label
 
 #%%
-class BatchTokenizer:
+class BatchTokenizer():
     def __call__(self, batch):
         # Each item in a batch: (text, label)
         texts, labels = [], []
@@ -120,28 +126,23 @@ class BatchTokenizer:
         return inputs, labels
     
 #%% Instance
-train_set = RobDataset(info_dir = '/media/mynewdrive/rob/data', pkl_dir = '/media/mynewdrive/rob/data/rob_str', 
-                       rob_item = 'RandomizationTreatmentControl', rob_sent = None, 
-                       max_n_sent = 20,
-                       group='train')
+# train_set = RobDataset(info_dir = '/media/mynewdrive/rob/data', pkl_dir = '/media/mynewdrive/rob/data/rob_str', 
+#                        rob_item = 'RandomizationTreatmentControl', rob_sent = None, 
+#                        max_n_sent = 20,
+#                        group='train')
 
-# DataLoader
-from torch.utils.data import DataLoader
-data_loader = DataLoader(train_set, batch_size=32, shuffle=True, num_workers=0, collate_fn=BatchTokenizer())
+# # DataLoader
+# from torch.utils.data import DataLoader
+# data_loader = DataLoader(train_set, batch_size=32, shuffle=True, num_workers=0, collate_fn=BatchTokenizer())
 
-batch = next(iter(data_loader))
-input_batch = batch[0]; print(input_batch.size())   
-label_batch = batch[1]; print(label_batch.size())    
-len_batch = batch[2]; print(len_batch)  
+# batch = next(iter(data_loader))
+# input_batch = batch[0] 
+# input_batch['input_ids'].shape  # [32, 512]
 
-doc_batch.size()  # [batch_size, num_chunks, 3, max_chunk_len]
-label_batch.size()  # [batch_size]
-len_batch.size()  # [batch_size]
-
-for i, batch in enumerate(data_loader):
-    if i % 50 == 0:
-        print("[batch {}] Doc: {}, Label: {}".format(i, batch[0].size(), batch[1].size()))
-temp = train_set[0][0]
+# label_batch = batch[1]
+# label_batch.shape  # [512]
 
 
-
+# for i, batch in enumerate(data_loader):
+#     if i < 10: # i % 50 == 0:
+#         print("[batch {}] input_ids: {}".format(i, batch[0]['input_ids'].shape))
