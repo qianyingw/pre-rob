@@ -118,7 +118,6 @@ class BatchTokenizer():
         
         inputs = tokenizer(texts, padding=True, truncation=True, return_tensors="pt")    
         # input_ids = inputs['input_ids']
-        # token_type_ids = inputs['token_type_ids']
         # attention_mask = inputs['attention_mask']
         
         labels = torch.LongTensor(labels)
@@ -127,9 +126,9 @@ class BatchTokenizer():
     
 #%% Instance
 # train_set = RobDataset(info_dir = '/media/mynewdrive/rob/data', pkl_dir = '/media/mynewdrive/rob/data/rob_str', 
-#                        rob_item = 'RandomizationTreatmentControl', rob_sent = None, 
-#                        max_n_sent = 20,
-#                        group='train')
+#                         rob_item = 'RandomizationTreatmentControl', rob_sent = None, 
+#                         max_n_sent = 20,
+#                         group='train')
 
 # # DataLoader
 # from torch.utils.data import DataLoader
