@@ -20,9 +20,9 @@ sbert_model = SentenceTransformer('distilbert-base-nli-stsb-mean-tokens')
 
 from arg_parser import get_args
 args = get_args()
-if args.model == 'distil':
+if args.model.split("_")[0] == 'distil':
     tokenizer = DistilBertTokenizer.from_pretrained('distilbert-base-uncased')
-if args.model == 'bert':  
+if args.model.split("_")[0] == 'bert':  
     tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 
 #%%

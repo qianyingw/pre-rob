@@ -65,9 +65,9 @@ def get_args():
     parser.add_argument('--rob_sent', nargs="?", type=str, default=None, help='Description of rob item for sentence extraction')
     parser.add_argument('--max_n_sent', nargs="?", type=int, default=10, help='Max similar sentence being extracted') 
 
-    parser.add_argument('--model', nargs="?", type=str, default='distil', 
-                        choices = ['distil', 'bert'], help='Transformer model/tokenizer')   
-   
+    parser.add_argument('--model', nargs="?", type=str, default='distil_lstm', 
+                        choices = ['distil_linear', 'distil_lstm', 'distil_conv'], help='Transformer model/tokenizer')
+
     args = parser.parse_args()
     
     return args
