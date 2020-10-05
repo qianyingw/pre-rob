@@ -8,6 +8,7 @@ Created on Sat Oct  3 17:01:02 2020
 
 import os
 import json
+import random
 
 import torch
 from torch.utils.data import DataLoader
@@ -21,8 +22,18 @@ from helper import RobDataset, BatchTokenizer
 from train import train_fn, valid_fn
 import utils
 
-#%% Data loader
+#%% random seed
 args = get_args()
+random.seed(args.seed)
+#np.random.seed(args.seed)
+torch.manual_seed(args.seed)
+torch.cuda.manual_seed_all(args.seed)
+torch.cuda.manual_seed(args.seed)
+torch.backends.cudnn.deterministic = True     
+torch.backends.cudnn.benchmark = False   # will be slower  
+
+#%% Data loader
+
 train_set = RobDataset(info_dir = args.info_dir, pkl_dir = args.pkl_dir, 
                        rob_item = args.rob_item, rob_sent = args.rob_sent, 
                        max_n_sent = args.max_n_sent,
