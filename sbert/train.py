@@ -11,10 +11,8 @@ import torch.nn as nn
 from tqdm import tqdm
 
 
-softmax = nn.Softmax(dim=1)
-
 #%%
-def train_fn(model, data_loader, optimizer, scheduler, metrics_fn, clip, accum_step, threshold, device):
+def train_fn(model, data_loader, optimizer, scheduler, loss_fn, metrics_fn, clip, accum_step, threshold, device):
     
     scores = {'loss': 0, 'accuracy': 0, 'f1': 0, 'recall': 0, 'precision': 0, 'specificity': 0}
     len_iter = len(data_loader)
@@ -28,14 +26,15 @@ def train_fn(model, data_loader, optimizer, scheduler, metrics_fn, clip, accum_s
             inputs = batch[0].to(device)
             labels = batch[1].to(device)
             
-            outputs = model(**inputs, labels=labels)
+            probs = model(**inputs, labels=labels)
+            loss = loss_fn(probs, labels)
+            # outputs = model(**inputs, labels=labels)          
+            # loss = outputs.loss 
+            # logits = outputs.logits  # scores before softmax: [batch_size, output_dim]
+            # preds = softmax(logits)
             
-            loss = outputs.loss           
             scores['loss'] += loss.item() 
-            
-            logits = outputs.logits  # scores before softmax: [batch_size, output_dim]
-            preds = softmax(logits)
-            epoch_scores = metrics_fn(preds, labels, threshold)  # dictionary of 5 metric scores
+            epoch_scores = metrics_fn(probs, labels, threshold)  # dictionary of 5 metric scores
             for key, value in epoch_scores.items():               
                 scores[key] += value  
             
@@ -58,7 +57,7 @@ def train_fn(model, data_loader, optimizer, scheduler, metrics_fn, clip, accum_s
              
 
 #%%
-def valid_fn(model, data_loader, metrics_fn, device, threshold):
+def valid_fn(model, data_loader, loss_fn, metrics_fn, threshold, device):
     
     scores = {'loss': 0, 'accuracy': 0, 'f1': 0, 'recall': 0, 'precision': 0, 'specificity': 0}
     len_iter = len(data_loader)
@@ -71,14 +70,16 @@ def valid_fn(model, data_loader, metrics_fn, device, threshold):
                 inputs = batch[0].to(device)
                 labels = batch[1].to(device)
             
-                outputs = model(**inputs, labels=labels)
+                # outputs = model(**inputs, labels=labels)
+                # loss = outputs.loss           
+                # logits = outputs.logits  # scores before softmax: [batch_size, output_dim]
+                # preds = softmax(logits)
                 
-                loss = outputs.loss           
+                probs = model(**inputs, labels=labels)
+                loss = loss_fn(probs, labels)
+                
                 scores['loss'] += loss.item() 
-                
-                logits = outputs.logits  # scores before softmax: [batch_size, output_dim]
-                preds = softmax(logits)
-                epoch_scores = metrics_fn(preds, labels, threshold)  # dictionary of 5 metric scores
+                epoch_scores = metrics_fn(probs, labels, threshold)  # dictionary of 5 metric scores
                 for key, value in epoch_scores.items():               
                     scores[key] += value       
                 progress_bar.update(1)  # update progress bar   

@@ -11,16 +11,19 @@ import json
 import random
 
 import torch
+import torch.nn as nn
 from torch.utils.data import DataLoader
 
-from transformers import DistilBertForSequenceClassification  # DistilBertTokenizer
-from transformers import BertForSequenceClassification  # BertTokenizer
+# from transformers import DistilBertConfig # DistilBertForSequenceClassification  # DistilBertTokenizer
+# from transformers import BertForSequenceClassification  # BertTokenizer
 from transformers import AdamW, get_linear_schedule_with_warmup
 
 from arg_parser import get_args
-from helper import RobDataset, BatchTokenizer
-from train import train_fn, valid_fn
 import utils
+from helper import RobDataset, BatchTokenizer
+from model import DistilClsLinear, BertClsLinear
+from train import train_fn, valid_fn
+
 
 #%% random seed
 args = get_args()
@@ -33,7 +36,6 @@ torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False   # will be slower  
 
 #%% Data loader
-
 train_set = RobDataset(info_dir = args.info_dir, pkl_dir = args.pkl_dir, 
                        rob_item = args.rob_item, rob_sent = args.rob_sent, 
                        max_n_sent = args.max_n_sent,
@@ -50,13 +52,14 @@ valid_set = RobDataset(info_dir = args.info_dir, pkl_dir = args.pkl_dir,
 train_loader = DataLoader(train_set, batch_size=args.batch_size, shuffle=True, num_workers=0, collate_fn=BatchTokenizer())
 valid_loader = DataLoader(valid_set, batch_size=args.batch_size, shuffle=True, num_workers=0, collate_fn=BatchTokenizer())
 
-#%% Model & Optimizer & Scheduler
+#%% Model & Optimizer & Scheduler & Criterion
 device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 
 if args.model == 'distil':
-    model = DistilBertForSequenceClassification.from_pretrained('distilbert-base-uncased', return_dict=True)
+    model = DistilClsLinear.from_pretrained('distilbert-base-uncased', return_dict=True)
+    # model = DistilBertForSequenceClassification.from_pretrained('distilbert-base-uncased', return_dict=True)
 if args.model == 'bert':
-    model = BertForSequenceClassification.from_pretrained('bert-base-uncased', return_dict=True)
+    model = BertClsLinear.from_pretrained('bert-base-uncased', return_dict=True)
     
 model.to(device)
 optimizer = AdamW(model.parameters(), lr=args.lr)
@@ -66,6 +69,14 @@ total_steps = len(train_loader) * args.num_epochs // args.accum_step
 warm_steps = int(total_steps * args.warm_frac)
 scheduler = get_linear_schedule_with_warmup(optimizer, num_warmup_steps=warm_steps, num_training_steps=total_steps)
 
+
+# loss function (w/o weight balancing)
+if args.wgt_bal == True and torch.cuda.device_count() == 0:
+    loss_fn = nn.CrossEntropyLoss(weight=torch.FloatTensor(train_set.cls_weight()))
+elif args.wgt_bal == True and torch.cuda.device_count() > 0:
+    loss_fn = nn.CrossEntropyLoss(weight=torch.FloatTensor(train_set.cls_weight()).cuda())
+else:
+    loss_fn = nn.CrossEntropyLoss()
 
 #%% Train the model
 if os.path.exists(args.exp_dir) == False:
@@ -79,8 +90,8 @@ n_worse = 0
 min_valid_loss = float('inf')
 
 for epoch in range(args.num_epochs):   
-    train_scores = train_fn(model, train_loader, optimizer, scheduler, utils.metrics_fn, args.clip, args.accum_step, args.threshold, device)
-    valid_scores = valid_fn(model, valid_loader, utils.metrics_fn, device, args.threshold)
+    train_scores = train_fn(model, train_loader, optimizer, scheduler, loss_fn, utils.metrics_fn, args.clip, args.accum_step, args.threshold, device)
+    valid_scores = valid_fn(model, valid_loader, loss_fn, utils.metrics_fn, args.threshold, device)
 
     # Update output dictionary
     output_dict['prfs'][str('train_'+str(epoch+1))] = train_scores
