@@ -40,6 +40,8 @@ def get_args():
     parser.add_argument('--clip', nargs="?", type=float, default=0.1, help='Gradient clipping')
     parser.add_argument('--accum_step', nargs="?", type=int, default=4, help='Number of steps for gradient accumulation')
     parser.add_argument('--threshold', nargs="?", type=float, default=0.5, help='Threshold for positive class value')
+    parser.add_argument('--wgt_bal', nargs="?", type=str2bool, default=False, help='Class weight balancing')
+    
     
     parser.add_argument('--info_dir', nargs="?", type=str, default="/media/mynewdrive/rob/data", help='Directory of info pickle file')
     parser.add_argument('--pkl_dir', nargs="?", type=str, default="/media/mynewdrive/rob/data/rob_str", help='Directory of pickle files')
@@ -61,7 +63,7 @@ def get_args():
                                  'ConflictsOfInterest'], 
                         help='Risk of bias item')
     parser.add_argument('--rob_sent', nargs="?", type=str, default=None, help='Description of rob item for sentence extraction')
-    parser.add_argument('--max_n_sent', nargs="?", type=int, default=20, help='Max similar sentence being extracted') 
+    parser.add_argument('--max_n_sent', nargs="?", type=int, default=10, help='Max similar sentence being extracted') 
 
     parser.add_argument('--model', nargs="?", type=str, default='distil', 
                         choices = ['distil', 'bert'], help='Transformer model/tokenizer')   

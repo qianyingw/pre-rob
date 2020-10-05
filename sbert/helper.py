@@ -106,6 +106,12 @@ class RobDataset(Dataset):
         # label = torch.LongTensor([label])  
                
         return sim_text, label
+    
+    def cls_weight(self):
+        df = self.info_df   
+        n_pos = len(df[df[self.rob_item]==1])
+        n_neg = len(df[df[self.rob_item]==0])   
+        return [1/n_neg, 1/n_pos]
 
 #%%
 class BatchTokenizer():
