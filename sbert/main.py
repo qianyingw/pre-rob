@@ -21,7 +21,7 @@ from transformers import AdamW, get_linear_schedule_with_warmup
 from arg_parser import get_args
 import utils
 from helper import RobDataset, BatchTokenizer
-from model import DistilClsLinear, BertClsLinear
+from model import DistilClsLinear, DistilClsLSTM, DistilClsConv, BertClsLinear
 from train import train_fn, valid_fn
 
 
@@ -55,9 +55,12 @@ valid_loader = DataLoader(valid_set, batch_size=args.batch_size, shuffle=True, n
 #%% Model & Optimizer & Scheduler & Criterion
 device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 
-if args.model == 'distil':
+if args.model == 'distil_linear':
     model = DistilClsLinear.from_pretrained('distilbert-base-uncased', return_dict=True)
-    # model = DistilBertForSequenceClassification.from_pretrained('distilbert-base-uncased', return_dict=True)
+if args.model == 'distil_lstm':    
+    model = DistilClsLSTM.from_pretrained('distilbert-base-uncased', return_dict=True)
+if args.model == 'distil_conv':    
+    model = DistilClsConv.from_pretrained('distilbert-base-uncased', return_dict=True)
 if args.model == 'bert':
     model = BertClsLinear.from_pretrained('bert-base-uncased', return_dict=True)
     
