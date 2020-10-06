@@ -282,7 +282,7 @@ def extract_sents(arg_path, field_path, pth_path, doc, num_sents,  device=torch.
     # Load checkpoint
     checkpoint = torch.load(pth_path, map_location=device)
     state_dict = checkpoint['state_dict']
-    model.load_state_dict(state_dict)
+    model.load_state_dict(state_dict, strict=False)
     model.cpu()
      
     # Load pre-trained embedding
@@ -329,7 +329,10 @@ def extract_sents(arg_path, field_path, pth_path, doc, num_sents,  device=torch.
     attn_score = attn_score.data.cpu().numpy()[0]
     attn_list = list(attn_score.flat)
     
-    df = pd.DataFrame({'sent_token': sent_token, 'attn': attn_list[:len(sent_token)]})
+    if len(sent_token) > len(attn_list):
+        df = pd.DataFrame({'sent_token': sent_token[:len(attn_list)], 'attn': attn_list[:len(sent_token)]})
+    else:     
+        df = pd.DataFrame({'sent_token': sent_token, 'attn': attn_list[:len(sent_token)]})
     df = df.sort_values(by=['attn'], ascending=False)
     
     out_sent_tokens = list(df['sent_token'][:num_sents])
