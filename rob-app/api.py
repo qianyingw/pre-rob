@@ -14,11 +14,7 @@ import sys
 import re
 import json
 from pred import pred_prob, pred_prob_bert, extract_sents
-
-
-
-             
-             
+        
              
 #%%
 PROB_PATH = {
@@ -65,7 +61,9 @@ SENT_PATH = {
     'fld-e': 'fld/he_26.Field'
 }
 
-
+p_ref = re.compile(r"(.*Reference\s{0,}\n)|(.*References\s{0,}\n)|(.*Reference list\s{0,}\n)|(.*REFERENCE\s{0,}\n)|(.*REFERENCES\s{0,}\n)|(.*REFERENCE LIST\s{0,}\n)", 
+                   flags=re.DOTALL)
+#%%
 class PreRob():
     def __init__(self, prob_path, sent_path, txt_info):      
     
@@ -103,11 +101,33 @@ class PreRob():
     
     
     def process_text(self, text):       
-        text = re.sub(r"^(?:[\t ]*(?:\r?\n|\r))+", " ", text, flags=re.MULTILINE)  # Remove emtpy lines        
-        text = text.encode("ascii", errors="ignore").decode()  # Remove non-ascii characters         
-        text = re.sub(r'\s+', " ", text)  # Strip whitespaces     
-        text = re.sub(r'^[\s]', "", text)  # Remove the whitespace at start and end of line
+        # text = re.sub(r"^(?:[\t ]*(?:\r?\n|\r))+", " ", text, flags=re.MULTILINE)  # Remove emtpy lines        
+        # text = text.encode("ascii", errors="ignore").decode()  # Remove non-ascii characters         
+        # text = re.sub(r'\s+', " ", text)  # Strip whitespaces     
+        # text = re.sub(r'^[\s]', "", text)  # Remove the whitespace at start and end of line
+        # text = re.sub(r'[\s]$', "", text)
+        
+        # Remove texts before the first occurence of 'Introduction' or 'INTRODUCTION'
+        text = re.sub(r".*?(Introduction|INTRODUCTION)\s{0,}\n{1,}", " ", text, count=1, flags=re.DOTALL)    
+        # Remove reference after the last occurence 
+        s = re.search(p_ref, text)
+        if s: text = s[0]  
+        # Remove citations 
+        text = re.sub(r"\s+[\[][^a-zA-Z]+[\]]", "", text)
+        # Remove links
+        text = re.sub(r"https?:/\/\S+", " ", text)
+        # Remove emtpy lines
+        text = re.sub(r"^(?:[\t ]*(?:\r?\n|\r))+", " ", text, flags=re.MULTILINE)
+        # Remove lines with digits/(digits,punctuations,line character) only
+        text = re.sub(r"^\W{0,}\d{1,}\W{0,}$", "", text)
+        # Remove non-ascii characters
+        text = text.encode("ascii", errors="ignore").decode()     
+        # Strip whitespaces 
+        text = re.sub(r'\s+', " ", text)
+        # Remove the whitespace at start and end of line
+        text = re.sub(r'^[\s]', "", text)
         text = re.sub(r'[\s]$', "", text)
+    
         return text 
           
     def pred_probs(self, num_sents=0): 
@@ -138,7 +158,7 @@ class PreRob():
                 			 "welfare": pw,
                 			 "exclusion": pe}
                     
-                    if num_sents > 0:
+                    if num_sents > 0: 
                         sr = extract_sents(self.sent_path['arg-r'], self.sent_path['fld-r'], self.sent_path['pth-r'], text, num_sents)
                         sb = extract_sents(self.sent_path['arg-b'], self.sent_path['fld-b'], self.sent_path['pth-b'], text, num_sents)
                         si = extract_sents(self.sent_path['arg-i'], self.sent_path['fld-i'], self.sent_path['pth-i'], text, num_sents)
