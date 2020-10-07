@@ -90,7 +90,8 @@ output_dict = {'args': vars(args), 'prfs': {}}
 
 # For early stopping
 n_worse = 0
-min_valid_loss = float('inf')
+# min_valid_loss = float('inf')
+max_valid_f1 = -float('inf')
 
 for epoch in range(args.num_epochs):   
     train_scores = train_fn(model, train_loader, optimizer, scheduler, loss_fn, utils.metrics_fn, args.clip, args.accum_step, args.threshold, device)
@@ -101,12 +102,12 @@ for epoch in range(args.num_epochs):
     output_dict['prfs'][str('valid_'+str(epoch+1))] = valid_scores
        
     # Save scores
-    if valid_scores['loss'] < min_valid_loss:
-        min_valid_loss = valid_scores['loss']    
-    # if valid_scores['f1'] > max_valid_f1:
-    #     max_valid_f1 = valid_scores['f1'] 
+    # if valid_scores['loss'] < min_valid_loss:
+    #     min_valid_loss = valid_scores['loss']    
+    if valid_scores['f1'] > max_valid_f1:
+        max_valid_f1 = valid_scores['f1'] 
         
-    is_best = (valid_scores['loss']-min_valid_loss <= 0) # args.stop_c1) and (max_valid_f1-valid_scores['f1'] <= args.stop_c2)
+    is_best = valid_scores['f1'] > max_valid_f1
     if is_best == True:       
         utils.save_dict_to_json(valid_scores, os.path.join(args.exp_dir, 'best_val_scores.json'))
     
