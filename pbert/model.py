@@ -136,7 +136,7 @@ class BertClsPLSTM(BertPreTrainedModel):
         
         
         self.lstm = nn.LSTM(input_size = config.hidden_size, hidden_size = config.hidden_size,
-                            num_layers = 1, dropout = 0, 
+                            num_layers = 1, dropout = config.hidden_dropout_prob, 
                             batch_first = True, bidirectional = False)
              
         self.fc = nn.Linear(config.hidden_size, config.num_labels)
