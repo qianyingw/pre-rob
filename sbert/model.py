@@ -120,7 +120,7 @@ class DistilClsConv(DistilBertPreTrainedModel):
         self.distilbert = DistilBertModel(config)
         
         self.convs = nn.ModuleList([nn.Conv2d(in_channels = 1, 
-                                              out_channels = 50,
+                                              out_channels = 100,
                                               kernel_size = (fsize, config.dim)) for fsize in [3,4,5]
                                    ])
        
