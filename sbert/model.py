@@ -102,7 +102,7 @@ class DistilClsLSTM(DistilBertPreTrainedModel):
         # lstm_output: [batch_size, seq_len, n_direction*hidden_dim]
         # h_n: [n_layer*n_direction, batch_size, hidden_dim], hidden state for t=seq_len
         lstm_output, (h_n, c_n) = self.lstm(hidden_state)
-        pooled_lstm = hidden_state[:, 0, :]  # [batch_size, hidden_dim] 
+        pooled_lstm = lstm_output[:, 0, :]  # [batch_size, hidden_dim] 
         
         pooled_output = nn.ReLU()(pooled_lstm)  
         pooled_output = self.dropout(pooled_output)  
