@@ -138,4 +138,20 @@ with open(prfs_path, 'w') as fout:
     json.dump(output_dict, fout, indent=4)
 
 #%% plot
-utils.plot_prfs(prfs_path) 
+# utils.plot_prfs(prfs_path) 
+
+#%% test
+if args.save_model:
+    test_set = RobDataset(info_dir = args.info_dir, pkl_dir = args.pkl_dir, 
+                          rob_item = args.rob_item, rob_sent = args.rob_sent, 
+                          max_n_sent = args.max_n_sent,
+                          group='test')
+
+    test_loader = DataLoader(test_set, batch_size=args.batch_size, shuffle=True, num_workers=0, collate_fn=BatchTokenizer())
+     
+    utils.load_checkpoint(os.path.join(args.exp_dir, 'best.pth.tar'), model) 
+    test_scores = valid_fn(model, test_loader, loss_fn, utils.metrics_fn, args.threshold, device)
+    save_path = os.path.join(args.exp_dir, "test_scores.json")
+    utils.save_dict_to_json(test_scores, save_path)  
+    print('\n[Test] loss: {0:.3f} | acc: {1:.2f}% | f1: {2:.2f}% | recall: {3:.2f}% | precision: {4:.2f}% | specificity: {5:.2f}%'.format(
+            test_scores['loss'], test_scores['accuracy']*100, test_scores['f1']*100, test_scores['recall']*100, test_scores['precision']*100, test_scores['specificity']*100))
