@@ -66,9 +66,9 @@ class RobDataset(Dataset):
         if group:
             info_df = info_df[info_df['partition']==group]
             
-        ########## test only ##########     
-        info_df = info_df[:20]
-        ################################    
+        # ########## test only ##########     
+        # info_df = info_df[:20]
+        # ################################    
         
         self.info_df = info_df.reset_index(drop=True)           
         self.info_dir = info_dir  
