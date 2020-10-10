@@ -63,9 +63,13 @@ class RobDataset(Dataset):
                 self.rob_sent = 'Potential conflict of interest, like funding or affiliation to a pharmaceutical company' 
                                
         info_df = pd.read_pickle(info_file)
-        
         if group:
             info_df = info_df[info_df['partition']==group]
+            
+        ########## test only ##########     
+        info_df = info_df[:20]
+        ################################    
+        
         self.info_df = info_df.reset_index(drop=True)           
         self.info_dir = info_dir  
         self.pkl_dir = pkl_dir
