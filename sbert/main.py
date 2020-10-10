@@ -104,11 +104,10 @@ for epoch in range(args.num_epochs):
     # Save scores
     # if valid_scores['loss'] < min_valid_loss:
     #     min_valid_loss = valid_scores['loss']    
-    if valid_scores['f1'] > max_valid_f1:
-        max_valid_f1 = valid_scores['f1'] 
         
     is_best = valid_scores['f1'] > max_valid_f1
-    if is_best == True:       
+    if is_best == True:     
+        max_valid_f1 = valid_scores['f1'] 
         utils.save_dict_to_json(valid_scores, os.path.join(args.exp_dir, 'best_val_scores.json'))
     
     # Save model
