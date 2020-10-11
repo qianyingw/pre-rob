@@ -126,7 +126,7 @@ class DistilClsConv(DistilBertPreTrainedModel):
        
         self.relu = nn.ReLU()
         self.dropout = nn.Dropout(config.seq_classif_dropout)        
-        self.linear = nn.Linear(50*3, config.num_labels)     
+        self.linear = nn.Linear(100*3, config.num_labels)     
         self.softmax = nn.Softmax(dim=1)
 
         self.init_weights()
