@@ -134,7 +134,7 @@ class PreRob():
         if self.txt_paths == []:
             output = {"message": "Folder/TXTs not found"}  # folder doesn't exist or no txt files found in the folder
             
-        else:          
+        else:    
             output = []
             Id = 0
             for path in self.txt_paths:
@@ -144,13 +144,13 @@ class PreRob():
                     with open(path, 'r', encoding='utf-8', errors='ignore') as fin:
                         text = fin.read()           
                     text = self.process_text(text)   
-                                
+                    
                     pr = pred_prob(self.prob_path['arg-r'], self.prob_path['fld-r'], self.prob_path['pth-r'], text).astype(float)
                     pb = pred_prob(self.prob_path['arg-b'], self.prob_path['fld-b'], self.prob_path['pth-b'], text).astype(float)
                     pi = pred_prob(self.prob_path['arg-i'], self.prob_path['fld-i'], self.prob_path['pth-i'], text).astype(float)
-                    pw = pred_prob_bert(self.prob_path['arg-w'], self.prob_path['wgt-w'], self.prob_path['pth-w'], text).astype(float)
+                    pw = pred_prob_bert(self.prob_path['arg-w'], self.prob_path['pth-w'], text).astype(float)
                     pe = pred_prob(self.prob_path['arg-e'], self.prob_path['fld-e'], self.prob_path['pth-e'], text).astype(float)  
-                    
+                    print('done')
                     score = {"txt_id": Id, "txt_path": path,
                 			 "random": pr,
                 			 "blind": pb,

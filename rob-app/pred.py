@@ -115,7 +115,6 @@ def pred_prob_bert(arg_path, pth_path, doc, device=torch.device('cpu')):
     with open(arg_path) as f:
         args = json.load(f)['args']
     
-    args['wgts_dir'] = wgt_path
     # Load model
     # Tokenizer & Config & Model
     if args['net_type'] == "bert_pool_conv":
@@ -135,7 +134,7 @@ def pred_prob_bert(arg_path, pth_path, doc, device=torch.device('cpu')):
         config.num_filters = args['num_filters']
         sizes = args['filter_sizes'].split(',')
         config.filter_sizes = [int(s) for s in sizes]
-        model = BertPoolConv.from_pretrained(args['wgts_dir'], config=config)
+        model = BertPoolConv.from_pretrained("dmis-lab/biobert-v1.1", config=config)
     
     # Load checkpoint
     checkpoint = torch.load(pth_path, map_location=device)
