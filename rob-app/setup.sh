@@ -1,11 +1,14 @@
-echo "Creating conda environment.."
+echo "Setting conda environment.."
+cr rob-pome/rob-app
 conda env create --file env_rob.yaml
-echo "Done."
-
-echo "Downloading spacy models.."
 conda activate rob
-python -m spacy download en_core_web_sm
-echo "Done."
 
-source deactivate
-echo "Setup finished."
+
+echo "Downloading spacy module.."
+python -m spacy download en_core_web_sm
+
+
+echo "Loading pre-trained weights.."
+curl -c /tmp/cookies "https://drive.google.com/uc?export=download&id=1vztBL9WwUh1vjXOjSfPVgnUTpqdFEcKY" > /tmp/intermezzo.html
+curl -L -b /tmp/cookies "https://drive.google.com$(cat /tmp/intermezzo.html | grep -Po 'uc-download-link" [^>]* href="\K[^"]*' | sed 's/\&amp;/\&/g')" > pth/bert_w0.pth.tar
+echo "Finished."
