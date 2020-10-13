@@ -31,8 +31,8 @@ PROB_PATH = {
     'fld-i': 'fld/cwi_6.Field',
     
     'arg-w': 'pth/bert_w0.json',
-    'pth-w': 'pth/biobert/bert_w0.pth.tar',
-    'wgt-w': 'pth/biobert',
+    'pth-w': 'pth/bert_w0.pth.tar',
+    # 'wgt-w': 'pth/biobert',
     
     'arg-e': 'pth/awe_8.json',
     'pth-e': 'pth/awe_8.pth.tar',
