@@ -110,7 +110,7 @@ def pred_prob(arg_path, field_path, pth_path, doc, device=torch.device('cpu')):
 # with open('sample/Minwoo A, 2015.txt', 'r', encoding='utf-8', errors='ignore') as fin:
 #     doc = fin.read() 
 
-def pred_prob_bert(arg_path, wgt_path, pth_path, doc, device=torch.device('cpu')):
+def pred_prob_bert(arg_path, pth_path, doc, device=torch.device('cpu')):
     # Load args
     with open(arg_path) as f:
         args = json.load(f)['args']
@@ -120,9 +120,9 @@ def pred_prob_bert(arg_path, wgt_path, pth_path, doc, device=torch.device('cpu')
     # Tokenizer & Config & Model
     if args['net_type'] == "bert_pool_conv":
         # Tokenizer
-        tokenizer = BertTokenizer.from_pretrained(args['wgts_dir'], do_lower_case=True)  
+        tokenizer = BertTokenizer.from_pretrained("dmis-lab/biobert-v1.1")  
         # Config
-        config = BertConfig.from_pretrained(args['wgts_dir'])  
+        config = BertConfig.from_pretrained("dmis-lab/biobert-v1.1")  
         config.output_hidden_states = True
         config.num_labels = args['num_labels']
         config.unfreeze = args['unfreeze']
@@ -189,69 +189,6 @@ def pred_prob_bert(arg_path, wgt_path, pth_path, doc, device=torch.device('cpu')
     # print("Prob of RoB reported: {:.4f}".format(probs[1]))    
     return probs[1]
 
-#%%
-def extract_words(arg_path, field_path, pth_path, doc, num_words, device=torch.device('cpu')):  
-    # Load args
-    with open(arg_path) as f:
-        args = json.load(f)['args']
-    
-    # Load TEXT field
-    with open(field_path, "rb") as fin:
-        TEXT = dill.load(fin)   
-     
-    unk_idx = TEXT.vocab.stoi[TEXT.unk_token]  # 0
-    pad_idx = TEXT.vocab.stoi[TEXT.pad_token]  # 1
-
-    # Load model
-    if args['net_type'] == 'attn':
-        model = AttnNet(vocab_size = args['max_vocab_size'] + 2, 
-                        embedding_dim = args['embed_dim'], 
-                        rnn_hidden_dim = args['rnn_hidden_dim'], 
-                        rnn_num_layers = args['rnn_num_layers'], 
-                        output_dim = 2, 
-                        bidirection = args['bidirection'], 
-                        rnn_cell_type = args['rnn_cell_type'], 
-                        dropout = args['dropout'], 
-                        pad_idx = pad_idx,
-                        embed_trainable = args['embed_trainable'],
-                        batch_norm = args['batch_norm'],
-                        output_attn = True)
-    
-    # Load checkpoint
-    checkpoint = torch.load(pth_path, map_location=device)
-    state_dict = checkpoint['state_dict']
-    model.load_state_dict(state_dict)
-    model.cpu()
-     
-    # Load pre-trained embedding
-    pretrained_embeddings = TEXT.vocab.vectors    
-    model.embedding.weight.data.copy_(pretrained_embeddings)
-    model.embedding.weight.data[unk_idx] = torch.zeros(args['embed_dim'])  # Zero the initial weights for <unk> tokens
-    model.embedding.weight.data[pad_idx] = torch.zeros(args['embed_dim'])  # Zero the initial weights for <pad> tokens
-    
-    
-    # Tokenization
-    tokens_uncase = [tok.text for tok in nlp.tokenizer(doc)]
-    tokens = [tok.text.lower() for tok in nlp.tokenizer(doc)]  
-    idx = [TEXT.vocab.stoi[t] for t in tokens]     
-    
-    # Prediction
-    model.eval()
-    doc_tensor = torch.LongTensor(idx).to(device)
-    doc_tensor = doc_tensor.unsqueeze(1)  # bec AttnNet input shape is [seq_len, batch_size] 
-      
-    probs, attn_score = model(doc_tensor)
-    attn_score = attn_score.data.cpu().numpy()[0]
-    attn_list = list(attn_score.flat)
-    
-    df = pd.DataFrame({'words': tokens_uncase, 'attn': attn_list})
-    df = df.sort_values(by=['attn'], ascending=False)
-    
-    out = df.head(num_words)
-    out = out.reset_index()
-    # out_words = list(df['words'][:num_words])
-    
-    return out #out_words
        
     
 #%%    
