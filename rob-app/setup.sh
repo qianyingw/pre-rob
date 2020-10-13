@@ -1,5 +1,6 @@
+set -e
 echo "Setting conda environment.."
-cr rob-pome/rob-app
+# cd rob-pome/rob-app
 conda env create --file env_rob.yaml
 conda activate rob
 
