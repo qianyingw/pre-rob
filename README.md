@@ -7,6 +7,7 @@ Predict reporting scores and extract relevant sentences of five risk of bias ite
 - Compliance of Animal Welfare Regulations
 - Animal Exclusions
 
+Check the online [demo](https://share.streamlit.io/qianyingw/rob-slt/master/app.py)
 
 ### Usage
 #### Clone source code
@@ -24,28 +25,23 @@ cd rob-pome/rob-app
 conda env create --file env_rob.yaml
 conda activate rob
 ```
-#### Download spacy module
+#### Download module & pre-trained weights
 ```
-python -m spacy download en_core_web_sm
+sh setup.sh
 ```
-#### Download pre-trained weights from [biobert](https://drive.google.com/file/d/1NNxtvdCkUvZobsJjW7vcKFbdqCnHwnBs/view?usp=sharing) and unzip
-```
-unzip biobert.zip -d ../rob-pome/rob-app/fld
-```
-
 #### Launch API
 ```
 python api.py
 ```
 #### Single txt path as input
 ```
-curl http://0.0.0.0:8080 -d "data=/home/.../rob-app/sample/stroke_613.txt" -X PUT
+curl http://0.0.0.0:8080 -d "data=sample/stroke_613.txt" -X PUT
 
 # Extract two relevant sentences
-curl http://0.0.0.0:8080 -d "data=/home/.../rob-app/sample/stroke_613.txt" -d "sent=2" -X PUT
+curl http://0.0.0.0:8080 -d "data=sample/stroke_613.txt" -d "sent=2" -X PUT
 
 # Generate output into a json file 
-curl http://0.0.0.0:8080 -d "data=/home/.../rob-app/sample" -d "out=/home/.../xxx.json" -X PUT
+curl http://0.0.0.0:8080 -d "data=sample" -d "out=/home/.../xxx.json" -X PUT
 ```
 
 ##### Output
