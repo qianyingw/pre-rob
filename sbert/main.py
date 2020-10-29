@@ -46,11 +46,18 @@ valid_set = RobDataset(info_dir = args.info_dir, pkl_dir = args.pkl_dir,
                        max_n_sent = args.max_n_sent,
                        group='valid')
 
+test_set = RobDataset(info_dir = args.info_dir, pkl_dir = args.pkl_dir, 
+                      rob_item = args.rob_item, rob_sent = args.rob_sent, 
+                      max_n_sent = args.max_n_sent,
+                      group='test')
+
+    
 # tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 # tokenizer = DistilBertTokenizer.from_pretrained('distilbert-base-uncased')
 
 train_loader = DataLoader(train_set, batch_size=args.batch_size, shuffle=True, num_workers=0, collate_fn=BatchTokenizer())
 valid_loader = DataLoader(valid_set, batch_size=args.batch_size, shuffle=True, num_workers=0, collate_fn=BatchTokenizer())
+test_loader = DataLoader(test_set, batch_size=args.batch_size, shuffle=True, num_workers=0, collate_fn=BatchTokenizer())
 
 #%% Model & Optimizer & Scheduler & Criterion
 device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
@@ -141,12 +148,12 @@ with open(prfs_path, 'w') as fout:
 
 #%% test
 if args.save_model:
-    test_set = RobDataset(info_dir = args.info_dir, pkl_dir = args.pkl_dir, 
-                          rob_item = args.rob_item, rob_sent = args.rob_sent, 
-                          max_n_sent = args.max_n_sent,
-                          group='test')
+    # test_set = RobDataset(info_dir = args.info_dir, pkl_dir = args.pkl_dir, 
+    #                       rob_item = args.rob_item, rob_sent = args.rob_sent, 
+    #                       max_n_sent = args.max_n_sent,
+    #                       group='test')
 
-    test_loader = DataLoader(test_set, batch_size=args.batch_size, shuffle=True, num_workers=0, collate_fn=BatchTokenizer())
+    # test_loader = DataLoader(test_set, batch_size=args.batch_size, shuffle=True, num_workers=0, collate_fn=BatchTokenizer())
      
     utils.load_checkpoint(os.path.join(args.exp_dir, 'best.pth.tar'), model) 
     test_scores = valid_fn(model, test_loader, loss_fn, utils.metrics_fn, args.threshold, device)
