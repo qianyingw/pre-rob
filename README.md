@@ -33,6 +33,12 @@ sh setup.sh
 ```
 python api.py
 ```
+#### CSV file with columns 'id' and 'path' as input (see [sample.csv](https://github.com/qianyingw/rob-pome/blob/master/rob-app/sample/sample.csv) for example)
+```
+curl http://0.0.0.0:8080 -d "data=sample/sample.csv" -X PUT
+# 
+
+```
 #### Single txt path as input
 ```
 curl http://0.0.0.0:8080 -d "data=sample/stroke_613.txt" -X PUT
@@ -46,7 +52,7 @@ curl http://0.0.0.0:8080 -d "data=sample" -d "out=/home/.../xxx.json" -X PUT
 
 ##### Output
 ```
-[{'txt_id': 0,
+[{'id': 1,
   'txt_path': '/home/.../rob-app/sample/stroke_613.txt',
   'random': 0.9999920129776001,
   'blind': 0.9990461468696594,
