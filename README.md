@@ -33,12 +33,12 @@ sh setup.sh
 ```
 python api.py
 ```
-#### CSV file with columns 'id' and 'path' as input (see [sample.csv](https://github.com/qianyingw/rob-pome/blob/master/rob-app/sample/sample.csv) for example)
+#### CSV file including txt paths as input
+It should have two columns: 'id' and 'path'. See [sample.csv](https://github.com/qianyingw/rob-pome/blob/master/rob-app/sample/sample.csv) for example.
 ```
 curl http://0.0.0.0:8080 -d "data=sample/sample.csv" -X PUT
-# 
-
 ```
+Results are saved in "output.csv" like this [example](https://github.com/qianyingw/rob-pome/blob/master/rob-app/sample/output.csv).
 #### Single txt path as input
 ```
 curl http://0.0.0.0:8080 -d "data=sample/stroke_613.txt" -X PUT
