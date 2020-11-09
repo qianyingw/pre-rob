@@ -116,5 +116,7 @@ dependencies:
   - xz=5.2.5=h7b6447c_0
   - zipp=3.1.0=py_0
   - zlib=1.2.11=h7b6447c_3
+  - pip:
+    - sentence-transformers==0.3.6
 prefix: /home/qwang/anaconda3/envs/rob
 
