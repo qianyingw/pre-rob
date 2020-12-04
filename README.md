@@ -34,26 +34,28 @@ sh setup.sh
 python api.py
 ```
 #### CSV file including txt paths as input
-It should have two columns: 'id' and 'path'. See [sample.csv](https://github.com/qianyingw/rob-pome/blob/master/rob-app/sample/sample.csv) for example.
+It should have two columns: 'id' and 'path'.
+See [input.csv](https://github.com/qianyingw/rob-pome/blob/master/rob-app/example/input.csv) for example.
+'path' is the relative path to the directory of 'input.csv'.
 ```
-curl http://0.0.0.0:8080 -d "data=sample/sample.csv" -X PUT
+curl http://0.0.0.0:8080 -d "data=example/input.csv" -X PUT
 ```
-Results are saved in "output.csv" like this [example](https://github.com/qianyingw/rob-pome/blob/master/rob-app/sample/output.csv).
+Results are saved in [output.csv](https://github.com/qianyingw/rob-pome/blob/master/rob-app/example/output.csv).
 #### Single txt path as input
 ```
-curl http://0.0.0.0:8080 -d "data=sample/stroke_613.txt" -X PUT
+curl http://0.0.0.0:8080 -d "data=example/TXTs/stroke_613.txt" -X PUT
 
 # Extract two relevant sentences
-curl http://0.0.0.0:8080 -d "data=sample/stroke_613.txt" -d "sent=2" -X PUT
+curl http://0.0.0.0:8080 -d "data=example/TXTs/stroke_613.txt" -d "sent=2" -X PUT
 
 # Generate output into a json file 
-curl http://0.0.0.0:8080 -d "data=sample" -d "out=/home/.../xxx.json" -X PUT
+curl http://0.0.0.0:8080 -d "data=example/TXTs" -d "out=/home/.../xxx.json" -X PUT
 ```
 
 ##### Output
 ```
 [{'id': 1,
-  'txt_path': '/home/.../rob-app/sample/stroke_613.txt',
+  'txt_path': '/home/.../rob-app/example/TXTs/stroke_613.txt',
   'random': 0.9999920129776001,
   'blind': 0.9990461468696594,
   'interest': 1.0,
@@ -69,10 +71,10 @@ curl http://0.0.0.0:8080 -d "data=sample" -d "out=/home/.../xxx.json" -X PUT
 #### Multiple txts
 ```
 # Mutiple txt paths as input
-curl http://0.0.0.0:8080 -d "data=/home/.../rob-app/sample/Viviam OS, 2015.txt,/home/.../rob-app/sample/Minwoo A, 2015.txt" -X PUT
+curl http://0.0.0.0:8080 -d "data=/home/.../rob-app/example/TXTs/Viviam OS, 2015.txt,/home/.../rob-app/example/TXTs/Minwoo A, 2015.txt" -X PUT
 
 # Folder containing txt files as input
-curl http://0.0.0.0:8080 -d "data=/home/.../rob-app/sample" -X PUT
+curl http://0.0.0.0:8080 -d "data=/home/.../rob-app/example/TXTs" -X PUT
 ```
 
 ### Citation
