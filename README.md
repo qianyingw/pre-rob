@@ -32,13 +32,15 @@ sh setup.sh
 
 #### CSV file including txt paths as input
 It should have two columns: 'id' and 'path'.
+
 See [input.csv](https://github.com/qianyingw/rob-pome/blob/master/rob-app/example/input.csv) for example.
 'path' is the relative path to the directory of 'input.csv'.
-Results are saved in [output.csv](https://github.com/qianyingw/rob-pome/blob/master/rob-app/example/output.csv).
 ```
 python rob.py -p /xxx/rob-pome/rob-app/example/input.csv  # absolutae path of input.csv
-python rob.py -p /xxx/rob-pome/rob-app/example/input.csv -s 2  # Extract two relevant sentences for each item
+# Extract two relevant sentences for each item
+python rob.py -p /xxx/rob-pome/rob-app/example/input.csv -s 2  
 ```
+Results are saved in [output.csv](https://github.com/qianyingw/rob-pome/blob/master/rob-app/example/output.csv).
 
 ### Citation
 [![DOI](https://zenodo.org/badge/222727172.svg)](https://zenodo.org/badge/latestdoi/222727172)
