@@ -151,7 +151,7 @@ class PreRob():
 import argparse
 parser = argparse.ArgumentParser(description='Get CSV input')
 parser.add_argument('-p', "--csv", nargs="?", type=str, default=None, help='Absolute path of csv input file')
-parser.add_argument('-s', "--sent", nargs="?", type=int, default=None, help='Number of sentences extracted')
+parser.add_argument('-s', "--sent", nargs="?", type=int, default=0, help='Number of sentences extracted')
 
 args = parser.parse_args()
 txt_info = args.csv
