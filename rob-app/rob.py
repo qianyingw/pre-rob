@@ -1,46 +1,38 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+Created on Tue Jan 19 14:33:15 2021
+
+@author: qwang
+"""
+
+
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
 Created on Wed Nov 11 18:16:02 2020
 
 @author: qwang
 """
 
 import os
-
-
 import re
-import json
-import pandas as pd
-from pred_fn import pred_prob, pred_prob_distil, extract_sents
-        
-             
-#%%
-PROB_PATH = {
-    'arg-r': 'pth/awr_13.json', 'pth-r': 'pth/awr_13.pth.tar', 'fld-r': 'pth/awr_13.Field',  
-    'arg-b': 'pth/awb_32.json', 'pth-b': 'pth/awb_32.pth.tar', 'fld-b': 'pth/awb_32.Field',   
-    'arg-i': 'pth/cwi_6.json', 'pth-i': 'pth/cwi_6.pth.tar', 'fld-i': 'pth/cwi_6.Field',
-    'arg-w': 'pth/dsc_w0.json', 'pth-w': 'pth/dsc_w0.pth.tar', 
-    'arg-e': 'pth/awe_8.json', 'pth-e': 'pth/awe_8.pth.tar', 'fld-e': 'pth/awe_8.Field',
-}
-SENT_PATH = {
-    'arg-r': 'pth/hr_4.json', 'pth-r': 'pth/hr_4.pth.tar', 'fld-r': 'pth/hr_4.Field',
-    'arg-b': 'pth/hb_5.json', 'pth-b': 'pth/hb_5.pth.tar', 'fld-b': 'pth/hb_5.Field',    
-    'arg-i': 'pth/hi_4.json', 'pth-i': 'pth/hi_4.pth.tar', 'fld-i': 'pth/hi_4.Field', 
-    'arg-w': 'pth/hw_17.json', 'pth-w': 'pth/hw_17.pth.tar', 'fld-w': 'pth/hw_17.Field',  
-    'arg-e': 'pth/he_26.json', 'pth-e': 'pth/he_26.pth.tar', 'fld-e': 'pth/he_26.Field'
-}
 
-p_ref = re.compile(r"(.*Reference\s{0,}\n)|(.*References\s{0,}\n)|(.*Reference list\s{0,}\n)|(.*REFERENCE\s{0,}\n)|(.*REFERENCES\s{0,}\n)|(.*REFERENCE LIST\s{0,}\n)", 
-                   flags=re.DOTALL)
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
+import pandas as pd
+
+# import rob_fn
+from rob_fn import load_model, load_model_bert, pred, pred_bert, extract_sent
+          
 #%%
 class PreRob():
-    def __init__(self, prob_path, sent_path, txt_info):      
+    def __init__(self, txt_info):      
     
-        for key, value in prob_path.items():
-            prob_path[key] = os.path.join(os.getcwd(), value)
-        self.prob_path = prob_path
-        self.sent_path = sent_path
+        # for key, value in prob_path.items():
+        #     prob_path[key] = os.path.join(os.getcwd(), value)
+        # self.prob_path = prob_path
+        # self.sent_path = sent_path
         self.txt_info = txt_info
         self.txt_paths = []
         self.ids = []
@@ -116,7 +108,7 @@ class PreRob():
             
         else:    
             output = []   
-            co = 1
+            co = 0
             for path in self.txt_paths:
 
                 if os.path.isabs(path) == False:
@@ -125,27 +117,23 @@ class PreRob():
                     text = fin.read()           
                 text = self.process_text(text)   
                 
-                pr = pred_prob(self.prob_path['arg-r'], self.prob_path['fld-r'], self.prob_path['pth-r'], text).astype(float)
-                pb = pred_prob(self.prob_path['arg-b'], self.prob_path['fld-b'], self.prob_path['pth-b'], text).astype(float)
-                pi = pred_prob(self.prob_path['arg-i'], self.prob_path['fld-i'], self.prob_path['pth-i'], text).astype(float)
-                pw = pred_prob_distil(self.prob_path['arg-w'], self.prob_path['pth-w'], text).astype(float)
-                pe = pred_prob(self.prob_path['arg-e'], self.prob_path['fld-e'], self.prob_path['pth-e'], text).astype(float)  
+                pr = pred(text, mod1, arg1, TEXT1).astype(float)
+                pb = pred(text, mod2, arg2, TEXT2).astype(float)
+                pi = pred(text, mod3, arg3, TEXT3).astype(float)
+                pw = pred_bert(text, mod4, rob_sent, max_n_sent=30).astype(float)
+                pe = pred(text, mod5, arg5, TEXT5).astype(float)
                 
                 co += 1
                 print('{} files done.'.format(co))
                 score = {"txt_path": path,
-            			 "random": pr,
-            			 "blind": pb,
-            			 "interest": pi,
-            			 "welfare": pw,
-            			 "exclusion": pe}
+            			 "random": pr, "blind": pb, "interest": pi, "welfare": pw, "exclusion": pe}
                 
                 if num_sents > 0: 
-                    sr = extract_sents(self.sent_path['arg-r'], self.sent_path['fld-r'], self.sent_path['pth-r'], text, num_sents)
-                    sb = extract_sents(self.sent_path['arg-b'], self.sent_path['fld-b'], self.sent_path['pth-b'], text, num_sents)
-                    si = extract_sents(self.sent_path['arg-i'], self.sent_path['fld-i'], self.sent_path['pth-i'], text, num_sents)
-                    sw = extract_sents(self.sent_path['arg-w'], self.sent_path['fld-w'], self.sent_path['pth-w'], text, num_sents)
-                    se = extract_sents(self.sent_path['arg-e'], self.sent_path['fld-e'], self.sent_path['pth-e'], text, num_sents)
+                    sr = extract_sent(text, smod1, sarg1, sTEXT1, num_sents)
+                    sb = extract_sent(text, smod2, sarg2, sTEXT2, num_sents)
+                    si = extract_sent(text, smod3, sarg3, sTEXT3, num_sents)
+                    sw = extract_sent(text, smod4, sarg4, sTEXT4, num_sents)
+                    se = extract_sent(text, smod5, sarg5, sTEXT5, num_sents)
                     score['sentences'] = {"random": sr, "blind": sb, "interest": si, "welfare": sw, "exclusion": se}             
                               
                 output.append(score)
@@ -163,15 +151,37 @@ class PreRob():
 import argparse
 parser = argparse.ArgumentParser(description='Get CSV input')
 parser.add_argument('-p', "--csv", nargs="?", type=str, default=None, help='Absolute path of csv input file')
+parser.add_argument('-s', "--sent", nargs="?", type=int, default=None, help='Number of sentences extracted')
 
 args = parser.parse_args()
 txt_info = args.csv
 # txt_info = os.path.join(os.getcwd(), args.csv)
-        
+num_sents = int(args.sent)
+
+p_ref = re.compile(r"(.*Reference\s{0,}\n)|(.*References\s{0,}\n)|(.*Reference list\s{0,}\n)|(.*REFERENCE\s{0,}\n)|(.*REFERENCES\s{0,}\n)|(.*REFERENCE LIST\s{0,}\n)", 
+                   flags=re.DOTALL)
+
+mod1, arg1, TEXT1 = load_model(arg_path='pth/awr_13.json', pth_path='pth/awr_13.pth.tar', fld_path='pth/awr_13.Field')
+mod2, arg2, TEXT2 = load_model(arg_path='pth/awb_32.json', pth_path='pth/awb_32.pth.tar', fld_path='pth/awb_32.Field')
+mod3, arg3, TEXT3 = load_model(arg_path='pth/cwi_6.json', pth_path='pth/cwi_6.pth.tar', fld_path='pth/cwi_6.Field')
+mod4, rob_sent = load_model_bert(arg_path='pth/dsc_w0.json', pth_path='pth/dsc_w0.pth.tar')
+mod5, arg5, TEXT5 = load_model(arg_path='pth/awe_8.json', pth_path='pth/awe_8.pth.tar', fld_path='pth/awe_8.Field')
+
+if num_sents:
+    smod1, sarg1, sTEXT1 = load_model(arg_path='pth/hr_4.json', pth_path='pth/hr_4.pth.tar', fld_path='pth/hr_4.Field')
+    smod2, sarg2, sTEXT2 = load_model(arg_path='pth/hb_5.json', pth_path='pth/hb_5.pth.tar', fld_path='pth/hb_5.Field')
+    smod3, sarg3, sTEXT3 = load_model(arg_path='pth/hi_4.json', pth_path='pth/hi_4.pth.tar', fld_path='pth/hi_4.Field')
+    smod4, sarg4, sTEXT4 = load_model(arg_path='pth/hw_17.json', pth_path='pth/hw_17.pth.tar', fld_path='pth/hw_17.Field')
+    smod5, sarg5, sTEXT5 = load_model(arg_path='pth/he_26.json', pth_path='pth/he_26.pth.tar', fld_path='pth/he_26.Field')
+    
+      
 if txt_info and txt_info.endswith(".csv") == True:
-    rober = PreRob(PROB_PATH, SENT_PATH, txt_info)
-    rober.get_txt_path()    
-    output = rober.pred_probs()
+    rober = PreRob(txt_info)
+    rober.get_txt_path() 
+    if num_sents:
+        output = rober.pred_probs(num_sents)
+    else:    
+        output = rober.pred_probs()
     output_df = pd.DataFrame(output)
     csv_dir = os.path.dirname(txt_info)
     output_df.to_csv(os.path.join(csv_dir, 'output.csv'), sep=',', encoding='utf-8')
