@@ -14,22 +14,23 @@ Check the online [demo](https://share.streamlit.io/qianyingw/rob-slt/master/app.
 ```
 git clone https://github.com/qianyingw/rob-pome.git
 ```
-#### Set conda environment
+#### Set environment
 ```
 # Install miniconda3
 wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh
 
-# Create and activate conda environment
+# Create and activate virtual environment
 cd rob-pome/rob-app
-conda env create --file env_rob.yaml
-conda activate rob
-```
-#### Download module & pre-trained weights
-```
+virtualenv -p python3 rob
+source rob/bin/activate
+
+# Install packages
+pip install -r requirements.txt
+
+# Download module & pre-trained weights
 sh setup.sh
 ```
-
 #### CSV file including txt paths as input
 It should have two columns: 'id' and 'path'.
 
