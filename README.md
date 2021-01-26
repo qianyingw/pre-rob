@@ -35,7 +35,7 @@ sh setup.sh
 It should have two columns: 'id' and 'path'.
 
 See [input.csv](https://github.com/qianyingw/rob-pome/blob/master/rob-app/example/input.csv) for example.
-'path' is the relative path to the directory of 'input.csv'.
+The 'path' column stores the absolute paths of TXT files.
 ```
 python rob.py -p /xxx/rob-pome/rob-app/example/input.csv  # absolutae path of input.csv
 # Extract two relevant sentences for each item
