@@ -64,7 +64,8 @@ class PreRob():
         if os.path.exists(txt_info) == True and txt_info.endswith(".csv") == True:
             path_df = pd.read_csv(txt_info, sep=',')    
             for i, row in path_df.iterrows():   
-                txt_path = os.path.join(os.path.dirname(txt_info), path_df.loc[i,'path'])
+                txt_path = path_df.loc[i,'path']
+                # txt_path = os.path.join(os.path.dirname(txt_info), path_df.loc[i,'path'])
                 if os.path.exists(txt_path):
                     txt_paths.append(txt_path)          
                     self.ids.append(path_df.loc[i,'id'])
