@@ -86,16 +86,16 @@ def load_model(arg_path, pth_path, fld_path):
     model.load_state_dict(state_dict, strict=False)
     model.cpu()
      
-    # Load pre-trained embedding
-    pretrained_embeddings = TEXT.vocab.vectors
-    if args['net_type'] == 'han':
-        model.word_attn.embedding.weight.data.copy_(pretrained_embeddings) 
-        model.word_attn.embedding.weight.data[unk_idx] = torch.zeros(args['embed_dim'])  # Zero the initial weights for <unk> tokens
-        model.word_attn.embedding.weight.data[pad_idx] = torch.zeros(args['embed_dim'])  # Zero the initial weights for <pad> tokens
-    else:
-        model.embedding.weight.data.copy_(pretrained_embeddings)
-        model.embedding.weight.data[unk_idx] = torch.zeros(args['embed_dim'])  # Zero the initial weights for <unk> tokens
-        model.embedding.weight.data[pad_idx] = torch.zeros(args['embed_dim'])  # Zero the initial weights for <pad> tokens    
+    # # Load pre-trained embedding
+    # pretrained_embeddings = TEXT.vocab.vectors
+    # if args['net_type'] == 'han':
+    #     model.word_attn.embedding.weight.data.copy_(pretrained_embeddings) 
+    #     model.word_attn.embedding.weight.data[unk_idx] = torch.zeros(args['embed_dim'])  # Zero the initial weights for <unk> tokens
+    #     model.word_attn.embedding.weight.data[pad_idx] = torch.zeros(args['embed_dim'])  # Zero the initial weights for <pad> tokens
+    # else:
+    #     model.embedding.weight.data.copy_(pretrained_embeddings)
+    #     model.embedding.weight.data[unk_idx] = torch.zeros(args['embed_dim'])  # Zero the initial weights for <unk> tokens
+    #     model.embedding.weight.data[pad_idx] = torch.zeros(args['embed_dim'])  # Zero the initial weights for <pad> tokens    
     
     return model, args, TEXT
 
