@@ -118,24 +118,28 @@ class PreRob():
                     text = fin.read()           
                 text = self.process_text(text)   
                 
-                pr = pred(text, mod1, arg1, TEXT1).astype(float)
-                pb = pred(text, mod2, arg2, TEXT2).astype(float)
-                pi = pred(text, mod3, arg3, TEXT3).astype(float)
-                pw = pred_bert(text, mod4, rob_sent, max_n_sent=30).astype(float)
-                pe = pred(text, mod5, arg5, TEXT5).astype(float)
-                
-                co += 1
-                print('{} files done.'.format(co))
-                score = {"txt_path": path,
-            			 "random": pr, "blind": pb, "interest": pi, "welfare": pw, "exclusion": pe}
-                
-                if num_sents > 0: 
-                    sr = extract_sent(text, smod1, sarg1, sTEXT1, num_sents)
-                    sb = extract_sent(text, smod2, sarg2, sTEXT2, num_sents)
-                    si = extract_sent(text, smod3, sarg3, sTEXT3, num_sents)
-                    sw = extract_sent(text, smod4, sarg4, sTEXT4, num_sents)
-                    se = extract_sent(text, smod5, sarg5, sTEXT5, num_sents)
-                    score['sentences'] = {"random": sr, "blind": sb, "interest": si, "welfare": sw, "exclusion": se}             
+                if text != '':
+                    pr = pred(text, mod1, arg1, TEXT1).astype(float)
+                    pb = pred(text, mod2, arg2, TEXT2).astype(float)
+                    pi = pred(text, mod3, arg3, TEXT3).astype(float)
+                    pw = pred_bert(text, mod4, rob_sent, max_n_sent=30).astype(float)
+                    pe = pred(text, mod5, arg5, TEXT5).astype(float)
+                    					
+                    co += 1
+                    print('{} files done.'.format(co))
+                    score = {"txt_path": path,
+							 "random": pr, "blind": pb, "interest": pi, "welfare": pw, "exclusion": pe}
+					
+                    if num_sents > 0: 
+                        sr = extract_sent(text, smod1, sarg1, sTEXT1, num_sents)
+                        sb = extract_sent(text, smod2, sarg2, sTEXT2, num_sents)
+                        si = extract_sent(text, smod3, sarg3, sTEXT3, num_sents)
+                        sw = extract_sent(text, smod4, sarg4, sTEXT4, num_sents)
+                        se = extract_sent(text, smod5, sarg5, sTEXT5, num_sents)
+                        score['sentences'] = {"random": sr, "blind": sb, "interest": si, "welfare": sw, "exclusion": se}           
+                else:
+                    score = {"txt_path": path,
+							 "random": 999, "blind": 999, "interest": 999, "welfare": 999, "exclusion": 999}         
                               
                 output.append(score)
                 
