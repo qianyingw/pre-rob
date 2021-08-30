@@ -12,7 +12,7 @@ Check the online [demo](https://share.streamlit.io/qianyingw/rob-slt/master/app.
 ### Usage
 #### Clone source code
 ```
-git clone https://github.com/qianyingw/rob-pome.git
+git clone https://github.com/qianyingw/pre-rob.git
 ```
 #### Set environment
 ```
@@ -21,7 +21,7 @@ wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh
 
 # Create and activate virtual environment
-cd rob-pome/rob-app
+cd pre-rob/rob-app
 virtualenv -p python3 rob
 source rob/bin/activate
 
@@ -34,14 +34,14 @@ sh setup.sh
 #### CSV file including txt paths as input
 It should have two columns: 'id' and 'path'.
 
-See [input.csv](https://github.com/qianyingw/rob-pome/blob/master/rob-app/example/input.csv) for example.
+See [input.csv](https://github.com/qianyingw/pre-rob/blob/master/rob-app/example/input.csv) for example.
 The 'path' column stores the absolute paths of TXT files.
 ```
-python rob.py -p /xxx/rob-pome/rob-app/example/input.csv  # absolutae path of input.csv
+python rob.py -p ../pre-rob/rob-app/example/input.csv  # absolutae path of input.csv
 # Extract two relevant sentences for each item
-python rob.py -p /xxx/rob-pome/rob-app/example/input.csv -s 2  
+python rob.py -p ../pre-rob/rob-app/example/input.csv -s 2  
 ```
-Results are saved in [output.csv](https://github.com/qianyingw/rob-pome/blob/master/rob-app/example/output.csv).
+Results are saved in [output.csv](https://github.com/qianyingw/pre-rob/blob/master/rob-app/example/output.csv).
 
 ### Citation
 [![DOI](https://zenodo.org/badge/222727172.svg)](https://zenodo.org/badge/latestdoi/222727172)
